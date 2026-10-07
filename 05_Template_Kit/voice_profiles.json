@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "default_profile_id": "omar_el_clone_v1",
+  "rule": "طبقة واحدة فقط تُنشر. الافتراضي = الصوت الرسمي المستنسخ. البديل للمسودات. المؤقت للتوقيت فقط ويُحذف قبل التصدير.",
+  "profiles": [
+    {
+      "profile_id": "omar_el_clone_v1",
+      "label": "الصوت الرسمي — مستنسخ (Omar / رِواق)",
+      "type": "cloned",
+      "engine": "elevenlabs_ivc",
+      "language": "ar",
+      "locked": true,
+      "use": [
+        "published"
+      ],
+      "reference_audio": "voices/omar/ElevenLabs_2026-10-05T22_22_39_Omar_deep_voice_ivc_sp100_s50_sb75_v4.mp3",
+      "reference_audio_analysis": {
+        "format": "mp3",
+        "sample_rate_hz": 44100,
+        "channels": 1,
+        "duration_s": 3.99,
+        "peak_dbfs": -1.0,
+        "rms_dbfs": -19.1
+      },
+      "engine_settings_observed": {
+        "sp": 100,
+        "s": 50,
+        "sb": 75,
+        "variant": 4,
+        "note": "مستخرجة من اسم ملف التسليم — تُثبَّت كنقطة بداية وتُراجع بأذن المراجعة"
+      },
+      "style": {
+        "pace": 1.0,
+        "energy": "calm-deep-storyteller",
+        "emotion": "neutral_warm"
+      },
+      "notes": "صوت صاحب المشروع نفسه — لا يُستبدل ولا يُعدَّل نبرته. أي تعديل = قرار مالك المشروع فقط."
+    },
+    {
+      "profile_id": "ops_fallback_ar_v1",
+      "label": "بديل تشغيلي (مسودات ومراجعات)",
+      "type": "tts",
+      "engine": "platform_registered",
+      "voice_id_param": "voice-01",
+      "language": "ar",
+      "locked": false,
+      "use": [
+        "drafts",
+        "internal_review"
+      ],
+      "style": {
+        "pace": 1.0,
+        "energy": "calm-deep-storyteller"
+      },
+      "notes": "يُستخدم حين يتعذر الوصول للمستنسخ — نفس القواعد الأدائية، ويُستبدل بالرسمي قبل النشر.",
+      "registered": "2026-10-07 · اختيار المستمع (جلسة الاختبار 01)",
+      "sample_files": [
+        "08_Audio_Pack/samples_finished_v2/FIN_MATCHED_v01_01_brand.wav",
+        "08_Audio_Pack/samples_finished_v2/FIN_MATCHED_v01_02_hook.wav",
+        "08_Audio_Pack/samples_finished_v2/FIN_MATCHED_v01_03_closing.wav"
+      ],
+      "post_chain": {
+        "status": "approved_by_ear_test_2026-10-07",
+        "script": "10_System/scripts/voice_finish.py",
+        "settings": "LUFS −16 · TP ≤ −1.0 dBTP · مطابقة تكيفية لمركز الطيف",
+        "files": [
+          "08_Audio_Pack/voice_operational_final/OPERATIONAL_01_brand.wav",
+          "08_Audio_Pack/voice_operational_final/OPERATIONAL_02_hook.wav",
+          "08_Audio_Pack/voice_operational_final/OPERATIONAL_03_closing.wav"
+        ]
+      },
+      "pitch_shift": {
+        "status": "rejected_by_ear_test",
+        "reason": "تشويش طوري لم تلتقطه المقاييس الطيفية — الأذن حكمت",
+        "archived_at": "08_Audio_Pack/_rejected_pitchmatch/",
+        "do_not_use": true
+      }
+    },
+    {
+      "profile_id": "scratch_timing_v1",
+      "label": "مؤقت التوقيت",
+      "type": "tts",
+      "engine": "any",
+      "language": "ar",
+      "locked": false,
+      "use": [
+        "timing_measurement_only"
+      ],
+      "must_be_replaced_before_export": true
+    }
+  ],
+  "performance_rules": {
+    "hook": {
+      "pace_delta": 0.05,
+      "energy": "higher",
+      "music_delay_ms": 600
+    },
+    "narration": {
+      "pace_delta": 0.0,
+      "energy": "base"
+    },
+    "numbers_dates": {
+      "pace_delta": -0.05,
+      "pause_before_ms": 250,
+      "pause_after_ms": 250,
+      "no_abbreviation": true
+    },
+    "closing": {
+      "pace_delta": -0.03,
+      "energy": "lower",
+      "silence_before_stinger_ms": 500
+    }
+  },
+  "selection_rules": {
+    "by_language": {
+      "ar": [
+        "omar_el_clone_v1",
+        "ops_fallback_ar_v1"
+      ]
+    },
+    "when_clone_unavailable": "ops_fallback_ar_v1 + وسم التسليم بـ DRAFT_VO",
+    "forbidden": "لا يُستخدم أي صوت غير محدَّد هنا — ولا تُخلط طبقتان في تسليم واحد."
+  },
+  "recommendation": {
+    "cloning_service": "ElevenLabs (المستخدم يملك حسابًا وعيّنة IVC فعلية — أسرع مسار وأعلى تطابق)",
+    "next_steps": [
+      "تسجيل 10–15 دقيقة كلام طبيعي بإرشادات omar_voice_calibration_script_v1",
+      "إعادة تدريب/تحديث الصوت الرسمي",
+      "اعتماد العيّنة كـ Golden Voice Reference"
+    ],
+    "alternatives": [
+      "PlayHT",
+      "Resemble AI",
+      "Cartesia"
+    ]
+  },
+  "identity_pipeline": {
+    "status": "locked_2026-10-07",
+    "operational_voice": "voice-01 + سلسلة الاستوديو (بدون أي إزاحة نغمة)",
+    "published_voice": "الصوت الرسمي المستنسخ (ElevenLabs) + نفس سلسلة الاستوديو — المطابقة الطبيعية تحدث في مرحلة التوليد",
+    "forbidden": [
+      "pitch_shift على التعليق الصوتي في خط الإنتاج",
+      "أي طبقة صوت غير معرّفة في هذا الملف"
+    ],
+    "qa_policy": "أي تغيير في صوت التعليق يمر باختبار استماع إلزامي قبل الثبوت (الأذن تتقدم على المقاييس)",
+    "locked_at": "2026-10-07",
+    "locked_by": "قرار المالك بعد اختبار استماع"
+  }
+}
