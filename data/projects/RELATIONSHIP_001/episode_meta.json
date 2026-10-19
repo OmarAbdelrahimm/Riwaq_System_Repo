@@ -1,0 +1,397 @@
+{
+  "schema_version": "2.0",
+  "brand_ref": {
+    "theme_path": "data/brand.json",
+    "watermark": "on"
+  },
+  "project": {
+    "id": "RELATIONSHIP_001",
+    "series_id": "riwaq_heritage_s01",
+    "title": "العلاقات أعمق من التواصل",
+    "episode_number": null,
+    "video_type": "podcast_clip",
+    "platforms": [
+      "youtube"
+    ],
+    "aspect_ratios": [
+      "16x9"
+    ],
+    "language_primary": "ar",
+    "language_secondary": null,
+    "priority": "quality"
+  },
+  "source": {
+    "type": "podcast",
+    "title": "مركزية العلاقة مع الله | ياسر الحزيمي | بودكاست بدون ورق",
+    "url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+    "local_path": "projects/RELATIONSHIP_001/source/relationship_source.mp4",
+    "time_range": {
+      "start": "00:00:00",
+      "end": "00:04:30"
+    },
+    "locator_quote": null,
+    "rights": "permission_granted",
+    "provenance_note": "مقطع 4:30 أعدّه المستخدم في Google Drive. أكد المستخدم امتلاك حقوق/إذن استخدام الصوت واللقطات. 1920×1080، 25fps؛ استُخرج الصوت AAC من المصدر دون إعادة ترميز إلى relationship_audio.m4a."
+  },
+  "story": {
+    "hook": "العلاقات أعمق من مهارات الاتصال.",
+    "cta_question": "ما الذي تضيفه إلى لوحة علاقتك بالآخرين؟",
+    "sections": [
+      {
+        "id": "beyond_communication",
+        "t_in": 0,
+        "t_out": 54.41,
+        "kicker": "الفصل الأول · معنى العلاقة",
+        "title": "العلاقات أعمق من التواصل",
+        "subtitle": "مهارات الحديث لا تكفي وحدها.",
+        "motif": "exchange"
+      },
+      {
+        "id": "shared_canvas",
+        "t_in": 54.41,
+        "t_out": 140.971,
+        "kicker": "الفصل الثاني · التراكم",
+        "title": "العلاقة لوحة مشتركة",
+        "subtitle": "كل لقاء يضيف خطًا إلى ما بيننا.",
+        "motif": "shared_canvas"
+      },
+      {
+        "id": "five_factors",
+        "t_in": 140.971,
+        "t_out": 235.531,
+        "kicker": "الفصل الثالث · التفسير",
+        "title": "ما بيننا أكثر من شخصين",
+        "subtitle": "استجابتنا وتفسيرنا يصنعان أثر العلاقة.",
+        "motif": "five_factors"
+      },
+      {
+        "id": "human_context",
+        "t_in": 235.531,
+        "t_out": 270,
+        "kicker": "الفصل الرابع · القبول",
+        "title": "نرتبط بسياق الإنسان",
+        "subtitle": "ماضيه واحتياجاته جزء من الحكاية.",
+        "motif": "context"
+      }
+    ],
+    "scenes": []
+  },
+  "narration": {
+    "mode": "none",
+    "note": "لا يوجد تعليق توليدي في هذه النسخة؛ الحوار المنطوق هو الصوت الأصلي المأخوذ من المقطع، ومقاطع voice-00 السابقة ليست مستخدمة."
+  },
+  "audio": {
+    "source_audio": {
+      "src": "projects/RELATIONSHIP_001/source/relationship_audio.m4a",
+      "t_in": 0,
+      "t_out": 270,
+      "volume_db": 0
+    },
+    "music": {
+      "src": "projects/GOLDEN_001/audio/music.wav",
+      "t_in": 0,
+      "t_out": 270,
+      "volume_db": -27
+    },
+    "stingers": []
+  },
+  "captions": {
+    "styles": [
+      "keyword_highlight"
+    ],
+    "languages": [
+      "ar"
+    ],
+    "sync_source": "embedded_source_subtitles",
+    "safe_zone_ref": "brand.theme.safe_zones",
+    "rules": {
+      "max_lines": 2,
+      "max_chars_ar": 44,
+      "keyword_color": "gold_light",
+      "never_cover_face": true
+    },
+    "data": [
+      {
+        "t_in": 0.0,
+        "t_out": 2.331,
+        "ar": "طيب، اللهم اهدنا وسددنا.",
+        "keywords": []
+      },
+      {
+        "t_in": 2.331,
+        "t_out": 7.971,
+        "ar": "اللهم علّمنا ما ينفعنا، وانفعنا بما علّمتنا، وزدنا علمًا؛ ونعوذ بالله من علمٍ لا ينفع.",
+        "keywords": []
+      },
+      {
+        "t_in": 7.971,
+        "t_out": 14.29,
+        "ar": "أنا مهتم بالعلاقات منذ قرابة عشرين سنة.",
+        "keywords": []
+      },
+      {
+        "t_in": 14.29,
+        "t_out": 18.13,
+        "ar": "وأنا أحضر وأحاضر فيها.",
+        "keywords": []
+      },
+      {
+        "t_in": 18.13,
+        "t_out": 24.491,
+        "ar": "ومن الأشياء التي تؤلمني أن يعتقد الإنسان...",
+        "keywords": []
+      },
+      {
+        "t_in": 24.491,
+        "t_out": 28.651,
+        "ar": "أن الابتسامة واللباس الحسن والأسلوب الجيد...",
+        "keywords": []
+      },
+      {
+        "t_in": 28.651,
+        "t_out": 32.371,
+        "ar": "تبني علاقة جيدة؟ لا، هذه مهارات اتصال.",
+        "keywords": []
+      },
+      {
+        "t_in": 32.371,
+        "t_out": 37.211,
+        "ar": "فثمة فرق بين العلاقات والاتصال.",
+        "keywords": []
+      },
+      {
+        "t_in": 37.211,
+        "t_out": 43.371,
+        "ar": "لقاء الكاشير والعميل مثالٌ على التعامل العابر.",
+        "keywords": []
+      },
+      {
+        "t_in": 43.371,
+        "t_out": 49.731,
+        "ar": "هذه مهارات اتصال تدير الموقف؛ لكن العلاقات أعمق.",
+        "keywords": []
+      },
+      {
+        "t_in": 49.731,
+        "t_out": 57.531,
+        "ar": "والأمر الآخر أننا نخلط بين مهارات الاتصال والعلاقات.",
+        "keywords": []
+      },
+      {
+        "t_in": 57.531,
+        "t_out": 63.691,
+        "ar": "نعتقد أحيانًا أن العلاقة هي أنا وأنت فقط.",
+        "keywords": []
+      },
+      {
+        "t_in": 63.691,
+        "t_out": 72.371,
+        "ar": "أنا وأنت؛ تكرار اللقاءات يصنع العلاقة.",
+        "keywords": []
+      },
+      {
+        "t_in": 72.371,
+        "t_out": 80.971,
+        "ar": "كثرة التواصل العابر قد تنقل العلاقة إلى مستوى آخر.",
+        "keywords": []
+      },
+      {
+        "t_in": 80.971,
+        "t_out": 87.811,
+        "ar": "مثال بسيط: أنا الآن مع المضيف في الطائرة.",
+        "keywords": []
+      },
+      {
+        "t_in": 87.811,
+        "t_out": 92.931,
+        "ar": "في اللقاء الأول، مع كل واحد قلم وورقة.",
+        "keywords": []
+      },
+      {
+        "t_in": 92.931,
+        "t_out": 99.851,
+        "ar": "يقول: السلام عليكم، فيرسم شيئًا في ورقته، وأنا أردّ عليه بالرسم.",
+        "keywords": []
+      },
+      {
+        "t_in": 99.851,
+        "t_out": 107.571,
+        "ar": "في كل تواصل نكمل رسم اللوحة؛ لوحتنا نكملها معًا.",
+        "keywords": []
+      },
+      {
+        "t_in": 107.571,
+        "t_out": 117.851,
+        "ar": "وفي رحلة أخرى، بعد سنوات أو أشهر، ألقاه ونكمل الرسم من حيث توقفنا.",
+        "keywords": []
+      },
+      {
+        "t_in": 117.851,
+        "t_out": 128.771,
+        "ar": "ولو لم يردّ بطريقة جيدة، أو لم أحتفِ به، فقد أقرر ألا أكمل الرسم.",
+        "keywords": []
+      },
+      {
+        "t_in": 128.771,
+        "t_out": 135.891,
+        "ar": "هنا تتمزق الورقة، وتنتهي العلاقة.",
+        "keywords": []
+      },
+      {
+        "t_in": 135.891,
+        "t_out": 140.971,
+        "ar": "بطبيعتها، العلاقة ليست شخصين فقط؛ بل تتكوّن من خمسة أشياء.",
+        "keywords": []
+      },
+      {
+        "t_in": 140.971,
+        "t_out": 150.651,
+        "ar": "إذا كنا اثنين، فبيننا خمسة عناصر: ألف، باء...",
+        "keywords": []
+      },
+      {
+        "t_in": 150.651,
+        "t_out": 157.371,
+        "ar": "جيم: ما يصدر مني؛ ودال: ما يصدر منك.",
+        "keywords": []
+      },
+      {
+        "t_in": 157.371,
+        "t_out": 166.411,
+        "ar": "ثم استجابتنا لهذا. هذا النموذج البسيط يفسّر كثيرًا من الأسئلة.",
+        "keywords": []
+      },
+      {
+        "t_in": 166.411,
+        "t_out": 171.371,
+        "ar": "لماذا ينفصل زوجان، مع أن كليهما طيب؟",
+        "keywords": []
+      },
+      {
+        "t_in": 171.371,
+        "t_out": 178.651,
+        "ar": "قد يتمنى كلٌّ منهما الآخر، لكن...",
+        "keywords": []
+      },
+      {
+        "t_in": 178.651,
+        "t_out": 184.291,
+        "ar": "ما يصدر من أحدهما تجاه الآخر قد لا يكون جيدًا.",
+        "keywords": []
+      },
+      {
+        "t_in": 184.291,
+        "t_out": 191.051,
+        "ar": "قد أكون إنسانًا راقيًا، لكن أسلوبي معك فيه مشكلة؛ وربما العكس.",
+        "keywords": []
+      },
+      {
+        "t_in": 191.051,
+        "t_out": 195.571,
+        "ar": "وهنا تظهر استجابتنا.",
+        "keywords": []
+      },
+      {
+        "t_in": 195.571,
+        "t_out": 204.451,
+        "ar": "حين أرى أن عليك أن تحترمني، أطلب ذلك...",
+        "keywords": []
+      },
+      {
+        "t_in": 204.451,
+        "t_out": 208.331,
+        "ar": "وأنت ترى أنك تحترمني.",
+        "keywords": []
+      },
+      {
+        "t_in": 208.331,
+        "t_out": 218.371,
+        "ar": "هل ستقبل اعتراضي، أم ستراه تهديدًا لذاتك؟",
+        "keywords": []
+      },
+      {
+        "t_in": 218.371,
+        "t_out": 227.211,
+        "ar": "العلاقة ليست ألفًا أو باءً فقط؛ بل ألف وباء وجيم ودال.",
+        "keywords": []
+      },
+      {
+        "t_in": 227.211,
+        "t_out": 232.891,
+        "ar": "وتفسيراتنا لسلوكياتنا تدخل في الصورة.",
+        "keywords": []
+      },
+      {
+        "t_in": 232.891,
+        "t_out": 239.731,
+        "ar": "إنها قصةٌ تتشكّل بين الطرفين.",
+        "keywords": []
+      },
+      {
+        "t_in": 239.731,
+        "t_out": 248.611,
+        "ar": "حين أرتبط بشخص أو أتزوج امرأة، أرتبط بماضيها وطفولتها.",
+        "keywords": []
+      },
+      {
+        "t_in": 248.611,
+        "t_out": 253.011,
+        "ar": "وبتربيتها ومخاوفها.",
+        "keywords": []
+      },
+      {
+        "t_in": 253.011,
+        "t_out": 257.011,
+        "ar": "وأرتبط بصديقي وعيوبه...",
+        "keywords": []
+      },
+      {
+        "t_in": 257.011,
+        "t_out": 263.731,
+        "ar": "وباحتياجاته وأمانيه التي لم تكتمل، وبنتوءات شخصيته.",
+        "keywords": []
+      },
+      {
+        "t_in": 263.731,
+        "t_out": 270.0,
+        "ar": "ولست ملزمًا بكشطها؛ فأنا لا أرتبط بشخصٍ مثالي...",
+        "keywords": []
+      }
+    ]
+  },
+  "edit": {
+    "fps": 25,
+    "cut_style": "calm",
+    "duration_s": 270,
+    "music_mood": "warm-story",
+    "stingers": {
+      "in": false,
+      "out": false
+    }
+  },
+  "render": {
+    "resolution": [
+      1920,
+      1080
+    ],
+    "preset": "source_media_1080p",
+    "per_platform_export": false
+  },
+  "deliverables": {
+    "video": "exports/RELATIONSHIP_001_RIWAQ_FINAL.mp4",
+    "captions_ar": "data/projects/RELATIONSHIP_001/outputs/CAPTIONS_AR_RELATIONSHIP_001.srt",
+    "source_video": "public/projects/RELATIONSHIP_001/source/relationship_source.mp4 (local source asset, excluded from Git)"
+  },
+  "qc_rules": {
+    "must_pass": [
+      "duration_270s",
+      "source_audio_present",
+      "arabic_captions_within_duration",
+      "music_below_dialogue",
+      "riwaq_frame_and_safe_zones"
+    ],
+    "tolerance_lu": 0.5
+  },
+  "status": "final_rendered",
+  "notes": "النسخة السابقة DRAFT_VO هي مسودة توقيت منفصلة؛ هذه النسخة تستخدم الصوت والصورة الأصليين من الملف المصرّح به."
+}

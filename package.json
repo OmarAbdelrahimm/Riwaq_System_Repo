@@ -3,15 +3,21 @@
   "version": "1.4.0",
   "private": true,
   "description": "Riwaq Production System — data-driven video template (one engine, many identities)",
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "studio": "remotion studio src/index.ts",
     "props:golden": "python scripts/make_props.py data/projects/GOLDEN_001",
     "render:golden": "npm run props:golden && remotion render src/index.ts Episode exports/MASTER_WEB_GOLDEN_001.mp4 --props=data/projects/GOLDEN_001/render_props.json --concurrency=1 --crf=18",
     "render:golden:draft": "npm run props:golden && remotion render src/index.ts Episode exports/_DRAFT_GOLDEN_001.mp4 --props=data/projects/GOLDEN_001/render_props.json --concurrency=1 --scale=0.5",
     "still": "npm run props:golden && remotion still src/index.ts Episode exports/STILL_GOLDEN_001.png --props=data/projects/GOLDEN_001/render_props.json --frame=45",
+    "props:relationship": "python scripts/make_props.py data/projects/RELATIONSHIP_001",
+    "srt:relationship": "python scripts/make_srt.py data/projects/RELATIONSHIP_001/episode_meta.json data/projects/RELATIONSHIP_001/outputs",
     "qc": "python scripts/qc.py data/projects/GOLDEN_001/episode_meta.json exports reports",
-    "srt": "python scripts/make_srt.py data/projects/GOLDEN_001/episode_meta.json outputs"
+    "srt": "python scripts/make_srt.py data/projects/GOLDEN_001/episode_meta.json outputs",
+    "render:relationship:preview": "npm run props:relationship && remotion render src/index.ts MainNarrative exports/RELATIONSHIP_001_SOURCE_PREVIEW.mp4 --props=data/projects/RELATIONSHIP_001/render_props.json --concurrency=1 --scale=0.5",
+    "render:relationship:final": "npm run props:relationship && remotion render src/index.ts MainNarrative exports/RELATIONSHIP_001_RIWAQ_FINAL.mp4 --props=data/projects/RELATIONSHIP_001/render_props.json --concurrency=1 --crf=18"
   },
   "dependencies": {
     "@remotion/cli": "4.0.533",

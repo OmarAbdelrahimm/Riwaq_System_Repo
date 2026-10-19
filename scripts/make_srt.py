@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """make_srt.py — توليد كابشنز AR/EN من episode_meta.json
-القواعد: سطران أقصى · ≤28 حرفًا عربيًا للسطر · عزل النص اللاتيني (BiDi)
+القواعد: سطران أقصى · حد الأحرف من إعداد المشروع (28 افتراضيًا) · عزل النص اللاتيني (BiDi)
 """
 import json, os, re, sys
 
@@ -33,7 +33,11 @@ def isolate_latin(text: str) -> str:
 def build(meta_path: str, out_dir: str):
     meta = json.load(open(meta_path, encoding="utf-8"))
     pid = meta["project"]["id"]
-    lines = (meta.get("captions") or {}).get("data") or []
+    captions = meta.get("captions") or {}
+    lines = captions.get("data") or []
+    rules = captions.get("rules") or {}
+    max_chars = int(rules.get("max_chars_ar", MAX_CHARS))
+    max_lines = int(rules.get("max_lines", MAX_LINES))
     if not lines:
         print("لا كابشنز في episode_meta.json"); return
     os.makedirs(out_dir, exist_ok=True)
@@ -41,19 +45,34 @@ def build(meta_path: str, out_dir: str):
     en_path = os.path.join(out_dir, f"CAPTIONS_EN_{pid}.srt")
 
     warn = []
-    with open(ar_path, "w", encoding="utf-8") as fa, open(en_path, "w", encoding="utf-8") as fe:
-        ia = ie = 0
-        for ln in lines:
-            dur = ln["t_out"] - ln["t_in"]
-            if dur < 1.2:
-                warn.append(f"مدة قصيرة ({dur:.2f}s): {ln['ar'][:24]}…")
-            if ln.get("ar"):
-                ia += 1
-                fa.write(f"{ia}\n{ts(ln['t_in'])} --> {ts(ln['t_out'])}\n{isolate_latin(wrap_ar(ln['ar']))}\n\n")
-            if ln.get("en"):
-                ie += 1
-                fe.write(f"{ie}\n{ts(ln['t_in'])} --> {ts(ln['t_out'])}\n{ln['en']}\n\n")
-    print(f"✔ {ar_path} ({ia}) · {en_path} ({ie})")
+    english_lines = [ln for ln in lines if ln.get("en")]
+    ar_cues = []
+    ia = 0
+    for ln in lines:
+        dur = ln["t_out"] - ln["t_in"]
+        if dur < 1.2:
+            warn.append(f"مدة قصيرة ({dur:.2f}s): {ln.get('ar', '')[:24]}…")
+        if ln.get("ar"):
+            ia += 1
+            ar_cues.append(
+                f"{ia}\n{ts(ln['t_in'])} --> {ts(ln['t_out'])}\n"
+                f"{isolate_latin(wrap_ar(ln['ar'], max_chars=max_chars, max_lines=max_lines))}"
+            )
+    with open(ar_path, "w", encoding="utf-8") as fa:
+        fa.write("\n\n".join(ar_cues) + "\n")
+    ie = 0
+    if english_lines:
+        en_cues = []
+        for ln in english_lines:
+            ie += 1
+            en_cues.append(f"{ie}\n{ts(ln['t_in'])} --> {ts(ln['t_out'])}\n{ln['en']}")
+        with open(en_path, "w", encoding="utf-8") as fe:
+            fe.write("\n\n".join(en_cues) + "\n")
+        print(f"✔ {ar_path} ({ia}) · {en_path} ({ie})")
+    else:
+        if os.path.exists(en_path):
+            os.remove(en_path)
+        print(f"✔ {ar_path} ({ia}) · لا يوجد SRT إنجليزي")
     for w in warn[:8]:
         print("  ⚠", w)
 

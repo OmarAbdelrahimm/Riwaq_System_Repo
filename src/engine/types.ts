@@ -116,15 +116,30 @@ export interface EpisodeMeta {
     hook?: string;
     chapters?: { title: string; t_in: number; t_out: number }[];
     scenes?: Scene[];
+    sections?: {
+      id: string;
+      t_in: number;
+      t_out: number;
+      kicker?: string;
+      title: string;
+      subtitle?: string;
+      background?: string;
+      motif?: "exchange" | "shared_canvas" | "five_factors" | "context";
+    }[];
     cta_question?: string;
     next_tease?: string;
   };
   narration?: {
     mode: "generate" | "provided" | "none";
     profile_id?: string;
+    script_path?: string;
+    replacement_policy?: "must_match_official" | "drafts_allowed";
+    status?: "DRAFT_VO" | "OFFICIAL_VO";
+    note?: string;
     placement_map?: { t_in: number; t_out: number; type: string }[];
   };
   audio?: {
+    source_audio?: { src: string; t_in: number; t_out?: number; volume_db?: number };
     vo?: { src: string; t_in: number; t_out?: number; volume_db?: number }[];
     music?: { src: string; t_in: number; t_out?: number; volume_db?: number } | null;
     stingers?: { src: string; t_in: number; volume_db?: number }[];

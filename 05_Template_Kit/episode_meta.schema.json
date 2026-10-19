@@ -208,10 +208,17 @@
             "licensed",
             "fair_use_commentary",
             "public_domain",
-            "permission_pending"
+            "permission_pending",
+            "permission_granted"
           ]
         },
         "provenance_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "title": {
           "type": [
             "string",
             "null"
@@ -242,6 +249,53 @@
               },
               "t_out": {
                 "type": "number"
+              }
+            }
+          }
+        },
+        "sections": {
+          "description": "فصول مرئية ومقاطع رمزية داخل تكوين MainNarrative.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "t_in",
+              "t_out",
+              "title"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "t_in": {
+                "type": "number",
+                "minimum": 0
+              },
+              "t_out": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "kicker": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "subtitle": {
+                "type": "string"
+              },
+              "background": {
+                "type": "string",
+                "description": "خلفية اختيارية عند عدم استخدام خلفية Riwaq الموحدة."
+              },
+              "motif": {
+                "enum": [
+                  "exchange",
+                  "shared_canvas",
+                  "five_factors",
+                  "context"
+                ]
               }
             }
           }
@@ -293,6 +347,13 @@
           ],
           "default": "must_match_official"
         },
+        "status": {
+          "enum": [
+            "DRAFT_VO",
+            "OFFICIAL_VO"
+          ],
+          "description": "يظهر الوسم على التسليم واسم الملف عند استخدام صوت مسوّدة."
+        },
         "placement_map": {
           "type": "array",
           "items": {
@@ -321,6 +382,12 @@
               }
             }
           }
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
@@ -354,7 +421,8 @@
           "enum": [
             "provided_srt",
             "asr_word_level",
-            "from_script"
+            "from_script",
+            "embedded_source_subtitles"
           ]
         },
         "safe_zone_ref": {
@@ -587,6 +655,140 @@
         "string",
         "null"
       ]
+    },
+    "audio": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "source_audio": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "الصوت الأصلي للمادة المصدرية، مستقلًا عن التعليق التوليدي.",
+          "properties": {
+            "src": {
+              "type": "string"
+            },
+            "t_in": {
+              "type": "number",
+              "minimum": 0
+            },
+            "t_out": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            },
+            "volume_db": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "src",
+            "t_in"
+          ]
+        },
+        "vo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "src",
+              "t_in"
+            ],
+            "properties": {
+              "src": {
+                "type": "string"
+              },
+              "t_in": {
+                "type": "number",
+                "minimum": 0
+              },
+              "t_out": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "exclusiveMinimum": 0
+              },
+              "volume_db": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "music": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "src",
+                "t_in"
+              ],
+              "properties": {
+                "src": {
+                  "type": "string"
+                },
+                "t_in": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "t_out": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "exclusiveMinimum": 0
+                },
+                "volume_db": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stingers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "src",
+              "t_in"
+            ],
+            "properties": {
+              "src": {
+                "type": "string"
+              },
+              "t_in": {
+                "type": "number",
+                "minimum": 0
+              },
+              "volume_db": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

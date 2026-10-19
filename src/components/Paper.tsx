@@ -6,9 +6,10 @@ import { useTheme } from "../engine/theme";
  * طبقة الـLook الثابتة: نسيج ورق + حبيبات + تظليل + إطار ذهبي رفيع.
  * كل القيم من brand.json — لا أرقام في الكود.
  */
-export const Paper: React.FC<{ children?: React.ReactNode; scale?: number }> = ({
+export const Paper: React.FC<{ children?: React.ReactNode; scale?: number; grain?: boolean }> = ({
   children,
   scale = 1,
+  grain = true,
 }) => {
   const { color, brand } = useTheme();
   const look = brand.theme.look;
@@ -34,16 +35,18 @@ export const Paper: React.FC<{ children?: React.ReactNode; scale?: number }> = (
                             repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 3px, transparent 3px 7px)`,
         }}
       />
-      {/* حبيبات */}
-      <AbsoluteFill style={{ opacity: look.grain ?? 0.12 }}>
-        <svg width="100%" height="100%">
-          <filter id="riwaq-grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#riwaq-grain)" opacity="0.5" />
-        </svg>
-      </AbsoluteFill>
+      {/* حبيبات SVG اختيارية؛ يمكن إيقافها لتسريع الريندر الطويل مع بقاء نسيج CSS. */}
+      {grain ? (
+        <AbsoluteFill style={{ opacity: look.grain ?? 0.12 }}>
+          <svg width="100%" height="100%">
+            <filter id="riwaq-grain">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
+              <feColorMatrix type="saturate" values="0" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#riwaq-grain)" opacity="0.5" />
+          </svg>
+        </AbsoluteFill>
+      ) : null}
       {/* تظليل */}
       <AbsoluteFill
         style={{
