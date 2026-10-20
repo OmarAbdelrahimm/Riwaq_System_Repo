@@ -3,3 +3,5 @@ node_modules/
 *.log
 .DS_Store
 google_drive/
+exports/*.mp4
+exports/_DRAFT*
