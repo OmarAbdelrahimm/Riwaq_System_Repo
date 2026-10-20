@@ -11,7 +11,7 @@ import {
 import subtitleData from "../../public/projects/PARADOX_012/timestamps_paradox.json";
 import { KineticWord } from "../components/KineticWord";
 import { BrandMark } from "../components/BrandMark";
-import { textContainerStyle, backgroundImageStyle } from "../styles";
+import { getTextContainerStyle, backgroundImageStyle } from "../styles";
 
 // ── الأصول البصرية للمشاهد الثلاثة (من Drive: Premium Trend Shorts Series) ──
 import imgScene1 from "../../public/projects/PARADOX_012/assets/scene1_foggy_tower.jpg";
@@ -19,19 +19,30 @@ import imgScene2 from "../../public/projects/PARADOX_012/assets/scene2_golden_tr
 import imgScene3 from "../../public/projects/PARADOX_012/assets/scene3_oasis.jpg";
 
 /**
- * 🎬 الحلقة 12 — «مفارقة الفلاح والنجاح» (PARADOX_012)
- * المدة المستهدفة: 3:20 (6000 إطار @ 30fps) — مقاس 1080×1920 (شورتس 9:16)
- * المصدر الصوتي: المقطع الأصلي 02:38:16 → 02:41:11 من بودكاست «بدون ورق — ياسر الحزيمي»
+ * 🎬 الحلقة 12 — «مفارقة الفلاح والنجاح» (PARADOX_012) — النسخة الأفقية 4K
+ * المقاس: 3840×2160 (16:9) @ 30fps — المدة الفعلية 177.0s (5310 إطارات)
  *
- * البنية السردية:
- *  - المشهد 1 (0:00–1:10) [The Foggy Tower]        : أزمة معايير النجاح الحديثة
- *  - المشهد 2 (1:10–2:10) [The Golden Triad]        : ثلاثية التحقق — سعي، وعي، وحي
- *  - المشهد 3 (2:10–3:20) [The Oasis of Contentment]: الصدمة — النجاح الدنيوي قمة الفشل + فردوس عمر بن عبد العزيز
+ * 🔊 الصوت الحقيقي: مقصوص من المصدر على Google Drive (الأجزاء 20+21 من 27)
+ *    القطاع 02:38:16.00 → 02:41:13.00 من بودكاست «بدون ورق — ياسر الحزيمي»
+ *    (audio/voice.wav — مونو 48kHz، مُطبَّع ‎-16 LUFS وفق مستهدفات العلامة)
  *
- * 🔊 الصوت: ضع الملفات في public/projects/PARADOX_012/audio/ (انظر README.md هناك)
- *    ثم فعّل ENABLE_AUDIO. الصوت النقي 1.0 والموسيقى 0.10 لمنع التداخل.
+ * 📝 مزامنة حقيقية: نص الترجمات العربية المدمجة في ملفات المصدر + محاذاة كلمات
+ *    مضبوطة على موجة الصوت الفعلية — انظر meta.sync_method في ملف الطوابع.
+ *
+ * البنية السردية (حدود مثبّتة على محتوى الكلام الفعلي):
+ *  - المشهد 1 (0.00–86.36)   [The Foggy Tower]         : سؤال الفلاح وأزمة معيار النجاح الغامض
+ *  - المشهد 2 (86.36–127.52) [The Golden Triad]        : التعاريف اللغوية + «لديك سعي ووعي ووحي» (111.51s)
+ *  - المشهد 3 (127.52–177.0) [The Oasis of Contentment]: «تعريف النجاح تحقيق ما تريده أنت، والفلاح ما يريده الله منك»
+ *                                                        + الصدمة + فردوس عمر بن عبد العزيز الأرضي
+ *
+ * 🎵 الموسيقى: لا يوجد ملف موسيقى لهذه الحلقة بعد. ضع music.mp3 بجانب voice.wav
+ *    وغيّر ENABLE_MUSIC إلى true (تُخلط عند 10% تحت الصوت كما في القالب الأصلي).
  */
-const ENABLE_AUDIO = false;
+const ENABLE_MUSIC = false;
+
+// حدود المشاهد بالثواني (مثبّتة على الكلام الفعلي — انظر meta في ملف الطوابع)
+const S1_END_S = 86.36;
+const S2_END_S = 127.52;
 
 // ألوان هوية رِواق (brand.json — theme v1.4.0)
 const INK = "#1C1B19";
@@ -40,12 +51,11 @@ const GOLD_LIGHT = "#C2A469";
 
 export const Main: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width, durationInFrames } = useVideoConfig();
 
-  // حدود المشاهد بالفريمات (مشتقة من fps)
-  const S1_END = Math.round(70 * fps); // 1:10 → 2100
-  const S2_END = Math.round(130 * fps); // 2:10 → 3900
-  const TOTAL = Math.round(200 * fps); // 3:20 → 6000
+  const S1_END = Math.round(S1_END_S * fps);
+  const S2_END = Math.round(S2_END_S * fps);
+  const TOTAL = durationInFrames;
   const FADE_HALF = Math.round(1.5 * fps); // نافذة تقاطع 3 ثوانٍ حول كل حد
 
   // ── شفافية المشاهد (تقاطع ناعم — الـ Sequences متداخلة بنفس النوافذ) ──
@@ -58,10 +68,12 @@ export const Main: React.FC = () => {
   const scene3Opacity = interpolate(frame, [S2_END - FADE_HALF, S2_END + FADE_HALF], [0, 1], clamp);
 
   // ── كاميرا كين بيرنز مستقلة لكل مشهد (زووم بطيء + بان خفيف) ──
-  const kenBurns = (from: number, to: number, scaleFrom: number, scaleTo: number, panX = -24, panY = -14) => {
+  // البان يُقاس نسبة إلى العرض (أساس تصميم 3840) ليبقى متناسبًا على أي دقة
+  const u = width / 3840;
+  const kenBurns = (from: number, to: number, scaleFrom: number, scaleTo: number, panX = -90, panY = -50) => {
     const t = interpolate(frame, [from, to], [0, 1], clamp);
     const scale = scaleFrom + (scaleTo - scaleFrom) * t;
-    return `scale(${scale}) translate(${panX * t}px, ${panY * t}px)`;
+    return `scale(${scale}) translate(${panX * u * t}px, ${panY * u * t}px)`;
   };
 
   // 📝 الفقرة النشطة وكلماتها من ملف الطوابع الزمنية (مزامنة على مستوى الكلمة)
@@ -95,7 +107,7 @@ export const Main: React.FC = () => {
       from: S1_END - FADE_HALF,
       duration: S2_END + FADE_HALF - (S1_END - FADE_HALF),
       opacity: scene2Opacity,
-      transform: kenBurns(S1_END - FADE_HALF, S2_END, 1.08, 1.0, 20, -10),
+      transform: kenBurns(S1_END - FADE_HALF, S2_END, 1.08, 1.0, 70, -36),
       overlay: overlays[1],
     },
     {
@@ -109,6 +121,16 @@ export const Main: React.FC = () => {
       overlay: overlays[2],
     },
   ];
+
+  // 🔊 منحنى مستوى الصوت: دخول ناعم 0.25s وخروج ناعم 0.4s على الصمت النهائي
+  const fadeIn = Math.round(0.25 * fps);
+  const fadeOut = Math.round(0.4 * fps);
+  const voiceVolume = (f: number) =>
+    interpolate(f, [0, fadeIn, TOTAL - fadeOut, TOTAL], [0, 1, 1, 0], clamp);
+  const musicVolume = (f: number) => voiceVolume(f) * 0.1;
+
+  // مقياس عناصر الهوية (مرجعية النظام: عرض 1080)
+  const ui = width / 1080;
 
   return (
     <AbsoluteFill style={{ backgroundColor: INK, overflow: "hidden" }}>
@@ -125,7 +147,7 @@ export const Main: React.FC = () => {
       ))}
 
       {/* 📝 طبقة النصوص الكينتيكية المتزامنة كلمةً بكلمة */}
-      <div style={textContainerStyle}>
+      <div style={getTextContainerStyle(width / 3840)}>
         {currentWords.map((w, index) => (
           <KineticWord
             key={`${activeFragment?.segment_id}_${index}`}
@@ -136,12 +158,11 @@ export const Main: React.FC = () => {
         ))}
       </div>
 
-      {/* 🔊 الصوت — التعليق الرسمي بكامل القوة + موسيقى 10% (فعّل عند جاهزية الملفات) */}
-      {ENABLE_AUDIO ? (
-        <>
-          <Audio src={staticFile("projects/PARADOX_012/audio/voice.wav")} volume={1.0} />
-          <Audio src={staticFile("projects/PARADOX_012/audio/music.mp3")} volume={0.1} />
-        </>
+      {/* 🔊 الصوت الأصلي للشيخ — بكامل القوة (مُطبَّع مسبقًا عند ‎-16 LUFS) */}
+      <Audio src={staticFile("projects/PARADOX_012/audio/voice.wav")} volume={voiceVolume} />
+      {/* 🎵 موسيقى تصويرية عند 10% — فعّلها عند توفر الملف */}
+      {ENABLE_MUSIC ? (
+        <Audio src={staticFile("projects/PARADOX_012/audio/music.mp3")} volume={musicVolume} />
       ) : null}
 
       {/* إطار رِواق الذهبي الرفيع — من الهوية */}
@@ -149,8 +170,8 @@ export const Main: React.FC = () => {
         <div
           style={{
             position: "absolute",
-            inset: 18,
-            border: `2px solid ${GOLD}55`,
+            inset: 18 * ui,
+            border: `${Math.max(2, Math.round(0.75 * ui))}px solid ${GOLD}55`,
             boxSizing: "border-box",
           }}
         />
@@ -158,8 +179,8 @@ export const Main: React.FC = () => {
 
       {/* العلامة المائية الرسمية — مركيزة رِواق أعلى الوسط */}
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "flex-start", pointerEvents: "none" }}>
-        <div style={{ marginTop: 60, opacity: 0.8 }}>
-          <BrandMark sizePx={72} color={GOLD_LIGHT} />
+        <div style={{ marginTop: 60 * ui, opacity: 0.8 }}>
+          <BrandMark sizePx={72 * ui} color={GOLD_LIGHT} />
         </div>
       </AbsoluteFill>
     </AbsoluteFill>

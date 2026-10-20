@@ -1,10 +1,15 @@
 import React from 'react';
 
-// تنسيق حاوية النص الكلية في منتصف الشاشة السفلي
-export const textContainerStyle: React.CSSProperties = {
+/**
+ * أنماط النصوص الكينتيكية — مبنية على قالب المستخدم الأصلي (3840×2160)
+ * كل القيم بالبكسل مضروبة في `scale = width/3840` لتعمل على أي دقة.
+ */
+
+// تنسيق حاوية النص الكلية في الثلث السفلي من الشاشة
+export const getTextContainerStyle = (scale = 1): React.CSSProperties => ({
   position: 'absolute',
   direction: 'rtl',
-  bottom: '180px',
+  bottom: `${180 * scale}px`,
   left: '5%',
   width: '90%',
   display: 'flex',
@@ -13,40 +18,40 @@ export const textContainerStyle: React.CSSProperties = {
   alignItems: 'center',
   textAlign: 'center',
   pointerEvents: 'none',
-  padding: '0 20px',
-};
+  padding: `0 ${20 * scale}px`,
+});
 
 // الدالة المسؤولة عن حساب التنسيق الحركي لكل كلمة بناءً على حالتها
 export const getKineticWordStyle = (
-  isSelected: boolean, 
-  springAnimation: number
+  isSelected: boolean,
+  springAnimation: number,
+  scale = 1
 ): React.CSSProperties => {
-  
   // حساب حجم التكبير الديناميكي باستخدام سبرينج ريموشن
-  const scale = isSelected ? 1 + (springAnimation * 0.15) : 1.0;
-  
+  const wordScale = isSelected ? 1 + springAnimation * 0.15 : 1.0;
+
   return {
     display: 'inline-block',
     fontFamily: "'Amiri', 'IBM Plex Sans Arabic', serif",
     fontWeight: 900,
-    fontSize: isSelected ? '85px' : '75px', // تضخيم الكلمة النشطة
-    
-    // الألوان والهوية البصرية المحددة للمقاطع - باستخدام ألوان علامة رواق التجارية
+    fontSize: `${(isSelected ? 85 : 75) * scale}px`, // تضخيم الكلمة النشطة
+
+    // الألوان والهوية البصرية — لوحة علامة رِواق التجارية
     color: isSelected ? '#C2A469' : '#F3EBDB', // gold_light للنشط، parchment للآخرين
     opacity: isSelected ? 1.0 : 0.3, // تعتيم الكلمات المحيطة لتركيز الانتباه
-    
+
     // حركية التكبير والبروز
-    transform: `scale(${scale}) translateY(${isSelected ? '-10px' : '0px'})`,
-    
+    transform: `scale(${wordScale}) translateY(${isSelected ? `${-10 * scale}px` : '0px'})`,
+
     // تأثير الإضاءة الخلفية للكلمة النشطة (Glow Effect)
-    textShadow: isSelected 
-      ? '0px 0px 25px rgba(194, 164, 105, 0.6), 0px 0px 50px rgba(194, 164, 105, 0.4)' 
+    textShadow: isSelected
+      ? `0px 0px ${25 * scale}px rgba(194, 164, 105, 0.6), 0px 0px ${50 * scale}px rgba(194, 164, 105, 0.4)`
       : 'none',
-    
+
     // سلاسة النقل بين الحالات لمنع التقطع البصري
     transition: 'all 0.08s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    margin: '10px 18px',
-    letterSpacing: '-1px',
+    margin: `${10 * scale}px ${18 * scale}px`,
+    letterSpacing: `${-1 * scale}px`,
   };
 };
 

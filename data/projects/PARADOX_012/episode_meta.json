@@ -1,141 +1,468 @@
 {
   "schema_version": "2.0",
-  "brand_ref": { "theme_path": "data/brand.json", "watermark": "on" },
-
+  "brand_ref": {
+    "theme_path": "data/brand.json",
+    "watermark": "on"
+  },
   "project": {
     "id": "PARADOX_012",
     "series_id": "riwaq_heritage_s01",
     "title": "مفارقة الفلاح والنجاح",
     "episode_number": 12,
     "video_type": "short",
-    "platforms": ["youtube_shorts", "tiktok", "reels"],
-    "aspect_ratios": ["9x16"],
+    "platforms": [
+      "youtube"
+    ],
+    "aspect_ratios": [
+      "16x9"
+    ],
     "language_primary": "ar-EG",
     "language_secondary": "en",
     "priority": "quality"
   },
-
-  "source": { 
-    "type": "youtube", 
-    "url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc&t=9536s",
-    "rights": "fair_use_commentary", 
-    "provenance_note": "مقطع من الحلقة الأصلية — الطابع الزمني 02:38:16 إلى 02:41:11" 
+  "source": {
+    "type": "youtube",
+    "url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc&t=9496s",
+    "drive_folder": "Premium Trend Shorts Series",
+    "drive_parts_used": [
+      "20 of 27",
+      "21 of 27"
+    ],
+    "timecode_in": "02:38:16.00",
+    "timecode_out": "02:41:13.00",
+    "rights": "fair_use_commentary",
+    "provenance_note": "الصوت الأصلي للشيخ مقصوص من نسخة Drive المجزأة؛ الترجمات العربية المدمجة في MP4 هي مصدر النص والمزامنة"
   },
-
   "story": {
     "hook": "ما هو النجاح الحقيقي؟ هل هو تحقيق ما تريده أنت، أم ما يريده الله منك؟",
     "chapters": [
-      { "title": "أزمة معايير النجاح", "t_in": 0, "t_out": 70 },
-      { "title": "ثلاثية التحقق: سعي، وعي، وحي", "t_in": 70, "t_out": 130 },
-      { "title": "الصدمة: النجاح الدنيوي قد يكون فشلاً", "t_in": 130, "t_out": 200 }
+      {
+        "title": "سؤال الفلاح وأزمة معيار النجاح",
+        "t_in": 0,
+        "t_out": 86.36
+      },
+      {
+        "title": "التعاريف اللغوية وثلاثية: سعي، وعي، وحي",
+        "t_in": 86.36,
+        "t_out": 127.52
+      },
+      {
+        "title": "التعريف الصادم وفردوس عمر بن عبد العزيز",
+        "t_in": 127.52,
+        "t_out": 177.0
+      }
     ],
     "next_tease": "الحلقة القادمة: كيف نبني فلاحاً لا مجرد نجاح؟",
     "scenes": [
-      { 
-        "type": "hook", 
-        "t_in": 0, 
-        "t_out": 70, 
-        "kicker": "مفارقة الفلاح والنجاح", 
-        "title": "ما هو النجاح الحقيقي؟\nهل تحقيق مرادك أم مراد الله؟" 
+      {
+        "type": "hook",
+        "t_in": 0,
+        "t_out": 86.36,
+        "kicker": "مفارقة الفلاح والنجاح",
+        "title": "ذكرت أبو بدر أكثر من مرة النجاح…\nلكن قلت لي: الفلاح"
       },
-      { 
-        "type": "chapter", 
-        "t_in": 70, 
-        "t_out": 130, 
-        "kicker": "المنهج الإسلامي", 
-        "title": "ثلاثية التحقق:\nسعي — وعي — وحي" 
+      {
+        "type": "chapter",
+        "t_in": 86.36,
+        "t_out": 127.52,
+        "kicker": "المنظومة الإسلامية للتحقق",
+        "title": "أن يكون لديك:\nسعي — ووعي — ووحي"
       },
-      { 
-        "type": "quote", 
-        "t_in": 130, 
-        "t_out": 160, 
-        "text": "«النجاح معيار دنيوي متغير، والفلاح معيار إلهي ثابت»", 
-        "source": "من الحلقة" 
+      {
+        "type": "quote",
+        "t_in": 127.52,
+        "t_out": 150.0,
+        "text": "«تعريف النجاح هو تحقيق ما تريده أنت، وتعريف الفلاح تحقيق ما يريده الله منك»",
+        "source": "ياسر الحزيمي — بودكاست بدون ورق"
       },
-      { 
-        "type": "quote", 
-        "t_in": 160, 
-        "t_out": 200, 
-        "text": "«فردوس عمر بن عبد العزيز الأرضي كان في رضا الله وطاعته — لا في القصور»", 
-        "source": "السيرة النبوية" 
+      {
+        "type": "quote",
+        "t_in": 150.0,
+        "t_out": 177.0,
+        "text": "«ولو اجتمع لك نجاح مع فلاح فأنت في فردوس أرضي»",
+        "source": "ياسر الحزيمي — بودكاست بدون ورق"
       }
     ]
   },
-
   "narration": {
     "mode": "provided",
-    "profile_id": "omar_el_clone_v1",
-    "replacement_policy": "drafts_allowed",
-    "note": "الصوت المستنسخ للمراجعة — يُستبدل بالصوت الرسمي عند النشر",
+    "profile_id": null,
+    "replacement_policy": "locked",
+    "note": "الصوت الأصلي للشيخ ياسر الحزيمي مقصوص من مصدر البودكاست (ليس تعليقًا مولّدًا) — voice.wav عند -16 LUFS",
     "placement_map": [
-      { "t_in": 0.5, "t_out": 68.0, "type": "vo_hook" },
-      { "t_in": 70.5, "t_out": 128.0, "type": "vo_value" },
-      { "t_in": 130.5, "t_out": 195.0, "type": "vo_cta" }
+      {
+        "t_in": 0.0,
+        "t_out": 177.0,
+        "type": "source_audio"
+      }
     ]
   },
-
   "audio": {
     "vo": [
-      { "src": "projects/PARADOX_012/audio/vo_01.wav", "t_in": 0.5, "volume_db": 0 },
-      { "src": "projects/PARADOX_012/audio/vo_02.wav", "t_in": 70.5, "volume_db": 0 },
-      { "src": "projects/PARADOX_012/audio/vo_03.wav", "t_in": 130.5, "volume_db": 0 }
+      {
+        "src": "projects/PARADOX_012/audio/voice.wav",
+        "t_in": 0.0,
+        "volume_db": 0
+      }
     ],
-    "music": { "src": "projects/PARADOX_012/audio/music.mp3", "t_in": 0, "t_out": 200, "volume_db": -24 },
-    "stingers": [
-      { "src": "projects/PARADOX_012/audio/stinger_in.wav", "t_in": 0.0, "volume_db": -8 },
-      { "src": "projects/PARADOX_012/audio/stinger_out.wav", "t_in": 197.0, "volume_db": -7 }
-    ]
+    "music": null,
+    "stingers": []
   },
-
   "captions": {
-    "styles": ["keyword_highlight"],
-    "languages": ["ar", "en"],
-    "sync_source": "provided_json",
+    "styles": [
+      "keyword_highlight"
+    ],
+    "languages": [
+      "ar"
+    ],
+    "sync_source": "source_captions_energy_aligned (REAL_SYNC — see timestamps_paradox.json meta)",
     "data": [
-      { "t_in": 1.0, "t_out": 5.5, "ar": "ما هو النجاح الحقيقي هل هو تحقيق ما تريده أنت", "en": "What is true success? Is it achieving what you want", "keywords": ["النجاح الحقيقي"] },
-      { "t_in": 5.5, "t_out": 9.0, "ar": "أم ما يريده الله منك الفلاح هو تحقيق مراد الله", "en": "Or what Allah wants from you? Success is achieving Allah's will", "keywords": ["الفلاح", "مراد الله"] },
-      { "t_in": 10.0, "t_out": 15.0, "ar": "النجاح معيار دنيوي متغير والفلاح معيار إلهي ثابت", "en": "Success is a changing worldly standard, Falah is a fixed divine standard", "keywords": ["معيار دنيوي", "معيار إلهي"] },
-      { "t_in": 15.5, "t_out": 21.0, "ar": "ثلاثية المنظومة الإسلامية للتحقق سعي وعي وحي", "en": "The Islamic triad of verification: Effort, Awareness, Revelation", "keywords": ["سعي", "وعي", "وحي"] },
-      { "t_in": 21.5, "t_out": 26.0, "ar": "بدون وحي يتحول السعي إلى ضياع والوعي إلى ناقص", "en": "Without revelation, effort becomes loss and awareness incomplete", "keywords": ["بدون وحي", "ضياع"] },
-      { "t_in": 26.5, "t_out": 32.0, "ar": "الصدمة الكبرى: كيف يكون النجاح الدنيوي قمة الفشل", "en": "The great shock: How can worldly success be the peak of failure?", "keywords": ["الصدمة الكبرى", "قمة الفشل"] },
-      { "t_in": 32.5, "t_out": 38.0, "ar": "إن كان على حساب الفلاح", "en": "If it comes at the cost of Falah", "keywords": ["حساب الفلاح"] },
-      { "t_in": 38.5, "t_out": 44.0, "ar": "فردوس عمر بن عبد العزيز الأرض كان في رضا الله وطاعته", "en": "Umar bin Abdul Aziz's earthly paradise was in Allah's pleasure", "keywords": ["عمر بن عبد العزيز", "رضا الله"] },
-      { "t_in": 44.5, "t_out": 49.0, "ar": "ليس في القصور اسأل نفسك هل تسعى للنجاح أم للفلاح", "en": "Not in palaces. Ask yourself: Do you seek success or Falah?", "keywords": ["القصور", "النجاح أم الفلاح"] },
-      { "t_in": 49.5, "t_out": 52.0, "ar": "الفرق بينهما هو الفرق بين الدنيا والآخرة", "en": "The difference between them is the difference between this life and the Hereafter", "keywords": ["الدنيا", "الآخرة"] },
-      { "t_in": 52.5, "t_out": 55.0, "ar": "اختر الفلاح", "en": "Choose Falah", "keywords": ["اختر الفلاح"] }
+      {
+        "t_in": 0.0,
+        "t_out": 2.67,
+        "ar": "واحدة من الأشياء الأشياء التي",
+        "keywords": []
+      },
+      {
+        "t_in": 3.37,
+        "t_out": 8.7,
+        "ar": "خلنا نقول تجعلك غير واعي بما يراد منك ذكرت",
+        "keywords": []
+      },
+      {
+        "t_in": 8.73,
+        "t_out": 12.6,
+        "ar": "ابو بدر اكثر من مره النجاح لكن انا لما",
+        "keywords": [
+          "النجاح"
+        ]
+      },
+      {
+        "t_in": 12.63,
+        "t_out": 15.8,
+        "ar": "كلمتك مره بالتلفون قلت لي الفلاح",
+        "keywords": [
+          "الفلاح"
+        ]
+      },
+      {
+        "t_in": 17.83,
+        "t_out": 21.83,
+        "ar": "وما استخدمتها استخدمتها مره بالحوار الحين ممكن نعيدها في",
+        "keywords": []
+      },
+      {
+        "t_in": 21.87,
+        "t_out": 26.4,
+        "ar": "الشبكه نفسها يعني تعريفها من المفاهيم فانا توقعتك اليوم",
+        "keywords": []
+      },
+      {
+        "t_in": 26.43,
+        "t_out": 29.07,
+        "ar": "بتييب طاري الفلاح بس انا قلت اذكرك في هذا",
+        "keywords": [
+          "الفلاح"
+        ]
+      },
+      {
+        "t_in": 29.1,
+        "t_out": 32.57,
+        "ar": "الموضوع فانت انت يعني تكلمت عنها بالتليفون بشكل سريع",
+        "keywords": []
+      },
+      {
+        "t_in": 32.6,
+        "t_out": 36.17,
+        "ar": "وعابر بس شدتني يعني انت لما قلت مفهوم الفلاح",
+        "keywords": [
+          "الفلاح"
+        ]
+      },
+      {
+        "t_in": 36.2,
+        "t_out": 41.6,
+        "ar": "وكذا فبدي افهم شنو القصد في مفهومنا",
+        "keywords": []
+      },
+      {
+        "t_in": 41.63,
+        "t_out": 46.13,
+        "ar": "احنا نرجع حق معجمنا نرجع حق مرجعيتنا ما هو",
+        "keywords": []
+      },
+      {
+        "t_in": 46.17,
+        "t_out": 49.27,
+        "ar": "مفهوم الفلاح وكيف ممكن لان اليوم في معيار النجاح",
+        "keywords": [
+          "النجاح",
+          "الفلاح"
+        ]
+      },
+      {
+        "t_in": 49.3,
+        "t_out": 51.3,
+        "ar": "حتى هذا معيار مو واضح ما هو النجاح انا",
+        "keywords": [
+          "النجاح"
+        ]
+      },
+      {
+        "t_in": 51.33,
+        "t_out": 53.3,
+        "ar": "لحين ما ادري شنو النجاح بالضبط لما تجي تحط",
+        "keywords": [
+          "النجاح"
+        ]
+      },
+      {
+        "t_in": 53.33,
+        "t_out": 55.87,
+        "ar": "انت النجاح يمكن مختلف عندك عني انا لكن اتوقع",
+        "keywords": [
+          "النجاح"
+        ]
+      },
+      {
+        "t_in": 55.9,
+        "t_out": 59.77,
+        "ar": "الفلاح المفروض انه وفق مرجعيتنا المفروض يكون هو مفهوم",
+        "keywords": [
+          "الفلاح"
+        ]
+      },
+      {
+        "t_in": 59.8,
+        "t_out": 63.63,
+        "ar": "يا سلام اي رايك يا سلام ممتاز طيب النجاح",
+        "keywords": [
+          "النجاح"
+        ]
+      },
+      {
+        "t_in": 63.67,
+        "t_out": 68.77,
+        "ar": "في اللغة اي مفهوم طبعا المفاهيم كيف تتكون",
+        "keywords": []
+      },
+      {
+        "t_in": 68.8,
+        "t_out": 74.03,
+        "ar": "مفاهيم يعني معاني يقولها الناس ثم يصطلح عليها",
+        "keywords": []
+      },
+      {
+        "t_in": 74.07,
+        "t_out": 79.07,
+        "ar": "فيتحول الى مصطلح ثم يضعون لها تعريفا فيسمى",
+        "keywords": []
+      },
+      {
+        "t_in": 79.1,
+        "t_out": 83.6,
+        "ar": "تعريف او حد عشان احنا الحدود هذه اللي هي",
+        "keywords": []
+      },
+      {
+        "t_in": 83.63,
+        "t_out": 86.37,
+        "ar": "التعاريف لازم ناخذها من اللغة ابتداء اللغة ماذا",
+        "keywords": []
+      },
+      {
+        "t_in": 86.4,
+        "t_out": 91.3,
+        "ar": "ما هو تعريف النجاح نجح بمعنى ادرك غايته",
+        "keywords": [
+          "النجاح"
+        ]
+      },
+      {
+        "t_in": 91.33,
+        "t_out": 95.8,
+        "ar": "يعني فيها جزئين في غاية وفيه فعل",
+        "keywords": []
+      },
+      {
+        "t_in": 95.83,
+        "t_out": 100.47,
+        "ar": "ادرك غايته فهو تصور",
+        "keywords": []
+      },
+      {
+        "t_in": 100.5,
+        "t_out": 101.63,
+        "ar": "وتصرف",
+        "keywords": []
+      },
+      {
+        "t_in": 103.53,
+        "t_out": 105.83,
+        "ar": "احنا في منظومتنا عشان يكون في نجاح وفلاح",
+        "keywords": []
+      },
+      {
+        "t_in": 107.07,
+        "t_out": 111.5,
+        "ar": "عندنا مو الشغلتين عندنا ثلاث ان يكون لديك",
+        "keywords": []
+      },
+      {
+        "t_in": 111.53,
+        "t_out": 116.07,
+        "ar": "سعي ووعي ووحي ها",
+        "keywords": [
+          "سعي",
+          "وعي"
+        ]
+      },
+      {
+        "t_in": 116.1,
+        "t_out": 119.07,
+        "ar": "ثلاثيتنا سعي ووحي",
+        "keywords": [
+          "سعي",
+          "وحي"
+        ]
+      },
+      {
+        "t_in": 119.1,
+        "t_out": 123.73,
+        "ar": "ووعي النجاح",
+        "keywords": [
+          "النجاح",
+          "وعي"
+        ]
+      },
+      {
+        "t_in": 123.77,
+        "t_out": 128.63,
+        "ar": "ادراك المطلوب ادراك غايته هذا النجاح ولذلك تعريف",
+        "keywords": [
+          "النجاح"
+        ]
+      },
+      {
+        "t_in": 128.67,
+        "t_out": 134.03,
+        "ar": "النجاح هو تحقيق ما تريده انت وتعريف",
+        "keywords": [
+          "النجاح"
+        ]
+      },
+      {
+        "t_in": 134.07,
+        "t_out": 138.57,
+        "ar": "الفلاح تحقيق ما يريده الله منك هذا هو الفلاح",
+        "keywords": [
+          "الفلاح"
+        ]
+      },
+      {
+        "t_in": 138.6,
+        "t_out": 143.9,
+        "ar": "فان حققت الأولى على حساب الثانية فهذا",
+        "keywords": []
+      },
+      {
+        "t_in": 143.93,
+        "t_out": 148.53,
+        "ar": "هو الفشل وان حققت الثانية ولو غابت الأولى فهذا",
+        "keywords": []
+      },
+      {
+        "t_in": 148.57,
+        "t_out": 154.03,
+        "ar": "قمة النجاح الفلاح ولو اجتمعت",
+        "keywords": [
+          "النجاح",
+          "الفلاح"
+        ]
+      },
+      {
+        "t_in": 154.07,
+        "t_out": 158.73,
+        "ar": "لك نجاح مع فلاح فانت في فردوس",
+        "keywords": []
+      },
+      {
+        "t_in": 158.77,
+        "t_out": 163.03,
+        "ar": "ارضي يقول عمر بن عبد العزيز في كلمة بديعة",
+        "keywords": []
+      },
+      {
+        "t_in": 163.07,
+        "t_out": 168.47,
+        "ar": "ألذّ عيش هو وافق طاعة عجيبة تحب",
+        "keywords": []
+      },
+      {
+        "t_in": 168.5,
+        "t_out": 172.83,
+        "ar": "شيء وطاعه والله يحبه هذا احب شيء اي اجمل",
+        "keywords": []
+      },
+      {
+        "t_in": 172.87,
+        "t_out": 176.67,
+        "ar": "شيء تسويه فهنا يتحد النجاح مع الفلاح",
+        "keywords": [
+          "النجاح",
+          "الفلاح"
+        ]
+      }
     ]
   },
-
   "edit": {
     "fps": 30,
     "cut_style": "medium",
-    "duration_s": 200,
+    "duration_s": 177.0,
     "music_mood": "dark-tension",
-    "stingers": { "in": true, "out": true }
+    "stingers": {
+      "in": false,
+      "out": false
+    }
   },
-
   "render": {
-    "resolution": [1080, 1920],
-    "preset": "social_vertical",
+    "resolution": [
+      3840,
+      2160
+    ],
+    "preset": "youtube_4k",
     "per_platform_export": true
   },
-
   "deliverables": {
     "naming_profile": "NAMING.md#v1",
     "master_final": "exports/MASTER_FINAL_PARADOX_012.mp4",
     "master_web": "exports/MASTER_WEB_PARADOX_012.mp4",
-    "platform_exports": ["exports/EXPORT_VERTICAL_PARADOX_012.mp4"],
-    "captions": ["outputs/CAPTIONS_AR_PARADOX_012.srt", "outputs/CAPTIONS_EN_PARADOX_012.srt"],
+    "platform_exports": [
+      "exports/MASTER_WEB_PARADOX_012.mp4"
+    ],
+    "captions": [
+      "outputs/CAPTIONS_AR_PARADOX_012.srt"
+    ],
     "thumbnail": "exports/THUMB_PARADOX_012_A.png",
     "qc_report": "reports/QC_PARADOX_012.md",
     "sources_report": "reports/SOURCES_PARADOX_012.txt"
   },
-
   "qc_rules": {
-    "must_pass": ["loudness", "true_peak", "captions_sync", "caption_line_length", "safe_zones", "no_flash", "logo_present", "palette_lock", "font_lock", "no_scratch_voice", "source_logged"],
+    "must_pass": [
+      "loudness",
+      "true_peak",
+      "captions_sync",
+      "caption_line_length",
+      "safe_zones",
+      "no_flash",
+      "logo_present",
+      "palette_lock",
+      "font_lock",
+      "no_scratch_voice",
+      "source_logged"
+    ],
     "tolerance_lu": 0.5
   },
-
   "status": "draft",
-  "notes": "الحلقة 12 من سلسلة رِواق التراث — مفارقة الفلاح والنجاح. مبنية على الطابع الزمني 02:38:16–02:41:11 من المصدر الأصلي. ثلاث مشاهد بصرية: البرج الضبابي، الثالوث الذهبي، واحة القناعة."
+  "notes": "الحلقة 12 — مفارقة الفلاح والنجاح. نسخة أفقية 4K (3840×2160). الصوت حقيقي مقصوص من Drive (02:38:16–02:41:13) والمزامنة حقيقية من ترجمات المصدر المدمجة مع محاذاة على الموجة. ثلاث كلمات تحتاج مراجعة سماعية قبل النشر (انظر review_notes في timestamps_paradox.json عند ~26.4s و~54.2s و~163.0s). لا توجد موسيقى بعد — ENABLE_MUSIC في Main.tsx."
 }

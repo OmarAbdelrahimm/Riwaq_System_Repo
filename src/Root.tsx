@@ -41,14 +41,14 @@ export const RemotionRoot: React.FC = () => {
         }}
       />
 
-      {/* التكوين الجديد: الحلقة 12 - مفارقة الفلاح والنجاح (Main.tsx) — المشروع PARADOX_012 */}
+      {/* الحلقة 12 - مفارقة الفلاح والنجاح (Main.tsx) — المشروع PARADOX_012 — أفقي 4K */}
       <Composition
         id="PARADOX-012"
         component={Main}
-        durationInFrames={6000} // 3:20 = 200 ثانية × 30 إطار/ثانية
+        durationInFrames={5310} // المدة الفعلية للصوت المقصوص: 177.0 ثانية × 30 إطار/ثانية
         fps={30}
-        width={1080}
-        height={1920}
+        width={3840}
+        height={2160}
         defaultProps={{}}
       />
     </>

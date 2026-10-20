@@ -3,592 +3,2008 @@
     "video_title": "مفارقة الفلاح والنجاح",
     "project_id": "PARADOX_012",
     "target_fps": 30,
-    "total_duration_frames": 6000,
-    "total_duration_s": 200,
+    "total_duration_frames": 5310,
+    "total_duration_s": 177.0,
     "source": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
-    "source_timecode": "02:38:16 - 02:41:11",
-    "sync_status": "PLACEHOLDER — كلمات موزعة تقريبيًا على البنية السردية؛ يجب إعادة التزامن من قص الصوت الفعلي (Whisper word-level) قبل النشر",
+    "source_drive": "Premium Trend Shorts Series/مركزية العلاقة مع الله _ ياسر الحزيمي _ بودكاست بدون ورق (parts 20-21 of 27)",
+    "source_timecode": "02:38:16.00 -> 02:41:13.00 (out extended ~2s past brief to complete closing word «الفلاح»; acoustic silence verified at 176.97s)",
+    "sync_status": "REAL_SYNC",
+    "sync_method": "Embedded Arabic mov_text captions from the source MP4s (YouTube ASR) -> rolling-caption dedupe -> word windows anchored to cue onsets -> boundaries refined/snap-to-silence against the actual 16kHz waveform energy. Text lightly corrected; see review_notes.",
+    "audio": "audio/voice.wav — cut from Drive parts 20+21, mono 48kHz, loudnorm -16 LUFS / TP -1 (brand VO target)",
     "scenes": [
       {
         "scene": 1,
         "name": "The Foggy Tower",
-        "t_s": "0:00-1:10",
-        "frames": [
-          0,
-          2100
-        ],
-        "image": "assets/scene1_foggy_tower.jpg"
+        "start_s": 0.0,
+        "end_s": 86.36,
+        "anchor": "إلى بداية «ما هو تعريف النجاح» (86.36s)"
       },
       {
         "scene": 2,
         "name": "The Golden Triad",
-        "t_s": "1:10-2:10",
-        "frames": [
-          2100,
-          3900
-        ],
-        "image": "assets/scene2_golden_triad.jpg"
+        "start_s": 86.36,
+        "end_s": 127.52,
+        "anchor": "التعاريف اللغوية + «لديك سعي ووعي ووحي» (111.51s)"
       },
       {
         "scene": 3,
         "name": "The Oasis of Contentment",
-        "t_s": "2:10-3:20",
-        "frames": [
-          3900,
-          6000
-        ],
-        "image": "assets/scene3_oasis.jpg"
+        "start_s": 127.52,
+        "end_s": 177.0,
+        "anchor": "«تعريف النجاح هو تحقيق ما تريده أنت...» (127.52s) حتى «يتحد النجاح مع الفلاح»"
+      }
+    ],
+    "review_notes": [
+      {
+        "t": 26.41,
+        "note": "«بتييب طاري» — الترجمات التلقائية كتبتها «بتيبطار»؛ فككتها بمعنى «تجيب طاري/ذِكر» باللهجة. يُراجَع سماعيًا."
+      },
+      {
+        "t": 54.2,
+        "note": "«عندك عني» — الترجمات كتبتها «عندي عني»؛ السياق يرجّح «عندك». يُراجَع سماعيًا."
+      },
+      {
+        "t": 163.03,
+        "note": "مقولة عمر بن عبد العزيز — الترجمات: «الد عيش هو وافق طاعه»؛ عُرضت «ألذّ عيش هو وافق طاعة». يُراجَع نص المقولة سماعيًا قبل النشر."
+      },
+      {
+        "t": null,
+        "note": "النص من ترجمات يوتيوب التلقائية المدمجة في ملفات المصدر؛ حُذفت الحشوات الصوتية (ا/ام) ووُحّدت التاء المربوطة. اللهجة الخليجية محفوظة كما نُطقت (شنو/الحين/حق/مو)."
+      },
+      {
+        "t": null,
+        "note": "لرفع الدقة إلى مستوى DTW يمكن تشغيل scripts/sync_paradox_whisper.py محليًا (faster-whisper) لاحقًا؛ البنية متوافقة."
       }
     ]
   },
   "fragments": [
     {
       "segment_id": 1,
-      "text": "ما هو النجاح الحقيقي هل هو تحقيق ما تريده انت ام ما يريده الله منك",
-      "start_frame": 60,
-      "end_frame": 1020,
+      "text": "واحدة من الأشياء الأشياء التي",
+      "start_frame": 0,
+      "end_frame": 80,
+      "scene": 1,
       "words": [
         {
-          "word": "ما",
-          "start_frame": 60,
-          "end_frame": 112
-        },
-        {
-          "word": "هو",
-          "start_frame": 113,
-          "end_frame": 166
-        },
-        {
-          "word": "النجاح",
-          "start_frame": 167,
-          "end_frame": 219
-        },
-        {
-          "word": "الحقيقي",
-          "start_frame": 220,
-          "end_frame": 272
-        },
-        {
-          "word": "هل",
-          "start_frame": 273,
-          "end_frame": 326
-        },
-        {
-          "word": "هو",
-          "start_frame": 327,
-          "end_frame": 379
-        },
-        {
-          "word": "تحقيق",
-          "start_frame": 380,
-          "end_frame": 432
-        },
-        {
-          "word": "ما",
-          "start_frame": 433,
-          "end_frame": 486
-        },
-        {
-          "word": "تريده",
-          "start_frame": 487,
-          "end_frame": 539
-        },
-        {
-          "word": "انت",
-          "start_frame": 540,
-          "end_frame": 592
-        },
-        {
-          "word": "ام",
-          "start_frame": 593,
-          "end_frame": 646
-        },
-        {
-          "word": "ما",
-          "start_frame": 647,
-          "end_frame": 699
-        },
-        {
-          "word": "يريده",
-          "start_frame": 700,
-          "end_frame": 752
-        },
-        {
-          "word": "الله",
-          "start_frame": 753,
-          "end_frame": 806
-        },
-        {
-          "word": "منك",
-          "start_frame": 807,
-          "end_frame": 859
-        },
-        {
-          "word": "الفلاح",
-          "start_frame": 860,
-          "end_frame": 912
-        },
-        {
-          "word": "هو",
-          "start_frame": 913,
-          "end_frame": 966
-        },
-        {
-          "word": "تحقيق",
-          "start_frame": 967,
-          "end_frame": 1020
-        }
-      ],
-      "scene": 1
-    },
-    {
-      "segment_id": 2,
-      "text": "النجاح معيار دنيوي متغير والفلاح معيار الهي ثابت لا يتبدل",
-      "start_frame": 1080,
-      "end_frame": 2040,
-      "words": [
-        {
-          "word": "النجاح",
-          "start_frame": 1080,
-          "end_frame": 1143
-        },
-        {
-          "word": "معيار",
-          "start_frame": 1144,
-          "end_frame": 1207
-        },
-        {
-          "word": "دنيوي",
-          "start_frame": 1208,
-          "end_frame": 1271
-        },
-        {
-          "word": "متغير",
-          "start_frame": 1272,
-          "end_frame": 1335
-        },
-        {
-          "word": "والفلاح",
-          "start_frame": 1336,
-          "end_frame": 1399
-        },
-        {
-          "word": "معيار",
-          "start_frame": 1400,
-          "end_frame": 1463
-        },
-        {
-          "word": "الهي",
-          "start_frame": 1464,
-          "end_frame": 1527
-        },
-        {
-          "word": "ثابت",
-          "start_frame": 1528,
-          "end_frame": 1591
-        },
-        {
-          "word": "لا",
-          "start_frame": 1592,
-          "end_frame": 1655
-        },
-        {
-          "word": "يتبدل",
-          "start_frame": 1656,
-          "end_frame": 1719
+          "word": "واحدة",
+          "start_frame": 0,
+          "end_frame": 10
         },
         {
           "word": "من",
-          "start_frame": 1720,
-          "end_frame": 1783
+          "start_frame": 11,
+          "end_frame": 13
         },
         {
-          "word": "يحقق",
-          "start_frame": 1784,
-          "end_frame": 1847
+          "word": "الأشياء",
+          "start_frame": 14,
+          "end_frame": 28
         },
         {
-          "word": "النجاح",
-          "start_frame": 1848,
-          "end_frame": 1911
+          "word": "الأشياء",
+          "start_frame": 29,
+          "end_frame": 68
         },
         {
-          "word": "دون",
-          "start_frame": 1912,
-          "end_frame": 1975
-        },
-        {
-          "word": "الفلاح",
-          "start_frame": 1976,
-          "end_frame": 2040
+          "word": "التي",
+          "start_frame": 69,
+          "end_frame": 80
         }
-      ],
-      "scene": 1
+      ]
+    },
+    {
+      "segment_id": 2,
+      "text": "خلنا نقول تجعلك غير واعي بما يراد منك ذكرت",
+      "start_frame": 101,
+      "end_frame": 261,
+      "scene": 1,
+      "words": [
+        {
+          "word": "خلنا",
+          "start_frame": 101,
+          "end_frame": 115
+        },
+        {
+          "word": "نقول",
+          "start_frame": 116,
+          "end_frame": 144
+        },
+        {
+          "word": "تجعلك",
+          "start_frame": 145,
+          "end_frame": 172
+        },
+        {
+          "word": "غير",
+          "start_frame": 173,
+          "end_frame": 184
+        },
+        {
+          "word": "واعي",
+          "start_frame": 185,
+          "end_frame": 208
+        },
+        {
+          "word": "بما",
+          "start_frame": 209,
+          "end_frame": 217
+        },
+        {
+          "word": "يراد",
+          "start_frame": 218,
+          "end_frame": 242
+        },
+        {
+          "word": "منك",
+          "start_frame": 243,
+          "end_frame": 250
+        },
+        {
+          "word": "ذكرت",
+          "start_frame": 251,
+          "end_frame": 261
+        }
+      ]
     },
     {
       "segment_id": 3,
-      "text": "ثلاثية المنظومة الاسلامية للتحقق سعي وعي وحي",
-      "start_frame": 2160,
-      "end_frame": 2940,
+      "text": "ابو بدر اكثر من مره النجاح لكن انا لما",
+      "start_frame": 262,
+      "end_frame": 378,
+      "scene": 1,
       "words": [
         {
-          "word": "ثلاثية",
-          "start_frame": 2160,
-          "end_frame": 2219
+          "word": "ابو",
+          "start_frame": 262,
+          "end_frame": 281
         },
         {
-          "word": "المنظومة",
-          "start_frame": 2220,
-          "end_frame": 2279
+          "word": "بدر",
+          "start_frame": 282,
+          "end_frame": 286
         },
         {
-          "word": "الاسلامية",
-          "start_frame": 2280,
-          "end_frame": 2339
+          "word": "اكثر",
+          "start_frame": 287,
+          "end_frame": 305
         },
         {
-          "word": "للتحقق",
-          "start_frame": 2340,
-          "end_frame": 2399
+          "word": "من",
+          "start_frame": 306,
+          "end_frame": 322
         },
         {
-          "word": "سعي",
-          "start_frame": 2400,
-          "end_frame": 2459
-        },
-        {
-          "word": "وعي",
-          "start_frame": 2460,
-          "end_frame": 2519
-        },
-        {
-          "word": "وحي",
-          "start_frame": 2520,
-          "end_frame": 2579
-        },
-        {
-          "word": "السعي",
-          "start_frame": 2580,
-          "end_frame": 2639
-        },
-        {
-          "word": "حركة",
-          "start_frame": 2640,
-          "end_frame": 2699
-        },
-        {
-          "word": "الوعي",
-          "start_frame": 2700,
-          "end_frame": 2759
-        },
-        {
-          "word": "بصيرة",
-          "start_frame": 2760,
-          "end_frame": 2819
-        },
-        {
-          "word": "الوحي",
-          "start_frame": 2820,
-          "end_frame": 2879
-        },
-        {
-          "word": "مرجعية",
-          "start_frame": 2880,
-          "end_frame": 2940
-        }
-      ],
-      "scene": 2
-    },
-    {
-      "segment_id": 4,
-      "text": "بدون وحي يتحول السعي الى ضياع والى وعي ناقص",
-      "start_frame": 3000,
-      "end_frame": 3780,
-      "words": [
-        {
-          "word": "بدون",
-          "start_frame": 3000,
-          "end_frame": 3097
-        },
-        {
-          "word": "وحي",
-          "start_frame": 3098,
-          "end_frame": 3194
-        },
-        {
-          "word": "يتحول",
-          "start_frame": 3195,
-          "end_frame": 3291
-        },
-        {
-          "word": "السعي",
-          "start_frame": 3292,
-          "end_frame": 3389
-        },
-        {
-          "word": "الى",
-          "start_frame": 3390,
-          "end_frame": 3487
-        },
-        {
-          "word": "ضياع",
-          "start_frame": 3488,
-          "end_frame": 3584
-        },
-        {
-          "word": "والى",
-          "start_frame": 3585,
-          "end_frame": 3681
-        },
-        {
-          "word": "وعي",
-          "start_frame": 3682,
-          "end_frame": 3780
-        }
-      ],
-      "scene": 2
-    },
-    {
-      "segment_id": 5,
-      "text": "الصدمة الكبرى كيف يكون النجاح الدنيوي قمة الفشل",
-      "start_frame": 3960,
-      "end_frame": 4620,
-      "words": [
-        {
-          "word": "الصدمة",
-          "start_frame": 3960,
-          "end_frame": 4010
-        },
-        {
-          "word": "الكبرى",
-          "start_frame": 4011,
-          "end_frame": 4061
-        },
-        {
-          "word": "كيف",
-          "start_frame": 4062,
-          "end_frame": 4111
-        },
-        {
-          "word": "يكون",
-          "start_frame": 4112,
-          "end_frame": 4162
+          "word": "مره",
+          "start_frame": 323,
+          "end_frame": 330
         },
         {
           "word": "النجاح",
-          "start_frame": 4163,
-          "end_frame": 4213
+          "start_frame": 331,
+          "end_frame": 346
         },
         {
-          "word": "الدنيوي",
-          "start_frame": 4214,
-          "end_frame": 4264
+          "word": "لكن",
+          "start_frame": 347,
+          "end_frame": 357
         },
         {
-          "word": "قمة",
-          "start_frame": 4265,
-          "end_frame": 4314
+          "word": "انا",
+          "start_frame": 358,
+          "end_frame": 375
         },
         {
-          "word": "الفشل",
-          "start_frame": 4315,
-          "end_frame": 4365
+          "word": "لما",
+          "start_frame": 376,
+          "end_frame": 378
+        }
+      ]
+    },
+    {
+      "segment_id": 4,
+      "text": "كلمتك مره بالتلفون قلت لي الفلاح",
+      "start_frame": 379,
+      "end_frame": 474,
+      "scene": 1,
+      "words": [
+        {
+          "word": "كلمتك",
+          "start_frame": 379,
+          "end_frame": 397
         },
         {
-          "word": "ان",
-          "start_frame": 4366,
-          "end_frame": 4416
+          "word": "مره",
+          "start_frame": 398,
+          "end_frame": 417
         },
         {
-          "word": "كان",
-          "start_frame": 4417,
-          "end_frame": 4467
+          "word": "بالتلفون",
+          "start_frame": 418,
+          "end_frame": 437
         },
         {
-          "word": "على",
-          "start_frame": 4468,
-          "end_frame": 4517
+          "word": "قلت",
+          "start_frame": 438,
+          "end_frame": 446
         },
         {
-          "word": "حساب",
-          "start_frame": 4518,
-          "end_frame": 4568
+          "word": "لي",
+          "start_frame": 447,
+          "end_frame": 450
         },
         {
           "word": "الفلاح",
-          "start_frame": 4569,
-          "end_frame": 4620
+          "start_frame": 451,
+          "end_frame": 474
         }
-      ],
-      "scene": 3
+      ]
+    },
+    {
+      "segment_id": 5,
+      "text": "وما استخدمتها استخدمتها مره بالحوار الحين ممكن نعيدها في",
+      "start_frame": 535,
+      "end_frame": 655,
+      "scene": 1,
+      "words": [
+        {
+          "word": "وما",
+          "start_frame": 535,
+          "end_frame": 549
+        },
+        {
+          "word": "استخدمتها",
+          "start_frame": 550,
+          "end_frame": 567
+        },
+        {
+          "word": "استخدمتها",
+          "start_frame": 568,
+          "end_frame": 583
+        },
+        {
+          "word": "مره",
+          "start_frame": 584,
+          "end_frame": 595
+        },
+        {
+          "word": "بالحوار",
+          "start_frame": 596,
+          "end_frame": 613
+        },
+        {
+          "word": "الحين",
+          "start_frame": 614,
+          "end_frame": 627
+        },
+        {
+          "word": "ممكن",
+          "start_frame": 628,
+          "end_frame": 634
+        },
+        {
+          "word": "نعيدها",
+          "start_frame": 635,
+          "end_frame": 652
+        },
+        {
+          "word": "في",
+          "start_frame": 653,
+          "end_frame": 655
+        }
+      ]
     },
     {
       "segment_id": 6,
-      "text": "فردوس عمر بن عبد العزيز الارض كان في رضا الله وطاعته",
-      "start_frame": 4680,
-      "end_frame": 5340,
+      "text": "الشبكه نفسها يعني تعريفها من المفاهيم فانا توقعتك اليوم",
+      "start_frame": 656,
+      "end_frame": 792,
+      "scene": 1,
       "words": [
         {
-          "word": "فردوس",
-          "start_frame": 4680,
-          "end_frame": 4726
+          "word": "الشبكه",
+          "start_frame": 656,
+          "end_frame": 670
         },
         {
-          "word": "عمر",
-          "start_frame": 4727,
-          "end_frame": 4773
+          "word": "نفسها",
+          "start_frame": 671,
+          "end_frame": 686
         },
         {
-          "word": "بن",
-          "start_frame": 4774,
-          "end_frame": 4820
+          "word": "يعني",
+          "start_frame": 687,
+          "end_frame": 698
         },
         {
-          "word": "عبد",
-          "start_frame": 4821,
-          "end_frame": 4868
+          "word": "تعريفها",
+          "start_frame": 699,
+          "end_frame": 711
         },
         {
-          "word": "العزيز",
-          "start_frame": 4869,
-          "end_frame": 4915
+          "word": "من",
+          "start_frame": 712,
+          "end_frame": 728
         },
         {
-          "word": "الارض",
-          "start_frame": 4916,
-          "end_frame": 4962
+          "word": "المفاهيم",
+          "start_frame": 729,
+          "end_frame": 757
         },
         {
-          "word": "كان",
-          "start_frame": 4963,
-          "end_frame": 5009
+          "word": "فانا",
+          "start_frame": 758,
+          "end_frame": 771
         },
         {
-          "word": "في",
-          "start_frame": 5010,
-          "end_frame": 5056
+          "word": "توقعتك",
+          "start_frame": 772,
+          "end_frame": 776
         },
         {
-          "word": "رضا",
-          "start_frame": 5057,
-          "end_frame": 5103
-        },
-        {
-          "word": "الله",
-          "start_frame": 5104,
-          "end_frame": 5150
-        },
-        {
-          "word": "وطاعته",
-          "start_frame": 5151,
-          "end_frame": 5198
-        },
-        {
-          "word": "ليس",
-          "start_frame": 5199,
-          "end_frame": 5245
-        },
-        {
-          "word": "في",
-          "start_frame": 5246,
-          "end_frame": 5292
-        },
-        {
-          "word": "القصور",
-          "start_frame": 5293,
-          "end_frame": 5340
+          "word": "اليوم",
+          "start_frame": 777,
+          "end_frame": 792
         }
-      ],
-      "scene": 3
+      ]
     },
     {
       "segment_id": 7,
-      "text": "اسأل نفسك هل تسعى للنجاح ام للفلاح الفرق بينهما هو الفرق بين الدنيا والاخرة",
-      "start_frame": 5400,
-      "end_frame": 5940,
+      "text": "بتييب طاري الفلاح بس انا قلت اذكرك في هذا",
+      "start_frame": 793,
+      "end_frame": 872,
+      "scene": 1,
       "words": [
         {
-          "word": "اسأل",
-          "start_frame": 5400,
-          "end_frame": 5433
+          "word": "بتييب",
+          "start_frame": 793,
+          "end_frame": 797
         },
         {
-          "word": "نفسك",
-          "start_frame": 5434,
-          "end_frame": 5467
-        },
-        {
-          "word": "هل",
-          "start_frame": 5468,
-          "end_frame": 5500
-        },
-        {
-          "word": "تسعى",
-          "start_frame": 5501,
-          "end_frame": 5534
-        },
-        {
-          "word": "للنجاح",
-          "start_frame": 5535,
-          "end_frame": 5568
-        },
-        {
-          "word": "ام",
-          "start_frame": 5569,
-          "end_frame": 5601
-        },
-        {
-          "word": "للفلاح",
-          "start_frame": 5602,
-          "end_frame": 5635
-        },
-        {
-          "word": "الفرق",
-          "start_frame": 5636,
-          "end_frame": 5669
-        },
-        {
-          "word": "بينهما",
-          "start_frame": 5670,
-          "end_frame": 5703
-        },
-        {
-          "word": "هو",
-          "start_frame": 5704,
-          "end_frame": 5737
-        },
-        {
-          "word": "الفرق",
-          "start_frame": 5738,
-          "end_frame": 5770
-        },
-        {
-          "word": "بين",
-          "start_frame": 5771,
-          "end_frame": 5804
-        },
-        {
-          "word": "الدنيا",
-          "start_frame": 5805,
-          "end_frame": 5838
-        },
-        {
-          "word": "والاخرة",
-          "start_frame": 5839,
-          "end_frame": 5871
-        },
-        {
-          "word": "اختر",
-          "start_frame": 5872,
-          "end_frame": 5905
+          "word": "طاري",
+          "start_frame": 798,
+          "end_frame": 800
         },
         {
           "word": "الفلاح",
-          "start_frame": 5906,
-          "end_frame": 5940
+          "start_frame": 801,
+          "end_frame": 816
+        },
+        {
+          "word": "بس",
+          "start_frame": 817,
+          "end_frame": 826
+        },
+        {
+          "word": "انا",
+          "start_frame": 827,
+          "end_frame": 833
+        },
+        {
+          "word": "قلت",
+          "start_frame": 834,
+          "end_frame": 843
+        },
+        {
+          "word": "اذكرك",
+          "start_frame": 844,
+          "end_frame": 856
+        },
+        {
+          "word": "في",
+          "start_frame": 857,
+          "end_frame": 869
+        },
+        {
+          "word": "هذا",
+          "start_frame": 870,
+          "end_frame": 872
         }
-      ],
-      "scene": 3
+      ]
+    },
+    {
+      "segment_id": 8,
+      "text": "الموضوع فانت انت يعني تكلمت عنها بالتليفون بشكل سريع",
+      "start_frame": 873,
+      "end_frame": 977,
+      "scene": 1,
+      "words": [
+        {
+          "word": "الموضوع",
+          "start_frame": 873,
+          "end_frame": 893
+        },
+        {
+          "word": "فانت",
+          "start_frame": 894,
+          "end_frame": 901
+        },
+        {
+          "word": "انت",
+          "start_frame": 902,
+          "end_frame": 906
+        },
+        {
+          "word": "يعني",
+          "start_frame": 907,
+          "end_frame": 917
+        },
+        {
+          "word": "تكلمت",
+          "start_frame": 918,
+          "end_frame": 931
+        },
+        {
+          "word": "عنها",
+          "start_frame": 932,
+          "end_frame": 936
+        },
+        {
+          "word": "بالتليفون",
+          "start_frame": 937,
+          "end_frame": 958
+        },
+        {
+          "word": "بشكل",
+          "start_frame": 959,
+          "end_frame": 966
+        },
+        {
+          "word": "سريع",
+          "start_frame": 967,
+          "end_frame": 977
+        }
+      ]
+    },
+    {
+      "segment_id": 9,
+      "text": "وعابر بس شدتني يعني انت لما قلت مفهوم الفلاح",
+      "start_frame": 978,
+      "end_frame": 1085,
+      "scene": 1,
+      "words": [
+        {
+          "word": "وعابر",
+          "start_frame": 978,
+          "end_frame": 1003
+        },
+        {
+          "word": "بس",
+          "start_frame": 1004,
+          "end_frame": 1015
+        },
+        {
+          "word": "شدتني",
+          "start_frame": 1016,
+          "end_frame": 1018
+        },
+        {
+          "word": "يعني",
+          "start_frame": 1019,
+          "end_frame": 1029
+        },
+        {
+          "word": "انت",
+          "start_frame": 1030,
+          "end_frame": 1041
+        },
+        {
+          "word": "لما",
+          "start_frame": 1042,
+          "end_frame": 1048
+        },
+        {
+          "word": "قلت",
+          "start_frame": 1049,
+          "end_frame": 1055
+        },
+        {
+          "word": "مفهوم",
+          "start_frame": 1056,
+          "end_frame": 1070
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 1071,
+          "end_frame": 1085
+        }
+      ]
+    },
+    {
+      "segment_id": 10,
+      "text": "وكذا فبدي افهم شنو القصد في مفهومنا",
+      "start_frame": 1086,
+      "end_frame": 1248,
+      "scene": 1,
+      "words": [
+        {
+          "word": "وكذا",
+          "start_frame": 1086,
+          "end_frame": 1121
+        },
+        {
+          "word": "فبدي",
+          "start_frame": 1122,
+          "end_frame": 1178
+        },
+        {
+          "word": "افهم",
+          "start_frame": 1179,
+          "end_frame": 1191
+        },
+        {
+          "word": "شنو",
+          "start_frame": 1192,
+          "end_frame": 1196
+        },
+        {
+          "word": "القصد",
+          "start_frame": 1197,
+          "end_frame": 1217
+        },
+        {
+          "word": "في",
+          "start_frame": 1218,
+          "end_frame": 1226
+        },
+        {
+          "word": "مفهومنا",
+          "start_frame": 1227,
+          "end_frame": 1248
+        }
+      ]
+    },
+    {
+      "segment_id": 11,
+      "text": "احنا نرجع حق معجمنا نرجع حق مرجعيتنا ما هو",
+      "start_frame": 1249,
+      "end_frame": 1384,
+      "scene": 1,
+      "words": [
+        {
+          "word": "احنا",
+          "start_frame": 1249,
+          "end_frame": 1255
+        },
+        {
+          "word": "نرجع",
+          "start_frame": 1256,
+          "end_frame": 1274
+        },
+        {
+          "word": "حق",
+          "start_frame": 1275,
+          "end_frame": 1277
+        },
+        {
+          "word": "معجمنا",
+          "start_frame": 1278,
+          "end_frame": 1305
+        },
+        {
+          "word": "نرجع",
+          "start_frame": 1306,
+          "end_frame": 1323
+        },
+        {
+          "word": "حق",
+          "start_frame": 1324,
+          "end_frame": 1331
+        },
+        {
+          "word": "مرجعيتنا",
+          "start_frame": 1332,
+          "end_frame": 1370
+        },
+        {
+          "word": "ما",
+          "start_frame": 1371,
+          "end_frame": 1382
+        },
+        {
+          "word": "هو",
+          "start_frame": 1383,
+          "end_frame": 1384
+        }
+      ]
+    },
+    {
+      "segment_id": 12,
+      "text": "مفهوم الفلاح وكيف ممكن لان اليوم في معيار النجاح",
+      "start_frame": 1385,
+      "end_frame": 1478,
+      "scene": 1,
+      "words": [
+        {
+          "word": "مفهوم",
+          "start_frame": 1385,
+          "end_frame": 1388
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 1389,
+          "end_frame": 1409
+        },
+        {
+          "word": "وكيف",
+          "start_frame": 1410,
+          "end_frame": 1412
+        },
+        {
+          "word": "ممكن",
+          "start_frame": 1413,
+          "end_frame": 1428
+        },
+        {
+          "word": "لان",
+          "start_frame": 1429,
+          "end_frame": 1431
+        },
+        {
+          "word": "اليوم",
+          "start_frame": 1432,
+          "end_frame": 1445
+        },
+        {
+          "word": "في",
+          "start_frame": 1446,
+          "end_frame": 1453
+        },
+        {
+          "word": "معيار",
+          "start_frame": 1454,
+          "end_frame": 1457
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 1458,
+          "end_frame": 1478
+        }
+      ]
+    },
+    {
+      "segment_id": 13,
+      "text": "حتى هذا معيار مو واضح ما هو النجاح انا",
+      "start_frame": 1479,
+      "end_frame": 1539,
+      "scene": 1,
+      "words": [
+        {
+          "word": "حتى",
+          "start_frame": 1479,
+          "end_frame": 1480
+        },
+        {
+          "word": "هذا",
+          "start_frame": 1481,
+          "end_frame": 1492
+        },
+        {
+          "word": "معيار",
+          "start_frame": 1493,
+          "end_frame": 1495
+        },
+        {
+          "word": "مو",
+          "start_frame": 1496,
+          "end_frame": 1508
+        },
+        {
+          "word": "واضح",
+          "start_frame": 1509,
+          "end_frame": 1511
+        },
+        {
+          "word": "ما",
+          "start_frame": 1512,
+          "end_frame": 1518
+        },
+        {
+          "word": "هو",
+          "start_frame": 1519,
+          "end_frame": 1524
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 1525,
+          "end_frame": 1536
+        },
+        {
+          "word": "انا",
+          "start_frame": 1537,
+          "end_frame": 1539
+        }
+      ]
+    },
+    {
+      "segment_id": 14,
+      "text": "لحين ما ادري شنو النجاح بالضبط لما تجي تحط",
+      "start_frame": 1540,
+      "end_frame": 1599,
+      "scene": 1,
+      "words": [
+        {
+          "word": "لحين",
+          "start_frame": 1540,
+          "end_frame": 1545
+        },
+        {
+          "word": "ما",
+          "start_frame": 1546,
+          "end_frame": 1550
+        },
+        {
+          "word": "ادري",
+          "start_frame": 1551,
+          "end_frame": 1559
+        },
+        {
+          "word": "شنو",
+          "start_frame": 1560,
+          "end_frame": 1562
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 1563,
+          "end_frame": 1569
+        },
+        {
+          "word": "بالضبط",
+          "start_frame": 1570,
+          "end_frame": 1574
+        },
+        {
+          "word": "لما",
+          "start_frame": 1575,
+          "end_frame": 1580
+        },
+        {
+          "word": "تجي",
+          "start_frame": 1581,
+          "end_frame": 1592
+        },
+        {
+          "word": "تحط",
+          "start_frame": 1593,
+          "end_frame": 1599
+        }
+      ]
+    },
+    {
+      "segment_id": 15,
+      "text": "انت النجاح يمكن مختلف عندك عني انا لكن اتوقع",
+      "start_frame": 1600,
+      "end_frame": 1676,
+      "scene": 1,
+      "words": [
+        {
+          "word": "انت",
+          "start_frame": 1600,
+          "end_frame": 1602
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 1603,
+          "end_frame": 1614
+        },
+        {
+          "word": "يمكن",
+          "start_frame": 1615,
+          "end_frame": 1617
+        },
+        {
+          "word": "مختلف",
+          "start_frame": 1618,
+          "end_frame": 1626
+        },
+        {
+          "word": "عندك",
+          "start_frame": 1627,
+          "end_frame": 1640
+        },
+        {
+          "word": "عني",
+          "start_frame": 1641,
+          "end_frame": 1647
+        },
+        {
+          "word": "انا",
+          "start_frame": 1648,
+          "end_frame": 1650
+        },
+        {
+          "word": "لكن",
+          "start_frame": 1651,
+          "end_frame": 1659
+        },
+        {
+          "word": "اتوقع",
+          "start_frame": 1660,
+          "end_frame": 1676
+        }
+      ]
+    },
+    {
+      "segment_id": 16,
+      "text": "الفلاح المفروض انه وفق مرجعيتنا المفروض يكون هو مفهوم",
+      "start_frame": 1677,
+      "end_frame": 1793,
+      "scene": 1,
+      "words": [
+        {
+          "word": "الفلاح",
+          "start_frame": 1677,
+          "end_frame": 1690
+        },
+        {
+          "word": "المفروض",
+          "start_frame": 1691,
+          "end_frame": 1700
+        },
+        {
+          "word": "انه",
+          "start_frame": 1701,
+          "end_frame": 1712
+        },
+        {
+          "word": "وفق",
+          "start_frame": 1713,
+          "end_frame": 1724
+        },
+        {
+          "word": "مرجعيتنا",
+          "start_frame": 1725,
+          "end_frame": 1735
+        },
+        {
+          "word": "المفروض",
+          "start_frame": 1736,
+          "end_frame": 1764
+        },
+        {
+          "word": "يكون",
+          "start_frame": 1765,
+          "end_frame": 1772
+        },
+        {
+          "word": "هو",
+          "start_frame": 1773,
+          "end_frame": 1775
+        },
+        {
+          "word": "مفهوم",
+          "start_frame": 1776,
+          "end_frame": 1793
+        }
+      ]
+    },
+    {
+      "segment_id": 17,
+      "text": "يا سلام اي رايك يا سلام ممتاز طيب النجاح",
+      "start_frame": 1794,
+      "end_frame": 1909,
+      "scene": 1,
+      "words": [
+        {
+          "word": "يا",
+          "start_frame": 1794,
+          "end_frame": 1798
+        },
+        {
+          "word": "سلام",
+          "start_frame": 1799,
+          "end_frame": 1811
+        },
+        {
+          "word": "اي",
+          "start_frame": 1812,
+          "end_frame": 1815
+        },
+        {
+          "word": "رايك",
+          "start_frame": 1816,
+          "end_frame": 1835
+        },
+        {
+          "word": "يا",
+          "start_frame": 1836,
+          "end_frame": 1847
+        },
+        {
+          "word": "سلام",
+          "start_frame": 1848,
+          "end_frame": 1856
+        },
+        {
+          "word": "ممتاز",
+          "start_frame": 1857,
+          "end_frame": 1876
+        },
+        {
+          "word": "طيب",
+          "start_frame": 1877,
+          "end_frame": 1889
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 1890,
+          "end_frame": 1909
+        }
+      ]
+    },
+    {
+      "segment_id": 18,
+      "text": "في اللغة اي مفهوم طبعا المفاهيم كيف تتكون",
+      "start_frame": 1910,
+      "end_frame": 2063,
+      "scene": 1,
+      "words": [
+        {
+          "word": "في",
+          "start_frame": 1910,
+          "end_frame": 1923
+        },
+        {
+          "word": "اللغة",
+          "start_frame": 1924,
+          "end_frame": 1938
+        },
+        {
+          "word": "اي",
+          "start_frame": 1939,
+          "end_frame": 1953
+        },
+        {
+          "word": "مفهوم",
+          "start_frame": 1954,
+          "end_frame": 1999
+        },
+        {
+          "word": "طبعا",
+          "start_frame": 2010,
+          "end_frame": 2014
+        },
+        {
+          "word": "المفاهيم",
+          "start_frame": 2015,
+          "end_frame": 2045
+        },
+        {
+          "word": "كيف",
+          "start_frame": 2046,
+          "end_frame": 2048
+        },
+        {
+          "word": "تتكون",
+          "start_frame": 2049,
+          "end_frame": 2063
+        }
+      ]
+    },
+    {
+      "segment_id": 19,
+      "text": "مفاهيم يعني معاني يقولها الناس ثم يصطلح عليها",
+      "start_frame": 2064,
+      "end_frame": 2221,
+      "scene": 1,
+      "words": [
+        {
+          "word": "مفاهيم",
+          "start_frame": 2064,
+          "end_frame": 2081
+        },
+        {
+          "word": "يعني",
+          "start_frame": 2082,
+          "end_frame": 2097
+        },
+        {
+          "word": "معاني",
+          "start_frame": 2098,
+          "end_frame": 2115
+        },
+        {
+          "word": "يقولها",
+          "start_frame": 2116,
+          "end_frame": 2150
+        },
+        {
+          "word": "الناس",
+          "start_frame": 2151,
+          "end_frame": 2167
+        },
+        {
+          "word": "ثم",
+          "start_frame": 2168,
+          "end_frame": 2184
+        },
+        {
+          "word": "يصطلح",
+          "start_frame": 2185,
+          "end_frame": 2198
+        },
+        {
+          "word": "عليها",
+          "start_frame": 2199,
+          "end_frame": 2221
+        }
+      ]
+    },
+    {
+      "segment_id": 20,
+      "text": "فيتحول الى مصطلح ثم يضعون لها تعريفا فيسمى",
+      "start_frame": 2222,
+      "end_frame": 2372,
+      "scene": 1,
+      "words": [
+        {
+          "word": "فيتحول",
+          "start_frame": 2222,
+          "end_frame": 2248
+        },
+        {
+          "word": "الى",
+          "start_frame": 2249,
+          "end_frame": 2266
+        },
+        {
+          "word": "مصطلح",
+          "start_frame": 2267,
+          "end_frame": 2276
+        },
+        {
+          "word": "ثم",
+          "start_frame": 2277,
+          "end_frame": 2296
+        },
+        {
+          "word": "يضعون",
+          "start_frame": 2299,
+          "end_frame": 2322
+        },
+        {
+          "word": "لها",
+          "start_frame": 2323,
+          "end_frame": 2332
+        },
+        {
+          "word": "تعريفا",
+          "start_frame": 2333,
+          "end_frame": 2353
+        },
+        {
+          "word": "فيسمى",
+          "start_frame": 2354,
+          "end_frame": 2372
+        }
+      ]
+    },
+    {
+      "segment_id": 21,
+      "text": "تعريف او حد عشان احنا الحدود هذه اللي هي",
+      "start_frame": 2373,
+      "end_frame": 2508,
+      "scene": 1,
+      "words": [
+        {
+          "word": "تعريف",
+          "start_frame": 2373,
+          "end_frame": 2412
+        },
+        {
+          "word": "او",
+          "start_frame": 2413,
+          "end_frame": 2432
+        },
+        {
+          "word": "حد",
+          "start_frame": 2433,
+          "end_frame": 2456
+        },
+        {
+          "word": "عشان",
+          "start_frame": 2457,
+          "end_frame": 2469
+        },
+        {
+          "word": "احنا",
+          "start_frame": 2470,
+          "end_frame": 2472
+        },
+        {
+          "word": "الحدود",
+          "start_frame": 2473,
+          "end_frame": 2482
+        },
+        {
+          "word": "هذه",
+          "start_frame": 2483,
+          "end_frame": 2495
+        },
+        {
+          "word": "اللي",
+          "start_frame": 2496,
+          "end_frame": 2498
+        },
+        {
+          "word": "هي",
+          "start_frame": 2499,
+          "end_frame": 2508
+        }
+      ]
+    },
+    {
+      "segment_id": 22,
+      "text": "التعاريف لازم ناخذها من اللغة ابتداء اللغة ماذا",
+      "start_frame": 2509,
+      "end_frame": 2591,
+      "scene": 1,
+      "words": [
+        {
+          "word": "التعاريف",
+          "start_frame": 2509,
+          "end_frame": 2517
+        },
+        {
+          "word": "لازم",
+          "start_frame": 2518,
+          "end_frame": 2530
+        },
+        {
+          "word": "ناخذها",
+          "start_frame": 2531,
+          "end_frame": 2544
+        },
+        {
+          "word": "من",
+          "start_frame": 2545,
+          "end_frame": 2549
+        },
+        {
+          "word": "اللغة",
+          "start_frame": 2550,
+          "end_frame": 2552
+        },
+        {
+          "word": "ابتداء",
+          "start_frame": 2553,
+          "end_frame": 2571
+        },
+        {
+          "word": "اللغة",
+          "start_frame": 2572,
+          "end_frame": 2580
+        },
+        {
+          "word": "ماذا",
+          "start_frame": 2581,
+          "end_frame": 2591
+        }
+      ]
+    },
+    {
+      "segment_id": 23,
+      "text": "ما هو تعريف النجاح نجح بمعنى ادرك غايته",
+      "start_frame": 2592,
+      "end_frame": 2739,
+      "scene": 2,
+      "words": [
+        {
+          "word": "ما",
+          "start_frame": 2592,
+          "end_frame": 2607
+        },
+        {
+          "word": "هو",
+          "start_frame": 2608,
+          "end_frame": 2612
+        },
+        {
+          "word": "تعريف",
+          "start_frame": 2613,
+          "end_frame": 2638
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 2639,
+          "end_frame": 2665
+        },
+        {
+          "word": "نجح",
+          "start_frame": 2666,
+          "end_frame": 2682
+        },
+        {
+          "word": "بمعنى",
+          "start_frame": 2683,
+          "end_frame": 2700
+        },
+        {
+          "word": "ادرك",
+          "start_frame": 2701,
+          "end_frame": 2720
+        },
+        {
+          "word": "غايته",
+          "start_frame": 2721,
+          "end_frame": 2739
+        }
+      ]
+    },
+    {
+      "segment_id": 24,
+      "text": "يعني فيها جزئين في غاية وفيه فعل",
+      "start_frame": 2740,
+      "end_frame": 2874,
+      "scene": 2,
+      "words": [
+        {
+          "word": "يعني",
+          "start_frame": 2740,
+          "end_frame": 2759
+        },
+        {
+          "word": "فيها",
+          "start_frame": 2760,
+          "end_frame": 2767
+        },
+        {
+          "word": "جزئين",
+          "start_frame": 2768,
+          "end_frame": 2797
+        },
+        {
+          "word": "في",
+          "start_frame": 2798,
+          "end_frame": 2807
+        },
+        {
+          "word": "غاية",
+          "start_frame": 2808,
+          "end_frame": 2824
+        },
+        {
+          "word": "وفيه",
+          "start_frame": 2825,
+          "end_frame": 2835
+        },
+        {
+          "word": "فعل",
+          "start_frame": 2836,
+          "end_frame": 2874
+        }
+      ]
+    },
+    {
+      "segment_id": 25,
+      "text": "ادرك غايته فهو تصور",
+      "start_frame": 2875,
+      "end_frame": 3014,
+      "scene": 2,
+      "words": [
+        {
+          "word": "ادرك",
+          "start_frame": 2875,
+          "end_frame": 2912
+        },
+        {
+          "word": "غايته",
+          "start_frame": 2913,
+          "end_frame": 2970
+        },
+        {
+          "word": "فهو",
+          "start_frame": 2971,
+          "end_frame": 2996
+        },
+        {
+          "word": "تصور",
+          "start_frame": 2997,
+          "end_frame": 3014
+        }
+      ]
+    },
+    {
+      "segment_id": 26,
+      "text": "وتصرف",
+      "start_frame": 3015,
+      "end_frame": 3049,
+      "scene": 2,
+      "words": [
+        {
+          "word": "وتصرف",
+          "start_frame": 3015,
+          "end_frame": 3049
+        }
+      ]
+    },
+    {
+      "segment_id": 27,
+      "text": "احنا في منظومتنا عشان يكون في نجاح وفلاح",
+      "start_frame": 3106,
+      "end_frame": 3175,
+      "scene": 2,
+      "words": [
+        {
+          "word": "احنا",
+          "start_frame": 3106,
+          "end_frame": 3119
+        },
+        {
+          "word": "في",
+          "start_frame": 3120,
+          "end_frame": 3122
+        },
+        {
+          "word": "منظومتنا",
+          "start_frame": 3123,
+          "end_frame": 3136
+        },
+        {
+          "word": "عشان",
+          "start_frame": 3137,
+          "end_frame": 3140
+        },
+        {
+          "word": "يكون",
+          "start_frame": 3141,
+          "end_frame": 3147
+        },
+        {
+          "word": "في",
+          "start_frame": 3148,
+          "end_frame": 3161
+        },
+        {
+          "word": "نجاح",
+          "start_frame": 3162,
+          "end_frame": 3166
+        },
+        {
+          "word": "وفلاح",
+          "start_frame": 3167,
+          "end_frame": 3175
+        }
+      ]
+    },
+    {
+      "segment_id": 28,
+      "text": "عندنا مو الشغلتين عندنا ثلاث ان يكون لديك",
+      "start_frame": 3212,
+      "end_frame": 3345,
+      "scene": 2,
+      "words": [
+        {
+          "word": "عندنا",
+          "start_frame": 3212,
+          "end_frame": 3232
+        },
+        {
+          "word": "مو",
+          "start_frame": 3233,
+          "end_frame": 3238
+        },
+        {
+          "word": "الشغلتين",
+          "start_frame": 3239,
+          "end_frame": 3260
+        },
+        {
+          "word": "عندنا",
+          "start_frame": 3261,
+          "end_frame": 3268
+        },
+        {
+          "word": "ثلاث",
+          "start_frame": 3269,
+          "end_frame": 3291
+        },
+        {
+          "word": "ان",
+          "start_frame": 3292,
+          "end_frame": 3294
+        },
+        {
+          "word": "يكون",
+          "start_frame": 3295,
+          "end_frame": 3307
+        },
+        {
+          "word": "لديك",
+          "start_frame": 3308,
+          "end_frame": 3345
+        }
+      ]
+    },
+    {
+      "segment_id": 29,
+      "text": "سعي ووعي ووحي ها",
+      "start_frame": 3346,
+      "end_frame": 3482,
+      "scene": 2,
+      "words": [
+        {
+          "word": "سعي",
+          "start_frame": 3346,
+          "end_frame": 3385
+        },
+        {
+          "word": "ووعي",
+          "start_frame": 3386,
+          "end_frame": 3429
+        },
+        {
+          "word": "ووحي",
+          "start_frame": 3430,
+          "end_frame": 3472
+        },
+        {
+          "word": "ها",
+          "start_frame": 3473,
+          "end_frame": 3482
+        }
+      ]
+    },
+    {
+      "segment_id": 30,
+      "text": "ثلاثيتنا سعي ووحي",
+      "start_frame": 3483,
+      "end_frame": 3572,
+      "scene": 2,
+      "words": [
+        {
+          "word": "ثلاثيتنا",
+          "start_frame": 3483,
+          "end_frame": 3534
+        },
+        {
+          "word": "سعي",
+          "start_frame": 3535,
+          "end_frame": 3553
+        },
+        {
+          "word": "ووحي",
+          "start_frame": 3554,
+          "end_frame": 3572
+        }
+      ]
+    },
+    {
+      "segment_id": 31,
+      "text": "ووعي النجاح",
+      "start_frame": 3573,
+      "end_frame": 3712,
+      "scene": 2,
+      "words": [
+        {
+          "word": "ووعي",
+          "start_frame": 3573,
+          "end_frame": 3679
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 3680,
+          "end_frame": 3712
+        }
+      ]
+    },
+    {
+      "segment_id": 32,
+      "text": "ادراك المطلوب ادراك غايته هذا النجاح ولذلك تعريف",
+      "start_frame": 3713,
+      "end_frame": 3859,
+      "scene": 2,
+      "words": [
+        {
+          "word": "ادراك",
+          "start_frame": 3713,
+          "end_frame": 3741
+        },
+        {
+          "word": "المطلوب",
+          "start_frame": 3742,
+          "end_frame": 3763
+        },
+        {
+          "word": "ادراك",
+          "start_frame": 3764,
+          "end_frame": 3777
+        },
+        {
+          "word": "غايته",
+          "start_frame": 3778,
+          "end_frame": 3791
+        },
+        {
+          "word": "هذا",
+          "start_frame": 3792,
+          "end_frame": 3794
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 3795,
+          "end_frame": 3817
+        },
+        {
+          "word": "ولذلك",
+          "start_frame": 3818,
+          "end_frame": 3825
+        },
+        {
+          "word": "تعريف",
+          "start_frame": 3826,
+          "end_frame": 3859
+        }
+      ]
+    },
+    {
+      "segment_id": 33,
+      "text": "النجاح هو تحقيق ما تريده انت وتعريف",
+      "start_frame": 3860,
+      "end_frame": 4021,
+      "scene": 3,
+      "words": [
+        {
+          "word": "النجاح",
+          "start_frame": 3860,
+          "end_frame": 3888
+        },
+        {
+          "word": "هو",
+          "start_frame": 3889,
+          "end_frame": 3909
+        },
+        {
+          "word": "تحقيق",
+          "start_frame": 3910,
+          "end_frame": 3936
+        },
+        {
+          "word": "ما",
+          "start_frame": 3937,
+          "end_frame": 3951
+        },
+        {
+          "word": "تريده",
+          "start_frame": 3952,
+          "end_frame": 3985
+        },
+        {
+          "word": "انت",
+          "start_frame": 3986,
+          "end_frame": 4000
+        },
+        {
+          "word": "وتعريف",
+          "start_frame": 4001,
+          "end_frame": 4021
+        }
+      ]
+    },
+    {
+      "segment_id": 34,
+      "text": "الفلاح تحقيق ما يريده الله منك هذا هو الفلاح",
+      "start_frame": 4022,
+      "end_frame": 4157,
+      "scene": 3,
+      "words": [
+        {
+          "word": "الفلاح",
+          "start_frame": 4022,
+          "end_frame": 4031
+        },
+        {
+          "word": "تحقيق",
+          "start_frame": 4032,
+          "end_frame": 4046
+        },
+        {
+          "word": "ما",
+          "start_frame": 4047,
+          "end_frame": 4048
+        },
+        {
+          "word": "يريده",
+          "start_frame": 4049,
+          "end_frame": 4062
+        },
+        {
+          "word": "الله",
+          "start_frame": 4063,
+          "end_frame": 4075
+        },
+        {
+          "word": "منك",
+          "start_frame": 4076,
+          "end_frame": 4084
+        },
+        {
+          "word": "هذا",
+          "start_frame": 4098,
+          "end_frame": 4120
+        },
+        {
+          "word": "هو",
+          "start_frame": 4121,
+          "end_frame": 4132
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 4133,
+          "end_frame": 4157
+        }
+      ]
+    },
+    {
+      "segment_id": 35,
+      "text": "فان حققت الأولى على حساب الثانية فهذا",
+      "start_frame": 4158,
+      "end_frame": 4317,
+      "scene": 3,
+      "words": [
+        {
+          "word": "فان",
+          "start_frame": 4158,
+          "end_frame": 4180
+        },
+        {
+          "word": "حققت",
+          "start_frame": 4181,
+          "end_frame": 4196
+        },
+        {
+          "word": "الأولى",
+          "start_frame": 4197,
+          "end_frame": 4230
+        },
+        {
+          "word": "على",
+          "start_frame": 4231,
+          "end_frame": 4242
+        },
+        {
+          "word": "حساب",
+          "start_frame": 4243,
+          "end_frame": 4266
+        },
+        {
+          "word": "الثانية",
+          "start_frame": 4267,
+          "end_frame": 4303
+        },
+        {
+          "word": "فهذا",
+          "start_frame": 4304,
+          "end_frame": 4317
+        }
+      ]
+    },
+    {
+      "segment_id": 36,
+      "text": "هو الفشل وان حققت الثانية ولو غابت الأولى فهذا",
+      "start_frame": 4318,
+      "end_frame": 4456,
+      "scene": 3,
+      "words": [
+        {
+          "word": "هو",
+          "start_frame": 4318,
+          "end_frame": 4341
+        },
+        {
+          "word": "الفشل",
+          "start_frame": 4342,
+          "end_frame": 4363
+        },
+        {
+          "word": "وان",
+          "start_frame": 4364,
+          "end_frame": 4373
+        },
+        {
+          "word": "حققت",
+          "start_frame": 4374,
+          "end_frame": 4385
+        },
+        {
+          "word": "الثانية",
+          "start_frame": 4386,
+          "end_frame": 4403
+        },
+        {
+          "word": "ولو",
+          "start_frame": 4404,
+          "end_frame": 4414
+        },
+        {
+          "word": "غابت",
+          "start_frame": 4415,
+          "end_frame": 4424
+        },
+        {
+          "word": "الأولى",
+          "start_frame": 4425,
+          "end_frame": 4449
+        },
+        {
+          "word": "فهذا",
+          "start_frame": 4450,
+          "end_frame": 4456
+        }
+      ]
+    },
+    {
+      "segment_id": 37,
+      "text": "قمة النجاح الفلاح ولو اجتمعت",
+      "start_frame": 4457,
+      "end_frame": 4621,
+      "scene": 3,
+      "words": [
+        {
+          "word": "قمة",
+          "start_frame": 4457,
+          "end_frame": 4483
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 4484,
+          "end_frame": 4532
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 4533,
+          "end_frame": 4565
+        },
+        {
+          "word": "ولو",
+          "start_frame": 4566,
+          "end_frame": 4582
+        },
+        {
+          "word": "اجتمعت",
+          "start_frame": 4583,
+          "end_frame": 4621
+        }
+      ]
+    },
+    {
+      "segment_id": 38,
+      "text": "لك نجاح مع فلاح فانت في فردوس",
+      "start_frame": 4622,
+      "end_frame": 4762,
+      "scene": 3,
+      "words": [
+        {
+          "word": "لك",
+          "start_frame": 4622,
+          "end_frame": 4636
+        },
+        {
+          "word": "نجاح",
+          "start_frame": 4637,
+          "end_frame": 4649
+        },
+        {
+          "word": "مع",
+          "start_frame": 4650,
+          "end_frame": 4672
+        },
+        {
+          "word": "فلاح",
+          "start_frame": 4673,
+          "end_frame": 4690
+        },
+        {
+          "word": "فانت",
+          "start_frame": 4691,
+          "end_frame": 4717
+        },
+        {
+          "word": "في",
+          "start_frame": 4718,
+          "end_frame": 4729
+        },
+        {
+          "word": "فردوس",
+          "start_frame": 4730,
+          "end_frame": 4762
+        }
+      ]
+    },
+    {
+      "segment_id": 39,
+      "text": "ارضي يقول عمر بن عبد العزيز في كلمة بديعة",
+      "start_frame": 4763,
+      "end_frame": 4891,
+      "scene": 3,
+      "words": [
+        {
+          "word": "ارضي",
+          "start_frame": 4763,
+          "end_frame": 4792
+        },
+        {
+          "word": "يقول",
+          "start_frame": 4793,
+          "end_frame": 4807
+        },
+        {
+          "word": "عمر",
+          "start_frame": 4808,
+          "end_frame": 4817
+        },
+        {
+          "word": "بن",
+          "start_frame": 4818,
+          "end_frame": 4829
+        },
+        {
+          "word": "عبد",
+          "start_frame": 4830,
+          "end_frame": 4832
+        },
+        {
+          "word": "العزيز",
+          "start_frame": 4833,
+          "end_frame": 4847
+        },
+        {
+          "word": "في",
+          "start_frame": 4848,
+          "end_frame": 4857
+        },
+        {
+          "word": "كلمة",
+          "start_frame": 4858,
+          "end_frame": 4879
+        },
+        {
+          "word": "بديعة",
+          "start_frame": 4880,
+          "end_frame": 4891
+        }
+      ]
+    },
+    {
+      "segment_id": 40,
+      "text": "ألذّ عيش هو وافق طاعة عجيبة تحب",
+      "start_frame": 4892,
+      "end_frame": 5054,
+      "scene": 3,
+      "words": [
+        {
+          "word": "ألذّ",
+          "start_frame": 4892,
+          "end_frame": 4899
+        },
+        {
+          "word": "عيش",
+          "start_frame": 4900,
+          "end_frame": 4962
+        },
+        {
+          "word": "هو",
+          "start_frame": 4963,
+          "end_frame": 4977
+        },
+        {
+          "word": "وافق",
+          "start_frame": 4978,
+          "end_frame": 5004
+        },
+        {
+          "word": "طاعة",
+          "start_frame": 5005,
+          "end_frame": 5022
+        },
+        {
+          "word": "عجيبة",
+          "start_frame": 5023,
+          "end_frame": 5038
+        },
+        {
+          "word": "تحب",
+          "start_frame": 5039,
+          "end_frame": 5054
+        }
+      ]
+    },
+    {
+      "segment_id": 41,
+      "text": "شيء وطاعه والله يحبه هذا احب شيء اي اجمل",
+      "start_frame": 5055,
+      "end_frame": 5185,
+      "scene": 3,
+      "words": [
+        {
+          "word": "شيء",
+          "start_frame": 5055,
+          "end_frame": 5070
+        },
+        {
+          "word": "وطاعه",
+          "start_frame": 5071,
+          "end_frame": 5092
+        },
+        {
+          "word": "والله",
+          "start_frame": 5093,
+          "end_frame": 5114
+        },
+        {
+          "word": "يحبه",
+          "start_frame": 5115,
+          "end_frame": 5116
+        },
+        {
+          "word": "هذا",
+          "start_frame": 5117,
+          "end_frame": 5133
+        },
+        {
+          "word": "احب",
+          "start_frame": 5134,
+          "end_frame": 5146
+        },
+        {
+          "word": "شيء",
+          "start_frame": 5147,
+          "end_frame": 5155
+        },
+        {
+          "word": "اي",
+          "start_frame": 5156,
+          "end_frame": 5166
+        },
+        {
+          "word": "اجمل",
+          "start_frame": 5167,
+          "end_frame": 5185
+        }
+      ]
+    },
+    {
+      "segment_id": 42,
+      "text": "شيء تسويه فهنا يتحد النجاح مع الفلاح",
+      "start_frame": 5186,
+      "end_frame": 5300,
+      "scene": 3,
+      "words": [
+        {
+          "word": "شيء",
+          "start_frame": 5186,
+          "end_frame": 5193
+        },
+        {
+          "word": "تسويه",
+          "start_frame": 5194,
+          "end_frame": 5220
+        },
+        {
+          "word": "فهنا",
+          "start_frame": 5221,
+          "end_frame": 5236
+        },
+        {
+          "word": "يتحد",
+          "start_frame": 5237,
+          "end_frame": 5246
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 5247,
+          "end_frame": 5267
+        },
+        {
+          "word": "مع",
+          "start_frame": 5268,
+          "end_frame": 5283
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 5284,
+          "end_frame": 5300
+        }
+      ]
     }
   ]
 }
