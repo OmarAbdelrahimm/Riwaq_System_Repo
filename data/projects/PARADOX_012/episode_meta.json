@@ -1,0 +1,141 @@
+{
+  "schema_version": "2.0",
+  "brand_ref": { "theme_path": "data/brand.json", "watermark": "on" },
+
+  "project": {
+    "id": "PARADOX_012",
+    "series_id": "riwaq_heritage_s01",
+    "title": "مفارقة الفلاح والنجاح",
+    "episode_number": 12,
+    "video_type": "short",
+    "platforms": ["youtube_shorts", "tiktok", "reels"],
+    "aspect_ratios": ["9x16"],
+    "language_primary": "ar-EG",
+    "language_secondary": "en",
+    "priority": "quality"
+  },
+
+  "source": { 
+    "type": "youtube", 
+    "url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc&t=9536s",
+    "rights": "fair_use_commentary", 
+    "provenance_note": "مقطع من الحلقة الأصلية — الطابع الزمني 02:38:16 إلى 02:41:11" 
+  },
+
+  "story": {
+    "hook": "ما هو النجاح الحقيقي؟ هل هو تحقيق ما تريده أنت، أم ما يريده الله منك؟",
+    "chapters": [
+      { "title": "أزمة معايير النجاح", "t_in": 0, "t_out": 70 },
+      { "title": "ثلاثية التحقق: سعي، وعي، وحي", "t_in": 70, "t_out": 130 },
+      { "title": "الصدمة: النجاح الدنيوي قد يكون فشلاً", "t_in": 130, "t_out": 200 }
+    ],
+    "next_tease": "الحلقة القادمة: كيف نبني فلاحاً لا مجرد نجاح؟",
+    "scenes": [
+      { 
+        "type": "hook", 
+        "t_in": 0, 
+        "t_out": 70, 
+        "kicker": "مفارقة الفلاح والنجاح", 
+        "title": "ما هو النجاح الحقيقي؟\nهل تحقيق مرادك أم مراد الله؟" 
+      },
+      { 
+        "type": "chapter", 
+        "t_in": 70, 
+        "t_out": 130, 
+        "kicker": "المنهج الإسلامي", 
+        "title": "ثلاثية التحقق:\nسعي — وعي — وحي" 
+      },
+      { 
+        "type": "quote", 
+        "t_in": 130, 
+        "t_out": 160, 
+        "text": "«النجاح معيار دنيوي متغير، والفلاح معيار إلهي ثابت»", 
+        "source": "من الحلقة" 
+      },
+      { 
+        "type": "quote", 
+        "t_in": 160, 
+        "t_out": 200, 
+        "text": "«فردوس عمر بن عبد العزيز الأرضي كان في رضا الله وطاعته — لا في القصور»", 
+        "source": "السيرة النبوية" 
+      }
+    ]
+  },
+
+  "narration": {
+    "mode": "provided",
+    "profile_id": "omar_el_clone_v1",
+    "replacement_policy": "drafts_allowed",
+    "note": "الصوت المستنسخ للمراجعة — يُستبدل بالصوت الرسمي عند النشر",
+    "placement_map": [
+      { "t_in": 0.5, "t_out": 68.0, "type": "vo_hook" },
+      { "t_in": 70.5, "t_out": 128.0, "type": "vo_value" },
+      { "t_in": 130.5, "t_out": 195.0, "type": "vo_cta" }
+    ]
+  },
+
+  "audio": {
+    "vo": [
+      { "src": "projects/PARADOX_012/audio/vo_01.wav", "t_in": 0.5, "volume_db": 0 },
+      { "src": "projects/PARADOX_012/audio/vo_02.wav", "t_in": 70.5, "volume_db": 0 },
+      { "src": "projects/PARADOX_012/audio/vo_03.wav", "t_in": 130.5, "volume_db": 0 }
+    ],
+    "music": { "src": "projects/PARADOX_012/audio/music.mp3", "t_in": 0, "t_out": 200, "volume_db": -24 },
+    "stingers": [
+      { "src": "projects/PARADOX_012/audio/stinger_in.wav", "t_in": 0.0, "volume_db": -8 },
+      { "src": "projects/PARADOX_012/audio/stinger_out.wav", "t_in": 197.0, "volume_db": -7 }
+    ]
+  },
+
+  "captions": {
+    "styles": ["keyword_highlight"],
+    "languages": ["ar", "en"],
+    "sync_source": "provided_json",
+    "data": [
+      { "t_in": 1.0, "t_out": 5.5, "ar": "ما هو النجاح الحقيقي هل هو تحقيق ما تريده أنت", "en": "What is true success? Is it achieving what you want", "keywords": ["النجاح الحقيقي"] },
+      { "t_in": 5.5, "t_out": 9.0, "ar": "أم ما يريده الله منك الفلاح هو تحقيق مراد الله", "en": "Or what Allah wants from you? Success is achieving Allah's will", "keywords": ["الفلاح", "مراد الله"] },
+      { "t_in": 10.0, "t_out": 15.0, "ar": "النجاح معيار دنيوي متغير والفلاح معيار إلهي ثابت", "en": "Success is a changing worldly standard, Falah is a fixed divine standard", "keywords": ["معيار دنيوي", "معيار إلهي"] },
+      { "t_in": 15.5, "t_out": 21.0, "ar": "ثلاثية المنظومة الإسلامية للتحقق سعي وعي وحي", "en": "The Islamic triad of verification: Effort, Awareness, Revelation", "keywords": ["سعي", "وعي", "وحي"] },
+      { "t_in": 21.5, "t_out": 26.0, "ar": "بدون وحي يتحول السعي إلى ضياع والوعي إلى ناقص", "en": "Without revelation, effort becomes loss and awareness incomplete", "keywords": ["بدون وحي", "ضياع"] },
+      { "t_in": 26.5, "t_out": 32.0, "ar": "الصدمة الكبرى: كيف يكون النجاح الدنيوي قمة الفشل", "en": "The great shock: How can worldly success be the peak of failure?", "keywords": ["الصدمة الكبرى", "قمة الفشل"] },
+      { "t_in": 32.5, "t_out": 38.0, "ar": "إن كان على حساب الفلاح", "en": "If it comes at the cost of Falah", "keywords": ["حساب الفلاح"] },
+      { "t_in": 38.5, "t_out": 44.0, "ar": "فردوس عمر بن عبد العزيز الأرض كان في رضا الله وطاعته", "en": "Umar bin Abdul Aziz's earthly paradise was in Allah's pleasure", "keywords": ["عمر بن عبد العزيز", "رضا الله"] },
+      { "t_in": 44.5, "t_out": 49.0, "ar": "ليس في القصور اسأل نفسك هل تسعى للنجاح أم للفلاح", "en": "Not in palaces. Ask yourself: Do you seek success or Falah?", "keywords": ["القصور", "النجاح أم الفلاح"] },
+      { "t_in": 49.5, "t_out": 52.0, "ar": "الفرق بينهما هو الفرق بين الدنيا والآخرة", "en": "The difference between them is the difference between this life and the Hereafter", "keywords": ["الدنيا", "الآخرة"] },
+      { "t_in": 52.5, "t_out": 55.0, "ar": "اختر الفلاح", "en": "Choose Falah", "keywords": ["اختر الفلاح"] }
+    ]
+  },
+
+  "edit": {
+    "fps": 30,
+    "cut_style": "medium",
+    "duration_s": 200,
+    "music_mood": "dark-tension",
+    "stingers": { "in": true, "out": true }
+  },
+
+  "render": {
+    "resolution": [1080, 1920],
+    "preset": "social_vertical",
+    "per_platform_export": true
+  },
+
+  "deliverables": {
+    "naming_profile": "NAMING.md#v1",
+    "master_final": "exports/MASTER_FINAL_PARADOX_012.mp4",
+    "master_web": "exports/MASTER_WEB_PARADOX_012.mp4",
+    "platform_exports": ["exports/EXPORT_VERTICAL_PARADOX_012.mp4"],
+    "captions": ["outputs/CAPTIONS_AR_PARADOX_012.srt", "outputs/CAPTIONS_EN_PARADOX_012.srt"],
+    "thumbnail": "exports/THUMB_PARADOX_012_A.png",
+    "qc_report": "reports/QC_PARADOX_012.md",
+    "sources_report": "reports/SOURCES_PARADOX_012.txt"
+  },
+
+  "qc_rules": {
+    "must_pass": ["loudness", "true_peak", "captions_sync", "caption_line_length", "safe_zones", "no_flash", "logo_present", "palette_lock", "font_lock", "no_scratch_voice", "source_logged"],
+    "tolerance_lu": 0.5
+  },
+
+  "status": "draft",
+  "notes": "الحلقة 12 من سلسلة رِواق التراث — مفارقة الفلاح والنجاح. مبنية على الطابع الزمني 02:38:16–02:41:11 من المصدر الأصلي. ثلاث مشاهد بصرية: البرج الضبابي، الثالوث الذهبي، واحة القناعة."
+}

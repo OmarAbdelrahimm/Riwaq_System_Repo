@@ -1,6 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { Episode } from "./compositions/Episode";
+import { Main } from "./compositions/Main";
 import type { Brand, EpisodeMeta } from "./engine/types";
 import brandJson from "../data/brand.json";
 import goldenJson from "../data/projects/GOLDEN_001/episode_meta.json";
@@ -17,25 +18,39 @@ const lastSceneEnd = (meta: EpisodeMeta) =>
 
 export const RemotionRoot: React.FC = () => {
   return (
-    <Composition
-      id="Episode"
-      component={Episode as React.ComponentType<any>}
-      durationInFrames={30 * 42}
-      fps={30}
-      width={1080}
-      height={1920}
-      defaultProps={{ meta: golden, brand }}
-      calculateMetadata={({ props }: any) => {
-        const meta: EpisodeMeta = props.meta;
-        const fps = meta.edit?.fps ?? 30;
-        const [w, h] = meta.render?.resolution ?? [1080, 1920];
-        return {
-          fps,
-          width: w,
-          height: h,
-          durationInFrames: Math.round(lastSceneEnd(meta) * fps),
-        };
-      }}
-    />
+    <>
+      {/* التكوين الأصلي للفيديو الذهبي التجريبي */}
+      <Composition
+        id="Episode"
+        component={Episode as React.ComponentType<any>}
+        durationInFrames={30 * 42}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ meta: golden, brand }}
+        calculateMetadata={({ props }: any) => {
+          const meta: EpisodeMeta = props.meta;
+          const fps = meta.edit?.fps ?? 30;
+          const [w, h] = meta.render?.resolution ?? [1080, 1920];
+          return {
+            fps,
+            width: w,
+            height: h,
+            durationInFrames: Math.round(lastSceneEnd(meta) * fps),
+          };
+        }}
+      />
+
+      {/* التكوين الجديد: الحلقة 12 - مفارقة الفلاح والنجاح (Main.tsx) — المشروع PARADOX_012 */}
+      <Composition
+        id="PARADOX-012"
+        component={Main}
+        durationInFrames={6000} // 3:20 = 200 ثانية × 30 إطار/ثانية
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{}}
+      />
+    </>
   );
 };

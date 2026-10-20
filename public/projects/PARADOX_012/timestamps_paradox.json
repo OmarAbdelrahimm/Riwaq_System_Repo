@@ -1,0 +1,594 @@
+{
+  "meta": {
+    "video_title": "مفارقة الفلاح والنجاح",
+    "project_id": "PARADOX_012",
+    "target_fps": 30,
+    "total_duration_frames": 6000,
+    "total_duration_s": 200,
+    "source": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+    "source_timecode": "02:38:16 - 02:41:11",
+    "sync_status": "PLACEHOLDER — كلمات موزعة تقريبيًا على البنية السردية؛ يجب إعادة التزامن من قص الصوت الفعلي (Whisper word-level) قبل النشر",
+    "scenes": [
+      {
+        "scene": 1,
+        "name": "The Foggy Tower",
+        "t_s": "0:00-1:10",
+        "frames": [
+          0,
+          2100
+        ],
+        "image": "assets/scene1_foggy_tower.jpg"
+      },
+      {
+        "scene": 2,
+        "name": "The Golden Triad",
+        "t_s": "1:10-2:10",
+        "frames": [
+          2100,
+          3900
+        ],
+        "image": "assets/scene2_golden_triad.jpg"
+      },
+      {
+        "scene": 3,
+        "name": "The Oasis of Contentment",
+        "t_s": "2:10-3:20",
+        "frames": [
+          3900,
+          6000
+        ],
+        "image": "assets/scene3_oasis.jpg"
+      }
+    ]
+  },
+  "fragments": [
+    {
+      "segment_id": 1,
+      "text": "ما هو النجاح الحقيقي هل هو تحقيق ما تريده انت ام ما يريده الله منك",
+      "start_frame": 60,
+      "end_frame": 1020,
+      "words": [
+        {
+          "word": "ما",
+          "start_frame": 60,
+          "end_frame": 112
+        },
+        {
+          "word": "هو",
+          "start_frame": 113,
+          "end_frame": 166
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 167,
+          "end_frame": 219
+        },
+        {
+          "word": "الحقيقي",
+          "start_frame": 220,
+          "end_frame": 272
+        },
+        {
+          "word": "هل",
+          "start_frame": 273,
+          "end_frame": 326
+        },
+        {
+          "word": "هو",
+          "start_frame": 327,
+          "end_frame": 379
+        },
+        {
+          "word": "تحقيق",
+          "start_frame": 380,
+          "end_frame": 432
+        },
+        {
+          "word": "ما",
+          "start_frame": 433,
+          "end_frame": 486
+        },
+        {
+          "word": "تريده",
+          "start_frame": 487,
+          "end_frame": 539
+        },
+        {
+          "word": "انت",
+          "start_frame": 540,
+          "end_frame": 592
+        },
+        {
+          "word": "ام",
+          "start_frame": 593,
+          "end_frame": 646
+        },
+        {
+          "word": "ما",
+          "start_frame": 647,
+          "end_frame": 699
+        },
+        {
+          "word": "يريده",
+          "start_frame": 700,
+          "end_frame": 752
+        },
+        {
+          "word": "الله",
+          "start_frame": 753,
+          "end_frame": 806
+        },
+        {
+          "word": "منك",
+          "start_frame": 807,
+          "end_frame": 859
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 860,
+          "end_frame": 912
+        },
+        {
+          "word": "هو",
+          "start_frame": 913,
+          "end_frame": 966
+        },
+        {
+          "word": "تحقيق",
+          "start_frame": 967,
+          "end_frame": 1020
+        }
+      ],
+      "scene": 1
+    },
+    {
+      "segment_id": 2,
+      "text": "النجاح معيار دنيوي متغير والفلاح معيار الهي ثابت لا يتبدل",
+      "start_frame": 1080,
+      "end_frame": 2040,
+      "words": [
+        {
+          "word": "النجاح",
+          "start_frame": 1080,
+          "end_frame": 1143
+        },
+        {
+          "word": "معيار",
+          "start_frame": 1144,
+          "end_frame": 1207
+        },
+        {
+          "word": "دنيوي",
+          "start_frame": 1208,
+          "end_frame": 1271
+        },
+        {
+          "word": "متغير",
+          "start_frame": 1272,
+          "end_frame": 1335
+        },
+        {
+          "word": "والفلاح",
+          "start_frame": 1336,
+          "end_frame": 1399
+        },
+        {
+          "word": "معيار",
+          "start_frame": 1400,
+          "end_frame": 1463
+        },
+        {
+          "word": "الهي",
+          "start_frame": 1464,
+          "end_frame": 1527
+        },
+        {
+          "word": "ثابت",
+          "start_frame": 1528,
+          "end_frame": 1591
+        },
+        {
+          "word": "لا",
+          "start_frame": 1592,
+          "end_frame": 1655
+        },
+        {
+          "word": "يتبدل",
+          "start_frame": 1656,
+          "end_frame": 1719
+        },
+        {
+          "word": "من",
+          "start_frame": 1720,
+          "end_frame": 1783
+        },
+        {
+          "word": "يحقق",
+          "start_frame": 1784,
+          "end_frame": 1847
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 1848,
+          "end_frame": 1911
+        },
+        {
+          "word": "دون",
+          "start_frame": 1912,
+          "end_frame": 1975
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 1976,
+          "end_frame": 2040
+        }
+      ],
+      "scene": 1
+    },
+    {
+      "segment_id": 3,
+      "text": "ثلاثية المنظومة الاسلامية للتحقق سعي وعي وحي",
+      "start_frame": 2160,
+      "end_frame": 2940,
+      "words": [
+        {
+          "word": "ثلاثية",
+          "start_frame": 2160,
+          "end_frame": 2219
+        },
+        {
+          "word": "المنظومة",
+          "start_frame": 2220,
+          "end_frame": 2279
+        },
+        {
+          "word": "الاسلامية",
+          "start_frame": 2280,
+          "end_frame": 2339
+        },
+        {
+          "word": "للتحقق",
+          "start_frame": 2340,
+          "end_frame": 2399
+        },
+        {
+          "word": "سعي",
+          "start_frame": 2400,
+          "end_frame": 2459
+        },
+        {
+          "word": "وعي",
+          "start_frame": 2460,
+          "end_frame": 2519
+        },
+        {
+          "word": "وحي",
+          "start_frame": 2520,
+          "end_frame": 2579
+        },
+        {
+          "word": "السعي",
+          "start_frame": 2580,
+          "end_frame": 2639
+        },
+        {
+          "word": "حركة",
+          "start_frame": 2640,
+          "end_frame": 2699
+        },
+        {
+          "word": "الوعي",
+          "start_frame": 2700,
+          "end_frame": 2759
+        },
+        {
+          "word": "بصيرة",
+          "start_frame": 2760,
+          "end_frame": 2819
+        },
+        {
+          "word": "الوحي",
+          "start_frame": 2820,
+          "end_frame": 2879
+        },
+        {
+          "word": "مرجعية",
+          "start_frame": 2880,
+          "end_frame": 2940
+        }
+      ],
+      "scene": 2
+    },
+    {
+      "segment_id": 4,
+      "text": "بدون وحي يتحول السعي الى ضياع والى وعي ناقص",
+      "start_frame": 3000,
+      "end_frame": 3780,
+      "words": [
+        {
+          "word": "بدون",
+          "start_frame": 3000,
+          "end_frame": 3097
+        },
+        {
+          "word": "وحي",
+          "start_frame": 3098,
+          "end_frame": 3194
+        },
+        {
+          "word": "يتحول",
+          "start_frame": 3195,
+          "end_frame": 3291
+        },
+        {
+          "word": "السعي",
+          "start_frame": 3292,
+          "end_frame": 3389
+        },
+        {
+          "word": "الى",
+          "start_frame": 3390,
+          "end_frame": 3487
+        },
+        {
+          "word": "ضياع",
+          "start_frame": 3488,
+          "end_frame": 3584
+        },
+        {
+          "word": "والى",
+          "start_frame": 3585,
+          "end_frame": 3681
+        },
+        {
+          "word": "وعي",
+          "start_frame": 3682,
+          "end_frame": 3780
+        }
+      ],
+      "scene": 2
+    },
+    {
+      "segment_id": 5,
+      "text": "الصدمة الكبرى كيف يكون النجاح الدنيوي قمة الفشل",
+      "start_frame": 3960,
+      "end_frame": 4620,
+      "words": [
+        {
+          "word": "الصدمة",
+          "start_frame": 3960,
+          "end_frame": 4010
+        },
+        {
+          "word": "الكبرى",
+          "start_frame": 4011,
+          "end_frame": 4061
+        },
+        {
+          "word": "كيف",
+          "start_frame": 4062,
+          "end_frame": 4111
+        },
+        {
+          "word": "يكون",
+          "start_frame": 4112,
+          "end_frame": 4162
+        },
+        {
+          "word": "النجاح",
+          "start_frame": 4163,
+          "end_frame": 4213
+        },
+        {
+          "word": "الدنيوي",
+          "start_frame": 4214,
+          "end_frame": 4264
+        },
+        {
+          "word": "قمة",
+          "start_frame": 4265,
+          "end_frame": 4314
+        },
+        {
+          "word": "الفشل",
+          "start_frame": 4315,
+          "end_frame": 4365
+        },
+        {
+          "word": "ان",
+          "start_frame": 4366,
+          "end_frame": 4416
+        },
+        {
+          "word": "كان",
+          "start_frame": 4417,
+          "end_frame": 4467
+        },
+        {
+          "word": "على",
+          "start_frame": 4468,
+          "end_frame": 4517
+        },
+        {
+          "word": "حساب",
+          "start_frame": 4518,
+          "end_frame": 4568
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 4569,
+          "end_frame": 4620
+        }
+      ],
+      "scene": 3
+    },
+    {
+      "segment_id": 6,
+      "text": "فردوس عمر بن عبد العزيز الارض كان في رضا الله وطاعته",
+      "start_frame": 4680,
+      "end_frame": 5340,
+      "words": [
+        {
+          "word": "فردوس",
+          "start_frame": 4680,
+          "end_frame": 4726
+        },
+        {
+          "word": "عمر",
+          "start_frame": 4727,
+          "end_frame": 4773
+        },
+        {
+          "word": "بن",
+          "start_frame": 4774,
+          "end_frame": 4820
+        },
+        {
+          "word": "عبد",
+          "start_frame": 4821,
+          "end_frame": 4868
+        },
+        {
+          "word": "العزيز",
+          "start_frame": 4869,
+          "end_frame": 4915
+        },
+        {
+          "word": "الارض",
+          "start_frame": 4916,
+          "end_frame": 4962
+        },
+        {
+          "word": "كان",
+          "start_frame": 4963,
+          "end_frame": 5009
+        },
+        {
+          "word": "في",
+          "start_frame": 5010,
+          "end_frame": 5056
+        },
+        {
+          "word": "رضا",
+          "start_frame": 5057,
+          "end_frame": 5103
+        },
+        {
+          "word": "الله",
+          "start_frame": 5104,
+          "end_frame": 5150
+        },
+        {
+          "word": "وطاعته",
+          "start_frame": 5151,
+          "end_frame": 5198
+        },
+        {
+          "word": "ليس",
+          "start_frame": 5199,
+          "end_frame": 5245
+        },
+        {
+          "word": "في",
+          "start_frame": 5246,
+          "end_frame": 5292
+        },
+        {
+          "word": "القصور",
+          "start_frame": 5293,
+          "end_frame": 5340
+        }
+      ],
+      "scene": 3
+    },
+    {
+      "segment_id": 7,
+      "text": "اسأل نفسك هل تسعى للنجاح ام للفلاح الفرق بينهما هو الفرق بين الدنيا والاخرة",
+      "start_frame": 5400,
+      "end_frame": 5940,
+      "words": [
+        {
+          "word": "اسأل",
+          "start_frame": 5400,
+          "end_frame": 5433
+        },
+        {
+          "word": "نفسك",
+          "start_frame": 5434,
+          "end_frame": 5467
+        },
+        {
+          "word": "هل",
+          "start_frame": 5468,
+          "end_frame": 5500
+        },
+        {
+          "word": "تسعى",
+          "start_frame": 5501,
+          "end_frame": 5534
+        },
+        {
+          "word": "للنجاح",
+          "start_frame": 5535,
+          "end_frame": 5568
+        },
+        {
+          "word": "ام",
+          "start_frame": 5569,
+          "end_frame": 5601
+        },
+        {
+          "word": "للفلاح",
+          "start_frame": 5602,
+          "end_frame": 5635
+        },
+        {
+          "word": "الفرق",
+          "start_frame": 5636,
+          "end_frame": 5669
+        },
+        {
+          "word": "بينهما",
+          "start_frame": 5670,
+          "end_frame": 5703
+        },
+        {
+          "word": "هو",
+          "start_frame": 5704,
+          "end_frame": 5737
+        },
+        {
+          "word": "الفرق",
+          "start_frame": 5738,
+          "end_frame": 5770
+        },
+        {
+          "word": "بين",
+          "start_frame": 5771,
+          "end_frame": 5804
+        },
+        {
+          "word": "الدنيا",
+          "start_frame": 5805,
+          "end_frame": 5838
+        },
+        {
+          "word": "والاخرة",
+          "start_frame": 5839,
+          "end_frame": 5871
+        },
+        {
+          "word": "اختر",
+          "start_frame": 5872,
+          "end_frame": 5905
+        },
+        {
+          "word": "الفلاح",
+          "start_frame": 5906,
+          "end_frame": 5940
+        }
+      ],
+      "scene": 3
+    }
+  ]
+}
