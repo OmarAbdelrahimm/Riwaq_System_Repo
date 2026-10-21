@@ -92,6 +92,17 @@ export const RemotionRoot: React.FC = () => {
         height={1920}
         defaultProps={{ variant: "B" as const }}
       />
+
+      {/* غلاف مقطع «التواصل والعلاقة» (TAWASUL_001) — أفقي 1280×720 بلقطة من نفس حلقة «مركزية العلاقة مع الله» */}
+      <Composition
+        id="Thumb-TAWASUL"
+        component={Thumbnail}
+        durationInFrames={1}
+        fps={30}
+        width={1280}
+        height={720}
+        defaultProps={{ variant: "C" as const }}
+      />
     </>
   );
 };

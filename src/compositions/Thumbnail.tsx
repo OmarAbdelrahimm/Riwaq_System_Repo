@@ -7,6 +7,7 @@ import "../engine/fonts"; // تحميل خطوط العلامة الرسمية (
 // (بودكاست «بدون ورق» — الجزء 21 من 27 على Drive؛ قصّ 1152×864 حول الوجه بهامش علوي)
 import imgA from "../../public/projects/PARADOX_012/assets/sheikh_f38.jpg"; // إيماءة شرح — طاقة تعليمية
 import imgB from "../../public/projects/PARADOX_012/assets/sheikh_f100.jpg"; // ابتسامة دافئة — طاقة وجدانية
+import imgTawasul from "../../public/projects/TAWASUL_001/assets/sheikh_tawasul.jpg"; // كفّ مفتوح — مقطع «التواصل والعلاقة» (الجزء 2 @15s من نفس الحلقة)
 
 /**
  * 🖼️ أغلفة يوتيوب — الحلقة 12 «مفارقة الفلاح والنجاح» (PARADOX_012)
@@ -14,6 +15,7 @@ import imgB from "../../public/projects/PARADOX_012/assets/sheikh_f100.jpg"; // 
  *  - ThumbnailVertical  : عمودي 1080×1920 (YouTube Shorts)
  * صورتان حقيقيتان للشيخ من المصدر + هوية رِواق، بنسختين نصيتين:
  *   A — «النجاح ليس فلاحاً!» (لقطة الشرح)      B — «هل أنتَ مُفلح؟» (لقطة الابتسامة)
+ *   C — «التواصل ليس علاقةً!» (لقطة الكفّ المفتوح — مقطع التواصل والعلاقة، مشروع TAWASUL_001)
  * الزاوية السفلية اليمنى للأفقي فارغة عمداً (شارة مدة الفيديو)، وأسفل العمودي
  * خالٍ من العناصر الحرجة (منطقة واجهة Shorts).
  */
@@ -26,7 +28,7 @@ const PARCHMENT = "#F3EBDB";
 const FONT = "'IBM Plex Sans Arabic', sans-serif";
 const DISPLAY_FONT = "'Amiri', serif"; // خط العرض في الهوية — لكلمة الذروة
 
-type Variant = "A" | "B";
+type Variant = "A" | "B" | "C";
 
 const COPY: Record<
   Variant,
@@ -44,12 +46,18 @@ const COPY: Record<
     punch: "مُفلح؟",
     footer: "الفرق بين النجاح والفلاح",
   },
+  C: {
+    eyebrow: "من بودكاست بدون ورق",
+    line1: "التواصل ليس",
+    punch: "علاقةً!",
+    footer: "كل تواصلٍ يستكمل اللوحة",
+  },
 };
 
 /** الغلاف الأفقي الرسمي 1280×720 */
 export const Thumbnail: React.FC<{ variant?: Variant }> = ({ variant = "A" }) => {
   const copy = COPY[variant];
-  const photo = variant === "A" ? imgA : imgB;
+  const photo = variant === "A" ? imgA : variant === "C" ? imgTawasul : imgB;
 
   return (
     <AbsoluteFill style={{ backgroundColor: INK, overflow: "hidden", fontFamily: FONT }}>
@@ -196,7 +204,7 @@ export const Thumbnail: React.FC<{ variant?: Variant }> = ({ variant = "A" }) =>
  */
 export const ThumbnailVertical: React.FC<{ variant?: Variant }> = ({ variant = "B" }) => {
   const copy = COPY[variant];
-  const photo = variant === "A" ? imgA : imgB;
+  const photo = variant === "A" ? imgA : variant === "C" ? imgTawasul : imgB;
 
   return (
     <AbsoluteFill style={{ backgroundColor: INK, overflow: "hidden", fontFamily: FONT }}>
