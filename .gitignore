@@ -5,3 +5,9 @@ node_modules/
 google_drive/
 exports/*.mp4
 exports/_DRAFT*
+
+# سلسلة رواق: مولّدات الموسيقى تُعاد توليدها، والفيديوهات النهائية تُرفع إلى Drive
+assets/series_riwaq/music/*.wav
+assets/series_riwaq/music/*.mp3
+outputs/SERIES_RIWAQ/*/*.mp4
+outputs/SERIES_RIWAQ/*/*/*.mp4
