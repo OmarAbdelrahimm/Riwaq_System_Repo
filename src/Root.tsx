@@ -2,7 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { Episode } from "./compositions/Episode";
 import { Main } from "./compositions/Main";
-import { Thumbnail } from "./compositions/Thumbnail";
+import { Thumbnail, ThumbnailVertical } from "./compositions/Thumbnail";
 import type { Brand, EpisodeMeta } from "./engine/types";
 import brandJson from "../data/brand.json";
 import goldenJson from "../data/projects/GOLDEN_001/episode_meta.json";
@@ -70,6 +70,26 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1280}
         height={720}
+        defaultProps={{ variant: "B" as const }}
+      />
+
+      {/* غلاف Shorts عمودي للحلقة 12 — نسختان 1080×1920 بنفس الهوية واللقطات */}
+      <Composition
+        id="Shorts-PARADOX-012-A"
+        component={ThumbnailVertical}
+        durationInFrames={1}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ variant: "A" as const }}
+      />
+      <Composition
+        id="Shorts-PARADOX-012-B"
+        component={ThumbnailVertical}
+        durationInFrames={1}
+        fps={30}
+        width={1080}
+        height={1920}
         defaultProps={{ variant: "B" as const }}
       />
     </>
