@@ -34,24 +34,24 @@ export const getKineticWordStyle = (
     display: 'inline-block',
     fontFamily: "'Amiri', 'IBM Plex Sans Arabic', serif",
     fontWeight: 900,
-    fontSize: `${(isSelected ? 85 : 75) * scale}px`, // تضخيم الكلمة النشطة
+    fontSize: `${(isSelected ? 134 : 118) * scale}px`, // تضخيم الكلمة النشطة — مكبّرة بطلب المراجعة
 
     // الألوان والهوية البصرية — لوحة علامة رِواق التجارية
     color: isSelected ? '#C2A469' : '#F3EBDB', // gold_light للنشط، parchment للآخرين
     opacity: isSelected ? 1.0 : 0.3, // تعتيم الكلمات المحيطة لتركيز الانتباه
 
     // حركية التكبير والبروز
-    transform: `scale(${wordScale}) translateY(${isSelected ? `${-10 * scale}px` : '0px'})`,
+    transform: `scale(${wordScale}) translateY(${isSelected ? `${-14 * scale}px` : '0px'})`,
 
     // تأثير الإضاءة الخلفية للكلمة النشطة (Glow Effect)
     textShadow: isSelected
-      ? `0px 0px ${25 * scale}px rgba(194, 164, 105, 0.6), 0px 0px ${50 * scale}px rgba(194, 164, 105, 0.4)`
+      ? `0px 0px ${34 * scale}px rgba(194, 164, 105, 0.6), 0px 0px ${68 * scale}px rgba(194, 164, 105, 0.4)`
       : 'none',
 
     // سلاسة النقل بين الحالات لمنع التقطع البصري
     transition: 'all 0.08s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    margin: `${10 * scale}px ${18 * scale}px`,
-    letterSpacing: `${-1 * scale}px`,
+    margin: `${12 * scale}px ${22 * scale}px`,
+    letterSpacing: `${-1.5 * scale}px`,
   };
 };
 
