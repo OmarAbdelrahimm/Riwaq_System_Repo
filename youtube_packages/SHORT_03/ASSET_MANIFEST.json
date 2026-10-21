@@ -1,0 +1,73 @@
+{
+  "package_id": "SHORT_03",
+  "folder_title": "التبرير: كيف يوقف التغيير؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "1sh62Gz-WF6Ddsd6MmV4xNZnOp4_nNY_X",
+    "file_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_03.mp4",
+    "original_bytes": 8369837,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/SHORT_03.jpg",
+    "sha256": "3bb969be668a48c03408a3559fc8408064190f753f56bdd1513fcd0b5b1ce9f7",
+    "derived_from_drive_thumbnail": "1Wz61yJW9NglJ5fI4LJwGZrh01P7_Nyge",
+    "crop_px": [
+      184,
+      535,
+      896,
+      935
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1FZkVJWS7bINRekV3ZQAiPpi_qWpRpXSb",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_03.srt",
+    "cue_count": 22,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "01:16:02.560",
+      "end": "01:17:03.360",
+      "start_seconds": 4563
+    }
+  ],
+  "chapters": [],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 120291,
+      "dimensions": "1280x720",
+      "sha256": "c7e978b364545c0780f31dac62eec3fbe8a8df5ce2135be7ae172287ff1fa4d2"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 260998,
+      "dimensions": "1280x720",
+      "sha256": "5abde8b9e3018273bf43f0c471df4e553a4a431e493d167cdb5fd3f3b4f7151d"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 198444,
+      "dimensions": "1080x1920",
+      "sha256": "a9fec0cb983f417dd6e006e743ccba380e997ff0bf84af3383666bf6d7196d1e"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 376954,
+      "dimensions": "1080x1920",
+      "sha256": "58cba00f9d62f172dabfb7653bef732e8103171d15e939c1db56a5420a1bc382"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 2941,
+      "sha256": "cbddf479660b228ae111c2636e8e10223f686536c8878fa15626c7a558f53048"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 1608,
+      "sha256": "c9321689c4af6c1f233f19b3eef824dd3cae1be2237d60bdfa1bcc8b94de9853"
+    },
+    "SEO.md": {
+      "bytes": 5661,
+      "sha256": "d2b0208d1db2263aad6ce5f4d45f295a53c53c2c8cf11fed2247489149bc341f"
+    }
+  },
+  "ready_for_drive_upload": true
+}

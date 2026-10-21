@@ -1,0 +1,1097 @@
+{
+  "schema_version": 1,
+  "brand": {
+    "name_ar": "رِواق",
+    "tagline_ar": "تَارِيخْ وَتُرَاث",
+    "ink": "#1C1B19",
+    "surface": "#242218",
+    "parchment": "#F3EBDB",
+    "gold": "#A98A4B",
+    "gold_light": "#C2A469",
+    "headline_font": "public/fonts/Amiri-Bold.ttf",
+    "body_font": "public/fonts/IBMPlexSansArabic-Medium.ttf"
+  },
+  "source_episode": {
+    "title_ar": "مركزية العلاقة مع الله | ياسر الحزيمي | بودكاست بدون ورق",
+    "url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+    "verified_in_prior_session": true
+  },
+  "packages": [
+    {
+      "id": "RELATIONSHIP_002",
+      "kind": "long",
+      "title": "العلاقات الكبرى: ما البوصلة التي توجّه العلاقة؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "مرجعية العلاقات: كيف تختار بوصلتك؟ | ياسر الحزيمي",
+        "العلاقات تبدأ من مرجعية: ما الذي يوجّهها؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 293.88,
+      "frame_size": "1920x1080",
+      "final_video_drive_id": "1fMk_tR0Km0CY2GsCcht4bmeJOmFFfx9Z",
+      "final_video_name": "MASTER_WEB_RELATIONSHIP_002.mp4",
+      "final_video_bytes": 52641312,
+      "source_thumbnail_drive_id": "1o132tXC84Op3GdqHU2QiJp09Xh4jPqas",
+      "source_thumbnail_name": "THUMB_RELATIONSHIP_002.jpg",
+      "caption_source_drive_id": "1LnPRIy24bYwuGAkaf76z5cdAmqhoPZNW",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_002.srt",
+      "cover_text": "بوصلة العلاقات الكبرى",
+      "source_ranges": [
+        {
+          "start": "00:07:10.000",
+          "end": "00:10:32.680",
+          "start_seconds": 430
+        },
+        {
+          "start": "00:48:45.560",
+          "end": "00:49:29.360",
+          "start_seconds": 2926
+        },
+        {
+          "start": "00:59:17.120",
+          "end": "01:00:04.520",
+          "start_seconds": 3557
+        }
+      ],
+      "chapters": [
+        {
+          "time": "00:00",
+          "label_ar": "العلاقات أعمق من التواصل",
+          "label_en": "Relationships go beyond communication"
+        },
+        {
+          "time": "03:23",
+          "label_ar": "شبكة العلاقات والمرجعية",
+          "label_en": "The relationship network and its compass"
+        },
+        {
+          "time": "04:06",
+          "label_ar": "العلاقة مع الذات",
+          "label_en": "The relationship with oneself"
+        }
+      ],
+      "hook_ar": "العلاقات لا تقوم على مهارات التواصل وحدها؛ ما المرجعية التي تمنحها اتجاهًا؟",
+      "summary_ar": "يشرح ياسر الحزيمي كيف تتداخل المرجعية والبوصلة والعلاقة بالذات مع علاقاتنا اليومية.",
+      "bullets_ar": [
+        "الفرق بين التواصل العابر والعلاقات العميقة.",
+        "كيف تؤثر المرجعية في طريقة فهمنا للعلاقة؟",
+        "صلة تزكية النفس والعلاقة بالله بعلاقاتنا مع الآخرين."
+      ],
+      "cta_ar": "ما المبدأ الذي تهديه بوصلتك في علاقاتك؟ شاركنا رأيك باحترام.",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#العلاقات",
+        "#بودكاست_بدون_ورق"
+      ],
+      "pinned_comment_ar": "ما الفكرة التي غيّرت نظرتك إلى العلاقات؟ اكتبها لنا، واذكر كيف تساعدك على بناء علاقة أعمق.",
+      "title_en": "Relationships Need a Compass: What Guides Them? | Yaser Al-Hazimi",
+      "hook_en": "Relationships need more than communication skills—what gives them direction?",
+      "summary_en": "Yaser Al-Hazimi explores how personal reference points, a guiding compass, and our relationship with ourselves shape the way we relate to others.",
+      "bullets_en": [
+        "The difference between brief interactions and deeper relationships.",
+        "How our reference points influence the way we understand relationships.",
+        "How self-purification and faith connect to our relationships with others."
+      ],
+      "cta_en": "What principle guides your relationships? Share your thoughts respectfully.",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#Relationships",
+        "#ArabicPodcast"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "العلاقات الكبرى",
+        "هندسة العلاقات",
+        "بوصلة العلاقات",
+        "مرجعية العلاقات",
+        "العلاقات الإنسانية",
+        "بناء العلاقات",
+        "العلاقة مع الله",
+        "العلاقة مع الذات",
+        "مهارات التواصل",
+        "العلاقات والاتصال",
+        "تزكية النفس",
+        "فهم العلاقات",
+        "بودكاست العلاقات",
+        "وعي العلاقات",
+        "مركزية العلاقة مع الله",
+        "تطوير الذات",
+        "الوعي الذاتي",
+        "التواصل الإنساني",
+        "Yaser Al Hazimi",
+        "Riwaq podcast"
+      ],
+      "caption_cue_count": 102
+    },
+    {
+      "id": "RELATIONSHIP_003",
+      "kind": "long",
+      "title": "المقارنة وجلد الذات: كيف تسعى للأفضل دون قسوة؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "المقارنات: هل تقودك للتطور أم لجلد الذات؟ | ياسر الحزيمي",
+        "كيف تقارن لتسترشد لا لتجلد ذاتك؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 227.28,
+      "frame_size": "1920x1080",
+      "final_video_drive_id": "17AqLkg8JSSd1a0f3qipQn396irA6mVuC",
+      "final_video_name": "MASTER_WEB_RELATIONSHIP_003.mp4",
+      "final_video_bytes": 42657181,
+      "source_thumbnail_drive_id": "1yjunpmhKMOFTbSfdstTnykaBq97_Jp2v",
+      "source_thumbnail_name": "THUMB_RELATIONSHIP_003.jpg",
+      "caption_source_drive_id": "1XwDKJ38CFglqt1Z04VuNTU2fucQYKvjc",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_003.srt",
+      "cover_text": "المقارنة أم جلد الذات؟",
+      "source_ranges": [
+        {
+          "start": "02:53:49.520",
+          "end": "02:54:24.160",
+          "start_seconds": 10430
+        },
+        {
+          "start": "02:57:18.280",
+          "end": "02:58:05.320",
+          "start_seconds": 10638
+        },
+        {
+          "start": "03:00:05.040",
+          "end": "03:00:44.100",
+          "start_seconds": 10805
+        },
+        {
+          "start": "03:01:32.680",
+          "end": "03:03:19.200",
+          "start_seconds": 10893
+        }
+      ],
+      "chapters": [
+        {
+          "time": "00:00",
+          "label_ar": "افهم اختلاف الظروف",
+          "label_en": "Recognize different circumstances"
+        },
+        {
+          "time": "00:35",
+          "label_ar": "قارن لتسترشد لا لتجلد ذاتك",
+          "label_en": "Compare to learn, not to punish yourself"
+        },
+        {
+          "time": "01:22",
+          "label_ar": "اسعَ للأفضل لا للأفضل على الجميع",
+          "label_en": "Aim to improve, not to beat everyone"
+        },
+        {
+          "time": "02:01",
+          "label_ar": "قصة الصيصان الراقصة",
+          "label_en": "The story of the dancing chicks"
+        }
+      ],
+      "hook_ar": "هل تدفعك المقارنة إلى التطور، أم تحوّلها إلى جلد للذات؟",
+      "summary_ar": "يفرّق ياسر الحزيمي بين المقارنة للاستفادة ومطاردة أن تكون الأفضل، ويشرح الفكرة بقصة الصيصان الراقصة.",
+      "bullets_ar": [
+        "لا تقارن النتائج بمعزل عن اختلاف الظروف.",
+        "استخدم المقارنة للاستفادة والاسترشاد، لا لاحتقار الذات.",
+        "اسعَ إلى أن تكون أفضل من نفسك، لا الأفضل على الجميع."
+      ],
+      "cta_ar": "متى تكون المقارنة نافعة لك؟ شاركنا تجربة تساعد الآخرين.",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#جلد_الذات",
+        "#المقارنة"
+      ],
+      "pinned_comment_ar": "هل تساعدك المقارنة على الاسترشاد أم تثقل عليك؟ احكِ لنا عن طريقة جعلتها أكثر إنصافًا لنفسك.",
+      "title_en": "Comparison and Self-Criticism: How to Improve Without Self-Punishment | Yaser Al-Hazimi",
+      "hook_en": "Does comparison help you grow—or turn into self-punishment?",
+      "summary_en": "Yaser Al-Hazimi distinguishes learning from comparison from chasing the title of “the best,” and illustrates the idea with a story about dancing chicks.",
+      "bullets_en": [
+        "Do not compare outcomes without considering different circumstances.",
+        "Use comparison to learn and find direction, not to devalue yourself.",
+        "Aim to become better, rather than the best at everyone else’s expense."
+      ],
+      "cta_en": "When has comparison been useful to you? Share a lesson others may find helpful.",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#SelfGrowth",
+        "#Comparison"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "المقارنة",
+        "المقارنات الاجتماعية",
+        "جلد الذات",
+        "تقدير الذات",
+        "كيف أقارن نفسي",
+        "السعي للأفضل",
+        "مطاردة الكمال",
+        "التطور الشخصي",
+        "التوجيه الذاتي",
+        "الاسترشاد بالآخرين",
+        "قصة الصيصان الراقصة",
+        "قصة ياسر الحزيمي",
+        "الوعي الذاتي",
+        "تطوير الذات",
+        "علم النفس الاجتماعي",
+        "المقارنة الصحية",
+        "التوقف عن جلد الذات",
+        "بودكاست تطوير الذات",
+        "Yaser Al Hazimi",
+        "self improvement Arabic"
+      ],
+      "caption_cue_count": 73
+    },
+    {
+      "id": "RELATIONSHIP_004",
+      "kind": "long",
+      "title": "النهايات في العلاقات: هل كل خروج بداية جديدة؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "إنهاء العلاقة: كيف تصبح النهاية مدخلًا جديدًا؟ | ياسر الحزيمي",
+        "ما بعد القرار: كيف تبدأ الحياة بعد نهاية علاقة؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 246.72,
+      "frame_size": "1920x1080",
+      "final_video_drive_id": "1TwGVlfFmyqwn4uVhVmOirLhgYq2f8eGf",
+      "final_video_name": "MASTER_WEB_RELATIONSHIP_004.mp4",
+      "final_video_bytes": 44833893,
+      "source_thumbnail_drive_id": "1AnXmg4lsv6XA90fJ39tCMBvjH7Ui94rZ",
+      "source_thumbnail_name": "THUMB_RELATIONSHIP_004.jpg",
+      "caption_source_drive_id": "1-lConq0EJsxUD_DdQ5d8yOXdOKWmFSMa",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_004.srt",
+      "cover_text": "كل خروج بداية جديدة",
+      "source_ranges": [
+        {
+          "start": "03:18:38.520",
+          "end": "03:19:38.680",
+          "start_seconds": 11919
+        },
+        {
+          "start": "03:23:22.880",
+          "end": "03:25:06.840",
+          "start_seconds": 12203
+        },
+        {
+          "start": "03:27:44.680",
+          "end": "03:29:07.280",
+          "start_seconds": 12465
+        }
+      ],
+      "chapters": [
+        {
+          "time": "00:00",
+          "label_ar": "النضج في إنهاء العلاقة",
+          "label_en": "Maturity in ending a relationship"
+        },
+        {
+          "time": "01:00",
+          "label_ar": "كل خروج هو دخول",
+          "label_en": "Every exit is an entrance"
+        },
+        {
+          "time": "02:44",
+          "label_ar": "التروّي قبل القرار المصيري",
+          "label_en": "Pause before a life-changing decision"
+        }
+      ],
+      "hook_ar": "النهاية ليست دائمًا فشلًا؛ أحيانًا تكون بداية دخول واعٍ.",
+      "summary_ar": "يناقش ياسر الحزيمي نضج إنهاء العلاقات، وما بعد القرار، والتمييز بين اتخاذ القرار وتنفيذه.",
+      "bullets_ar": [
+        "كيف تنتهي العلاقة بأقل قدر ممكن من الأذى.",
+        "قبل الخروج، فكّر في المرحلة التي ستدخلها بعده.",
+        "تجنّب القرارات المصيرية في الغضب أو الاندفاع."
+      ],
+      "cta_ar": "ما الذي يساعدك على التروّي قبل قرار كبير؟ شاركنا رأيك.",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#العلاقات",
+        "#اتخاذ_القرار"
+      ],
+      "pinned_comment_ar": "هل سبق أن جعل التخطيط لما بعد النهاية قرارًا صعبًا أكثر وضوحًا؟ شاركنا ما تعلمته دون تفاصيل شخصية حساسة.",
+      "title_en": "Ending Relationships: Can Every Exit Become a New Beginning? | Yaser Al-Hazimi",
+      "hook_en": "An ending is not always failure; sometimes it is the start of a more deliberate next step.",
+      "summary_en": "Yaser Al-Hazimi reflects on ending relationships with maturity, planning for what comes next, and separating a decision from its final execution.",
+      "bullets_en": [
+        "How to bring a relationship to an end with less unnecessary harm.",
+        "Think about the next stage before you leave the current one.",
+        "Avoid making life-changing decisions in anger or a moment of impulse."
+      ],
+      "cta_en": "What helps you pause before a major decision? Share your perspective.",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#Relationships",
+        "#DecisionMaking"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "نهايات العلاقات",
+        "إنهاء العلاقة",
+        "العلاقات الإنسانية",
+        "كل خروج هو دخول",
+        "اتخاذ القرار",
+        "القرارات المصيرية",
+        "التفكير قبل القرار",
+        "التروّي",
+        "النضج العاطفي",
+        "الانفصال الواعي",
+        "التخطيط للمستقبل",
+        "بداية جديدة",
+        "الحياة بعد الانفصال",
+        "مهارات العلاقات",
+        "بودكاست العلاقات",
+        "الوعي الذاتي",
+        "تطوير الذات",
+        "ياسر الحزيمي العلاقات",
+        "Yaser Al Hazimi",
+        "relationship advice Arabic"
+      ],
+      "caption_cue_count": 85
+    },
+    {
+      "id": "SHORT_01",
+      "kind": "short",
+      "title": "المقارنة: كيف تصبح أفضل دون مطاردة الكمال؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "أفضل لا الأفضل: هل نحتاج إلى الكمال؟ | ياسر الحزيمي",
+        "تطوير الذات: كيف تتوقف عن مقارنة نفسك بالآخرين؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 56.8,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "12MuFsr5Llk6duB9eGhCb712EZpk1lcHc",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_01.mp4",
+      "final_video_bytes": 9265438,
+      "source_thumbnail_drive_id": "1JZfxkyr6UN4Wr9WLvKEcbAkvq59cNU6p",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_01.jpg",
+      "caption_source_drive_id": "15CZQj3X5q2o4bVwNxRmajCYNPWAeXXNL",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_01.srt",
+      "cover_text": "أفضل لا الأفضل",
+      "source_ranges": [
+        {
+          "start": "00:00:01.000",
+          "end": "00:00:12.000",
+          "start_seconds": 1
+        },
+        {
+          "start": "02:59:58.320",
+          "end": "03:00:44.100",
+          "start_seconds": 10798
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "اسعَ إلى أن تصبح أفضل، لا إلى أن تكون الأفضل على الجميع.",
+      "summary_ar": "يوضح ياسر الحزيمي الفرق بين التحسن الشخصي ومطاردة الكمال والمنافسة في كل شيء.",
+      "bullets_ar": [
+        "قارن في ما ينفعك ويهديك إلى خطوة أفضل.",
+        "ركّز على العمل على نفسك بدل محاولة التفوق على الجميع."
+      ],
+      "cta_ar": "ما الشيء الذي تعمل على تحسينه في نفسك الآن؟",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#تطوير_الذات",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "ما الفرق بالنسبة لك بين أن تصبح أفضل وأن تكون الأفضل؟",
+      "title_en": "Be Better, Not the Best: Let Go of Perfectionism | Yaser Al-Hazimi",
+      "hook_en": "Strive to become better—not to be the best at everything.",
+      "summary_en": "Yaser Al-Hazimi explains the difference between personal growth and chasing perfection or universal competition.",
+      "bullets_en": [
+        "Compare only when it helps you learn or choose a better next step.",
+        "Focus on working on yourself rather than outdoing everyone."
+      ],
+      "cta_en": "What are you working to improve in yourself right now?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#SelfGrowth",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "أفضل لا الأفضل",
+        "السعي للأفضل",
+        "تطوير الذات",
+        "مقارنة النفس بالآخرين",
+        "المقارنة الصحية",
+        "التوقف عن الكمال",
+        "الكمال الزائف",
+        "الرضا والقناعة",
+        "تحسين الذات",
+        "العمل على النفس",
+        "كيف أطور نفسي",
+        "الوعي الذاتي",
+        "تقدير الذات",
+        "لا تطارد الكمال",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "مقطع تحفيزي",
+        "ياسر الحزيمي تطوير الذات",
+        "Yaser Al Hazimi",
+        "self improvement Arabic",
+        "النمو الشخصي"
+      ],
+      "caption_cue_count": 19
+    },
+    {
+      "id": "SHORT_02",
+      "kind": "short",
+      "title": "المال: هل يكشف النفوس أم يغيّرها؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "الكرم واللؤم: ماذا يكشف المال في النفوس؟ | ياسر الحزيمي",
+        "المال والإنسان: هل تغيّر الثروة أخلاقنا؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 42.68,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "1VOMW7hPGDD-3wzPLMP8JsAcB3ANlkk8Q",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_02.mp4",
+      "final_video_bytes": 6204143,
+      "source_thumbnail_drive_id": "1toW8yVXfTc4B85fOmTadF726aeMoj47s",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_02.jpg",
+      "caption_source_drive_id": "1Ia7oxnIWOjWlf0WBxlT2I70SaCS42z55",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_02.srt",
+      "cover_text": "المال يكشف النفوس",
+      "source_ranges": [
+        {
+          "start": "02:23:46.440",
+          "end": "02:24:29.120",
+          "start_seconds": 8626
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "المال لا يغيّر النفوس دائمًا؛ أحيانًا يكشف ما فيها.",
+      "summary_ar": "يتأمل المقطع في المال بوصفه فتنة، وفي الطريقة التي قد يكشف بها ما في النفس من قيم وسلوك.",
+      "bullets_ar": [
+        "المال اختبار لطريقة تعامل الإنسان مع قيمه.",
+        "السؤال ليس كم تملك فقط، بل ماذا يكشف امتلاك المال فيك."
+      ],
+      "cta_ar": "هل ترى أن المال يكشف الإنسان أم يغيّره؟",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#المال",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "في رأيك، ما الصفة التي يكشفها المال بسرعة أكبر؟",
+      "title_en": "Money: Does It Reveal Who We Are or Change Us? | Yaser Al-Hazimi",
+      "hook_en": "Money does not always change a person; sometimes it reveals what was already there.",
+      "summary_en": "This short reflection considers money as a test and the way it can reveal a person’s values and conduct.",
+      "bullets_en": [
+        "Money can test how a person acts on their values.",
+        "The question is not only how much we have, but what having it brings out in us."
+      ],
+      "cta_en": "Do you think money reveals a person or changes them?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#Values",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "المال يكشف النفوس",
+        "المال والإنسان",
+        "أثر المال على الإنسان",
+        "الكرم واللؤم",
+        "القيم والأخلاق",
+        "المال فتنة",
+        "حقيقة المال",
+        "كيف يتغير الإنسان",
+        "السلوك مع المال",
+        "القناعة",
+        "التعامل مع الثروة",
+        "الوعي المالي",
+        "الأخلاق الإسلامية",
+        "تطوير الذات",
+        "بودكاست القيم",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "مقطع ياسر الحزيمي",
+        "Yaser Al Hazimi",
+        "money and values Arabic",
+        "الذكاء المالي"
+      ],
+      "caption_cue_count": 18
+    },
+    {
+      "id": "SHORT_03",
+      "kind": "short",
+      "title": "التبرير: كيف يوقف التغيير؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "تغيير السلوك: لماذا لا تصنع الأعذار فرقًا؟ | ياسر الحزيمي",
+        "التبرير وعاداتنا: ما أول خطوة للتغيير؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 60.8,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "1sh62Gz-WF6Ddsd6MmV4xNZnOp4_nNY_X",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_03.mp4",
+      "final_video_bytes": 8369837,
+      "source_thumbnail_drive_id": "1Wz61yJW9NglJ5fI4LJwGZrh01P7_Nyge",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_03.jpg",
+      "caption_source_drive_id": "1FZkVJWS7bINRekV3ZQAiPpi_qWpRpXSb",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_03.srt",
+      "cover_text": "التبرير عدو التغيير",
+      "source_ranges": [
+        {
+          "start": "01:16:02.560",
+          "end": "01:17:03.360",
+          "start_seconds": 4563
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "التبرير قد يحمي العادة من التغيير؛ والاعتراف بالخطأ يفتح الطريق.",
+      "summary_ar": "يناقش المقطع كيف يمكن للأعذار أن تثبّت السلوك، ولماذا يبدأ التغيير بمواجهة الخطأ بصدق.",
+      "bullets_ar": [
+        "اسأل نفسك إن كان التفسير يشرح الموقف أم يبرّر استمرار العادة.",
+        "الاعتراف بالخطأ خطوة أولى نحو تغييره."
+      ],
+      "cta_ar": "ما العادة التي يصعب عليك التوقف عن تبريرها؟ شارك الفكرة دون تفاصيل حساسة.",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#التغيير",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "ما أول خطوة عملية تساعدك على استبدال العذر بتغيير حقيقي؟",
+      "title_en": "Justification: How It Gets in the Way of Change | Yaser Al-Hazimi",
+      "hook_en": "Justification can protect a habit from change; owning the mistake opens the way forward.",
+      "summary_en": "This clip explores how excuses can keep a behavior in place, and why honest acknowledgment is a first step toward change.",
+      "bullets_en": [
+        "Ask whether an explanation clarifies the situation or protects the habit.",
+        "Acknowledging a mistake is a first step toward changing it."
+      ],
+      "cta_en": "What helps you replace an excuse with a practical change?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#PersonalGrowth",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "التبرير عدو التغيير",
+        "كيف أغير سلوكي",
+        "تغيير العادات",
+        "الأعذار والتبرير",
+        "الاعتراف بالخطأ",
+        "تزكية النفس",
+        "تطوير الذات",
+        "بداية التغيير",
+        "تحمل المسؤولية",
+        "مواجهة النفس",
+        "الوعي الذاتي",
+        "تغيير السلوك",
+        "عادات يومية",
+        "كيف أتوقف عن التبرير",
+        "التغيير الشخصي",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "نصائح ياسر الحزيمي",
+        "Yaser Al Hazimi",
+        "personal change Arabic",
+        "قرار التغيير"
+      ],
+      "caption_cue_count": 22
+    },
+    {
+      "id": "SHORT_04",
+      "kind": "short",
+      "title": "العلاقات: هل ترتبط بماضي الشخص أيضًا؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "الارتباط العاطفي: هل نرتبط بالشخص وتاريخه؟ | ياسر الحزيمي",
+        "كيف يؤثر الماضي في العلاقة؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 51.4,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "1y4bcEebkEdmNR6V7WrDWedAfuYffYc8U",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_04.mp4",
+      "final_video_bytes": 7567288,
+      "source_thumbnail_drive_id": "14MmlklWhacMqNU1UszUFHmDSwhyuHxtL",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_04.jpg",
+      "caption_source_drive_id": "1-B7rI-u5y8uVbwFmE8TsxXzYx0ORhIti",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_04.srt",
+      "cover_text": "ماضي الشخص في العلاقة",
+      "source_ranges": [
+        {
+          "start": "00:10:36.800",
+          "end": "00:11:28.190",
+          "start_seconds": 637
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "حين ترتبط بشخص، فأنت ترتبط بجزء من تاريخه أيضًا.",
+      "summary_ar": "يشرح ياسر الحزيمي أن العلاقة تشمل تاريخ الطرف الآخر وتجارب طفولته ومخاوفه، لا صورته الحالية وحدها.",
+      "bullets_ar": [
+        "الماضي والتجارب قد يؤثران في طريقة بناء العلاقة.",
+        "التفاهم يبدأ برؤية الإنسان ضمن سياقه، لا باختزاله في موقف واحد."
+      ],
+      "cta_ar": "ما الذي يساعد على فهم تجارب الطرف الآخر باحترام؟",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#العلاقات",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "ما السؤال الذي يساعدك على فهم قصة الطرف الآخر دون إصدار أحكام؟",
+      "title_en": "Relationships: Are We Connected to a Person’s Past, Too? | Yaser Al-Hazimi",
+      "hook_en": "When you build a relationship with someone, you also meet parts of their history.",
+      "summary_en": "Yaser Al-Hazimi explains how a person’s past, childhood experiences, and fears can shape the relationship—not only who they are today.",
+      "bullets_en": [
+        "Past experiences can influence how someone relates to others.",
+        "Understanding begins by seeing a person in context, not reducing them to one moment."
+      ],
+      "cta_en": "What helps you understand another person’s experiences with care?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#Relationships",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "العلاقات",
+        "ماضي الشخص",
+        "تاريخ الإنسان",
+        "العلاقة لا تبدأ من الصفر",
+        "التجارب السابقة",
+        "الطفولة والعلاقات",
+        "المخاوف في العلاقة",
+        "فهم الطرف الآخر",
+        "العلاقة الزوجية",
+        "التفاهم بين الزوجين",
+        "العلاقات الإنسانية",
+        "النضج العاطفي",
+        "التواصل العاطفي",
+        "احترام التجارب",
+        "بناء علاقة صحية",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "تطوير الذات",
+        "Yaser Al Hazimi",
+        "relationship history Arabic"
+      ],
+      "caption_cue_count": 19
+    },
+    {
+      "id": "SHORT_05",
+      "kind": "short",
+      "title": "المقارنة: كيف تسترشد بها دون جلد ذاتك؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "المقارنة النافعة: كيف تتعلم من الآخرين؟ | ياسر الحزيمي",
+        "جلد الذات: كيف تحوّل المقارنة إلى استرشاد؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 47.04,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "10KWqC7eExQ3s3xasnH805lE9QftU5akp",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_05.mp4",
+      "final_video_bytes": 6900886,
+      "source_thumbnail_drive_id": "14QEdtkyK-vj-gJWFerM8kD5W8WfvVLs6",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_05.jpg",
+      "caption_source_drive_id": "1Sb1gChDhwMu5QAi28DxqCfKBp8nsXV1f",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_05.srt",
+      "cover_text": "استرشد لا تجلد ذاتك",
+      "source_ranges": [
+        {
+          "start": "02:57:18.280",
+          "end": "02:58:05.320",
+          "start_seconds": 10638
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "قارن لتتعلم من غيرك؛ لا لتقلّل من قيمة نفسك.",
+      "summary_ar": "يوضح المقطع أن المقارنة قد تكون لازمة للاستفادة، لكنها لا تلزمك بإدانة ذاتك أو محو اختلاف ظروفك.",
+      "bullets_ar": [
+        "اجعل المقارنة أداة للاستفادة والاسترشاد.",
+        "ميّز بين ملاحظة ما تتعلمه وبين جلد الذات."
+      ],
+      "cta_ar": "ما الذي يساعدك على مقارنة أكثر إنصافًا لنفسك؟",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#المقارنة",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "ما الفرق بين الاستفادة من شخص آخر وجلد الذات؟",
+      "title_en": "Compare to Learn, Not to Punish Yourself | Yaser Al-Hazimi",
+      "hook_en": "Compare to learn from someone else—not to lower your own worth.",
+      "summary_en": "This clip explains that comparison can offer guidance without requiring self-judgment or ignoring different circumstances.",
+      "bullets_en": [
+        "Use comparison as a tool for learning and direction.",
+        "Separate noticing what you can learn from punishing yourself."
+      ],
+      "cta_en": "What helps you make comparison fairer to yourself?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#SelfCompassion",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "قارن لتسترشد",
+        "المقارنة النافعة",
+        "جلد الذات",
+        "كيف أقارن نفسي",
+        "التعلم من الآخرين",
+        "الاسترشاد بالمقارنة",
+        "تقدير الذات",
+        "الرحمة بالنفس",
+        "تطوير الذات",
+        "الوعي الذاتي",
+        "المقارنات الاجتماعية",
+        "المقارنة الصحية",
+        "التحفيز الذاتي",
+        "الإنصاف مع النفس",
+        "التوقف عن جلد الذات",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "مقطع تطوير الذات",
+        "Yaser Al Hazimi",
+        "healthy comparison Arabic"
+      ],
+      "caption_cue_count": 16
+    },
+    {
+      "id": "SHORT_06",
+      "kind": "short",
+      "title": "العلاقات: هل كل خروج بداية دخول؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "بعد الانفصال: كيف تخطط لما بعد القرار؟ | ياسر الحزيمي",
+        "كل نهاية بداية: ما الذي يدخل بعد الخروج؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 37.32,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "1pS-u9dOqzn3wUe4pi4ZOWePpF4y94Qx8",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_06.mp4",
+      "final_video_bytes": 6875004,
+      "source_thumbnail_drive_id": "1wIDVDm6zq5UsWRFF7CyiQhfaImf8N_tJ",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_06.jpg",
+      "caption_source_drive_id": "1eiURSGiKbVyjLWvw2plRR1I5RE-PqN16",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_06.srt",
+      "cover_text": "كل خروج دخول جديد",
+      "source_ranges": [
+        {
+          "start": "03:23:22.880",
+          "end": "03:24:00.200",
+          "start_seconds": 12203
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "كل خروج هو دخول: فكّر في الخطوة التالية قبل القرار.",
+      "summary_ar": "يلخّص المقطع فكرة أن الخروج من مرحلة يعني الدخول إلى أخرى، وأن التفكير في الوجهة الجديدة مهم بقدر التفكير في المغادرة.",
+      "bullets_ar": [
+        "لا تركّز على قرار الخروج وحده.",
+        "حدّد ما الذي تريد الدخول إليه بعده."
+      ],
+      "cta_ar": "ما الخطوة التالية التي تستحق أن تخطط لها؟",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#اتخاذ_القرار",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "أيّ تغيير في حياتك احتاج تخطيطًا لما بعد الخروج؟",
+      "title_en": "Every Exit Is an Entrance: Plan Your Next Step | Yaser Al-Hazimi",
+      "hook_en": "Every exit leads to an entrance—think about the next step before the decision.",
+      "summary_en": "This clip captures the idea that leaving one stage means entering another, and planning for the next destination matters as much as leaving.",
+      "bullets_en": [
+        "Do not focus only on the decision to leave.",
+        "Decide what you want to move toward next."
+      ],
+      "cta_en": "What is one next step worth planning for?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#LifeDecisions",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "كل خروج هو دخول",
+        "التخطيط لما بعد القرار",
+        "اتخاذ القرار",
+        "الانتقال إلى مرحلة جديدة",
+        "التغيير في الحياة",
+        "إنهاء العلاقات",
+        "التخطيط للمستقبل",
+        "الخطوة التالية",
+        "بداية جديدة",
+        "التفكير قبل القرار",
+        "إدارة التغيير",
+        "النضج العاطفي",
+        "القرارات الصعبة",
+        "وعي العلاقات",
+        "تطوير الذات",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "مقطع تحفيزي",
+        "Yaser Al Hazimi",
+        "life transitions Arabic"
+      ],
+      "caption_cue_count": 14
+    },
+    {
+      "id": "SHORT_07",
+      "kind": "short",
+      "title": "العلاقات: ما الفرق بين التواصل والبناء؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "بناء العلاقات: لماذا لا يكفي التواصل؟ | ياسر الحزيمي",
+        "مهارات التواصل: هل تصنع علاقة عميقة؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 49.96,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "1t1QP_o21CA7LLlg06uVtWcpd0TMn5AuP",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_07.mp4",
+      "final_video_bytes": 7841711,
+      "source_thumbnail_drive_id": "1s7s4OKwPcDetfi2MoDxQic14L8xLQy50",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_07.jpg",
+      "caption_source_drive_id": "1O_34yvsVbkWaVCCr1cBC-qCiOODQ6dl7",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_07.srt",
+      "cover_text": "العلاقات أعمق من التواصل",
+      "source_ranges": [
+        {
+          "start": "00:07:10.000",
+          "end": "00:08:00.000",
+          "start_seconds": 430
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "مهارات التواصل تنفع في لقاء عابر؛ لكن العلاقة أعمق.",
+      "summary_ar": "يستخدم ياسر الحزيمي مثال اللقاء العابر مع الكاشير ليفرّق بين مهارة الاتصال وبناء علاقة حقيقية.",
+      "bullets_ar": [
+        "قد تساعدك مهارات الاتصال على تجاوز موقف سريع.",
+        "العلاقة تحتاج معنى ومرجعية تتجاوز التواصل العابر."
+      ],
+      "cta_ar": "كيف تميّز بين التواصل العابر والعلاقة العميقة؟",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#العلاقات",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "ما العنصر الذي يحوّل التواصل العابر إلى علاقة أعمق؟",
+      "title_en": "Relationships Go Deeper Than Communication | Yaser Al-Hazimi",
+      "hook_en": "Communication skills help in a brief encounter—but a relationship goes deeper.",
+      "summary_en": "Yaser Al-Hazimi uses a brief interaction with a cashier to distinguish communication skills from building a genuine relationship.",
+      "bullets_en": [
+        "Communication skills can help you navigate a quick interaction.",
+        "A relationship needs meaning and reference points beyond a passing exchange."
+      ],
+      "cta_en": "How do you tell a brief interaction from a deeper relationship?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#Relationships",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "العلاقات أعمق من التواصل",
+        "العلاقات والاتصال",
+        "مهارات التواصل",
+        "بناء العلاقات",
+        "العلاقات الإنسانية",
+        "التواصل العابر",
+        "العلاقة العميقة",
+        "كيف أبني علاقة",
+        "الفرق بين الاتصال والعلاقة",
+        "الوعي بالعلاقات",
+        "التواصل الفعال",
+        "مهارات اجتماعية",
+        "اللقاءات العابرة",
+        "فهم العلاقات",
+        "بودكاست العلاقات",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "تطوير الذات",
+        "Yaser Al Hazimi",
+        "communication and relationships Arabic"
+      ],
+      "caption_cue_count": 20
+    },
+    {
+      "id": "SHORT_08",
+      "kind": "short",
+      "title": "تزكية النفس: من أين تبدأ علاقتك بذاتك؟ | ياسر الحزيمي",
+      "title_alternatives": [
+        "العلاقة مع الذات: هل تبدأ بالتزكية؟ | ياسر الحزيمي",
+        "تطوير الذات: لماذا تبدأ الرحلة بالتزكية؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 60.16,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "1k4d-CoBo890aEvHUDKDq3MSBy7P1bRTo",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_08.mp4",
+      "final_video_bytes": 8563006,
+      "source_thumbnail_drive_id": "1PvSteffafpJ4tQyV2F4p9ZiTBVmalRDd",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_08.jpg",
+      "caption_source_drive_id": "1WiqCo43yiVAFqabBy22oqDlEIHFqrDVu",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_08.srt",
+      "cover_text": "تزكية النفس أولًا",
+      "source_ranges": [
+        {
+          "start": "00:59:17.120",
+          "end": "01:00:17.280",
+          "start_seconds": 3557
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "العلاقة مع الذات تبدأ بالتزكية، لا بمجرد الترفيه أو التقدير.",
+      "summary_ar": "يربط ياسر الحزيمي تزكية النفس بالتواضع ومراجعة الإنسان لنفسه، بوصفهما أساسًا لعلاقته بذاته.",
+      "bullets_ar": [
+        "ابدأ بمراجعة النفس بدل الاكتفاء بالترفيه عنها.",
+        "التواضع يحمي من العُجب والرضا السلبي."
+      ],
+      "cta_ar": "ما الخطوة التي تساعدك على مراجعة نفسك بصدق؟",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#تزكية_النفس",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "ما الفرق بين الترفيه عن النفس والعناية الحقيقية بها؟",
+      "title_en": "Self-Purification: Where Does Your Relationship With Yourself Begin? | Yaser Al-Hazimi",
+      "hook_en": "A healthier relationship with yourself begins with self-purification—not just entertainment or praise.",
+      "summary_en": "Yaser Al-Hazimi connects self-purification with humility and honest self-reflection as foundations for our relationship with ourselves.",
+      "bullets_en": [
+        "Begin with self-reflection rather than only seeking distraction.",
+        "Humility guards against vanity and passive satisfaction."
+      ],
+      "cta_en": "What helps you reflect on yourself honestly?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#SelfReflection",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "تزكية النفس",
+        "العلاقة مع الذات",
+        "تطوير الذات",
+        "مراجعة النفس",
+        "التواضع",
+        "الوعي الذاتي",
+        "الرضا عن النفس",
+        "العناية بالنفس",
+        "تهذيب النفس",
+        "النفس البشرية",
+        "كيف أراجع نفسي",
+        "العجب بالنفس",
+        "التطوير الشخصي",
+        "الترفيه عن النفس",
+        "القيم الإسلامية",
+        "بودكاست تطوير الذات",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "مقطع ياسر الحزيمي",
+        "Yaser Al Hazimi",
+        "العناية بالنفس",
+        "تهذيب السلوك"
+      ],
+      "caption_cue_count": 18
+    },
+    {
+      "id": "SHORT_09",
+      "kind": "short",
+      "title": "الأمانة: هل تختارها قبل المكسب؟ قصة جرير | ياسر الحزيمي",
+      "title_alternatives": [
+        "الأمانة في البيع: ماذا نتعلم من قصة جرير؟ | ياسر الحزيمي",
+        "قصة جرير: كيف سبقت الأمانة المكسب؟ | ياسر الحزيمي"
+      ],
+      "duration_seconds": 57.08,
+      "frame_size": "1080x1920",
+      "final_video_drive_id": "1w2cDiEzg-N15FMxKzju23CPAh35zdCwt",
+      "final_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_09.mp4",
+      "final_video_bytes": 10915732,
+      "source_thumbnail_drive_id": "1S9SgnMDH6oW_IsNHSjQ_2s45AYayGZrt",
+      "source_thumbnail_name": "THUMB_VERTICAL_RELATIONSHIP_SHORT_09.jpg",
+      "caption_source_drive_id": "12mnv1ouKy35muNxwwCBlpJgthp8bFflc",
+      "caption_source_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_09.srt",
+      "cover_text": "الأمانة قبل المكسب",
+      "source_ranges": [
+        {
+          "start": "02:13:23.440",
+          "end": "02:14:20.510",
+          "start_seconds": 8003
+        }
+      ],
+      "chapters": [],
+      "hook_ar": "قصة جرير في شراء الحصان تضع سؤال الأمانة قبل المكسب.",
+      "summary_ar": "يستعرض ياسر الحزيمي قصة جرير بن عبد الله في تقدير ثمن الحصان، وما تثيره من معنى الأمانة في البيع والشراء.",
+      "bullets_ar": [
+        "كيف تظهر الأمانة عند التفاوض على ثمن سلعة.",
+        "لماذا قد يكون الصدق أولى من زيادة الربح."
+      ],
+      "cta_ar": "ما القيمة التي لا تساوم عليها في البيع والشراء؟",
+      "hashtags_ar": [
+        "#ياسر_الحزيمي",
+        "#الأمانة",
+        "#Shorts"
+      ],
+      "pinned_comment_ar": "ما التصرف الذي يجعل البيع أو الشراء أكثر أمانة في رأيك؟",
+      "title_en": "Integrity Before Profit: The Story of Jarir | Yaser Al-Hazimi",
+      "hook_en": "Jarir’s story about buying a horse raises a question of integrity before profit.",
+      "summary_en": "Yaser Al-Hazimi recounts Jarir ibn Abdullah’s horse-buying story and the meaning of honesty in a transaction.",
+      "bullets_en": [
+        "How integrity can show up while negotiating a price.",
+        "Why honesty may matter more than gaining a little extra profit."
+      ],
+      "cta_en": "What value should never be negotiable in a transaction?",
+      "hashtags_en": [
+        "#YaserAlHazimi",
+        "#Integrity",
+        "#Shorts"
+      ],
+      "tags": [
+        "ياسر الحزيمي",
+        "بودكاست بدون ورق",
+        "رواق",
+        "مقاطع ياسر الحزيمي",
+        "بودكاست عربي",
+        "الأمانة قبل المكسب",
+        "الأمانة في البيع والشراء",
+        "قصة جرير بن عبد الله",
+        "قصة جرير والحصان",
+        "الأخلاق في التجارة",
+        "الصدق في البيع",
+        "القيم الإسلامية",
+        "النصح لكل مسلم",
+        "التفاوض في البيع",
+        "التجارة والأمانة",
+        "كيف أكون أمينًا",
+        "المكسب الحلال",
+        "البيع والشراء",
+        "قصص الصحابة",
+        "جرير بن عبد الله",
+        "بودكاست القيم",
+        "Shorts عربي",
+        "شورتس يوتيوب",
+        "مقطع ياسر الحزيمي",
+        "Yaser Al Hazimi"
+      ],
+      "caption_cue_count": 17
+    }
+  ]
+}

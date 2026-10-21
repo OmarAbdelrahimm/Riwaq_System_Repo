@@ -1,0 +1,99 @@
+{
+  "package_id": "RELATIONSHIP_002",
+  "folder_title": "العلاقات الكبرى: ما البوصلة التي توجّه العلاقة؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "1fMk_tR0Km0CY2GsCcht4bmeJOmFFfx9Z",
+    "file_name": "MASTER_WEB_RELATIONSHIP_002.mp4",
+    "original_bytes": 52641312,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/RELATIONSHIP_002.jpg",
+    "sha256": "efeda1c8f83ae4f9eaca91d855cff6a9c6b71739a0ee0f61cbcabc3cc4206c9e",
+    "derived_from_drive_thumbnail": "1o132tXC84Op3GdqHU2QiJp09Xh4jPqas",
+    "crop_px": [
+      566,
+      0,
+      1280,
+      720
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1LnPRIy24bYwuGAkaf76z5cdAmqhoPZNW",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_002.srt",
+    "cue_count": 102,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "00:07:10.000",
+      "end": "00:10:32.680",
+      "start_seconds": 430
+    },
+    {
+      "start": "00:48:45.560",
+      "end": "00:49:29.360",
+      "start_seconds": 2926
+    },
+    {
+      "start": "00:59:17.120",
+      "end": "01:00:04.520",
+      "start_seconds": 3557
+    }
+  ],
+  "chapters": [
+    {
+      "time": "00:00",
+      "label_ar": "العلاقات أعمق من التواصل",
+      "label_en": "Relationships go beyond communication"
+    },
+    {
+      "time": "03:23",
+      "label_ar": "شبكة العلاقات والمرجعية",
+      "label_en": "The relationship network and its compass"
+    },
+    {
+      "time": "04:06",
+      "label_ar": "العلاقة مع الذات",
+      "label_en": "The relationship with oneself"
+    }
+  ],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 124732,
+      "dimensions": "1280x720",
+      "sha256": "ec9708e0256ec59cd3987b034bd482df585723e8e4b37dd52a1395bb9a01d76d"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 240400,
+      "dimensions": "1280x720",
+      "sha256": "559eaf16aa7b3f32cb050da1f26924deeac5ff3d522488b34b54843179255458"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 189031,
+      "dimensions": "1080x1920",
+      "sha256": "8c660dd6aecf85cbf8d827f6d71d85b50949a82f8fd9e1d616974ae2d62ad5f5"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 287127,
+      "dimensions": "1080x1920",
+      "sha256": "1b731900717c42e4885c460c8745effd91c2528c5e0f525340aabbe7a6136fae"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 13197,
+      "sha256": "be6121c1daffe11c2647cc6dd455b536c958857f088505f34a8635b032875ceb"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 7352,
+      "sha256": "f812d931a3b6a036fabea2c18bbec33516122f576679b4d4777f5e723808a915"
+    },
+    "SEO.md": {
+      "bytes": 6673,
+      "sha256": "c7bb14b13b7eb757e2b5637f239b815235c9f0e0f223e2c0e538ff4b48c0a503"
+    }
+  },
+  "ready_for_drive_upload": true
+}

@@ -1,0 +1,73 @@
+{
+  "package_id": "SHORT_06",
+  "folder_title": "العلاقات: هل كل خروج بداية دخول؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "1pS-u9dOqzn3wUe4pi4ZOWePpF4y94Qx8",
+    "file_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_06.mp4",
+    "original_bytes": 6875004,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/SHORT_06.jpg",
+    "sha256": "8a78f012d70ad3d200b387e98023ba941a06616a514e115cd280e8744deb212d",
+    "derived_from_drive_thumbnail": "1wIDVDm6zq5UsWRFF7CyiQhfaImf8N_tJ",
+    "crop_px": [
+      184,
+      535,
+      896,
+      935
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1eiURSGiKbVyjLWvw2plRR1I5RE-PqN16",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_06.srt",
+    "cue_count": 14,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "03:23:22.880",
+      "end": "03:24:00.200",
+      "start_seconds": 12203
+    }
+  ],
+  "chapters": [],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 124573,
+      "dimensions": "1280x720",
+      "sha256": "94a31b6f39a0735f6f8c4c178ba84b61f0faaec046276cdf535be769c2e2432f"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 271730,
+      "dimensions": "1280x720",
+      "sha256": "07e4b035b7a1d807b9717271aca29a85534bc7032174703089f4afb01196b94c"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 198907,
+      "dimensions": "1080x1920",
+      "sha256": "da7524f270a4b3b9d68804c895538f366558e0e1fc9b563d8a9e734e7140fff9"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 365316,
+      "dimensions": "1080x1920",
+      "sha256": "f167618f8c6c571434440f7cb8eb95710cc405926cb8500728984af0cd768162"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 1741,
+      "sha256": "5433c187e1e8ddf059c99fa69ed6e69606e349388c6d2ef79cdfb8fe3cfb56bb"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 1029,
+      "sha256": "e68f7c049d35139f5ffdf3751449b5d1798f2388982285d7335df962a1c6ca60"
+    },
+    "SEO.md": {
+      "bytes": 5499,
+      "sha256": "8d3b776abc8ed00eedf80a3f5c4da7eeabea79375ef0ec5b35cd48f3f7eb631c"
+    }
+  },
+  "ready_for_drive_upload": true
+}

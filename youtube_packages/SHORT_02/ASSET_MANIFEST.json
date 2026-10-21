@@ -1,0 +1,73 @@
+{
+  "package_id": "SHORT_02",
+  "folder_title": "المال: هل يكشف النفوس أم يغيّرها؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "1VOMW7hPGDD-3wzPLMP8JsAcB3ANlkk8Q",
+    "file_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_02.mp4",
+    "original_bytes": 6204143,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/SHORT_02.jpg",
+    "sha256": "7dbbf2b6cbbd71d1459834dc71393a3044eaa6d5a0c84ce8975be66cebc7428d",
+    "derived_from_drive_thumbnail": "1toW8yVXfTc4B85fOmTadF726aeMoj47s",
+    "crop_px": [
+      184,
+      535,
+      896,
+      935
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1Ia7oxnIWOjWlf0WBxlT2I70SaCS42z55",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_02.srt",
+    "cue_count": 18,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "02:23:46.440",
+      "end": "02:24:29.120",
+      "start_seconds": 8626
+    }
+  ],
+  "chapters": [],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 126598,
+      "dimensions": "1280x720",
+      "sha256": "317aee9629588e262d5037526b0ec9f4cbe89ab088780a1d47582e78c65c3518"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 287536,
+      "dimensions": "1280x720",
+      "sha256": "64b893b696e1c4398e96c22c868128cf1d4743424e1614b8e208099a5b44e473"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 201110,
+      "dimensions": "1080x1920",
+      "sha256": "290be749e9415eb21c0c5c9807c355c4f85f7ce6281eafae312944cc798eb5bc"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 374697,
+      "dimensions": "1080x1920",
+      "sha256": "a07662e4659206074a554c0157cf6ed022a9a18f215e2831f226dd4083c70ea5"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 2190,
+      "sha256": "9f42588f260707179a912153425d6f9dc1859b6522fc409c98462bd32d7014f0"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 1188,
+      "sha256": "9b3022088f6917fa519124559849076911ff88fa10f49aea5db26f816a6520e4"
+    },
+    "SEO.md": {
+      "bytes": 5519,
+      "sha256": "f7e439996f37fa84ac94c7aee6fbede9dde6c93cb400215d3a402a011504080c"
+    }
+  },
+  "ready_for_drive_upload": true
+}

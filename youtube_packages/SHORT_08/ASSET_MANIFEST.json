@@ -1,0 +1,73 @@
+{
+  "package_id": "SHORT_08",
+  "folder_title": "تزكية النفس: من أين تبدأ علاقتك بذاتك؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "1k4d-CoBo890aEvHUDKDq3MSBy7P1bRTo",
+    "file_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_08.mp4",
+    "original_bytes": 8563006,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/SHORT_08.jpg",
+    "sha256": "34e764fba266dca8cde67602c5a114a829e4ac542b5a55c29a96be1206807ee7",
+    "derived_from_drive_thumbnail": "1PvSteffafpJ4tQyV2F4p9ZiTBVmalRDd",
+    "crop_px": [
+      184,
+      535,
+      896,
+      935
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1WiqCo43yiVAFqabBy22oqDlEIHFqrDVu",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_08.srt",
+    "cue_count": 18,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "00:59:17.120",
+      "end": "01:00:17.280",
+      "start_seconds": 3557
+    }
+  ],
+  "chapters": [],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 119653,
+      "dimensions": "1280x720",
+      "sha256": "42c391f7940576349c3fefdf09c8bf67816281935d2247053ecb12d214a78043"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 262073,
+      "dimensions": "1280x720",
+      "sha256": "c1bbcd4cf988b05e723ececa4ba5167296a1615fc15d0f583c57e0ec7c041431"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 197165,
+      "dimensions": "1080x1920",
+      "sha256": "3865ddaa614073ef4d14f4908b3ea8d94078c427c7401559fafe5972becefadb"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 366820,
+      "dimensions": "1080x1920",
+      "sha256": "ba0c131f1a673e313a8a1d261c765604def784580791d4d0aec2675fdbd46f87"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 2314,
+      "sha256": "308908ff5ce40d5f6fb373f3002841c3cd1f3a1bc88ef1a7e044a42437cdfa86"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 1351,
+      "sha256": "7aa8705862977caf15f98dced3b99e6e526c2eb7f926308087f8eb0cc374ba1f"
+    },
+    "SEO.md": {
+      "bytes": 5621,
+      "sha256": "a8ca47146555a2b12bfabae3fa0e46f110eddb0c885ff53184fc1716bd79b61d"
+    }
+  },
+  "ready_for_drive_upload": true
+}

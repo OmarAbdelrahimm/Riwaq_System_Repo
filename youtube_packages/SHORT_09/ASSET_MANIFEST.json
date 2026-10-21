@@ -1,0 +1,73 @@
+{
+  "package_id": "SHORT_09",
+  "folder_title": "الأمانة: هل تختارها قبل المكسب؟ قصة جرير | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "1w2cDiEzg-N15FMxKzju23CPAh35zdCwt",
+    "file_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_09.mp4",
+    "original_bytes": 10915732,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/SHORT_09.jpg",
+    "sha256": "39ffaeda9ff9c4b49c8427586e5f4839b114760ea7619ef364bd2a11e2c5a2e2",
+    "derived_from_drive_thumbnail": "1S9SgnMDH6oW_IsNHSjQ_2s45AYayGZrt",
+    "crop_px": [
+      184,
+      535,
+      896,
+      935
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "12mnv1ouKy35muNxwwCBlpJgthp8bFflc",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_09.srt",
+    "cue_count": 17,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "02:13:23.440",
+      "end": "02:14:20.510",
+      "start_seconds": 8003
+    }
+  ],
+  "chapters": [],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 126655,
+      "dimensions": "1280x720",
+      "sha256": "26c81025edccea6b0f28381a9fb83ee57072db113c3e3f1d8f7cc10f187ae3d0"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 296189,
+      "dimensions": "1280x720",
+      "sha256": "969a39e47fbac403eb60a31d211691e256ff6662027790764652ec89a398244c"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 205707,
+      "dimensions": "1080x1920",
+      "sha256": "97194743e5986ea007305898ba13c8062e59770b7f3768cb65ecfc25cbc40af8"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 402810,
+      "dimensions": "1080x1920",
+      "sha256": "480b9f3f5e0159ca9609ea9d0a609e0b63410398e59bb4423d8f269160bd92b4"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 2385,
+      "sha256": "6a643be328ae46482e9d9074cc641c794c59f4124fc4fd9b1ab762fc1e8adb79"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 1358,
+      "sha256": "200cb76e76d82bf0835f63f99afb6be3a38fb72cc2ba4c96aba66b2486bbebbc"
+    },
+    "SEO.md": {
+      "bytes": 5586,
+      "sha256": "60b7d5e7ebfc9bfa47475e1ee889a2a7c7e8004c1316a659da4cb9197454b89b"
+    }
+  },
+  "ready_for_drive_upload": true
+}

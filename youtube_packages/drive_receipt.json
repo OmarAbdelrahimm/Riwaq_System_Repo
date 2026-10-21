@@ -1,0 +1,1170 @@
+{
+  "drive_root_id": "0ANw0TNQi0kFKUk9PVA",
+  "previous_source_delivery_id": "1nrrHG_zCnyC7wY0eyWsUMEOEIynOyWZn",
+  "duplicate_folder_checks": "All 12 exact final titles were searched before creation; no matching package folder was found.",
+  "all_folder_names_are_final_titles": true,
+  "folders_created_in_my_drive_root": true,
+  "packages": [
+    {
+      "id": "RELATIONSHIP_002",
+      "title": "العلاقات الكبرى: ما البوصلة التي توجّه العلاقة؟ | ياسر الحزيمي",
+      "folder_id": "1Cv5PQRPE14uoWKgPe3Z4kPzZ6aCokq4C",
+      "folder_url": "https://drive.google.com/drive/folders/1Cv5PQRPE14uoWKgPe3Z4kPzZ6aCokq4C",
+      "video_source_id": "1fMk_tR0Km0CY2GsCcht4bmeJOmFFfx9Z",
+      "video_source_name": "MASTER_WEB_RELATIONSHIP_002.mp4",
+      "video_source_bytes": 52641312,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "MASTER_WEB_RELATIONSHIP_002.mp4",
+          "drive_file_id": "1tUJQuiq7tR-J2sL_KH18rXsHJ02OE3eU",
+          "source_bytes": 52641312,
+          "drive_bytes": 52641312,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 3115,
+          "drive_bytes": 3115,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 13197,
+          "drive_bytes": 13197,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 7352,
+          "drive_bytes": 7352,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 6673,
+          "drive_bytes": 6673,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 189031,
+          "drive_bytes": 189031,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 287127,
+          "drive_bytes": 287127,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 124732,
+          "drive_bytes": 124732,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 240400,
+          "drive_bytes": 240400,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1tUJQuiq7tR-J2sL_KH18rXsHJ02OE3eU",
+      "copy_file_url": "https://drive.google.com/file/d/1tUJQuiq7tR-J2sL_KH18rXsHJ02OE3eU/view",
+      "copy_size_bytes": 52641312,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "MASTER_WEB_RELATIONSHIP_002.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 13197,
+        "CAPTIONS_EN.srt": 7352,
+        "SEO.md": 6673,
+        "THUMBNAIL_1080x1920.jpg": 189031,
+        "THUMBNAIL_1080x1920.png": 287127,
+        "THUMBNAIL_1280x720.jpg": 124732,
+        "THUMBNAIL_1280x720.png": 240400,
+        "ASSET_MANIFEST.json": 3115
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "RELATIONSHIP_003",
+      "title": "المقارنة وجلد الذات: كيف تسعى للأفضل دون قسوة؟ | ياسر الحزيمي",
+      "folder_id": "1WNoe_0JIxeU18GOJPUIfWG1XPpCBHX0e",
+      "folder_url": "https://drive.google.com/drive/folders/1WNoe_0JIxeU18GOJPUIfWG1XPpCBHX0e",
+      "video_source_id": "17AqLkg8JSSd1a0f3qipQn396irA6mVuC",
+      "video_source_name": "MASTER_WEB_RELATIONSHIP_003.mp4",
+      "video_source_bytes": 42657181,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "MASTER_WEB_RELATIONSHIP_003.mp4",
+          "drive_file_id": "1pOQPRjC7AJHREjLtEjSutJQXB_L-KFBv",
+          "source_bytes": 42657181,
+          "drive_bytes": 42657181,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 3387,
+          "drive_bytes": 3387,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 9954,
+          "drive_bytes": 9954,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 5539,
+          "drive_bytes": 5539,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 6965,
+          "drive_bytes": 6965,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 186865,
+          "drive_bytes": 186865,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 281754,
+          "drive_bytes": 281754,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 122800,
+          "drive_bytes": 122800,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 228707,
+          "drive_bytes": 228707,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1pOQPRjC7AJHREjLtEjSutJQXB_L-KFBv",
+      "copy_file_url": "https://drive.google.com/file/d/1pOQPRjC7AJHREjLtEjSutJQXB_L-KFBv/view",
+      "copy_size_bytes": 42657181,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "MASTER_WEB_RELATIONSHIP_003.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 9954,
+        "CAPTIONS_EN.srt": 5539,
+        "SEO.md": 6965,
+        "THUMBNAIL_1080x1920.jpg": 186865,
+        "THUMBNAIL_1080x1920.png": 281754,
+        "THUMBNAIL_1280x720.jpg": 122800,
+        "THUMBNAIL_1280x720.png": 228707,
+        "ASSET_MANIFEST.json": 3387
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "RELATIONSHIP_004",
+      "title": "النهايات في العلاقات: هل كل خروج بداية جديدة؟ | ياسر الحزيمي",
+      "folder_id": "1Iey-NC_2OEQPuhrcmvjs_y3IUgvWbIK7",
+      "folder_url": "https://drive.google.com/drive/folders/1Iey-NC_2OEQPuhrcmvjs_y3IUgvWbIK7",
+      "video_source_id": "1TwGVlfFmyqwn4uVhVmOirLhgYq2f8eGf",
+      "video_source_name": "MASTER_WEB_RELATIONSHIP_004.mp4",
+      "video_source_bytes": 44833893,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "MASTER_WEB_RELATIONSHIP_004.mp4",
+          "drive_file_id": "1nILe0UC6XMNQVYGNtz-ZOv00vKHnZjRn",
+          "source_bytes": 44833893,
+          "drive_bytes": 44833893,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 3100,
+          "drive_bytes": 3100,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 11449,
+          "drive_bytes": 11449,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 6602,
+          "drive_bytes": 6602,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 6676,
+          "drive_bytes": 6676,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 185833,
+          "drive_bytes": 185833,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 274363,
+          "drive_bytes": 274363,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 123015,
+          "drive_bytes": 123015,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 232954,
+          "drive_bytes": 232954,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1nILe0UC6XMNQVYGNtz-ZOv00vKHnZjRn",
+      "copy_file_url": "https://drive.google.com/file/d/1nILe0UC6XMNQVYGNtz-ZOv00vKHnZjRn/view",
+      "copy_size_bytes": 44833893,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "MASTER_WEB_RELATIONSHIP_004.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 11449,
+        "CAPTIONS_EN.srt": 6602,
+        "SEO.md": 6676,
+        "THUMBNAIL_1080x1920.jpg": 185833,
+        "THUMBNAIL_1080x1920.png": 274363,
+        "THUMBNAIL_1280x720.jpg": 123015,
+        "THUMBNAIL_1280x720.png": 232954,
+        "ASSET_MANIFEST.json": 3100
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_01",
+      "title": "المقارنة: كيف تصبح أفضل دون مطاردة الكمال؟ | ياسر الحزيمي",
+      "folder_id": "1PjCoVfMCrWA1ODXlTa9uFr_z1TV3EDOX",
+      "folder_url": "https://drive.google.com/drive/folders/1PjCoVfMCrWA1ODXlTa9uFr_z1TV3EDOX",
+      "video_source_id": "12MuFsr5Llk6duB9eGhCb712EZpk1lcHc",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_01.mp4",
+      "video_source_bytes": 9265438,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_01.mp4",
+          "drive_file_id": "12PJfQlHsd6_YtcwNUO2BLj4B9JeLVHJx",
+          "source_bytes": 9265438,
+          "drive_bytes": 9265438,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2536,
+          "drive_bytes": 2536,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 2345,
+          "drive_bytes": 2345,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1380,
+          "drive_bytes": 1380,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5707,
+          "drive_bytes": 5707,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 197428,
+          "drive_bytes": 197428,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 362271,
+          "drive_bytes": 362271,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 121400,
+          "drive_bytes": 121400,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 262594,
+          "drive_bytes": 262594,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "12PJfQlHsd6_YtcwNUO2BLj4B9JeLVHJx",
+      "copy_file_url": "https://drive.google.com/file/d/12PJfQlHsd6_YtcwNUO2BLj4B9JeLVHJx/view",
+      "copy_size_bytes": 9265438,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_01.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 2345,
+        "CAPTIONS_EN.srt": 1380,
+        "SEO.md": 5707,
+        "THUMBNAIL_1080x1920.jpg": 197428,
+        "THUMBNAIL_1080x1920.png": 362271,
+        "THUMBNAIL_1280x720.jpg": 121400,
+        "THUMBNAIL_1280x720.png": 262594,
+        "ASSET_MANIFEST.json": 2536
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_02",
+      "title": "المال: هل يكشف النفوس أم يغيّرها؟ | ياسر الحزيمي",
+      "folder_id": "1QYnX_-qrWh7fweXY4f7p2P4AO5zKrRoL",
+      "folder_url": "https://drive.google.com/drive/folders/1QYnX_-qrWh7fweXY4f7p2P4AO5zKrRoL",
+      "video_source_id": "1VOMW7hPGDD-3wzPLMP8JsAcB3ANlkk8Q",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_02.mp4",
+      "video_source_bytes": 6204143,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_02.mp4",
+          "drive_file_id": "1ZYtHAj2OIWy8_GX7piEiyezS6G2sUxfZ",
+          "source_bytes": 6204143,
+          "drive_bytes": 6204143,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2420,
+          "drive_bytes": 2420,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 2190,
+          "drive_bytes": 2190,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1188,
+          "drive_bytes": 1188,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5519,
+          "drive_bytes": 5519,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 201110,
+          "drive_bytes": 201110,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 374697,
+          "drive_bytes": 374697,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 126598,
+          "drive_bytes": 126598,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 287536,
+          "drive_bytes": 287536,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1ZYtHAj2OIWy8_GX7piEiyezS6G2sUxfZ",
+      "copy_file_url": "https://drive.google.com/file/d/1ZYtHAj2OIWy8_GX7piEiyezS6G2sUxfZ/view",
+      "copy_size_bytes": 6204143,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_02.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 2190,
+        "CAPTIONS_EN.srt": 1188,
+        "SEO.md": 5519,
+        "THUMBNAIL_1080x1920.jpg": 201110,
+        "THUMBNAIL_1080x1920.png": 374697,
+        "THUMBNAIL_1280x720.jpg": 126598,
+        "THUMBNAIL_1280x720.png": 287536,
+        "ASSET_MANIFEST.json": 2420
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_03",
+      "title": "التبرير: كيف يوقف التغيير؟ | ياسر الحزيمي",
+      "folder_id": "1uPOecn7pYMxtMVk0whLMWVFBVyCSazyz",
+      "folder_url": "https://drive.google.com/drive/folders/1uPOecn7pYMxtMVk0whLMWVFBVyCSazyz",
+      "video_source_id": "1sh62Gz-WF6Ddsd6MmV4xNZnOp4_nNY_X",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_03.mp4",
+      "video_source_bytes": 8369837,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_03.mp4",
+          "drive_file_id": "1I_7uPgh0eFh-6EFvlTduB7ct6RZP6X5W",
+          "source_bytes": 8369837,
+          "drive_bytes": 8369837,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2408,
+          "drive_bytes": 2408,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 2941,
+          "drive_bytes": 2941,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1608,
+          "drive_bytes": 1608,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5661,
+          "drive_bytes": 5661,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 198444,
+          "drive_bytes": 198444,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 376954,
+          "drive_bytes": 376954,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 120291,
+          "drive_bytes": 120291,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 260998,
+          "drive_bytes": 260998,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1I_7uPgh0eFh-6EFvlTduB7ct6RZP6X5W",
+      "copy_file_url": "https://drive.google.com/file/d/1I_7uPgh0eFh-6EFvlTduB7ct6RZP6X5W/view",
+      "copy_size_bytes": 8369837,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_03.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 2941,
+        "CAPTIONS_EN.srt": 1608,
+        "SEO.md": 5661,
+        "THUMBNAIL_1080x1920.jpg": 198444,
+        "THUMBNAIL_1080x1920.png": 376954,
+        "THUMBNAIL_1280x720.jpg": 120291,
+        "THUMBNAIL_1280x720.png": 260998,
+        "ASSET_MANIFEST.json": 2408
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_04",
+      "title": "العلاقات: هل ترتبط بماضي الشخص أيضًا؟ | ياسر الحزيمي",
+      "folder_id": "1yy53rvrHHHvJhJBCaE8fauk94aIZj5Xf",
+      "folder_url": "https://drive.google.com/drive/folders/1yy53rvrHHHvJhJBCaE8fauk94aIZj5Xf",
+      "video_source_id": "1y4bcEebkEdmNR6V7WrDWedAfuYffYc8U",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_04.mp4",
+      "video_source_bytes": 7567288,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_04.mp4",
+          "drive_file_id": "1tjlnEQMfmSFWOs0BvH-CN-f8K5ZfSIKY",
+          "source_bytes": 7567288,
+          "drive_bytes": 7567288,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2427,
+          "drive_bytes": 2427,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 2425,
+          "drive_bytes": 2425,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1344,
+          "drive_bytes": 1344,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5704,
+          "drive_bytes": 5704,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 205825,
+          "drive_bytes": 205825,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 376971,
+          "drive_bytes": 376971,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 127718,
+          "drive_bytes": 127718,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 276894,
+          "drive_bytes": 276894,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1tjlnEQMfmSFWOs0BvH-CN-f8K5ZfSIKY",
+      "copy_file_url": "https://drive.google.com/file/d/1tjlnEQMfmSFWOs0BvH-CN-f8K5ZfSIKY/view",
+      "copy_size_bytes": 7567288,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_04.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 2425,
+        "CAPTIONS_EN.srt": 1344,
+        "SEO.md": 5704,
+        "THUMBNAIL_1080x1920.jpg": 205825,
+        "THUMBNAIL_1080x1920.png": 376971,
+        "THUMBNAIL_1280x720.jpg": 127718,
+        "THUMBNAIL_1280x720.png": 276894,
+        "ASSET_MANIFEST.json": 2427
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_05",
+      "title": "المقارنة: كيف تسترشد بها دون جلد ذاتك؟ | ياسر الحزيمي",
+      "folder_id": "1F9hjviJGU8aHG6T4RYSvh371bwcwHq6s",
+      "folder_url": "https://drive.google.com/drive/folders/1F9hjviJGU8aHG6T4RYSvh371bwcwHq6s",
+      "video_source_id": "10KWqC7eExQ3s3xasnH805lE9QftU5akp",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_05.mp4",
+      "video_source_bytes": 6900886,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_05.mp4",
+          "drive_file_id": "1xRKhQ33R42qvw-t_QFi0UjIrx-2Hlu4Q",
+          "source_bytes": 6900886,
+          "drive_bytes": 6900886,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2430,
+          "drive_bytes": 2430,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 2123,
+          "drive_bytes": 2123,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1131,
+          "drive_bytes": 1131,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5498,
+          "drive_bytes": 5498,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 201806,
+          "drive_bytes": 201806,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 381390,
+          "drive_bytes": 381390,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 123177,
+          "drive_bytes": 123177,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 269139,
+          "drive_bytes": 269139,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1xRKhQ33R42qvw-t_QFi0UjIrx-2Hlu4Q",
+      "copy_file_url": "https://drive.google.com/file/d/1xRKhQ33R42qvw-t_QFi0UjIrx-2Hlu4Q/view",
+      "copy_size_bytes": 6900886,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_05.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 2123,
+        "CAPTIONS_EN.srt": 1131,
+        "SEO.md": 5498,
+        "THUMBNAIL_1080x1920.jpg": 201806,
+        "THUMBNAIL_1080x1920.png": 381390,
+        "THUMBNAIL_1280x720.jpg": 123177,
+        "THUMBNAIL_1280x720.png": 269139,
+        "ASSET_MANIFEST.json": 2430
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_06",
+      "title": "العلاقات: هل كل خروج بداية دخول؟ | ياسر الحزيمي",
+      "folder_id": "1K7FLusXM6cnSRC12U__R8ntbdvFyWxi-",
+      "folder_url": "https://drive.google.com/drive/folders/1K7FLusXM6cnSRC12U__R8ntbdvFyWxi-",
+      "video_source_id": "1pS-u9dOqzn3wUe4pi4ZOWePpF4y94Qx8",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_06.mp4",
+      "video_source_bytes": 6875004,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_06.mp4",
+          "drive_file_id": "1kaFkpgrNi89eiLhgniayKciLe2xpGTqg",
+          "source_bytes": 6875004,
+          "drive_bytes": 6875004,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2419,
+          "drive_bytes": 2419,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 1741,
+          "drive_bytes": 1741,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1029,
+          "drive_bytes": 1029,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5499,
+          "drive_bytes": 5499,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 198907,
+          "drive_bytes": 198907,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 365316,
+          "drive_bytes": 365316,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 124573,
+          "drive_bytes": 124573,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 271730,
+          "drive_bytes": 271730,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1kaFkpgrNi89eiLhgniayKciLe2xpGTqg",
+      "copy_file_url": "https://drive.google.com/file/d/1kaFkpgrNi89eiLhgniayKciLe2xpGTqg/view",
+      "copy_size_bytes": 6875004,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_06.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 1741,
+        "CAPTIONS_EN.srt": 1029,
+        "SEO.md": 5499,
+        "THUMBNAIL_1080x1920.jpg": 198907,
+        "THUMBNAIL_1080x1920.png": 365316,
+        "THUMBNAIL_1280x720.jpg": 124573,
+        "THUMBNAIL_1280x720.png": 271730,
+        "ASSET_MANIFEST.json": 2419
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_07",
+      "title": "العلاقات: ما الفرق بين التواصل والبناء؟ | ياسر الحزيمي",
+      "folder_id": "1CcB4Bsi6eBd9YtXMkKhVmsY7k67ljInr",
+      "folder_url": "https://drive.google.com/drive/folders/1CcB4Bsi6eBd9YtXMkKhVmsY7k67ljInr",
+      "video_source_id": "1t1QP_o21CA7LLlg06uVtWcpd0TMn5AuP",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_07.mp4",
+      "video_source_bytes": 7841711,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_07.mp4",
+          "drive_file_id": "1hy_sK3lET82aE_-GOt3xyGhSahgg3nB_",
+          "source_bytes": 7841711,
+          "drive_bytes": 7841711,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2431,
+          "drive_bytes": 2431,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 2701,
+          "drive_bytes": 2701,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1456,
+          "drive_bytes": 1456,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5662,
+          "drive_bytes": 5662,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 206637,
+          "drive_bytes": 206637,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 381919,
+          "drive_bytes": 381919,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 130755,
+          "drive_bytes": 130755,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 285774,
+          "drive_bytes": 285774,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1hy_sK3lET82aE_-GOt3xyGhSahgg3nB_",
+      "copy_file_url": "https://drive.google.com/file/d/1hy_sK3lET82aE_-GOt3xyGhSahgg3nB_/view",
+      "copy_size_bytes": 7841711,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_07.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 2701,
+        "CAPTIONS_EN.srt": 1456,
+        "SEO.md": 5662,
+        "THUMBNAIL_1080x1920.jpg": 206637,
+        "THUMBNAIL_1080x1920.png": 381919,
+        "THUMBNAIL_1280x720.jpg": 130755,
+        "THUMBNAIL_1280x720.png": 285774,
+        "ASSET_MANIFEST.json": 2431
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_08",
+      "title": "تزكية النفس: من أين تبدأ علاقتك بذاتك؟ | ياسر الحزيمي",
+      "folder_id": "1URFrg0M33XOx4Oc6wu2GPLif-DZ_x9k1",
+      "folder_url": "https://drive.google.com/drive/folders/1URFrg0M33XOx4Oc6wu2GPLif-DZ_x9k1",
+      "video_source_id": "1k4d-CoBo890aEvHUDKDq3MSBy7P1bRTo",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_08.mp4",
+      "video_source_bytes": 8563006,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_08.mp4",
+          "drive_file_id": "1gViM4lB4Uro95iZ0FWYdOqzAljrAXr8b",
+          "source_bytes": 8563006,
+          "drive_bytes": 8563006,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2429,
+          "drive_bytes": 2429,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 2314,
+          "drive_bytes": 2314,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1351,
+          "drive_bytes": 1351,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5621,
+          "drive_bytes": 5621,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 197165,
+          "drive_bytes": 197165,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 366820,
+          "drive_bytes": 366820,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 119653,
+          "drive_bytes": 119653,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 262073,
+          "drive_bytes": 262073,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1gViM4lB4Uro95iZ0FWYdOqzAljrAXr8b",
+      "copy_file_url": "https://drive.google.com/file/d/1gViM4lB4Uro95iZ0FWYdOqzAljrAXr8b/view",
+      "copy_size_bytes": 8563006,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_08.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 2314,
+        "CAPTIONS_EN.srt": 1351,
+        "SEO.md": 5621,
+        "THUMBNAIL_1080x1920.jpg": 197165,
+        "THUMBNAIL_1080x1920.png": 366820,
+        "THUMBNAIL_1280x720.jpg": 119653,
+        "THUMBNAIL_1280x720.png": 262073,
+        "ASSET_MANIFEST.json": 2429
+      },
+      "delivery_verified": true
+    },
+    {
+      "id": "SHORT_09",
+      "title": "الأمانة: هل تختارها قبل المكسب؟ قصة جرير | ياسر الحزيمي",
+      "folder_id": "1bkyhQoLrZrNWnzPa9RD0FvNDjjmL7bwd",
+      "folder_url": "https://drive.google.com/drive/folders/1bkyhQoLrZrNWnzPa9RD0FvNDjjmL7bwd",
+      "video_source_id": "1w2cDiEzg-N15FMxKzju23CPAh35zdCwt",
+      "video_source_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_09.mp4",
+      "video_source_bytes": 10915732,
+      "copy_status": "completed",
+      "copy_bytes_verified": true,
+      "expected_non_video_files": [
+        "SEO.md",
+        "CAPTIONS_AR_EN.srt",
+        "CAPTIONS_EN.srt",
+        "THUMBNAIL_1280x720.jpg",
+        "THUMBNAIL_1280x720.png",
+        "THUMBNAIL_1080x1920.jpg",
+        "THUMBNAIL_1080x1920.png",
+        "ASSET_MANIFEST.json"
+      ],
+      "file_receipts": [
+        {
+          "name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_09.mp4",
+          "drive_file_id": "1M1nbh70hq_NbTG7yJbrs2x5uOTCv-FMg",
+          "source_bytes": 10915732,
+          "drive_bytes": 10915732,
+          "bytes_match": true
+        },
+        {
+          "name": "ASSET_MANIFEST.json",
+          "local_bytes": 2434,
+          "drive_bytes": 2434,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_AR_EN.srt",
+          "local_bytes": 2385,
+          "drive_bytes": 2385,
+          "bytes_match": true
+        },
+        {
+          "name": "CAPTIONS_EN.srt",
+          "local_bytes": 1358,
+          "drive_bytes": 1358,
+          "bytes_match": true
+        },
+        {
+          "name": "SEO.md",
+          "local_bytes": 5586,
+          "drive_bytes": 5586,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.jpg",
+          "local_bytes": 205707,
+          "drive_bytes": 205707,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1080x1920.png",
+          "local_bytes": 402810,
+          "drive_bytes": 402810,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.jpg",
+          "local_bytes": 126655,
+          "drive_bytes": 126655,
+          "bytes_match": true
+        },
+        {
+          "name": "THUMBNAIL_1280x720.png",
+          "local_bytes": 296189,
+          "drive_bytes": 296189,
+          "bytes_match": true
+        }
+      ],
+      "copy_file_id": "1M1nbh70hq_NbTG7yJbrs2x5uOTCv-FMg",
+      "copy_file_url": "https://drive.google.com/file/d/1M1nbh70hq_NbTG7yJbrs2x5uOTCv-FMg/view",
+      "copy_size_bytes": 10915732,
+      "drive_file_count": 9,
+      "drive_file_count_verified": true,
+      "expected_video_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_09.mp4",
+      "asset_sizes_verified_against_drive_listing": true,
+      "asset_sizes_bytes": {
+        "CAPTIONS_AR_EN.srt": 2385,
+        "CAPTIONS_EN.srt": 1358,
+        "SEO.md": 5586,
+        "THUMBNAIL_1080x1920.jpg": 205707,
+        "THUMBNAIL_1080x1920.png": 402810,
+        "THUMBNAIL_1280x720.jpg": 126655,
+        "THUMBNAIL_1280x720.png": 296189,
+        "ASSET_MANIFEST.json": 2434
+      },
+      "delivery_verified": true
+    }
+  ],
+  "verification": {
+    "checked_with": "Google Drive list_files on each destination folder (trashed=false), including file name, parent, MIME type and byte size.",
+    "folders_checked": 12,
+    "each_folder_has_exactly_9_files": true,
+    "each_folder_has_1_video_and_8_expected_assets": true,
+    "all_12_video_copies_match_source_bytes": true,
+    "all_96_non_video_assets_match_local_bytes": true,
+    "no_mp4_written_to_git": true
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "package_id": "SHORT_05",
+  "folder_title": "المقارنة: كيف تسترشد بها دون جلد ذاتك؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "10KWqC7eExQ3s3xasnH805lE9QftU5akp",
+    "file_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_05.mp4",
+    "original_bytes": 6900886,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/SHORT_05.jpg",
+    "sha256": "687780a9f0d6bb326e90cd259651d8c2bcc118feff199ac757b95b9991eaffdd",
+    "derived_from_drive_thumbnail": "14QEdtkyK-vj-gJWFerM8kD5W8WfvVLs6",
+    "crop_px": [
+      184,
+      535,
+      896,
+      935
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1Sb1gChDhwMu5QAi28DxqCfKBp8nsXV1f",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_05.srt",
+    "cue_count": 16,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "02:57:18.280",
+      "end": "02:58:05.320",
+      "start_seconds": 10638
+    }
+  ],
+  "chapters": [],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 123177,
+      "dimensions": "1280x720",
+      "sha256": "c0434307cf27c6bacbe4bfcc4b66d3a1e509edc7cc42e7b550ec77ea9ed8b42c"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 269139,
+      "dimensions": "1280x720",
+      "sha256": "afe79826407e125a7a06c607a1b6dbac0402707fdb92c954cbd22f4d5c4cf78e"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 201806,
+      "dimensions": "1080x1920",
+      "sha256": "f34b77f70fc5adb3936c3cb1a0fcae8675fa8f741e03c329fdb5b09f522739c9"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 381390,
+      "dimensions": "1080x1920",
+      "sha256": "504ac335ae76b79f511c0da79ac649fc86f65581415a1a4078655671b7cff7cc"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 2123,
+      "sha256": "f2b340454243bea4ab8270f440e1fcf58d3269d288964599cfafe6fc3595f4b2"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 1131,
+      "sha256": "4448140188e3fd359f30f687a99adcf89dab7164eb221a39c4c2009436b25548"
+    },
+    "SEO.md": {
+      "bytes": 5498,
+      "sha256": "5bf83e9eb7f34054ff183a4f5c9200e64eb4bffdacbbb64f575ef352acfdbc39"
+    }
+  },
+  "ready_for_drive_upload": true
+}

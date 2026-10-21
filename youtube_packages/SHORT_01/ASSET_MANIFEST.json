@@ -1,0 +1,78 @@
+{
+  "package_id": "SHORT_01",
+  "folder_title": "المقارنة: كيف تصبح أفضل دون مطاردة الكمال؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "12MuFsr5Llk6duB9eGhCb712EZpk1lcHc",
+    "file_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_01.mp4",
+    "original_bytes": 9265438,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/SHORT_01.jpg",
+    "sha256": "a244583e5dd4bc71a08ac4c211457737ad76469eb3f06fb33a723d9857bc5f41",
+    "derived_from_drive_thumbnail": "1JZfxkyr6UN4Wr9WLvKEcbAkvq59cNU6p",
+    "crop_px": [
+      184,
+      535,
+      896,
+      935
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "15CZQj3X5q2o4bVwNxRmajCYNPWAeXXNL",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_01.srt",
+    "cue_count": 19,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "00:00:01.000",
+      "end": "00:00:12.000",
+      "start_seconds": 1
+    },
+    {
+      "start": "02:59:58.320",
+      "end": "03:00:44.100",
+      "start_seconds": 10798
+    }
+  ],
+  "chapters": [],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 121400,
+      "dimensions": "1280x720",
+      "sha256": "02167aed3b85550c117fbc596b8d6646d987b5bc2a872840eaedd63ab1cfdde9"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 262594,
+      "dimensions": "1280x720",
+      "sha256": "96b6d0693d409fc6ad69eaf4febf152bd1a1c514ed70804b3bc28dea2ac8d8a0"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 197428,
+      "dimensions": "1080x1920",
+      "sha256": "d6e74bb412b0e9c1c7d006d1d06f8f00b7baf0359aa928586e23eb0f9d8b8571"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 362271,
+      "dimensions": "1080x1920",
+      "sha256": "a019a3a90f7bf3aa7938dfb6b94bdb46e95f32c7b61863200133f92fe27119ec"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 2345,
+      "sha256": "f47e4ded23fe007216e7bd9218af020ee5c684fa52457864d165d6096a4c35c7"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 1380,
+      "sha256": "885bc1489c383c343ff8cd78786fc1c8f88324370ae65b245af8f3fe90660fc5"
+    },
+    "SEO.md": {
+      "bytes": 5707,
+      "sha256": "d7c531fa6ab4bd905e4267c0eda0cb46ed71f99000fcf1cc60295a75edf3d80b"
+    }
+  },
+  "ready_for_drive_upload": true
+}

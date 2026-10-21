@@ -1,0 +1,109 @@
+{
+  "package_id": "RELATIONSHIP_003",
+  "folder_title": "المقارنة وجلد الذات: كيف تسعى للأفضل دون قسوة؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "17AqLkg8JSSd1a0f3qipQn396irA6mVuC",
+    "file_name": "MASTER_WEB_RELATIONSHIP_003.mp4",
+    "original_bytes": 42657181,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/RELATIONSHIP_003.jpg",
+    "sha256": "beba438b3579aa43686c9c1b42f70b7a1f8461788b1bdd10ec5a0893549e99ad",
+    "derived_from_drive_thumbnail": "1yjunpmhKMOFTbSfdstTnykaBq97_Jp2v",
+    "crop_px": [
+      566,
+      0,
+      1280,
+      720
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1XwDKJ38CFglqt1Z04VuNTU2fucQYKvjc",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_003.srt",
+    "cue_count": 73,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "02:53:49.520",
+      "end": "02:54:24.160",
+      "start_seconds": 10430
+    },
+    {
+      "start": "02:57:18.280",
+      "end": "02:58:05.320",
+      "start_seconds": 10638
+    },
+    {
+      "start": "03:00:05.040",
+      "end": "03:00:44.100",
+      "start_seconds": 10805
+    },
+    {
+      "start": "03:01:32.680",
+      "end": "03:03:19.200",
+      "start_seconds": 10893
+    }
+  ],
+  "chapters": [
+    {
+      "time": "00:00",
+      "label_ar": "افهم اختلاف الظروف",
+      "label_en": "Recognize different circumstances"
+    },
+    {
+      "time": "00:35",
+      "label_ar": "قارن لتسترشد لا لتجلد ذاتك",
+      "label_en": "Compare to learn, not to punish yourself"
+    },
+    {
+      "time": "01:22",
+      "label_ar": "اسعَ للأفضل لا للأفضل على الجميع",
+      "label_en": "Aim to improve, not to beat everyone"
+    },
+    {
+      "time": "02:01",
+      "label_ar": "قصة الصيصان الراقصة",
+      "label_en": "The story of the dancing chicks"
+    }
+  ],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 122800,
+      "dimensions": "1280x720",
+      "sha256": "2c35081512f5e22b13860286764574b021f1236b7ecadc9b05a3914cc7bb4c67"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 228707,
+      "dimensions": "1280x720",
+      "sha256": "1c6f4dece895f7c3af2bdef0093b3702ac730c0496ac7f68738596dc09727ceb"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 186865,
+      "dimensions": "1080x1920",
+      "sha256": "5d2eceaa5c801835e39d51d1595d2bc6bddc6781935e275b69e64941f54db8eb"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 281754,
+      "dimensions": "1080x1920",
+      "sha256": "ac62424d3c5c4d79d1520571af3b22130d9b33177ffe238b5f2850773ec7b27b"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 9954,
+      "sha256": "d880adf01d35922cf40c3d0beaa30a1db460f7110b7c271f87618047e17b426e"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 5539,
+      "sha256": "851daef27f7f3609d890e108015463183307b0e9a54a08ca1768632565fb9fe3"
+    },
+    "SEO.md": {
+      "bytes": 6965,
+      "sha256": "9d018d4b1a7983ecfd381ddb2268ade728d4749b7779c1e00e2f047e4fd3804a"
+    }
+  },
+  "ready_for_drive_upload": true
+}

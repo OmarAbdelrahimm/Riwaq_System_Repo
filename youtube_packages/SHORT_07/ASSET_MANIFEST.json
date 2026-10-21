@@ -1,0 +1,73 @@
+{
+  "package_id": "SHORT_07",
+  "folder_title": "العلاقات: ما الفرق بين التواصل والبناء؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "1t1QP_o21CA7LLlg06uVtWcpd0TMn5AuP",
+    "file_name": "EXPORT_VERTICAL_RELATIONSHIP_SHORT_07.mp4",
+    "original_bytes": 7841711,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/SHORT_07.jpg",
+    "sha256": "f057b3a49003ce8a7220cbdc85ca3fc4ffec14cc033a7d6c7aa0213b0768d192",
+    "derived_from_drive_thumbnail": "1s7s4OKwPcDetfi2MoDxQic14L8xLQy50",
+    "crop_px": [
+      184,
+      535,
+      896,
+      935
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1O_34yvsVbkWaVCCr1cBC-qCiOODQ6dl7",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_SHORT_07.srt",
+    "cue_count": 20,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "00:07:10.000",
+      "end": "00:08:00.000",
+      "start_seconds": 430
+    }
+  ],
+  "chapters": [],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 130755,
+      "dimensions": "1280x720",
+      "sha256": "068b994b2cd117ec53588adc4916d56148f916c6511d65346d5092f401786976"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 285774,
+      "dimensions": "1280x720",
+      "sha256": "0ceacdef7957a64002e2a702b87763ef35b320ed81b721905b6260b45fe2c28a"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 206637,
+      "dimensions": "1080x1920",
+      "sha256": "d6ac290e562bb01399d745bc05390eff7fcce4791aac508b545a7a1aa9bc20a3"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 381919,
+      "dimensions": "1080x1920",
+      "sha256": "dffbe8223d23346b769eac79f906b8734847c0f2218f432a27716868cf0059f3"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 2701,
+      "sha256": "62d54b098957e59a9e5fcd9d9cc89994ae2900b00a781bfd2dfa6e3cfd9b3788"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 1456,
+      "sha256": "a45a6df8e6bc50db44f9b0a8487cc302326c9988470d42848d9e976398e3d853"
+    },
+    "SEO.md": {
+      "bytes": 5662,
+      "sha256": "d89fa538cedae073732897eee1a865efac4dd1b170cebdfc96daa96b41651802"
+    }
+  },
+  "ready_for_drive_upload": true
+}

@@ -1,0 +1,99 @@
+{
+  "package_id": "RELATIONSHIP_004",
+  "folder_title": "النهايات في العلاقات: هل كل خروج بداية جديدة؟ | ياسر الحزيمي",
+  "final_video_source": {
+    "drive_id": "1TwGVlfFmyqwn4uVhVmOirLhgYq2f8eGf",
+    "file_name": "MASTER_WEB_RELATIONSHIP_004.mp4",
+    "original_bytes": 44833893,
+    "transfer_method": "Google Drive server-side copy; no decode/re-encode",
+    "not_in_git": true
+  },
+  "source_frame": {
+    "file": "source_frames/RELATIONSHIP_004.jpg",
+    "sha256": "f90351cf4bcbdeb40fc9af857059b7b7725311aeb25ded90c5fc9bd522c7bd86",
+    "derived_from_drive_thumbnail": "1AnXmg4lsv6XA90fJ39tCMBvjH7Ui94rZ",
+    "crop_px": [
+      566,
+      0,
+      1280,
+      720
+    ],
+    "person_image_policy": "actual project frame crop; no generated face"
+  },
+  "source_caption_file": {
+    "drive_id": "1-lConq0EJsxUD_DdQ5d8yOXdOKWmFSMa",
+    "original_name": "CAPTIONS_AR_EN_RELATIONSHIP_004.srt",
+    "cue_count": 85,
+    "english_only_timing": "copied unchanged from the corresponding bilingual cues"
+  },
+  "source_episode_url": "https://www.youtube.com/watch?v=x-Hh9gx1xmc",
+  "source_ranges": [
+    {
+      "start": "03:18:38.520",
+      "end": "03:19:38.680",
+      "start_seconds": 11919
+    },
+    {
+      "start": "03:23:22.880",
+      "end": "03:25:06.840",
+      "start_seconds": 12203
+    },
+    {
+      "start": "03:27:44.680",
+      "end": "03:29:07.280",
+      "start_seconds": 12465
+    }
+  ],
+  "chapters": [
+    {
+      "time": "00:00",
+      "label_ar": "النضج في إنهاء العلاقة",
+      "label_en": "Maturity in ending a relationship"
+    },
+    {
+      "time": "01:00",
+      "label_ar": "كل خروج هو دخول",
+      "label_en": "Every exit is an entrance"
+    },
+    {
+      "time": "02:44",
+      "label_ar": "التروّي قبل القرار المصيري",
+      "label_en": "Pause before a life-changing decision"
+    }
+  ],
+  "local_files": {
+    "THUMBNAIL_1280x720.jpg": {
+      "bytes": 123015,
+      "dimensions": "1280x720",
+      "sha256": "e459c6f6fd56dcf78c942923ce687341031792a1b9c2776fb4c8ba9bf0eb5491"
+    },
+    "THUMBNAIL_1280x720.png": {
+      "bytes": 232954,
+      "dimensions": "1280x720",
+      "sha256": "5fc429d89d981384de77c5c845da213c96a163a8a9ccfd7eeff10382886b037a"
+    },
+    "THUMBNAIL_1080x1920.jpg": {
+      "bytes": 185833,
+      "dimensions": "1080x1920",
+      "sha256": "fc6304af07dc03bfd1820610b66fe9d58044244beceb0b0905221473dab06790"
+    },
+    "THUMBNAIL_1080x1920.png": {
+      "bytes": 274363,
+      "dimensions": "1080x1920",
+      "sha256": "cfd7980e327104220693850abda0b41912c069b9993884964896be8bc5d2df50"
+    },
+    "CAPTIONS_AR_EN.srt": {
+      "bytes": 11449,
+      "sha256": "25b4037cc9786fea77c15f6b9d8a429866a10f02d4d0140b6c84085a292167ee"
+    },
+    "CAPTIONS_EN.srt": {
+      "bytes": 6602,
+      "sha256": "0f7a52b903d82bca5ebfb2dd3db36450cecd49552474dc8e8db109ddeac26ee4"
+    },
+    "SEO.md": {
+      "bytes": 6676,
+      "sha256": "5468961d6247cf8b799c6f3b6936b9fb60c04c257089d098c4f565cbbc373554"
+    }
+  },
+  "ready_for_drive_upload": true
+}
