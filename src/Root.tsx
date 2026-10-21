@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import { Episode } from "./compositions/Episode";
 import { Main } from "./compositions/Main";
 import { Thumbnail, ThumbnailVertical } from "./compositions/Thumbnail";
+import { HistoryThumbnail, HistoryThumbnailVertical } from "./compositions/ThumbnailHistory";
 import type { Brand, EpisodeMeta } from "./engine/types";
 import brandJson from "../data/brand.json";
 import goldenJson from "../data/projects/GOLDEN_001/episode_meta.json";
@@ -102,6 +103,26 @@ export const RemotionRoot: React.FC = () => {
         width={1280}
         height={720}
         defaultProps={{ variant: "C" as const }}
+      />
+
+      {/* أغلفة فيديو «تاريخ البشرية في 83 ثانية» (HISTORY83_001) — أفقي 1280×720 + عمودي Shorts */}
+      <Composition
+        id="Thumb-HISTORY83"
+        component={HistoryThumbnail}
+        durationInFrames={1}
+        fps={30}
+        width={1280}
+        height={720}
+        defaultProps={{}}
+      />
+      <Composition
+        id="Shorts-HISTORY83"
+        component={HistoryThumbnailVertical}
+        durationInFrames={1}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{}}
       />
     </>
   );
