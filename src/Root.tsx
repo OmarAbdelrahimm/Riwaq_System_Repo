@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { Episode } from "./compositions/Episode";
 import { Main } from "./compositions/Main";
+import { Thumbnail } from "./compositions/Thumbnail";
 import type { Brand, EpisodeMeta } from "./engine/types";
 import brandJson from "../data/brand.json";
 import goldenJson from "../data/projects/GOLDEN_001/episode_meta.json";
@@ -50,6 +51,26 @@ export const RemotionRoot: React.FC = () => {
         width={3840}
         height={2160}
         defaultProps={{}}
+      />
+
+      {/* غلاف يوتيوب للحلقة 12 — نسختان 1280×720 بصورة الشيخ من المصدر الأصلي */}
+      <Composition
+        id="Thumb-PARADOX-012-A"
+        component={Thumbnail}
+        durationInFrames={1}
+        fps={30}
+        width={1280}
+        height={720}
+        defaultProps={{ variant: "A" as const }}
+      />
+      <Composition
+        id="Thumb-PARADOX-012-B"
+        component={Thumbnail}
+        durationInFrames={1}
+        fps={30}
+        width={1280}
+        height={720}
+        defaultProps={{ variant: "B" as const }}
       />
     </>
   );
