@@ -102,22 +102,36 @@ BAND_H_W, BAND_H_H = 1441, 117
 
 
 def _glass_panel(W: int, H: int, r: int, pad: int = 0, alpha: int = 214) -> Image.Image:
-    """لوح زجاجي دافئ شبه شفّاف (إطار ذهبي + لمعة علوية + حدّ رقيق) — يُستخدم أفقيًا ورأسيًا."""
+    """زجاج دافئ شفّاف: تدرّج + لمعة علوية + إشراقة خلف النص + خطوط ذهبية رقيقة."""
     panel = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     pd = ImageDraw.Draw(panel)
-    top, bot = (46, 40, 33), (30, 26, 22)
+    top, bot = (58, 50, 40), (28, 24, 20)
     for y in range(H):
         k = y / max(1, H - 1)
         pd.line([(pad, y), (W - 1 - pad, y)],
                 fill=(int(top[0] + (bot[0] - top[0]) * k),
                       int(top[1] + (bot[1] - top[1]) * k),
                       int(top[2] + (bot[2] - top[2]) * k), alpha))
-    # لمعة زجاجية في الأعلى
+    # إشراقة دافئة في قلب اللوح (حيث يجلس النص) — تعطي «حيوية» بدل السطح المسطّح
+    glow = Image.new("L", (W, H), 0)
+    gd = ImageDraw.Draw(glow)
+    cx, cy = W // 2, int(H * 0.5)
+    steps = 26
+    for i in range(steps, 0, -1):
+        k = i / steps
+        gd.ellipse([cx - W * 0.46 * k, cy - H * 0.95 * k,
+                    cx + W * 0.46 * k, cy + H * 0.95 * k],
+                   fill=int(46 * (1 - k) ** 0.7))
+    warm = Image.new("RGBA", (W, H), (250, 214, 150, 0))
+    warm.putalpha(glow)
+    panel = Image.alpha_composite(panel, warm)
+    # لمعة زجاجية أعلى اللوح
     sheen = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     sd = ImageDraw.Draw(sheen)
-    for y in range(0, max(8, int(H * 0.52))):
-        k = (1 - y / max(1, int(H * 0.52))) ** 1.7
-        sd.line([(pad, y), (W - 1 - pad, y)], fill=(236, 222, 198, int(30 * k)))
+    hh = max(8, int(H * 0.6))
+    for y in range(hh):
+        k = (1 - y / hh) ** 1.5
+        sd.line([(pad, y), (W - 1 - pad, y)], fill=(240, 228, 205, int(34 * k)))
     panel = Image.alpha_composite(panel, sheen)
     mask = Image.new("L", (W, H), 0)
     ImageDraw.Draw(mask).rounded_rectangle([pad, pad, W - 1 - pad, H - 1 - pad],
@@ -134,12 +148,13 @@ def band_h() -> str:
     if os.path.exists(path):
         return path
     W, H, r = BAND_H_W, BAND_H_H, 10
-    img = _glass_panel(W, H, r)
+    img = _glass_panel(W, H, r, alpha=138)
     d = ImageDraw.Draw(img)
-    d.rounded_rectangle([0, 0, W - 1, H - 1], radius=r, outline=G.GOLD + (165,), width=2)
+    d.rounded_rectangle([0, 0, W - 1, H - 1], radius=r, outline=G.GOLD + (150,), width=2)
     d.rounded_rectangle([5, 5, W - 6, H - 6], radius=max(4, r - 4),
-                        outline=(212, 188, 146, 40), width=1)
-    d.line([(26, 2), (W - 27, 2)], fill=(240, 220, 180, 130), width=1)
+                        outline=(214, 192, 152, 34), width=1)
+    d.line([(26, 2), (W - 27, 2)], fill=(244, 226, 188, 125), width=1)
+    d.line([(60, H - 3), (W - 61, H - 3)], fill=(228, 198, 145, 46), width=1)
     d.polygon([(W // 2, 1), (W // 2 + 5, 5), (W // 2, 9), (W // 2 - 5, 5)],
               fill=G.GOLD_L + (240,))
     img.save(path)
@@ -159,7 +174,8 @@ def prep(fmt: str = "h", meta: dict | None = None) -> dict:
     if meta.get("endcard"):
         meta["endcard"].save(f"{d}/endcard.png")
     rows = K.parse_srt(meta["srt"])
-    info = K.build_ass(rows, f"{d}/captions.ass", fmt=fmt)
+    info = K.build_ass(rows, f"{d}/captions.ass", fmt=fmt,
+                       audio=meta.get("audio") or meta.get("base"))
     dur = float(meta.get("dur", 0) or 0)
     sfx = f"{d}/sfx.wav"
     sfx_info = SFX.build(info["timeline"], dur + ENDPAD, sfx)
@@ -251,23 +267,24 @@ def band_assets() -> dict:
     path = f"{d}/glass.png"
     if not os.path.exists(path):
         W, H, r = 1080, BAND_H, 22
-        img = _glass_panel(W, H, r, pad=28, alpha=238)
+        img = _glass_panel(W, H, r, pad=28, alpha=142)
         dr = ImageDraw.Draw(img)
         dr.rounded_rectangle([28, 0, W - 29, H - 1], radius=r,
-                             outline=G.GOLD + (160,), width=2)
+                             outline=G.GOLD + (150,), width=2)
         dr.rounded_rectangle([37, 9, W - 38, H - 10], radius=max(6, r - 9),
-                             outline=(208, 184, 142, 36), width=1)
-        dr.line([(66, 3), (W - 67, 3)], fill=(240, 220, 180, 110), width=1)
+                             outline=(212, 190, 150, 32), width=1)
+        dr.line([(66, 3), (W - 67, 3)], fill=(244, 226, 188, 110), width=1)
+        dr.line([(88, H - 4), (W - 89, H - 4)], fill=(228, 198, 145, 40), width=1)
         dr.polygon([(540, 0), (546, 5), (540, 10), (534, 5)], fill=G.GOLD_L + (235,))
         img.save(path)
     return {"glass": path, "rules": path, "mask": path, "dir": d}
 
 
-def prep_v(srt: str, dur: float) -> dict:
+def prep_v(srt: str, dur: float, audio: str | None = None) -> dict:
     a = band_assets()
     d = a["dir"]
     rows = K.parse_srt(srt)
-    info = K.build_ass(rows, f"{d}/captions.ass", fmt="v")
+    info = K.build_ass(rows, f"{d}/captions.ass", fmt="v", audio=audio)
     sfx = f"{d}/sfx.wav"
     sfx_info = SFX.build(info["timeline"], dur, sfx)
     info.update({"dur": dur, "sfx": sfx, "sfx_info": sfx_info, **a})
@@ -295,7 +312,7 @@ def vfilter_v(info: dict, t_off: float = 0.0) -> str:
 
 def render_v(base: str, srt: str, out: str, dur: float, crf: int = 19,
              preset: str = "medium", t0: float | None = None, t1: float | None = None) -> str:
-    info = prep_v(srt, dur)
+    info = prep_v(srt, dur, audio=base)
     cmd = [FF, "-y", "-hide_banner", "-nostdin"]
     if t0 is not None:
         cmd += ["-ss", f"{t0:.3f}"]

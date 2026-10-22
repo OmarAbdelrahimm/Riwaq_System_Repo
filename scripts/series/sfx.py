@@ -56,7 +56,7 @@ def whoosh(dur: float = 0.30, up: bool = True) -> np.ndarray:
 
 
 def build(events: list[dict], total: float, path: str,
-          word_gain: float = 0.075, card_gain: float = 0.135,
+          word_gain: float = 0.030, card_gain: float = 0.052,
           with_cards: bool = True) -> dict:
     """events: [{'t': sec, 'kind': 'word'|'card'}] → ملف WAV ستيريو بطول total."""
     n_total = int(SR * total) + SR

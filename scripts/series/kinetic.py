@@ -38,10 +38,10 @@ Style: Cap,IBM Plex Sans Arabic,{size},{parch},{gold},{ink},&H00000000,-1,0,0,0,
 """
 
 PROFILES = {
-    "h": dict(W=1920, H=1080, size=86, min_size=64, max_w=1296, max_words=6,
-              cy=993, outline=4.0, spacing=3.0, glow_bord=11, glow_blur=8),
-    "v": dict(W=1080, H=1920, size=128, min_size=76, max_w=880, max_words=4,
-              cy=1405, outline=5.5, spacing=3.0, glow_bord=13, glow_blur=9),
+    "h": dict(W=1920, H=1080, size=94, min_size=66, max_w=1300, max_words=3,
+              cy=993, outline=4.5, spacing=3.0, glow_bord=0, glow_blur=5),
+    "v": dict(W=1080, H=1920, size=140, min_size=80, max_w=900, max_words=3,
+              cy=1403, outline=6.0, spacing=3.0, glow_bord=0, glow_blur=6),
 }
 
 
@@ -102,65 +102,143 @@ def fit_size(words: list[str], prof: dict) -> int:
     return prof["min_size"]
 
 
-def resegment(rows: list[dict], prof: dict) -> list[dict]:
-    """يقطع البطاقات الطويلة إلى أسطر قصيرة (٣–max_words كلمة) ويوزّع الزمن عليها."""
+def _envelope(audio: str | None) -> tuple | None:
+    """مغلّف طاقة صوت المتحدث بدقة 10ms — لضبط حدود الكلمات على السكتات الحقيقية."""
+    if not audio or not os.path.exists(audio):
+        return None
+    try:
+        import numpy as np
+        import subprocess
+        ff = os.environ.get("FFMPEG") or "ffmpeg"
+        p = subprocess.run([ff, "-hide_banner", "-loglevel", "error", "-i", audio,
+                            "-vn", "-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
+                           capture_output=True)
+        if p.returncode != 0 or len(p.stdout) < 32000:
+            return None
+        x = np.frombuffer(p.stdout, dtype="<i2").astype("float32") / 32768.0
+        hop = 160                                  # 10 ms
+        n = len(x) // hop
+        fr = x[: n * hop].reshape(n, hop)
+        rms = np.sqrt((fr ** 2).mean(1))
+        k = np.hanning(7)
+        rms = np.convolve(rms, k / k.sum(), mode="same")
+        return rms, 100.0                          # إطار/ثانية
+    except Exception:
+        return None
+
+
+def _snap(env, t0: float, t1: float, weights: list[float]) -> list[float]:
+    """حدود الكلمات داخل المقطع: توزيع بطول الكلمة ثم «تثبيت» كل حد على أقرب سكتة.
+
+    هذا ما يجعل اللون الأصفر يقع مع النطق فعليًا بدل توزيع رياضي أعمى.
+    """
+    n = len(weights)
+    if n <= 1:
+        return [t0, t1]
+    tot = sum(weights)
+    bounds = [t0]
+    acc = 0.0
+    for w in weights[:-1]:
+        acc += w
+        bounds.append(t0 + (t1 - t0) * acc / tot)
+    bounds.append(t1)
+    if env is None:
+        return bounds
+    import numpy as np
+    rms, fps = env
+    span = max(0.06, t1 - t0)
+    win = min(0.16, max(0.07, span / (n + 1) * 0.55))
+    out = [t0]
+    for i in range(1, n):
+        guess = bounds[i]
+        lo = max(out[-1] + 0.07, guess - win)
+        hi = min(t1 - 0.07, guess + win)
+        if hi <= lo:
+            out.append(guess)
+            continue
+        a, b = int(lo * fps), int(hi * fps)
+        a, b = max(0, a), min(len(rms), b + 1)
+        if b - a < 3:
+            out.append(guess)
+            continue
+        seg = rms[a:b]
+        # نختار أهدأ نقطة (سكتة) مع تفضيل القريب من التقدير الرياضي
+        idx = np.arange(len(seg))
+        centre = (guess * fps) - a
+        penalty = 0.35 * np.abs(idx - centre) / max(1.0, (b - a) / 2)
+        score = seg / (seg.max() + 1e-9) + penalty
+        out.append(round((a + int(np.argmin(score))) / fps, 3))
+    out.append(t1)
+    # اضمن تزايدًا صارمًا
+    for i in range(1, len(out)):
+        out[i] = max(out[i], out[i - 1] + 0.06)
+    out[-1] = max(out[-1], out[-2] + 0.06)
+    return out
+
+
+def _chunk(words: list[str], prof: dict) -> list[list[int]]:
+    """تقسيم كلمات المقطع إلى بطاقات (٣ كلمات كحد أقصى) دون تجاوز عرض السطر."""
     import graphics as G
+    f = G.font(G.PLEX_B, prof["size"])
+    chunks, cur = [], []
+    for i, w in enumerate(words):
+        trial = cur + [i]
+        too_wide = len(cur) >= 2 and G.text_w(f, G.ar(" ".join(words[j] for j in trial))) > prof["max_w"]
+        if cur and (len(cur) >= prof["max_words"] or too_wide):
+            chunks.append(cur)
+            cur = [i]
+        else:
+            cur = trial
+    if cur:
+        chunks.append(cur)
+    # لا نترك كلمة يتيمة في آخر المقطع
+    if len(chunks) > 1 and len(chunks[-1]) == 1 and len(chunks[-2]) >= 2:
+        chunks[-1].insert(0, chunks[-2].pop())
+    return chunks
+
+
+PRE = 0.10      # البطاقة تظهر قبل نطق أول كلمة بقليل
+LEAD = 0.05     # التلوين يسبق النطق بخمسين مللي لتصل الحركة مع الصوت
+HOLD = 0.16     # بقاء البطاقة بعد آخر كلمة
+
+
+def resegment(rows: list[dict], prof: dict, env=None) -> list[dict]:
+    """بطاقات ≤ ثلاث كلمات، وكل كلمة تُوقَّت على سكتة حقيقية داخل المقطع."""
     out = []
     for r in rows:
         words = r["text"].split(" ")
-        chunks: list[list[str]] = []
-        cur: list[str] = []
-        for w in words:
-            trial = cur + [w]
-            f = G.font(G.PLEX_B, prof["size"])
-            too_wide = len(cur) >= 2 and G.text_w(f, G.ar(" ".join(trial))) > prof["max_w"]
-            if cur and (len(cur) >= prof["max_words"] or too_wide):
-                chunks.append(cur)
-                cur = [w]
-            else:
-                cur = trial
-            # إن كانت الكلمة وحدها أعرض من السطر نحاول تصغير الكل لاحقًا
-        if cur:
-            chunks.append(cur)
-        # لا نترك كلمة يتيمة في آخر المقطع
-        if len(chunks) > 1 and len(chunks[-1]) == 1 and len(chunks[-2]) >= 3:
-            chunks[-1].insert(0, chunks[-2].pop())
-        weights = [sum(len(w) + 1.4 for w in c) for c in chunks]
-        total_w = sum(weights)
-        span = max(0.4, r["end"] - r["start"])
-        t = r["start"]
-        for c, wt in zip(chunks, weights):
-            dur = span * wt / total_w
-            out.append({"start": t, "end": t + dur, "text": " ".join(c), "words_txt": c})
-            t += dur
-    # سدّ الفراغات الصغيرة بين البطاقات
-    for a, b in zip(out, out[1:]):
-        if 0 < b["start"] - a["end"] < 0.45:
-            a["end"] = b["start"]
+        if not words:
+            continue
+        weights = [max(2.0, len(w)) + 1.2 for w in words]
+        bounds = _snap(env, r["start"], r["end"], weights)
+        wt = [{"text": w, "start": bounds[i], "end": bounds[i + 1]}
+              for i, w in enumerate(words)]
+        for ci, ch in enumerate(_chunk(words, prof)):
+            ws = wt[ch[0]:ch[-1] + 1]
+            st = max(0.0, ws[0]["start"] - PRE)
+            en = ws[-1]["end"] + HOLD
+            out.append({"start": st, "end": en, "text": " ".join(w["text"] for w in ws),
+                        "words_txt": [w["text"] for w in ws], "words": ws,
+                        "cue_start": ci == 0})
+    # لا تسمح لبطاقة بأن تتجاوز بداية التالية
+    for a_, b_ in zip(out, out[1:]):
+        if a_["end"] > b_["start"] and b_["start"] > a_["start"] + 0.2:
+            a_["end"] = b_["start"]
     for r in out:
         r["px"] = fit_size(r["words_txt"], prof)
         ws = r["words_txt"]
-        r["vtok"] = [vis(w) for w in reversed(ws)]      # ترتيب بصري = معاكس للمنطقي
+        r["vtok"] = [vis(w) for w in reversed(ws)]
         r["vmap"] = {i: len(ws) - 1 - i for i in range(len(ws))}
+        # إزاحة الإبراز قليلًا للأمام (LEAD) مع الحفاظ على تسلسل الكلمات
+        for i, w in enumerate(r["words"]):
+            w["hl"] = max(r["start"], w["start"] - LEAD)
+            if i:
+                w["hl"] = max(w["hl"], r["words"][i - 1]["hl"] + 0.05)
     return out
 
 
 def add_words(rows: list[dict]) -> list[dict]:
-    """توزيع زمن البطاقة على كلماتها بوزن طول الكلمة."""
-    for r in rows:
-        ws = r["words_txt"]
-        weights = [max(2.0, len(w)) + 1.2 for w in ws]
-        total = sum(weights)
-        span = max(0.3, r["end"] - r["start"])
-        t = r["start"]
-        words = []
-        for w, k in zip(ws, weights):
-            d = span * k / total
-            words.append({"text": w, "start": t, "end": min(r["end"], t + d)})
-            t += d
-        if words:
-            words[-1]["end"] = r["end"]
-        r["words"] = words
+    """توافق خلفي: الزمن محسوب مسبقًا في resegment."""
     return rows
 
 
@@ -190,52 +268,60 @@ def _line(ws: list[str], hide: set[int], colour_of: dict[int, str]) -> str:
     return " ".join(parts)
 
 
-def prepare(rows: list[dict], fmt: str = "h"):
+def prepare(rows: list[dict], fmt: str = "h", audio: str | None = None):
     prof = PROFILES[fmt]
-    return prof, add_words(resegment(rows, prof))
+    env = _envelope(audio)
+    cards = resegment(rows, prof, env)
+    return prof, cards
 
 
 def timeline(rows: list[dict]) -> list[dict]:
     """أحداث المؤثرات الصوتية: هوشة لكل بطاقة + نقرة لكل كلمة."""
     ev = []
     for r in rows:
-        ev.append({"t": round(r["start"], 3), "kind": "card"})
+        if r.get("cue_start", True):
+            ev.append({"t": round(r["start"], 3), "kind": "card"})
         for w in r["words"]:
-            ev.append({"t": round(w["start"], 3), "kind": "word"})
+            ev.append({"t": round(w.get("hl", w["start"]), 3), "kind": "word"})
     ev.sort(key=lambda e: e["t"])
     return ev
 
 
-def build_ass(rows: list[dict], out_path: str, fmt: str = "h", fade: int = 100,
-              glow: bool = True) -> dict:
-    prof, rows = prepare(rows, fmt)
+def build_ass(rows: list[dict], out_path: str, fmt: str = "h", fade: int = 90,
+              glow: bool = True, audio: str | None = None) -> dict:
+    prof, rows = prepare(rows, fmt, audio)
     head = HEAD.format(W=prof["W"], H=prof["H"], size=prof["size"], outline=prof["outline"],
                        spacing=prof.get("spacing", 2.0), parch=PARCH, gold=GOLD, ink=INK)
     ev = []
-    base_bord = "\\bord%d\\shad3" % prof["outline"]
-    hi = ("\\fscx88\\fscy88\\t(0,110,\\fscx108\\fscy108)\\t(110,240,\\fscx100\\fscy100)"
+    hi = ("\\fscx92\\fscy92\\t(0,90,\\fscx107\\fscy107)\\t(90,190,\\fscx100\\fscy100)"
           "\\bord%d\\3c%s\\blur0\\fsp3\\shad3" % (prof["outline"] + 1.5, INK))
     hi_reset = "\\fscx100\\fscy100\\bord%d.0\\blur0\\fsp0" % prof["outline"]
     for r in rows:
-        st, en = r["start"], r["end"]
+        en = r["end"]
         px = r["px"]
         pos = "\\pos(%d,%d)\\an5\\q2" % (prof["W"] // 2, prof["cy"])
         fad = "\\fad(%d,%d)\\fs%d" % (fade, fade, px)
-        plain = _line(r["vtok"], set(), {})
-        # (لا هالة على السطر كاملًا: تُنتج شبحًا خلف الكلمة المكبّرة)
-        # الظلّ يُدمج داخل حدث النص نفسه (\\shad) بدل طبقة منفصلة تُبقي صورة رمادية للكلمات المخفيّة
-        # خطوة لكل كلمة: الأساس (الكلمة مخفيّة) + الإبراز (بقية السطر مخفيّ)
         n = len(r["vtok"])
-        for i, w in enumerate(r["words"]):
-            a, b = max(st, w["start"]), min(en, w["end"])
-            if b - a < 0.04:
+        steps = [w.get("hl", w["start"]) for w in r["words"]] + [en]
+        for i in range(len(r["words"])):
+            a_, b_ = max(r["start"], steps[i]), min(en, steps[i + 1])
+            if b_ - a_ < 0.05:
                 continue
             j = r["vmap"][i]
-            ev.append("Dialogue: 2,%s,%s,Cap,,0,0,0,,{%s%s%s}%s" % (
-                _as(a), _as(b), pos, fad, "\\bord%d\\shad3" % prof["outline"], _line(r["vtok"], {j}, {})))
             hide = set(range(n)) - {j}
-            ev.append("Dialogue: 2,%s,%s,Cap,,0,0,0,,{%s%s%s}%s" % (
-                _as(a), _as(b), pos, fad, hi,
+            # 1) هالة ذهبية ناعمة خلف الكلمة المنطوقة (لحظة النطق فقط)
+            if glow:
+                ev.append("Dialogue: 1,%s,%s,Cap,,0,0,0,,{%s%s%s}%s" % (
+                    _as(a_), _as(b_), pos,
+                    "\\fad(60,80)\\fs%d\\bord%d\\3c%s\\blur%d\\shad0\\fsp3\\alpha&H7A&"
+                    % (px, prof.get("glow_bord", 10), GOLD, prof.get("glow_blur", 9)),
+                    "", _line(r["vtok"], hide, {j: GOLD})))
+            # 2) الأساس: الكلمة النشطة مخفيّة، والبقية بالعاجي
+            ev.append("Dialogue: 2,%s,%s,Cap,,0,0,0,,{%s%s\\bord%d\\shad3}%s" % (
+                _as(a_), _as(b_), pos, fad, prof["outline"], _line(r["vtok"], {j}, {})))
+            # 3) الإبراز: ذهب + تكبير مع تجاوز سريع، والبقية مخفيّة
+            ev.append("Dialogue: 3,%s,%s,Cap,,0,0,0,,{%s%s%s}%s" % (
+                _as(a_), _as(b_), pos, fad, hi,
                 _line(r["vtok"], hide, {j: GOLD}) + "{\\c%s%s}" % (PARCH, hi_reset)))
     out = [head, "[Events]",
            "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
