@@ -24,7 +24,7 @@ DRIVE = f"{REPO}/google_drive"
 WORK = f"{DRIVE}/work"
 ASSETS = f"{REPO}/assets/series_riwaq"
 OUT = f"{REPO}/outputs/SERIES_RIWAQ"
-FF = "/tmp/venv/lib/python3.11/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2"
+FF = os.environ.get("FFMPEG") or __import__("imageio_ffmpeg").get_ffmpeg_exe()
 FONTS = f"{REPO}/public/fonts"
 
 ENDPAD = 4.0          # بطاقة الختام

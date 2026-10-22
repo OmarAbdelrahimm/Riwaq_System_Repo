@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import graphics as G  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
-FF = "/tmp/venv/lib/python3.11/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2"
+FF = os.environ.get("FFMPEG") or __import__("imageio_ffmpeg").get_ffmpeg_exe()
 INK = (26, 24, 21)
 
 

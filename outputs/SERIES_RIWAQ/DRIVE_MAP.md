@@ -8,6 +8,9 @@
 | الفيديو 01 — العلاقات أعمق من التواصل | `1mE-sQIVaIGWaiTXiEwOLQCiDDdzH5KsU` | ماستر + غلافان + غلاف عمودي + 3 SRT + SEO |
 | الفيديو 02 — المقارنة أداة لا معيار | `120GXiAOKEeewYVHgrqLAcWw-Q4bIWQVh` | نفس البنية (8 ملفات) |
 | الفيديو 03 — النهايات في العلاقات | `1CI0U3HWZfGry_fRcQoFU124Owtxp48WM` | نفس البنية (8 ملفات) |
+| الفيديو 04 — الشيطان يجري مجرى الدم | `1kTJ3xGIGnglEBVr5mPXh9fWwywu3NYz9` | 8 ملفات (ماستر + غلافان + عمودي + 3 SRT + SEO) |
+| الفيديو 05 — من يقود سيارتك؟ منظومة العلاقات | `1PxMiFnX5V9PXzhncKulVWAlU9OrRRvYc` | 8 ملفات |
+| الفيديو 06 — الرأي ليس الحقيقة: النقد بلا جرح | `1zECt6DYJOwGIARmXnNzmiPJz0HXDaBC9` | 8 ملفات |
 | الشورتات 1–9 — مرتبة بالترقيم | `1m4DG1uSvZbDmTSKi09GBfrb6QJLua4dG` | 9 مجلدات + خطة النشر + جدول الترقيم |
 
 ### مجلدات الشورتس (كل مجلد: ماستر + غلاف A + غلاف B + 3 SRT + SEO)
