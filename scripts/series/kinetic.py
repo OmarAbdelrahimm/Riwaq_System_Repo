@@ -38,10 +38,10 @@ Style: Cap,IBM Plex Sans Arabic,{size},{parch},{gold},{ink},&H00000000,-1,0,0,0,
 """
 
 PROFILES = {
-    "h": dict(W=1920, H=1080, size=100, min_size=62, max_w=1440, max_words=6,
-              cy=962, outline=4.0, spacing=3.0, glow_bord=11, glow_blur=8),
-    "v": dict(W=1080, H=1920, size=118, min_size=72, max_w=900, max_words=5,
-              cy=1318, outline=5.0, spacing=3.0, glow_bord=13, glow_blur=9),
+    "h": dict(W=1920, H=1080, size=86, min_size=64, max_w=1296, max_words=6,
+              cy=993, outline=4.0, spacing=3.0, glow_bord=11, glow_blur=8),
+    "v": dict(W=1080, H=1920, size=128, min_size=76, max_w=880, max_words=4,
+              cy=1405, outline=5.5, spacing=3.0, glow_bord=13, glow_blur=9),
 }
 
 
@@ -190,16 +190,31 @@ def _line(ws: list[str], hide: set[int], colour_of: dict[int, str]) -> str:
     return " ".join(parts)
 
 
+def prepare(rows: list[dict], fmt: str = "h"):
+    prof = PROFILES[fmt]
+    return prof, add_words(resegment(rows, prof))
+
+
+def timeline(rows: list[dict]) -> list[dict]:
+    """أحداث المؤثرات الصوتية: هوشة لكل بطاقة + نقرة لكل كلمة."""
+    ev = []
+    for r in rows:
+        ev.append({"t": round(r["start"], 3), "kind": "card"})
+        for w in r["words"]:
+            ev.append({"t": round(w["start"], 3), "kind": "word"})
+    ev.sort(key=lambda e: e["t"])
+    return ev
+
+
 def build_ass(rows: list[dict], out_path: str, fmt: str = "h", fade: int = 100,
               glow: bool = True) -> dict:
-    prof = PROFILES[fmt]
-    rows = add_words(resegment(rows, prof))
+    prof, rows = prepare(rows, fmt)
     head = HEAD.format(W=prof["W"], H=prof["H"], size=prof["size"], outline=prof["outline"],
                        spacing=prof.get("spacing", 2.0), parch=PARCH, gold=GOLD, ink=INK)
     ev = []
     base_bord = "\\bord%d\\shad3" % prof["outline"]
-    hi = ("\\fscx100\\fscy100\\t(0,60,\\fscx107\\fscy107)\\bord%d\\3c%s\\blur0\\fsp3\\shad3"
-          % (prof["outline"] + 1.5, INK))
+    hi = ("\\fscx88\\fscy88\\t(0,110,\\fscx108\\fscy108)\\t(110,240,\\fscx100\\fscy100)"
+          "\\bord%d\\3c%s\\blur0\\fsp3\\shad3" % (prof["outline"] + 1.5, INK))
     hi_reset = "\\fscx100\\fscy100\\bord%d.0\\blur0\\fsp0" % prof["outline"]
     for r in rows:
         st, en = r["start"], r["end"]
@@ -226,7 +241,8 @@ def build_ass(rows: list[dict], out_path: str, fmt: str = "h", fade: int = 100,
            "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
     out += ev
     open(out_path, "w", encoding="utf-8").write("\n".join(out) + "\n")
-    return {"cards": len(rows), "events": len(ev), "words": sum(len(r["words"]) for r in rows)}
+    return {"cards": len(rows), "events": len(ev),
+            "words": sum(len(r["words"]) for r in rows), "timeline": timeline(rows)}
 
 
 if __name__ == "__main__":

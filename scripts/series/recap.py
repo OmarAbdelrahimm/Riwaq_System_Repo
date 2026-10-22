@@ -18,7 +18,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 import graphics as G  # noqa: E402
 import kinetic as K  # noqa: E402
-from PIL import Image, ImageDraw  # noqa: E402
+import sfx as SFX  # noqa: E402
+from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 REPO = "/home/user/Riwaq_System_Repo"
 DRIVE = f"{REPO}/google_drive"
@@ -96,31 +97,52 @@ def _hairline(fmt: str, cy: int) -> Image.Image:
 
 
 # ------------------------------------------------------------------ assets
+BAND_H_X, BAND_H_Y = 239, 935      # نفس موضع ومقاس المستطيل السابق
+BAND_H_W, BAND_H_H = 1441, 117
+
+
+def _glass_panel(W: int, H: int, r: int, pad: int = 0, alpha: int = 214) -> Image.Image:
+    """لوح زجاجي دافئ شبه شفّاف (إطار ذهبي + لمعة علوية + حدّ رقيق) — يُستخدم أفقيًا ورأسيًا."""
+    panel = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    pd = ImageDraw.Draw(panel)
+    top, bot = (46, 40, 33), (30, 26, 22)
+    for y in range(H):
+        k = y / max(1, H - 1)
+        pd.line([(pad, y), (W - 1 - pad, y)],
+                fill=(int(top[0] + (bot[0] - top[0]) * k),
+                      int(top[1] + (bot[1] - top[1]) * k),
+                      int(top[2] + (bot[2] - top[2]) * k), alpha))
+    # لمعة زجاجية في الأعلى
+    sheen = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(sheen)
+    for y in range(0, max(8, int(H * 0.52))):
+        k = (1 - y / max(1, int(H * 0.52))) ** 1.7
+        sd.line([(pad, y), (W - 1 - pad, y)], fill=(236, 222, 198, int(30 * k)))
+    panel = Image.alpha_composite(panel, sheen)
+    mask = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([pad, pad, W - 1 - pad, H - 1 - pad],
+                                           radius=r, fill=255)
+    out = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    out.paste(panel, (0, 0), mask)
+    return out
+
+
 def band_h() -> str:
-    """شريط رواق السفلي (lower third): تغطية أنيقة لنصّ المصدر المحروق + وعاء الكابشن الكينتيك."""
+    """زجاج بنفس مقاس/موضع المستطيل القديم تمامًا (1441×117 عند 239,935)."""
     os.makedirs(WORK, exist_ok=True)
-    path = f"{WORK}/band_h.png"
+    path = f"{WORK}/band_h_glass.png"
     if os.path.exists(path):
         return path
-    W, Hh = 1560, 206
-    img = Image.new("RGBA", (W, Hh), (0, 0, 0, 0))
+    W, H, r = BAND_H_W, BAND_H_H, 10
+    img = _glass_panel(W, H, r)
     d = ImageDraw.Draw(img)
-    # تعبئة متدرّجة من الحبر
-    for y in range(Hh):
-        t = y / (Hh - 1)
-        a = 255
-        d.line([(8, y), (W - 8, y)], fill=(15, 13, 11, a))
-    mask = Image.new("L", (W, Hh), 0)
-    ImageDraw.Draw(mask).rounded_rectangle([0, 0, W - 1, Hh - 1], radius=14, fill=255)
-    out = Image.new("RGBA", (W, Hh), (0, 0, 0, 0))
-    out.paste(img, (0, 0), mask)
-    d = ImageDraw.Draw(out)
-    d.rounded_rectangle([0, 0, W - 1, Hh - 1], radius=14, outline=G.GOLD + (150,), width=2)
-    d.rounded_rectangle([7, 7, W - 8, Hh - 8], radius=10, outline=G.GOLD_L + (46,), width=1)
-    # خط ذهبي علوي + معيّن في المنتصف
-    d.line([(34, 4), (W - 34, 4)], fill=G.GOLD_L + (120,), width=1)
-    d.polygon([(W // 2, 1), (W // 2 + 5, 5), (W // 2, 9), (W // 2 - 5, 5)], fill=G.GOLD_L + (215,))
-    out.save(path)
+    d.rounded_rectangle([0, 0, W - 1, H - 1], radius=r, outline=G.GOLD + (165,), width=2)
+    d.rounded_rectangle([5, 5, W - 6, H - 6], radius=max(4, r - 4),
+                        outline=(212, 188, 146, 40), width=1)
+    d.line([(26, 2), (W - 27, 2)], fill=(240, 220, 180, 130), width=1)
+    d.polygon([(W // 2, 1), (W // 2 + 5, 5), (W // 2, 9), (W // 2 - 5, 5)],
+              fill=G.GOLD_L + (240,))
+    img.save(path)
     return path
 
 
@@ -138,10 +160,14 @@ def prep(fmt: str = "h", meta: dict | None = None) -> dict:
         meta["endcard"].save(f"{d}/endcard.png")
     rows = K.parse_srt(meta["srt"])
     info = K.build_ass(rows, f"{d}/captions.ass", fmt=fmt)
-    info.update({"scrim": sc, "hairline": f"{d}/hairline.png", "ass": f"{d}/captions.ass",
-                 "dir": d})
+    dur = float(meta.get("dur", 0) or 0)
+    sfx = f"{d}/sfx.wav"
+    sfx_info = SFX.build(info["timeline"], dur + ENDPAD, sfx)
+    info.update({"scrim": sc,
+                 "ass": f"{d}/captions.ass", "dir": d, "sfx": sfx, "sfx_info": sfx_info})
     json.dump(info, open(f"{d}/info.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    print(f"[{fmt}] captions OK: {info}")
+    print(f"[{fmt}] captions OK: {info['cards']} بطاقة / {info['words']} كلمة / "
+          f"مؤثرات: {sfx_info['words']} نقرة + {sfx_info['cards']} هوشة")
     return info
 
 
@@ -154,12 +180,15 @@ def wm_enable(dur: float) -> str:
     return "+".join(parts) if parts else "0"
 
 
-def vfilter_h(d: str, dur: float, sc: str = "") -> str:
+def vfilter_h(d: str, dur: float, sc: str = "", t_off: float = 0.0) -> str:
     total = dur + ENDPAD
     f = []
-    f.append(f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=25[base]")
-    f.append("[1:v]format=rgba[sc]")
-    f.append("[base][sc]overlay=180:858[b1]")
+    shift = f",setpts=PTS+{t_off:.3f}/TB" if t_off else ""
+    # 1) محو الكابشن القديم المدفون (delogo) ثم لوح زجاجي بنفس مقاس المستطيل القديم
+    f.append(f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=25{shift},"
+             "delogo=x=232:y=928:w=1455:h=131[b0]")
+    f.append("[1:v]format=rgba[gl]")
+    f.append(f"[b0][gl]overlay={BAND_H_X}:{BAND_H_Y}[b1]")
     f.append(f"[b1]ass={d}/captions.ass:fontsdir={FONTS}[b2]")
     f.append("[2:v]format=rgba[bug]")
     f.append(f"[b2][bug]overlay=54:H-h-118:enable='{wm_enable(dur)}'[b4]")
@@ -167,6 +196,9 @@ def vfilter_h(d: str, dur: float, sc: str = "") -> str:
     f.append(f"[b4][idn]overlay=0:0:enable='between(t,0,{IDENT_END:.2f})'[b5]")
     f.append(f"[4:v]format=rgba,trim=0:{ENDPAD:.2f},setpts=PTS-STARTPTS[ec]")
     f.append(f"[b5][ec]overlay=0:0:enable='gte(t,{dur:.3f})'[b6]")
+    f.append("[6:a]atrim=0:%.3f,asetpts=N/SR/TB,aresample=48000,volume=1.0[fx]" % (dur + ENDPAD))
+    f.append("[5:a]atrim=0:%.3f,asetpts=N/SR/TB,aresample=48000[vc]" % (dur + ENDPAD))
+    f.append("[vc][fx]amix=inputs=2:duration=longest:normalize=0[aout]")
     f.append(f"[b6]fade=t=in:st=0:d=0.30,fade=t=out:st={total - 0.55:.2f}:d=0.55,"
              "format=yuv420p,setsar=1[vout]")
     return ";".join(f)
@@ -182,20 +214,22 @@ def render_h(base: str, audio: str, srt: str, out: str, meta: dict | None = None
     dur = meta["dur"]
     total = dur + ENDPAD
     cmd = [FF, "-y", "-hide_banner", "-nostdin",
-           "-i", base,                                  # 0
-           "-i", info["scrim"],                         # 1 الشريط
+           "-i", base,                                  # 0 نسخة نظيفة بلا كابشن
+           "-loop", "1", "-i", info["scrim"],           # 1 لوح الزجاج
            "-loop", "1", "-i", f"{d}/bug.png",          # 2
            "-loop", "1", "-i", f"{d}/ident.png",        # 3
            "-loop", "1", "-i", f"{d}/endcard.png",      # 4
-           "-i", audio,                                 # 5
-           "-filter_complex", vfilter_h(d, dur, info["scrim"]),
-           "-map", "[vout]", "-map", "5:a", "-c:a", "copy",
+           "-i", audio,                                 # 5 الصوت النهائي (موسيقى + معايرة)
+           "-i", info["sfx"],                           # 6 مؤثرات صوتية
+           "-filter_complex", vfilter_h(d, dur, info["scrim"], t_off=(t0 or 0.0)),
+           "-map", "[vout]", "-map", "[aout]",
+           "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-ac", "2",
            "-c:v", "libx264", "-preset", preset, "-crf", str(crf),
            "-profile:v", "high", "-level", "4.2", "-pix_fmt", "yuv420p",
            "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
            "-color_range", "tv", "-movflags", "+faststart", "-t", f"{total:.3f}"]
     if t0 is not None and t1 is not None:
-        cmd += ["-frames:v", str(int((t1 - t0) * 25)), "-ss", str(t0)]
+        cmd += ["-frames:v", str(max(1, int((t1 - t0) * 25)))]
     cmd.append(out)
     p = subprocess.run(cmd, capture_output=True, text=True)
     if p.returncode != 0:
@@ -205,85 +239,78 @@ def render_h(base: str, audio: str, srt: str, out: str, meta: dict | None = None
 
 
 # ================================================================== SHORTS (رأسي)
-BAND_Y, BAND_H = 1128, 380
+# الصندوق القديم في الشورتس كان من y=1196 إلى y=1612 — اللوح الزجاجي يغطّيه بالكامل
+BAND_Y, BAND_H = 1298, 212
+TXT_CY = 1404  # مركز اللوح = 1298 + 106
 
 
 def band_assets() -> dict:
-    """قناع تدرّج + خطّان ذهبيان للشريط الزجاجي (frosted band) في الشورتس."""
+    """لوح زجاجي رأسي واحد: يغطّي الصندوق القديم بالكامل ويتمركز حوله النص."""
     d = f"{WORK}/v"
     os.makedirs(d, exist_ok=True)
-    mask_p, rules_p = f"{d}/mask.png", f"{d}/rules.png"
-    if not os.path.exists(mask_p):
-        m = Image.new("L", (1080, BAND_H), 0)
-        px = m.load()
-        top, bot = 120, 45
-        for y in range(BAND_H):
-            if y < top:
-                a = int(255 * (y / top) ** 1.5)
-            elif y > BAND_H - bot:
-                a = int(255 * ((BAND_H - y) / bot) ** 1.5)
-            else:
-                a = 255
-            for x in range(1080):
-                px[x, y] = a
-        m.save(mask_p)
-    if not os.path.exists(rules_p):
-        r = Image.new("RGBA", (1080, BAND_H), (0, 0, 0, 0))
-        dd = ImageDraw.Draw(r)
-        y = BAND_H - 62
-        for x in range(150, 930):
-            k = min(1.0, (x - 150) / 190, (930 - x) / 190)
-            dd.point((x, y), fill=G.GOLD_L + (int(190 * max(0.0, k)),))
-        dd.polygon([(540, y - 7), (547, y), (540, y + 7), (533, y)], fill=G.GOLD_L + (235,))
-        r.save(rules_p)
-    return {"mask": mask_p, "rules": rules_p, "dir": d}
+    path = f"{d}/glass.png"
+    if not os.path.exists(path):
+        W, H, r = 1080, BAND_H, 22
+        img = _glass_panel(W, H, r, pad=28, alpha=238)
+        dr = ImageDraw.Draw(img)
+        dr.rounded_rectangle([28, 0, W - 29, H - 1], radius=r,
+                             outline=G.GOLD + (160,), width=2)
+        dr.rounded_rectangle([37, 9, W - 38, H - 10], radius=max(6, r - 9),
+                             outline=(208, 184, 142, 36), width=1)
+        dr.line([(66, 3), (W - 67, 3)], fill=(240, 220, 180, 110), width=1)
+        dr.polygon([(540, 0), (546, 5), (540, 10), (534, 5)], fill=G.GOLD_L + (235,))
+        img.save(path)
+    return {"glass": path, "rules": path, "mask": path, "dir": d}
 
 
 def prep_v(srt: str, dur: float) -> dict:
     a = band_assets()
     d = a["dir"]
-    G.watermark_bug(78).save(f"{d}/bug.png")
     rows = K.parse_srt(srt)
     info = K.build_ass(rows, f"{d}/captions.ass", fmt="v")
-    info.update({"dur": dur, **a})
+    sfx = f"{d}/sfx.wav"
+    sfx_info = SFX.build(info["timeline"], dur, sfx)
+    info.update({"dur": dur, "sfx": sfx, "sfx_info": sfx_info, **a})
     print(f"[v] captions OK: {info['cards']} بطاقة / {info['words']} كلمة")
     return info
 
 
-def vfilter_v(info: dict) -> str:
+def vfilter_v(info: dict, t_off: float = 0.0) -> str:
     d = info["dir"]
     dur = info["dur"]
     f = []
-    f.append(f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=25,split[bA][bB]")
-    f.append(f"[bB]crop=1080:{BAND_H}:0:{BAND_Y},boxblur=38:3,eq=brightness=-0.02:saturation=0.9,"
-             "colorchannelmixer=rr=0.28:gg=0.26:bb=0.24[bl]")
-    f.append("[1:v]format=gray,colorchannelmixer=aa=0.88[mk]")
-    f.append("[bl][mk]alphamerge[band]")
-    f.append(f"[bA][band]overlay=0:{BAND_Y}:format=auto[b1]")
+    shift = f",setpts=PTS+{t_off:.3f}/TB" if t_off else ""
+    # محو الصندوق القديم المدفون ثم اللوح الزجاجي فوقه
+    f.append(f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=25{shift},"
+             "delogo=x=30:y=1186:w=1020:h=444[b0]")
+    f.append("[1:v]format=rgba[gl]")
+    f.append(f"[b0][gl]overlay=0:{BAND_Y}[b1]")
     f.append(f"[b1]ass={d}/captions.ass:fontsdir={FONTS}[b2]")
-    f.append("[2:v]format=rgba[rl]")
-    f.append(f"[b2][rl]overlay=0:{BAND_Y}[b3]")
-    f.append("[3:v]format=rgba[bug]")
-    f.append(f"[b3][bug]overlay={(1080 - 171) // 2}:1730:enable='{wm_enable(dur)}'[b4]")
-    f.append("[b4]format=yuv420p,setsar=1[vout]")
+    f.append("[b2]format=yuv420p,setsar=1[vout]")
+    f.append("[2:a]atrim=0:%.3f,asetpts=N/SR/TB,aresample=48000,volume=1.0[fx]" % dur)
+    f.append("[0:a]atrim=0:%.3f,asetpts=N/SR/TB,aresample=48000[vc]" % dur)
+    f.append("[vc][fx]amix=inputs=2:duration=longest:normalize=0[aout]")
     return ";".join(f)
 
 
 def render_v(base: str, srt: str, out: str, dur: float, crf: int = 19,
              preset: str = "medium", t0: float | None = None, t1: float | None = None) -> str:
     info = prep_v(srt, dur)
-    cmd = [FF, "-y", "-hide_banner", "-nostdin", "-i", base,
-           "-loop", "1", "-i", info["mask"],
-           "-loop", "1", "-i", info["rules"],
-           "-loop", "1", "-i", f"{info['dir']}/bug.png",
-           "-filter_complex", vfilter_v(info),
-           "-map", "[vout]", "-map", "0:a", "-c:a", "copy",
-           "-c:v", "libx264", "-preset", preset, "-crf", str(crf),
-           "-profile:v", "high", "-level", "4.2", "-pix_fmt", "yuv420p", "-r", "25",
-           "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
-           "-color_range", "tv", "-movflags", "+faststart", "-t", f"{dur:.3f}"]
+    cmd = [FF, "-y", "-hide_banner", "-nostdin"]
+    if t0 is not None:
+        cmd += ["-ss", f"{t0:.3f}"]
+    cmd += ["-i", base,
+            "-loop", "1", "-i", info["glass"],
+            "-i", info["sfx"],
+            "-filter_complex", vfilter_v(info, t_off=(t0 or 0.0)),
+            "-map", "[vout]", "-map", "[aout]",
+            "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-ac", "2",
+            "-c:v", "libx264", "-preset", preset, "-crf", str(crf),
+            "-profile:v", "high", "-level", "4.2", "-pix_fmt", "yuv420p", "-r", "25",
+            "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
+            "-color_range", "tv", "-movflags", "+faststart", "-t", f"{dur:.3f}"]
     if t0 is not None and t1 is not None:
-        cmd += ["-frames:v", str(int((t1 - t0) * 25)), "-ss", str(t0)]
+        cmd += ["-frames:v", str(max(1, int((t1 - t0) * 25)))]
     cmd.append(out)
     p = subprocess.run(cmd, capture_output=True, text=True)
     if p.returncode != 0:
