@@ -222,7 +222,10 @@ def resegment(rows: list[dict], prof: dict, env=None) -> list[dict]:
                         "cue_start": ci == 0})
     # لا تسمح لبطاقة بأن تتجاوز بداية التالية
     for a_, b_ in zip(out, out[1:]):
+        gap = b_["start"] - a_["end"]
         if a_["end"] > b_["start"] and b_["start"] > a_["start"] + 0.2:
+            a_["end"] = b_["start"]
+        elif 0 < gap <= 1.6:      # لا نُطفئ النص في السكتات القصيرة
             a_["end"] = b_["start"]
     for r in out:
         r["px"] = fit_size(r["words_txt"], prof)
@@ -234,6 +237,9 @@ def resegment(rows: list[dict], prof: dict, env=None) -> list[dict]:
             w["hl"] = max(r["start"], w["start"] - LEAD)
             if i:
                 w["hl"] = max(w["hl"], r["words"][i - 1]["hl"] + 0.05)
+        # أول كلمة في البطاقة تُبرز مع ظهورها تمامًا (لا فراغ 50ms)
+        if r["words"]:
+            r["words"][0]["hl"] = r["start"]
     return out
 
 
@@ -327,8 +333,15 @@ def build_ass(rows: list[dict], out_path: str, fmt: str = "h", fade: int = 90,
            "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
     out += ev
     open(out_path, "w", encoding="utf-8").write("\n".join(out) + "\n")
+    spans = []
+    for r in rows:
+        if spans and r["start"] - spans[-1][1] <= 0.12:
+            spans[-1][1] = max(spans[-1][1], r["end"])
+        else:
+            spans.append([r["start"], r["end"]])
     return {"cards": len(rows), "events": len(ev),
-            "words": sum(len(r["words"]) for r in rows), "timeline": timeline(rows)}
+            "words": sum(len(r["words"]) for r in rows), "timeline": timeline(rows),
+            "spans": spans}
 
 
 if __name__ == "__main__":

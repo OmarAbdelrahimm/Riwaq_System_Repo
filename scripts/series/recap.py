@@ -188,6 +188,13 @@ def prep(fmt: str = "h", meta: dict | None = None) -> dict:
 
 
 # ------------------------------------------------------------------ filters
+def span_enable(spans: list) -> str:
+    """تعبير إظهار: اللوح الزجاجي يظهر فقط أثناء وجود كابشن (لا لوح فارغ)."""
+    if not spans:
+        return "1"
+    return "+".join("between(t,%.2f,%.2f)" % (a, min(b + 0.25, 1e6)) for a, b in spans)
+
+
 def wm_enable(dur: float) -> str:
     parts, t = [], 20.0
     while t < dur - 1:
@@ -196,7 +203,8 @@ def wm_enable(dur: float) -> str:
     return "+".join(parts) if parts else "0"
 
 
-def vfilter_h(d: str, dur: float, sc: str = "", t_off: float = 0.0) -> str:
+def vfilter_h(d: str, dur: float, sc: str = "", t_off: float = 0.0,
+              enable: str = "1") -> str:
     total = dur + ENDPAD
     f = []
     shift = f",setpts=PTS+{t_off:.3f}/TB" if t_off else ""
@@ -204,14 +212,14 @@ def vfilter_h(d: str, dur: float, sc: str = "", t_off: float = 0.0) -> str:
     f.append(f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=25{shift},"
              "delogo=x=232:y=928:w=1455:h=131[b0]")
     f.append("[1:v]format=rgba[gl]")
-    f.append(f"[b0][gl]overlay={BAND_H_X}:{BAND_H_Y}[b1]")
+    f.append(f"[b0][gl]overlay={BAND_H_X}:{BAND_H_Y}:enable='{enable}'[b1]")
     f.append(f"[b1]ass={d}/captions.ass:fontsdir={FONTS}[b2]")
     f.append("[2:v]format=rgba[bug]")
     f.append(f"[b2][bug]overlay=54:H-h-118:enable='{wm_enable(dur)}'[b4]")
     f.append(f"[3:v]format=rgba,fade=t=in:st=0:d=0.35:alpha=1,fade=t=out:st={IDENT_END - 0.45:.2f}:d=0.45:alpha=1[idn]")
     f.append(f"[b4][idn]overlay=0:0:enable='between(t,0,{IDENT_END:.2f})'[b5]")
-    f.append(f"[4:v]format=rgba,trim=0:{ENDPAD:.2f},setpts=PTS-STARTPTS[ec]")
-    f.append(f"[b5][ec]overlay=0:0:enable='gte(t,{dur:.3f})'[b6]")
+    f.append(f"[4:v]format=rgba,trim=0:{ENDPAD + 2:.2f},setpts=PTS-STARTPTS[ec]")
+    f.append(f"[b5][ec]overlay=0:0:enable='gte(t,{dur:.3f})':eof_action=pass[b6]")
     f.append("[6:a]atrim=0:%.3f,asetpts=N/SR/TB,aresample=48000,volume=1.0[fx]" % (dur + ENDPAD))
     f.append("[5:a]atrim=0:%.3f,asetpts=N/SR/TB,aresample=48000[vc]" % (dur + ENDPAD))
     f.append("[vc][fx]amix=inputs=2:duration=longest:normalize=0[aout]")
@@ -237,7 +245,8 @@ def render_h(base: str, audio: str, srt: str, out: str, meta: dict | None = None
            "-loop", "1", "-i", f"{d}/endcard.png",      # 4
            "-i", audio,                                 # 5 الصوت النهائي (موسيقى + معايرة)
            "-i", info["sfx"],                           # 6 مؤثرات صوتية
-           "-filter_complex", vfilter_h(d, dur, info["scrim"], t_off=(t0 or 0.0)),
+           "-filter_complex", vfilter_h(d, dur, info["scrim"], t_off=(t0 or 0.0),
+                                        enable=span_enable(info.get("spans"))),
            "-map", "[vout]", "-map", "[aout]",
            "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-ac", "2",
            "-c:v", "libx264", "-preset", preset, "-crf", str(crf),
@@ -292,7 +301,7 @@ def prep_v(srt: str, dur: float, audio: str | None = None) -> dict:
     return info
 
 
-def vfilter_v(info: dict, t_off: float = 0.0) -> str:
+def vfilter_v(info: dict, t_off: float = 0.0, enable: str = "1") -> str:
     d = info["dir"]
     dur = info["dur"]
     f = []
@@ -301,7 +310,7 @@ def vfilter_v(info: dict, t_off: float = 0.0) -> str:
     f.append(f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=25{shift},"
              "delogo=x=30:y=1186:w=1020:h=444[b0]")
     f.append("[1:v]format=rgba[gl]")
-    f.append(f"[b0][gl]overlay=0:{BAND_Y}[b1]")
+    f.append(f"[b0][gl]overlay=0:{BAND_Y}:enable='{enable}'[b1]")
     f.append(f"[b1]ass={d}/captions.ass:fontsdir={FONTS}[b2]")
     f.append("[b2]format=yuv420p,setsar=1[vout]")
     f.append("[2:a]atrim=0:%.3f,asetpts=N/SR/TB,aresample=48000,volume=1.0[fx]" % dur)
@@ -319,7 +328,8 @@ def render_v(base: str, srt: str, out: str, dur: float, crf: int = 19,
     cmd += ["-i", base,
             "-loop", "1", "-i", info["glass"],
             "-i", info["sfx"],
-            "-filter_complex", vfilter_v(info, t_off=(t0 or 0.0)),
+            "-filter_complex", vfilter_v(info, t_off=(t0 or 0.0),
+                                        enable=span_enable(info.get("spans"))),
             "-map", "[vout]", "-map", "[aout]",
             "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-ac", "2",
             "-c:v", "libx264", "-preset", preset, "-crf", str(crf),
