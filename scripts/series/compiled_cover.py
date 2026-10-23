@@ -16,6 +16,7 @@ from PIL import Image, ImageDraw  # noqa: E402
 REPO = "/home/user/Riwaq_System_Repo"
 OUT = f"{REPO}/outputs/SERIES_RIWAQ/COMPILED"
 SRC = f"{REPO}/google_drive/الفيديو 01 — العلاقات أعمق من التواصل (ماستر).mp4"
+SRC6 = f"{REPO}/google_drive/الفيديو 06 — الرأي ليس الحقيقة النقد بلا جرح (ماستر).mp4"
 
 SAFE_BOTTOM = 566
 SAFE_TOP = 190
@@ -34,9 +35,9 @@ def chip(d, x, y, ss, text, px=25, accent=None):
 
 
 def build(frame_t: float, lines: list[str], kicker: str, sub: str, out: str,
-          duration="26:40", focus: float = 0.5) -> str:
+          duration="26:42", focus: float = 0.5, src: str | None = None) -> str:
     W, H = 1280, 720
-    frame = V.grab(SRC, frame_t, f"/tmp/cmp_{int(frame_t)}.png")
+    frame = V.grab(src or SRC, frame_t, f"/tmp/cmp_{abs(hash((src, frame_t))) % 10**8}.png")
     base = V._vignette(V.fill_frame(frame, W, H, focus), 0.15).convert("RGBA")
 
     # ------- الشعار
@@ -59,13 +60,14 @@ def build(frame_t: float, lines: list[str], kicker: str, sub: str, out: str,
 
     # ------- الكتلة النصية
     kick_px, sub_px, name_px, row_h = 30, 27, 30, 46
-    fixed = 30 + 44 + 34 + 26 + row_h
+    gap_k = 52
+    fixed = gap_k + 44 + 34 + 26 + row_h
     avail = SAFE_BOTTOM - SAFE_TOP - fixed
     fitted, total, px = [], 0, 92
     while px > 44:
         fitted, total = [], 0
         for line in lines:
-            fnt = G.fit_font(G.AMIRI_B, line, 600, px, 44)
+            fnt = G.fit_font(G.AMIRI_B, line, 560, px, 42)
             fitted.append((line, fnt))
             total += int(fnt.size * 1.28)
         if total <= avail:
@@ -73,7 +75,7 @@ def build(frame_t: float, lines: list[str], kicker: str, sub: str, out: str,
         px -= 2
     y0 = SAFE_BOTTOM - (fixed + total)
     y_kick = y0
-    y_title = y_kick + 30
+    y_title = y_kick + gap_k
     y_sub = y_title + total + 30
     y_row = y_sub + 44 + 26
     x0 = 66
@@ -117,9 +119,12 @@ def build(frame_t: float, lines: list[str], kicker: str, sub: str, out: str,
 
 
 if __name__ == "__main__":
-    build(38, ["العلاقة مع الله", "مركز الحياة"], "الحلقة المجمّعة",
-          "ست حلقات في فيديو واحد — 26 دقيقة", f"{OUT}/COMPILED_A_1280x720.jpg")
-    build(126, ["ست حلقات", "في فيديو واحد"], "26 دقيقة",
-          "النهايات · المقارنة · النجاح · الوعي",
-          f"{OUT}/COMPILED_B_1280x720.jpg", focus=0.55)
+    # A — العنوان الرئيسي (الفكرة): العلاقة التي تُصلح كل العلاقات
+    build(60, ["العلاقة التي", "تُصلح كل العلاقات"], "بودكاست بدون ورق",
+          "مع الله، ومع النفس، ومع الناس",
+          f"{OUT}/COMPILED_A_1280x720.jpg", focus=0.46)
+    # B — الزاوية الثانية: علاقاتك كلها تبدأ من علاقتك بالله
+    build(95, ["علاقاتك كلها تبدأ", "من علاقتك بالله"], "رحلة في منظومة العلاقات",
+          "من الفرد… إلى الأسرة… إلى العالم",
+          f"{OUT}/COMPILED_B_1280x720.jpg", focus=0.52, src=SRC6)
     print("OK")

@@ -12,3 +12,6 @@ assets/series_riwaq/music/*.mp3
 outputs/SERIES_RIWAQ/*/*.mp4
 outputs/SERIES_RIWAQ/*/*/*.mp4
 scripts/series/__pycache__/
+
+# مجلد العمل الوسيط للتركيب (مقاطع، بطاقات، سجلات)
+work/
