@@ -48,3 +48,20 @@
 | مجلد الشورتات (يضم 01–09) | `1m4DG1uSvZbDmTSKi09GBfrb6QJLua4dG` |
 
 **قاعدة النشر:** العنوان A مع الغلاف A، والعنوان B مع الغلاف B — لا خلط. الترتيب: 01، 02 مع الفيديو 01 ← 03، 04، 05 مع الفيديو 02 ← 07، 08 مع الفيديو 03 ← 06 و09 كفواصل.
+
+---
+
+## ثالثًا: الأغلفة (تحديث v2 — صورة كاملة بلا تدرّج)
+
+الأغلفة السابقة كانت تضع نصف الكادر في مستطيل داكن متدرّج. النسخة الحالية **تملأ الكادر بالصورة كاملة من نفس اللقطة**، والنص والشعار يقفان فوق الصورة مباشرة بظل ديناميكي متعدّد الطبقات (ظل محيط واسع + ظل قريب + هالة ذهبية خفيفة) — لا صندوق ولا شريط ولا لون مضاف.
+
+| # | غلاف A (1280×720) | غلاف B (1280×720) | عمودي (1080×1920) |
+|---|---|---|---|
+| 01 | `1cnt0o50uqreA59rWe7sE-16sXQieU0P6` | `1oQguCufBTBGQ7N9BJKUKzDdD6Hp6YYZ1` | `1Hg9uJhmc-8yNE32_Klt-teJcaM206X-9` |
+| 02 | `16xJpPf9Dvvv956w3nQvvb2f1LWH4Vqm1` | `1yCCiQo0iA26RR5B33X1YcGvHmnQUCYOO` | `1flqBdx2quihNe812GHT74eS4Ayz61pt5` |
+| 03 | `19KazvGxjCvB7x72y9-U7GhP48X1Uk7vc` | `1U5AVfKrzagScDMoGmnIkVbR3SsG6lr3N` | `1hil0MEqg7bPaz-O1zEFsAgg3ohIxieT5` |
+| 04 | `1LeJJ4XiX9XZbWvqzMsSDgRqq8HAP7t3J` | `1VRWREvSjOCCDypjOju9eE7zOoXRqdldB` | `1TiKludsvinBgI3VOwPIoWLzkAYbeU6KI` |
+| 05 | `1_AzKcElR4O5lCp-1b-GsajmBNB6LvGbe` | `1K59XfiOaKLNeAC9S8edlX37-5ZZA7WSE` | `1Ol3PS0uE1kmqGkpS6m7NQG_XAki5CBuH` |
+| 06 | `1reDqW9tcq_ogWi7lXdPtZ_QfznG_XadL` | `12ExppeQ5OHepT2q4TSN4misYXDKhwcRt` | `1SXuRpuj1sk17vIy0Jlwgth3i9bzeuXck` |
+
+ورقة مقارنة كل الأغلفة: `covers_v2/ALL_COVERS_HORIZONTAL.png` و`covers_v2/ALL_COVERS_VERTICAL.png`، ومقارنة قبل/بعد: `covers_v2/BEFORE_AFTER_VERTICAL.png`.
