@@ -61,26 +61,33 @@
       "label_en": "Pause before a life-changing decision"
     }
   ],
+  "cover_revision": 2,
+  "cover_drive_sync_status": "not_updated_pending_in_place_binary_streaming",
+  "cover_treatment": {
+    "background": "full-bleed crop of the actual source still; no dark panel or gradient",
+    "text_effect": "directional drop shadow and dark keyline; no generated faces",
+    "outer_frame": "full inset rectangle matching the reference; brighter gold and 3px stroke"
+  },
   "local_files": {
     "THUMBNAIL_1280x720.jpg": {
-      "bytes": 123015,
+      "bytes": 161778,
       "dimensions": "1280x720",
-      "sha256": "e459c6f6fd56dcf78c942923ce687341031792a1b9c2776fb4c8ba9bf0eb5491"
+      "sha256": "f140e7a98c1bc8ba93c7ef57b9aee45f34faa2c07b1e8f6cee16897a58a97b2d"
     },
     "THUMBNAIL_1280x720.png": {
-      "bytes": 232954,
+      "bytes": 341816,
       "dimensions": "1280x720",
-      "sha256": "5fc429d89d981384de77c5c845da213c96a163a8a9ccfd7eeff10382886b037a"
+      "sha256": "8326f6255e3c2a810de704999876c59f9a57b6c1292c0393626fee7524e52572"
     },
     "THUMBNAIL_1080x1920.jpg": {
-      "bytes": 185833,
+      "bytes": 321996,
       "dimensions": "1080x1920",
-      "sha256": "fc6304af07dc03bfd1820610b66fe9d58044244beceb0b0905221473dab06790"
+      "sha256": "b8137c7315e2c1f0310ac4e3e73d8c0bd7bafeb0e4973ae4221af4066ac5d836"
     },
     "THUMBNAIL_1080x1920.png": {
-      "bytes": 274363,
+      "bytes": 792749,
       "dimensions": "1080x1920",
-      "sha256": "cfd7980e327104220693850abda0b41912c069b9993884964896be8bc5d2df50"
+      "sha256": "901b58206a5d29b494748cea360bfbca95b71c0cdb80950b8d156dba49f35a74"
     },
     "CAPTIONS_AR_EN.srt": {
       "bytes": 11449,

@@ -9,7 +9,7 @@ This script generates the tracked publishing sources for the 12 finalized RELATI
 3. Keep the bilingual SRTs in each `youtube_packages/<ID>/CAPTIONS_AR_EN.srt` directory; English-only SRTs are extracted from their existing English cue lines without changing indices or timecodes.
 4. Source stills are stored under `youtube_packages/source_frames/`, so cover generation is reproducible without the MP4s or Drive access.
 
-The builder checks the 70-character Arabic title target, three-to-five-word cover hooks, 400–500-character YouTube tag fields, exactly three hashtags per language description, expected image dimensions, and the empty final 240 pixels of each vertical cover. It writes byte sizes and SHA-256 hashes to each `ASSET_MANIFEST.json`. The vector Riwaq mark is kept in `assets/riwaq-mark.svg` as a brand reference. The generated lock-up uses a lightweight Pillow-only arch-and-jewel rendition, avoiding a system Cairo dependency.
+The builder checks the 70-character Arabic title target, three-to-five-word cover hooks, 400–500-character YouTube tag fields, exactly three hashtags per language description, expected image dimensions, and a photo-only footer strip on each vertical cover. Covers use a full-bleed crop of the actual source still (no dark panel or gradient), preserve the package copy, add a shadow/keyline for Arabic legibility, and retain the reference-style full outer rectangle with a slightly brighter 3px gold stroke. It writes byte sizes and SHA-256 hashes to each `ASSET_MANIFEST.json`. The vector Riwaq mark is kept in `assets/riwaq-mark.svg` as a brand reference. The generated lock-up uses a Pillow rendition of the approved arch-and-jewel mark, avoiding a system Cairo dependency.
 
 ## Delivery convention
 

@@ -99,7 +99,35 @@
         "THUMBNAIL_1280x720.png": 240400,
         "ASSET_MANIFEST.json": 3115
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 161523,
+            "dimensions": "1280x720",
+            "sha256": "f7cb0648472a80f0e92e481256a85b5b4625cddf4fbf745efe6673bb369a7e86"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 340556,
+            "dimensions": "1280x720",
+            "sha256": "cd08bd9caba6b8576cbbcdc1dbcac0cebbea4ab1b5e88eb430196054d9ff1f03"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 321326,
+            "dimensions": "1080x1920",
+            "sha256": "c56d2c62857fdf50474147d237525362eeb3c7f435e13b818220ce691a678f9e"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 795702,
+            "dimensions": "1080x1920",
+            "sha256": "563bda01301f5b5a0aa4b4e24dec5da3a6c5c1163996e1d2c298eccda02534ae"
+          }
+        }
+      }
     },
     {
       "id": "RELATIONSHIP_003",
@@ -195,7 +223,35 @@
         "THUMBNAIL_1280x720.png": 228707,
         "ASSET_MANIFEST.json": 3387
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 163948,
+            "dimensions": "1280x720",
+            "sha256": "3fdd8eeee92faade39f7da4ac558902af861c83b76a2acb5ddabfd0a33dcefa2"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 355265,
+            "dimensions": "1280x720",
+            "sha256": "514a1b1b2d6903564fd85f22b40c857a87747b0e16146b3f07a576dd53bd678f"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 318777,
+            "dimensions": "1080x1920",
+            "sha256": "d5d90cf1a35f214bf3c6fb65aef833d8289543831a4d6a233ea48b9f716308ca"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 770443,
+            "dimensions": "1080x1920",
+            "sha256": "851e5b7413ab1d39c9c516a269428960cb8c1bb0d8ea75b470337015b59c7ad3"
+          }
+        }
+      }
     },
     {
       "id": "RELATIONSHIP_004",
@@ -291,7 +347,35 @@
         "THUMBNAIL_1280x720.png": 232954,
         "ASSET_MANIFEST.json": 3100
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 161778,
+            "dimensions": "1280x720",
+            "sha256": "f140e7a98c1bc8ba93c7ef57b9aee45f34faa2c07b1e8f6cee16897a58a97b2d"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 341816,
+            "dimensions": "1280x720",
+            "sha256": "8326f6255e3c2a810de704999876c59f9a57b6c1292c0393626fee7524e52572"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 321996,
+            "dimensions": "1080x1920",
+            "sha256": "b8137c7315e2c1f0310ac4e3e73d8c0bd7bafeb0e4973ae4221af4066ac5d836"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 792749,
+            "dimensions": "1080x1920",
+            "sha256": "901b58206a5d29b494748cea360bfbca95b71c0cdb80950b8d156dba49f35a74"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_01",
@@ -387,7 +471,35 @@
         "THUMBNAIL_1280x720.png": 262594,
         "ASSET_MANIFEST.json": 2536
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 182655,
+            "dimensions": "1280x720",
+            "sha256": "4ac0606dd4bafe0c337ccf3e49bc6eba555c7d84006241118a9363455abfafbd"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 477528,
+            "dimensions": "1280x720",
+            "sha256": "29a5c19636d1cad9b3db58ec2fdf805998097fb24acc07c226db02b79647d450"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 290446,
+            "dimensions": "1080x1920",
+            "sha256": "6f8d1c263b52b6ee9cd0d5e54fe5cec932199fc09e7750589b158f719b86b552"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 729914,
+            "dimensions": "1080x1920",
+            "sha256": "5107f2a77fa84171d6c6bd86573e0eaf3d31fb4eeb57b17ef0683c74557b08e0"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_02",
@@ -483,7 +595,35 @@
         "THUMBNAIL_1280x720.png": 287536,
         "ASSET_MANIFEST.json": 2420
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 186652,
+            "dimensions": "1280x720",
+            "sha256": "00ca2ec7bbb90f4dd0f2d98473309edbf96115efbd0ac9cc8055b097fb771224"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 494600,
+            "dimensions": "1280x720",
+            "sha256": "5786d10dc6972e94d5970347c1b92afa0025f433bdefe28658fb7f49cb962dfa"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 305684,
+            "dimensions": "1080x1920",
+            "sha256": "a6939c32dac41e908d32f505cfd1e13c495a7faca5c0142bdabe32f7e6e8116e"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 812106,
+            "dimensions": "1080x1920",
+            "sha256": "3b820c5005d1ca35fa03154bbacb81daf7ed70e6a6f61331c8f307aea3a471b4"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_03",
@@ -579,7 +719,35 @@
         "THUMBNAIL_1280x720.png": 260998,
         "ASSET_MANIFEST.json": 2408
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 179253,
+            "dimensions": "1280x720",
+            "sha256": "366081ec75a6b28415a7c1505bcb862454fca7cc79f98d854710820ee50473ec"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 474619,
+            "dimensions": "1280x720",
+            "sha256": "5a2ef27b3e9569f6bdd3202f1f64fae59117dcf967de68f94634834e8ae0721c"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 302592,
+            "dimensions": "1080x1920",
+            "sha256": "4ccf3216fcab5182bc0a61bb9765bd2ec2447e3cab08407321293e93eaf65f73"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 769284,
+            "dimensions": "1080x1920",
+            "sha256": "47cbaa4d497adc62d0b9d75142ab4de13da272dd8ba568ead58055870be90e75"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_04",
@@ -675,7 +843,35 @@
         "THUMBNAIL_1280x720.png": 276894,
         "ASSET_MANIFEST.json": 2427
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 189304,
+            "dimensions": "1280x720",
+            "sha256": "8e26acbe5b90bf22adffdc9297aa13b9f1d5c5236ff0ec1a0e89c160a509cce0"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 497712,
+            "dimensions": "1280x720",
+            "sha256": "27929027525686806c561cbf7b2c366d69a0676592cda5a2d391bdacfb4cb8fc"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 284898,
+            "dimensions": "1080x1920",
+            "sha256": "796d206dca050b59d8713094462cd67482689af4fbe1e80c37917c79b90e5f10"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 691546,
+            "dimensions": "1080x1920",
+            "sha256": "585c9c2da61e70c8554ebffce499e985042f5a47f923fff50adee460748a09dd"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_05",
@@ -771,7 +967,35 @@
         "THUMBNAIL_1280x720.png": 269139,
         "ASSET_MANIFEST.json": 2430
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 182298,
+            "dimensions": "1280x720",
+            "sha256": "91bfae0b066c53c05c7336208a7f5b489235bdc63485a58996e635456f19bd88"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 483533,
+            "dimensions": "1280x720",
+            "sha256": "b0656c7c8ae6581c70a3435b991f8b3e51ed373193299a114758d47d7b3f4995"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 304638,
+            "dimensions": "1080x1920",
+            "sha256": "1b71882b37b830e24f0d896e2511235a0f6a6083c6412025175b6f42facb9075"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 767043,
+            "dimensions": "1080x1920",
+            "sha256": "fcc972f712eaef6484f5d1407f1b2e0fc2d493fa5b83dc4606c084446d690e66"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_06",
@@ -867,7 +1091,35 @@
         "THUMBNAIL_1280x720.png": 271730,
         "ASSET_MANIFEST.json": 2419
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 183271,
+            "dimensions": "1280x720",
+            "sha256": "1599119fb0ac763deea1b3e51d4188eded907b64d172b56c77d6bfdd45d7d5de"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 483367,
+            "dimensions": "1280x720",
+            "sha256": "449794d9468bcaefab7653fa0d2d995b3f1e012a82ad810979d27912f14a4380"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 289259,
+            "dimensions": "1080x1920",
+            "sha256": "1383258d748b8d056e9f84ff6db0aff1c3a2b7d871717b6111ba303e2d6255f2"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 731511,
+            "dimensions": "1080x1920",
+            "sha256": "6b717776d7ae8dd73c0fc213d7fbfa4d5b63fbc9c243fd2ce352e526dff5b0ac"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_07",
@@ -963,7 +1215,35 @@
         "THUMBNAIL_1280x720.png": 285774,
         "ASSET_MANIFEST.json": 2431
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 191100,
+            "dimensions": "1280x720",
+            "sha256": "1a9dd009790e5dc29b373c566994a3e82e460274c42689e5f82546c224f2cc48"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 502463,
+            "dimensions": "1280x720",
+            "sha256": "304732d5d3f9e9578a98e39243412bc989c7efd4e9c43de7452e43ba89a5a7f3"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 293503,
+            "dimensions": "1080x1920",
+            "sha256": "93a138fc7111c4fa6e0efa793f4978192ba0c999670a17db43b3b0e49fde48b8"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 730830,
+            "dimensions": "1080x1920",
+            "sha256": "295f669b820cd437de5d9a852307369d8d99e976b0d1b9f5a583a36b094da67f"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_08",
@@ -1059,7 +1339,35 @@
         "THUMBNAIL_1280x720.png": 262073,
         "ASSET_MANIFEST.json": 2429
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 182891,
+            "dimensions": "1280x720",
+            "sha256": "b61e1bf5ef29c02dcecdfef050404cb4505a43955b20f7f67e7cb2af51cecb31"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 486418,
+            "dimensions": "1280x720",
+            "sha256": "51dda283ee7d0f13cf856630c588ccc0d5c229136de3af5e089a7f58a2a027c6"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 266339,
+            "dimensions": "1080x1920",
+            "sha256": "439b1f6d963319473d4bf8e0ef1374d909f54e28270aca0bb51e9554be6df677"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 624183,
+            "dimensions": "1080x1920",
+            "sha256": "1ed52d7d9b2a72245911da5f9066ab04d1f21fa8f2c8a925571cb32057dfe951"
+          }
+        }
+      }
     },
     {
       "id": "SHORT_09",
@@ -1155,7 +1463,35 @@
         "THUMBNAIL_1280x720.png": 296189,
         "ASSET_MANIFEST.json": 2434
       },
-      "delivery_verified": true
+      "delivery_verified": true,
+      "cover_revision_2": {
+        "local_build_status": "complete",
+        "drive_sync_status": "not_updated",
+        "drive_files_modified": false,
+        "duplicate_files_created": false,
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 191415,
+            "dimensions": "1280x720",
+            "sha256": "a74386878c554d95fcfc2b797aa5c080c6f4b2f7dae83a193cf3c093f572f376"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 534540,
+            "dimensions": "1280x720",
+            "sha256": "77703361073fdc91f83be9db01cb8f605b8986c8d3b24a7391c09f78a59a88bf"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 304349,
+            "dimensions": "1080x1920",
+            "sha256": "5f68093f6d33693b1ca54b449505a6d0d3582e7b6b56343c5a890439520d9127"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 815433,
+            "dimensions": "1080x1920",
+            "sha256": "57dde270561c6ac88e11d8608ce7e3598539f386d81d2c018a3a37cecb3360eb"
+          }
+        }
+      }
     }
   ],
   "verification": {
@@ -1166,5 +1502,359 @@
     "all_12_video_copies_match_source_bytes": true,
     "all_96_non_video_assets_match_local_bytes": true,
     "no_mp4_written_to_git": true
+  },
+  "latest_cover_revision": {
+    "revision": 2,
+    "date": "2026-10-23",
+    "local_build_status": "complete",
+    "drive_sync_status": "blocked_pending_in_place_binary_streaming",
+    "drive_files_modified": false,
+    "duplicate_files_created": false,
+    "note": "Drive was not modified: the available in-place content tool accepts inline text/base64 but cannot stream a workspace image file; the workspace-file upload tool creates new Drive files. Because the existing cover IDs/names/folders must be preserved and duplicates are prohibited, the new binary covers are staged locally only.",
+    "design": {
+      "background": "full-bleed crop of each real source still; no panel or dark gradient",
+      "brand_and_text": "clear Riwaq lockup; Arabic text with directional shadow and dark keyline",
+      "outer_frame": "full reference-style rectangle, same inset, higher contrast with 3px gold stroke",
+      "formats": "16:9 and 9:16, each as JPG and PNG (48 local covers total)",
+      "source_policy": "real project frames only; no generated/replaced faces"
+    },
+    "packages": [
+      {
+        "package_id": "RELATIONSHIP_002",
+        "folder_id": "1Cv5PQRPE14uoWKgPe3Z4kPzZ6aCokq4C",
+        "folder_url": "https://drive.google.com/drive/folders/1Cv5PQRPE14uoWKgPe3Z4kPzZ6aCokq4C",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 161523,
+            "dimensions": "1280x720",
+            "sha256": "f7cb0648472a80f0e92e481256a85b5b4625cddf4fbf745efe6673bb369a7e86"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 340556,
+            "dimensions": "1280x720",
+            "sha256": "cd08bd9caba6b8576cbbcdc1dbcac0cebbea4ab1b5e88eb430196054d9ff1f03"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 321326,
+            "dimensions": "1080x1920",
+            "sha256": "c56d2c62857fdf50474147d237525362eeb3c7f435e13b818220ce691a678f9e"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 795702,
+            "dimensions": "1080x1920",
+            "sha256": "563bda01301f5b5a0aa4b4e24dec5da3a6c5c1163996e1d2c298eccda02534ae"
+          }
+        }
+      },
+      {
+        "package_id": "RELATIONSHIP_003",
+        "folder_id": "1WNoe_0JIxeU18GOJPUIfWG1XPpCBHX0e",
+        "folder_url": "https://drive.google.com/drive/folders/1WNoe_0JIxeU18GOJPUIfWG1XPpCBHX0e",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 163948,
+            "dimensions": "1280x720",
+            "sha256": "3fdd8eeee92faade39f7da4ac558902af861c83b76a2acb5ddabfd0a33dcefa2"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 355265,
+            "dimensions": "1280x720",
+            "sha256": "514a1b1b2d6903564fd85f22b40c857a87747b0e16146b3f07a576dd53bd678f"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 318777,
+            "dimensions": "1080x1920",
+            "sha256": "d5d90cf1a35f214bf3c6fb65aef833d8289543831a4d6a233ea48b9f716308ca"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 770443,
+            "dimensions": "1080x1920",
+            "sha256": "851e5b7413ab1d39c9c516a269428960cb8c1bb0d8ea75b470337015b59c7ad3"
+          }
+        }
+      },
+      {
+        "package_id": "RELATIONSHIP_004",
+        "folder_id": "1Iey-NC_2OEQPuhrcmvjs_y3IUgvWbIK7",
+        "folder_url": "https://drive.google.com/drive/folders/1Iey-NC_2OEQPuhrcmvjs_y3IUgvWbIK7",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 161778,
+            "dimensions": "1280x720",
+            "sha256": "f140e7a98c1bc8ba93c7ef57b9aee45f34faa2c07b1e8f6cee16897a58a97b2d"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 341816,
+            "dimensions": "1280x720",
+            "sha256": "8326f6255e3c2a810de704999876c59f9a57b6c1292c0393626fee7524e52572"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 321996,
+            "dimensions": "1080x1920",
+            "sha256": "b8137c7315e2c1f0310ac4e3e73d8c0bd7bafeb0e4973ae4221af4066ac5d836"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 792749,
+            "dimensions": "1080x1920",
+            "sha256": "901b58206a5d29b494748cea360bfbca95b71c0cdb80950b8d156dba49f35a74"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_01",
+        "folder_id": "1PjCoVfMCrWA1ODXlTa9uFr_z1TV3EDOX",
+        "folder_url": "https://drive.google.com/drive/folders/1PjCoVfMCrWA1ODXlTa9uFr_z1TV3EDOX",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 182655,
+            "dimensions": "1280x720",
+            "sha256": "4ac0606dd4bafe0c337ccf3e49bc6eba555c7d84006241118a9363455abfafbd"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 477528,
+            "dimensions": "1280x720",
+            "sha256": "29a5c19636d1cad9b3db58ec2fdf805998097fb24acc07c226db02b79647d450"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 290446,
+            "dimensions": "1080x1920",
+            "sha256": "6f8d1c263b52b6ee9cd0d5e54fe5cec932199fc09e7750589b158f719b86b552"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 729914,
+            "dimensions": "1080x1920",
+            "sha256": "5107f2a77fa84171d6c6bd86573e0eaf3d31fb4eeb57b17ef0683c74557b08e0"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_02",
+        "folder_id": "1QYnX_-qrWh7fweXY4f7p2P4AO5zKrRoL",
+        "folder_url": "https://drive.google.com/drive/folders/1QYnX_-qrWh7fweXY4f7p2P4AO5zKrRoL",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 186652,
+            "dimensions": "1280x720",
+            "sha256": "00ca2ec7bbb90f4dd0f2d98473309edbf96115efbd0ac9cc8055b097fb771224"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 494600,
+            "dimensions": "1280x720",
+            "sha256": "5786d10dc6972e94d5970347c1b92afa0025f433bdefe28658fb7f49cb962dfa"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 305684,
+            "dimensions": "1080x1920",
+            "sha256": "a6939c32dac41e908d32f505cfd1e13c495a7faca5c0142bdabe32f7e6e8116e"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 812106,
+            "dimensions": "1080x1920",
+            "sha256": "3b820c5005d1ca35fa03154bbacb81daf7ed70e6a6f61331c8f307aea3a471b4"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_03",
+        "folder_id": "1uPOecn7pYMxtMVk0whLMWVFBVyCSazyz",
+        "folder_url": "https://drive.google.com/drive/folders/1uPOecn7pYMxtMVk0whLMWVFBVyCSazyz",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 179253,
+            "dimensions": "1280x720",
+            "sha256": "366081ec75a6b28415a7c1505bcb862454fca7cc79f98d854710820ee50473ec"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 474619,
+            "dimensions": "1280x720",
+            "sha256": "5a2ef27b3e9569f6bdd3202f1f64fae59117dcf967de68f94634834e8ae0721c"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 302592,
+            "dimensions": "1080x1920",
+            "sha256": "4ccf3216fcab5182bc0a61bb9765bd2ec2447e3cab08407321293e93eaf65f73"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 769284,
+            "dimensions": "1080x1920",
+            "sha256": "47cbaa4d497adc62d0b9d75142ab4de13da272dd8ba568ead58055870be90e75"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_04",
+        "folder_id": "1yy53rvrHHHvJhJBCaE8fauk94aIZj5Xf",
+        "folder_url": "https://drive.google.com/drive/folders/1yy53rvrHHHvJhJBCaE8fauk94aIZj5Xf",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 189304,
+            "dimensions": "1280x720",
+            "sha256": "8e26acbe5b90bf22adffdc9297aa13b9f1d5c5236ff0ec1a0e89c160a509cce0"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 497712,
+            "dimensions": "1280x720",
+            "sha256": "27929027525686806c561cbf7b2c366d69a0676592cda5a2d391bdacfb4cb8fc"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 284898,
+            "dimensions": "1080x1920",
+            "sha256": "796d206dca050b59d8713094462cd67482689af4fbe1e80c37917c79b90e5f10"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 691546,
+            "dimensions": "1080x1920",
+            "sha256": "585c9c2da61e70c8554ebffce499e985042f5a47f923fff50adee460748a09dd"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_05",
+        "folder_id": "1F9hjviJGU8aHG6T4RYSvh371bwcwHq6s",
+        "folder_url": "https://drive.google.com/drive/folders/1F9hjviJGU8aHG6T4RYSvh371bwcwHq6s",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 182298,
+            "dimensions": "1280x720",
+            "sha256": "91bfae0b066c53c05c7336208a7f5b489235bdc63485a58996e635456f19bd88"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 483533,
+            "dimensions": "1280x720",
+            "sha256": "b0656c7c8ae6581c70a3435b991f8b3e51ed373193299a114758d47d7b3f4995"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 304638,
+            "dimensions": "1080x1920",
+            "sha256": "1b71882b37b830e24f0d896e2511235a0f6a6083c6412025175b6f42facb9075"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 767043,
+            "dimensions": "1080x1920",
+            "sha256": "fcc972f712eaef6484f5d1407f1b2e0fc2d493fa5b83dc4606c084446d690e66"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_06",
+        "folder_id": "1K7FLusXM6cnSRC12U__R8ntbdvFyWxi-",
+        "folder_url": "https://drive.google.com/drive/folders/1K7FLusXM6cnSRC12U__R8ntbdvFyWxi-",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 183271,
+            "dimensions": "1280x720",
+            "sha256": "1599119fb0ac763deea1b3e51d4188eded907b64d172b56c77d6bfdd45d7d5de"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 483367,
+            "dimensions": "1280x720",
+            "sha256": "449794d9468bcaefab7653fa0d2d995b3f1e012a82ad810979d27912f14a4380"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 289259,
+            "dimensions": "1080x1920",
+            "sha256": "1383258d748b8d056e9f84ff6db0aff1c3a2b7d871717b6111ba303e2d6255f2"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 731511,
+            "dimensions": "1080x1920",
+            "sha256": "6b717776d7ae8dd73c0fc213d7fbfa4d5b63fbc9c243fd2ce352e526dff5b0ac"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_07",
+        "folder_id": "1CcB4Bsi6eBd9YtXMkKhVmsY7k67ljInr",
+        "folder_url": "https://drive.google.com/drive/folders/1CcB4Bsi6eBd9YtXMkKhVmsY7k67ljInr",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 191100,
+            "dimensions": "1280x720",
+            "sha256": "1a9dd009790e5dc29b373c566994a3e82e460274c42689e5f82546c224f2cc48"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 502463,
+            "dimensions": "1280x720",
+            "sha256": "304732d5d3f9e9578a98e39243412bc989c7efd4e9c43de7452e43ba89a5a7f3"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 293503,
+            "dimensions": "1080x1920",
+            "sha256": "93a138fc7111c4fa6e0efa793f4978192ba0c999670a17db43b3b0e49fde48b8"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 730830,
+            "dimensions": "1080x1920",
+            "sha256": "295f669b820cd437de5d9a852307369d8d99e976b0d1b9f5a583a36b094da67f"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_08",
+        "folder_id": "1URFrg0M33XOx4Oc6wu2GPLif-DZ_x9k1",
+        "folder_url": "https://drive.google.com/drive/folders/1URFrg0M33XOx4Oc6wu2GPLif-DZ_x9k1",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 182891,
+            "dimensions": "1280x720",
+            "sha256": "b61e1bf5ef29c02dcecdfef050404cb4505a43955b20f7f67e7cb2af51cecb31"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 486418,
+            "dimensions": "1280x720",
+            "sha256": "51dda283ee7d0f13cf856630c588ccc0d5c229136de3af5e089a7f58a2a027c6"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 266339,
+            "dimensions": "1080x1920",
+            "sha256": "439b1f6d963319473d4bf8e0ef1374d909f54e28270aca0bb51e9554be6df677"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 624183,
+            "dimensions": "1080x1920",
+            "sha256": "1ed52d7d9b2a72245911da5f9066ab04d1f21fa8f2c8a925571cb32057dfe951"
+          }
+        }
+      },
+      {
+        "package_id": "SHORT_09",
+        "folder_id": "1bkyhQoLrZrNWnzPa9RD0FvNDjjmL7bwd",
+        "folder_url": "https://drive.google.com/drive/folders/1bkyhQoLrZrNWnzPa9RD0FvNDjjmL7bwd",
+        "drive_status": "not_updated",
+        "local_cover_files": {
+          "THUMBNAIL_1280x720.jpg": {
+            "bytes": 191415,
+            "dimensions": "1280x720",
+            "sha256": "a74386878c554d95fcfc2b797aa5c080c6f4b2f7dae83a193cf3c093f572f376"
+          },
+          "THUMBNAIL_1280x720.png": {
+            "bytes": 534540,
+            "dimensions": "1280x720",
+            "sha256": "77703361073fdc91f83be9db01cb8f605b8986c8d3b24a7391c09f78a59a88bf"
+          },
+          "THUMBNAIL_1080x1920.jpg": {
+            "bytes": 304349,
+            "dimensions": "1080x1920",
+            "sha256": "5f68093f6d33693b1ca54b449505a6d0d3582e7b6b56343c5a890439520d9127"
+          },
+          "THUMBNAIL_1080x1920.png": {
+            "bytes": 815433,
+            "dimensions": "1080x1920",
+            "sha256": "57dde270561c6ac88e11d8608ce7e3598539f386d81d2c018a3a37cecb3360eb"
+          }
+        }
+      }
+    ]
   }
 }

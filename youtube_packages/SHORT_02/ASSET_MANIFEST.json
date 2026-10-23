@@ -35,26 +35,33 @@
     }
   ],
   "chapters": [],
+  "cover_revision": 2,
+  "cover_drive_sync_status": "not_updated_pending_in_place_binary_streaming",
+  "cover_treatment": {
+    "background": "full-bleed crop of the actual source still; no dark panel or gradient",
+    "text_effect": "directional drop shadow and dark keyline; no generated faces",
+    "outer_frame": "full inset rectangle matching the reference; brighter gold and 3px stroke"
+  },
   "local_files": {
     "THUMBNAIL_1280x720.jpg": {
-      "bytes": 126598,
+      "bytes": 186652,
       "dimensions": "1280x720",
-      "sha256": "317aee9629588e262d5037526b0ec9f4cbe89ab088780a1d47582e78c65c3518"
+      "sha256": "00ca2ec7bbb90f4dd0f2d98473309edbf96115efbd0ac9cc8055b097fb771224"
     },
     "THUMBNAIL_1280x720.png": {
-      "bytes": 287536,
+      "bytes": 494600,
       "dimensions": "1280x720",
-      "sha256": "64b893b696e1c4398e96c22c868128cf1d4743424e1614b8e208099a5b44e473"
+      "sha256": "5786d10dc6972e94d5970347c1b92afa0025f433bdefe28658fb7f49cb962dfa"
     },
     "THUMBNAIL_1080x1920.jpg": {
-      "bytes": 201110,
+      "bytes": 305684,
       "dimensions": "1080x1920",
-      "sha256": "290be749e9415eb21c0c5c9807c355c4f85f7ce6281eafae312944cc798eb5bc"
+      "sha256": "a6939c32dac41e908d32f505cfd1e13c495a7faca5c0142bdabe32f7e6e8116e"
     },
     "THUMBNAIL_1080x1920.png": {
-      "bytes": 374697,
+      "bytes": 812106,
       "dimensions": "1080x1920",
-      "sha256": "a07662e4659206074a554c0157cf6ed022a9a18f215e2831f226dd4083c70ea5"
+      "sha256": "3b820c5005d1ca35fa03154bbacb81daf7ed70e6a6f61331c8f307aea3a471b4"
     },
     "CAPTIONS_AR_EN.srt": {
       "bytes": 2190,

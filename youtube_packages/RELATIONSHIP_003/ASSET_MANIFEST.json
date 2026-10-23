@@ -71,26 +71,33 @@
       "label_en": "The story of the dancing chicks"
     }
   ],
+  "cover_revision": 2,
+  "cover_drive_sync_status": "not_updated_pending_in_place_binary_streaming",
+  "cover_treatment": {
+    "background": "full-bleed crop of the actual source still; no dark panel or gradient",
+    "text_effect": "directional drop shadow and dark keyline; no generated faces",
+    "outer_frame": "full inset rectangle matching the reference; brighter gold and 3px stroke"
+  },
   "local_files": {
     "THUMBNAIL_1280x720.jpg": {
-      "bytes": 122800,
+      "bytes": 163948,
       "dimensions": "1280x720",
-      "sha256": "2c35081512f5e22b13860286764574b021f1236b7ecadc9b05a3914cc7bb4c67"
+      "sha256": "3fdd8eeee92faade39f7da4ac558902af861c83b76a2acb5ddabfd0a33dcefa2"
     },
     "THUMBNAIL_1280x720.png": {
-      "bytes": 228707,
+      "bytes": 355265,
       "dimensions": "1280x720",
-      "sha256": "1c6f4dece895f7c3af2bdef0093b3702ac730c0496ac7f68738596dc09727ceb"
+      "sha256": "514a1b1b2d6903564fd85f22b40c857a87747b0e16146b3f07a576dd53bd678f"
     },
     "THUMBNAIL_1080x1920.jpg": {
-      "bytes": 186865,
+      "bytes": 318777,
       "dimensions": "1080x1920",
-      "sha256": "5d2eceaa5c801835e39d51d1595d2bc6bddc6781935e275b69e64941f54db8eb"
+      "sha256": "d5d90cf1a35f214bf3c6fb65aef833d8289543831a4d6a233ea48b9f716308ca"
     },
     "THUMBNAIL_1080x1920.png": {
-      "bytes": 281754,
+      "bytes": 770443,
       "dimensions": "1080x1920",
-      "sha256": "ac62424d3c5c4d79d1520571af3b22130d9b33177ffe238b5f2850773ec7b27b"
+      "sha256": "851e5b7413ab1d39c9c516a269428960cb8c1bb0d8ea75b470337015b59c7ad3"
     },
     "CAPTIONS_AR_EN.srt": {
       "bytes": 9954,

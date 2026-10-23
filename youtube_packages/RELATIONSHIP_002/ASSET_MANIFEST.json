@@ -61,26 +61,33 @@
       "label_en": "The relationship with oneself"
     }
   ],
+  "cover_revision": 2,
+  "cover_drive_sync_status": "not_updated_pending_in_place_binary_streaming",
+  "cover_treatment": {
+    "background": "full-bleed crop of the actual source still; no dark panel or gradient",
+    "text_effect": "directional drop shadow and dark keyline; no generated faces",
+    "outer_frame": "full inset rectangle matching the reference; brighter gold and 3px stroke"
+  },
   "local_files": {
     "THUMBNAIL_1280x720.jpg": {
-      "bytes": 124732,
+      "bytes": 161523,
       "dimensions": "1280x720",
-      "sha256": "ec9708e0256ec59cd3987b034bd482df585723e8e4b37dd52a1395bb9a01d76d"
+      "sha256": "f7cb0648472a80f0e92e481256a85b5b4625cddf4fbf745efe6673bb369a7e86"
     },
     "THUMBNAIL_1280x720.png": {
-      "bytes": 240400,
+      "bytes": 340556,
       "dimensions": "1280x720",
-      "sha256": "559eaf16aa7b3f32cb050da1f26924deeac5ff3d522488b34b54843179255458"
+      "sha256": "cd08bd9caba6b8576cbbcdc1dbcac0cebbea4ab1b5e88eb430196054d9ff1f03"
     },
     "THUMBNAIL_1080x1920.jpg": {
-      "bytes": 189031,
+      "bytes": 321326,
       "dimensions": "1080x1920",
-      "sha256": "8c660dd6aecf85cbf8d827f6d71d85b50949a82f8fd9e1d616974ae2d62ad5f5"
+      "sha256": "c56d2c62857fdf50474147d237525362eeb3c7f435e13b818220ce691a678f9e"
     },
     "THUMBNAIL_1080x1920.png": {
-      "bytes": 287127,
+      "bytes": 795702,
       "dimensions": "1080x1920",
-      "sha256": "1b731900717c42e4885c460c8745effd91c2528c5e0f525340aabbe7a6136fae"
+      "sha256": "563bda01301f5b5a0aa4b4e24dec5da3a6c5c1163996e1d2c298eccda02534ae"
     },
     "CAPTIONS_AR_EN.srt": {
       "bytes": 13197,

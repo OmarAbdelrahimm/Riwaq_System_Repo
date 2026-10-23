@@ -11,7 +11,7 @@ from typing import Any
 
 import arabic_reshaper
 from bidi.algorithm import get_display
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "youtube_packages" / "package_manifest.json"
@@ -23,6 +23,8 @@ SURFACE = "#242218"
 PARCHMENT = "#F3EBDB"
 GOLD = "#A98A4B"
 GOLD_LIGHT = "#C2A469"
+FRAME_GOLD = "#D6B66D"
+COVER_REVISION = 2
 AMIRI = ROOT / "public" / "fonts" / "Amiri-Bold.ttf"
 AMIRI_REGULAR = ROOT / "public" / "fonts" / "Amiri-Regular.ttf"
 PLEX = ROOT / "public" / "fonts" / "IBMPlexSansArabic-Medium.ttf"
@@ -64,8 +66,49 @@ def wrap_arabic(draw: ImageDraw.ImageDraw, text: str, face: ImageFont.FreeTypeFo
     return lines
 
 
-def draw_ar_line(
+def _text_position(
     draw: ImageDraw.ImageDraw,
+    text: str,
+    face: ImageFont.FreeTypeFont,
+    *,
+    center_x: float,
+    top: int,
+    align: str,
+    stroke_width: int,
+) -> tuple[str, int, int, tuple[int, int, int, int]]:
+    visual = shaped(text)
+    box = draw.textbbox((0, 0), visual, font=face, stroke_width=stroke_width)
+    if align == "right":
+        x = int(center_x - box[2])
+    elif align == "left":
+        x = int(center_x - box[0])
+    else:
+        x = int(center_x - (box[0] + box[2]) / 2)
+    y = int(top - box[1])
+    return visual, x, y, box
+
+
+def _shift_mask(mask: Image.Image, dx: int, dy: int) -> Image.Image:
+    shifted = Image.new("L", mask.size, 0)
+    shifted.paste(mask, (dx, dy))
+    return shifted
+
+
+def _paint_drop_shadow(
+    canvas: Image.Image,
+    mask: Image.Image,
+    *,
+    offset: tuple[int, int],
+    blur: float,
+    opacity: float,
+) -> None:
+    soft = mask.filter(ImageFilter.GaussianBlur(blur)) if blur else mask
+    shifted = _shift_mask(soft, *offset).point(lambda value: round(value * opacity))
+    canvas.paste(Image.new("RGB", canvas.size, (2, 3, 3)), (0, 0), shifted)
+
+
+def draw_ar_line_shadow(
+    canvas: Image.Image,
     text: str,
     *,
     center_x: float,
@@ -73,21 +116,34 @@ def draw_ar_line(
     face: ImageFont.FreeTypeFont,
     fill: str,
     align: str = "center",
+    stroke_width: int = 2,
 ) -> int:
-    visual = shaped(text)
-    box = draw.textbbox((0, 0), visual, font=face)
-    width = box[2] - box[0]
-    if align == "right":
-        x = int(center_x - box[2])
-    else:
-        x = int(center_x - (box[0] + box[2]) / 2)
-    y = int(top - box[1])
-    draw.text((x, y), visual, font=face, fill=fill)
+    """Draw shaped Arabic copy with a soft directional shadow and a crisp dark keyline."""
+    geometry_draw = ImageDraw.Draw(canvas)
+    visual, x, y, box = _text_position(
+        geometry_draw, text, face, center_x=center_x, top=top, align=align, stroke_width=stroke_width
+    )
+    mask = Image.new("L", canvas.size, 0)
+    mask_draw = ImageDraw.Draw(mask)
+    mask_draw.text(
+        (x, y), visual, font=face, fill=255,
+        stroke_width=stroke_width + 1, stroke_fill=255,
+    )
+    # Two directional layers give depth without adding a panel or tint over the photograph.
+    _paint_drop_shadow(
+        canvas, mask, offset=(7, 9), blur=max(4, round(face.size * 0.085)), opacity=0.86
+    )
+    _paint_drop_shadow(canvas, mask, offset=(3, 5), blur=0, opacity=0.62)
+    draw = ImageDraw.Draw(canvas)
+    draw.text(
+        (x, y), visual, font=face, fill=fill, stroke_width=stroke_width,
+        stroke_fill="#11110F",
+    )
     return box[3] - box[1]
 
 
-def draw_ar_wrapped(
-    draw: ImageDraw.ImageDraw,
+def draw_ar_wrapped_shadow(
+    canvas: Image.Image,
     text: str,
     *,
     center_x: float,
@@ -99,7 +155,9 @@ def draw_ar_wrapped(
     max_lines: int = 2,
     align: str = "center",
     line_gap: int | None = None,
+    stroke_width: int = 3,
 ) -> tuple[int, list[str], int]:
+    draw = ImageDraw.Draw(canvas)
     size = face_size
     while size >= 60:
         face = font(face_path, size)
@@ -112,41 +170,81 @@ def draw_ar_wrapped(
     gap = line_gap if line_gap is not None else max(5, round(size * 0.06))
     y = top
     for line in lines:
-        height = draw_ar_line(draw, line, center_x=center_x, top=y, face=face, fill=fill, align=align)
+        height = draw_ar_line_shadow(
+            canvas, line, center_x=center_x, top=y, face=face, fill=fill,
+            align=align, stroke_width=stroke_width,
+        )
         y += height + gap
     return y - gap, lines, size
 
 
 def render_brand_mark(size: int) -> Image.Image:
-    """Draw a lightweight Pillow-only arch-and-jewel Riwaq mark at 4× resolution."""
+    """Render the approved Riwaq arch-and-jewel path in Pillow at 4× resolution."""
     scale = 4
-    base_width, base_height = 112, 106
-    image = Image.new("RGBA", (base_width * scale, base_height * scale), (0, 0, 0, 0))
+    width, height = round(111.48 * scale), round(104.98 * scale)
+    image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(image)
-    def pt(value: float) -> int:
-        return round(value * scale)
-    arch_width = pt(13)
-    # Outer arch (the open, double-line arch in the Riwaq BrandMark component).
-    draw.arc((pt(30.5), pt(23.5), pt(89.5), pt(82.5)), 180, 360, fill=GOLD, width=arch_width)
-    draw.line((pt(30.5), pt(53), pt(30.5), pt(104)), fill=GOLD, width=arch_width)
-    draw.line((pt(89.5), pt(53), pt(89.5), pt(104)), fill=GOLD, width=arch_width)
-    draw.line((pt(14), pt(104), pt(106), pt(104)), fill=GOLD, width=pt(5))
-    draw.ellipse((pt(53.5), pt(59.5), pt(66.5), pt(72.5)), fill=GOLD_LIGHT)
+
+    def point(x: float, y: float) -> tuple[int, int]:
+        return round((x - 4.26) * scale), round((y - 8.76) * scale)
+
+    def cubic(p0: tuple[float, float], p1: tuple[float, float], p2: tuple[float, float], p3: tuple[float, float], steps: int = 48) -> list[tuple[int, int]]:
+        result = []
+        for index in range(steps + 1):
+            t = index / steps
+            u = 1 - t
+            x = u**3 * p0[0] + 3 * u**2 * t * p1[0] + 3 * u * t**2 * p2[0] + t**3 * p3[0]
+            y = u**3 * p0[1] + 3 * u**2 * t * p1[1] + 3 * u * t**2 * p2[1] + t**3 * p3[1]
+            result.append(point(x, y))
+        return result
+
+    outer = [point(24, 104), point(24, 58)]
+    outer += cubic((24, 58), (24, 37.04), (39.28, 19.21), (60, 16))[1:]
+    outer += cubic((60, 16), (80.72, 19.21), (96, 37.04), (96, 58))[1:]
+    outer += [point(96, 104)]
+    inner = [point(37, 104), point(37, 58)]
+    inner += cubic((37, 58), (37, 44.57), (46.75, 33.13), (60, 31))[1:]
+    inner += cubic((60, 31), (73.25, 33.13), (83, 44.57), (83, 58))[1:]
+    inner += [point(83, 104)]
+    draw.polygon(outer, fill=GOLD)
+    draw.polygon(inner, fill=(0, 0, 0, 0))
+
+    bar_left, bar_right, bar_y = point(14, 104), point(106, 104), point(14, 104)[1]
+    draw.line((bar_left[0], bar_y, bar_right[0], bar_y), fill=GOLD, width=round(5 * scale))
+    cap_radius = round(2.5 * scale)
+    for x, _ in (bar_left, bar_right):
+        draw.ellipse((x - cap_radius, bar_y - cap_radius, x + cap_radius, bar_y + cap_radius), fill=GOLD)
+    jewel_x, jewel_y = point(60, 66)
+    jewel_radius = round(6.5 * scale)
+    draw.ellipse(
+        (jewel_x - jewel_radius, jewel_y - jewel_radius, jewel_x + jewel_radius, jewel_y + jewel_radius),
+        fill=GOLD_LIGHT,
+    )
     return image.resize((size, round(size * 104.98 / 111.48)), Image.Resampling.LANCZOS)
 
 
+def paste_with_shadow(canvas: Image.Image, overlay: Image.Image, xy: tuple[int, int]) -> None:
+    x, y = xy
+    mask = overlay.getchannel("A")
+    shifted = Image.new("L", canvas.size, 0)
+    soft = mask.filter(ImageFilter.GaussianBlur(max(3, round(overlay.height * 0.12))))
+    shifted.paste(soft, (x + 5, y + 7))
+    shifted = shifted.point(lambda value: round(value * 0.86))
+    canvas.paste(Image.new("RGB", canvas.size, (1, 2, 2)), (0, 0), shifted)
+    canvas.paste(overlay, xy, overlay)
+
+
 def draw_lockup(canvas: Image.Image, center_x: int, top: int, *, scale: float) -> int:
-    draw = ImageDraw.Draw(canvas)
     icon_size = round(57 * scale)
     mark = render_brand_mark(icon_size)
-    canvas.paste(mark, (center_x - mark.width // 2, top), mark)
+    paste_with_shadow(canvas, mark, (center_x - mark.width // 2, top))
     y = top + mark.height + round(3 * scale)
     name_face = font(AMIRI, round(48 * scale))
-    y += draw_ar_line(draw, "رِواق", center_x=center_x, top=y, face=name_face, fill=PARCHMENT) + round(2 * scale)
+    y += draw_ar_line_shadow(canvas, "رِواق", center_x=center_x, top=y, face=name_face, fill=PARCHMENT, stroke_width=1)
     tag_face = font(AMIRI_REGULAR, round(19 * scale))
-    y += draw_ar_line(draw, "تَارِيخْ وَتُرَاث", center_x=center_x, top=y, face=tag_face, fill=GOLD_LIGHT)
+    y += round(2 * scale)
+    y += draw_ar_line_shadow(canvas, "تَارِيخْ وَتُرَاث", center_x=center_x, top=y, face=tag_face, fill=GOLD_LIGHT, stroke_width=1)
     return y
-
 
 def make_source_frame(package: dict[str, Any], *, refresh: bool = False) -> Path:
     frame_path = SOURCE_FRAMES / f"{package['id']}.jpg"
@@ -169,85 +267,114 @@ def make_source_frame(package: dict[str, Any], *, refresh: bool = False) -> Path
     return frame_path
 
 
-def add_photo_panel(canvas: Image.Image, frame_path: Path, box: tuple[int, int, int, int], *, centering: tuple[float, float]) -> None:
-    x, y, width, height = box
+def full_bleed_background(frame_path: Path, size: tuple[int, int], package: dict[str, Any], layout: str) -> Image.Image:
+    """Fill the complete cover with the actual still; crop centering keeps the speaker in frame."""
+    if layout == "horizontal":
+        center = (0.50, 0.25) if package["kind"] == "long" else (0.50, 0.50)
+    elif package["kind"] == "long":
+        center = (0.05, 0.50)
+    elif package["id"] in {"SHORT_03", "SHORT_05"}:
+        # Those genuine source stills place the host left of center; keep his whole face in frame.
+        center = (0.34, 0.50)
+    else:
+        center = (0.67, 0.50) if package["id"] == "SHORT_09" else (0.55, 0.50)
     with Image.open(frame_path) as original:
-        photo = ImageOps.fit(original.convert("RGB"), (width, height), method=Image.Resampling.LANCZOS, centering=centering)
-    canvas.paste(photo, (x, y))
-    ImageDraw.Draw(canvas).rectangle((x - 2, y - 2, x + width + 1, y + height + 1), outline=GOLD, width=3)
+        return ImageOps.fit(
+            original.convert("RGB"), size, method=Image.Resampling.LANCZOS, centering=center
+        )
+
+
+def draw_horizontal_frame(canvas: Image.Image) -> None:
+    draw = ImageDraw.Draw(canvas)
+    # Match the reference's full outer rectangle and inset; boost only its contrast/weight slightly.
+    draw.rectangle((16, 16, 1264, 704), outline=FRAME_GOLD, width=3)
+
+
+def draw_vertical_frame(canvas: Image.Image) -> None:
+    draw = ImageDraw.Draw(canvas)
+    # Keep the same complete outer frame treatment around the full portrait canvas.
+    draw.rectangle((16, 16, 1064, 1904), outline=FRAME_GOLD, width=3)
 
 
 def make_horizontal_cover(package: dict[str, Any], frame_path: Path) -> Image.Image:
-    canvas = Image.new("RGB", (1280, 720), DARK)
+    canvas = full_bleed_background(frame_path, (1280, 720), package, "horizontal")
     draw = ImageDraw.Draw(canvas)
-    add_photo_panel(canvas, frame_path, (682, 58, 566, 578), centering=(0.53, 0.43))
+    if package["kind"] == "long":
+        # Source frame places the speaker left; use the naturally dark curtain on the right for copy.
+        text_right = 1220
+        draw_lockup(canvas, center_x=1060, top=42, scale=0.88)
+        draw_ar_line_shadow(
+            canvas, "مقتطف من بودكاست بدون ورق", center_x=text_right, top=207,
+            face=font(PLEX, 29), fill=GOLD_LIGHT, align="right", stroke_width=1,
+        )
+        bottom, _, _ = draw_ar_wrapped_shadow(
+            canvas, package["cover_text"], center_x=text_right, top=278,
+            max_width=565, face_path=AMIRI, face_size=96, fill=PARCHMENT,
+            max_lines=2, align="right", line_gap=6, stroke_width=3,
+        )
+        draw.line((text_right - 115, bottom + 23, text_right, bottom + 23), fill=FRAME_GOLD, width=4)
+        draw_ar_line_shadow(
+            canvas, "ياسر الحزيمي  •  رِواق", center_x=text_right, top=bottom + 43,
+            face=font(PLEX_BOLD, 30), fill=PARCHMENT, align="right", stroke_width=1,
+        )
+    else:
+        # The existing landscape still leaves its strongest negative space at left.
+        text_right = 615
+        draw_lockup(canvas, center_x=155, top=42, scale=0.82)
+        draw_ar_line_shadow(
+            canvas, "مقتطف معرفي  •  من بودكاست بدون ورق", center_x=text_right, top=202,
+            face=font(PLEX, 27), fill=GOLD_LIGHT, align="right", stroke_width=1,
+        )
+        bottom, _, _ = draw_ar_wrapped_shadow(
+            canvas, package["cover_text"], center_x=text_right, top=269,
+            max_width=520, face_path=AMIRI, face_size=91, fill=PARCHMENT,
+            max_lines=2, align="right", line_gap=5, stroke_width=3,
+        )
+        draw.line((text_right - 100, bottom + 20, text_right, bottom + 20), fill=FRAME_GOLD, width=4)
+        draw_ar_line_shadow(
+            canvas, "ياسر الحزيمي  •  رِواق", center_x=text_right, top=bottom + 39,
+            face=font(PLEX_BOLD, 29), fill=PARCHMENT, align="right", stroke_width=1,
+        )
 
-    # Arch-and-jewel brand mark, Amiri Arabic lock-up, and IBM Plex secondary copy.
-    draw_lockup(canvas, center_x=153, top=45, scale=0.90)
-    label = font(PLEX, 29)
-    draw_ar_line(draw, "مقتطف من بودكاست بدون ورق", center_x=625, top=207, face=label, fill=GOLD_LIGHT, align="right")
-    bottom, _, _ = draw_ar_wrapped(
-        draw,
-        package["cover_text"],
-        center_x=625,
-        top=277,
-        max_width=545,
-        face_path=AMIRI,
-        face_size=94,
-        fill=PARCHMENT,
-        max_lines=2,
-        align="right",
-        line_gap=5,
-    )
-    draw.line((516, bottom + 20, 625, bottom + 20), fill=GOLD, width=5)
-    credit = font(PLEX_BOLD, 31)
-    draw_ar_line(draw, "ياسر الحزيمي  •  رِواق", center_x=625, top=590, face=credit, fill=PARCHMENT, align="right")
-
-    # Gold frame with an intentional lower-right gap for YouTube's duration badge.
-    draw.line((28, 28, 1252, 28), fill=GOLD, width=2)
-    draw.line((28, 28, 28, 692), fill=GOLD, width=2)
-    draw.line((1252, 28, 1252, 634), fill=GOLD, width=2)
-    draw.line((28, 692, 1030, 692), fill=GOLD, width=2)
+    draw_horizontal_frame(canvas)
     return canvas
 
 
 def make_vertical_cover(package: dict[str, Any], frame_path: Path) -> Image.Image:
-    canvas = Image.new("RGB", (1080, 1920), DARK)
+    canvas = full_bleed_background(frame_path, (1080, 1920), package, "vertical")
     draw = ImageDraw.Draw(canvas)
-    draw_lockup(canvas, center_x=540, top=37, scale=1.0)
-
-    label = font(PLEX, 31)
-    draw_ar_line(draw, "مقتطف معرفي  •  من بودكاست بدون ورق", center_x=540, top=220, face=label, fill=GOLD_LIGHT)
-    title_bottom, _, _ = draw_ar_wrapped(
-        draw,
-        package["cover_text"],
-        center_x=540,
-        top=275,
-        max_width=930,
-        face_path=AMIRI,
-        face_size=108,
-        fill=PARCHMENT,
-        max_lines=2,
-        align="center",
-        line_gap=0,
+    draw_lockup(canvas, center_x=540, top=36, scale=0.90)
+    draw_ar_line_shadow(
+        canvas, "مقتطف معرفي  •  من بودكاست بدون ورق", center_x=540, top=167,
+        face=font(PLEX, 29), fill=GOLD_LIGHT, stroke_width=1,
     )
-    draw.line((445, title_bottom + 16, 635, title_bottom + 16), fill=GOLD, width=5)
 
-    add_photo_panel(canvas, frame_path, (50, 600, 980, 551), centering=(0.50, 0.38))
-    credit_face = font(PLEX_BOLD, 38)
-    draw_ar_line(draw, "ياسر الحزيمي", center_x=540, top=1210, face=credit_face, fill=PARCHMENT)
-    source_face = font(PLEX, 30)
-    draw_ar_line(draw, "من حلقة «مركزية العلاقة مع الله»", center_x=540, top=1272, face=source_face, fill=GOLD_LIGHT)
-    draw_ar_line(draw, "بودكاست بدون ورق", center_x=540, top=1320, face=source_face, fill=PARCHMENT)
+    # Keep the speaker's face unobstructed; the headline sits over the lower part of the same still.
+    draw.line((452, 1238, 628, 1238), fill=FRAME_GOLD, width=4)
+    title_bottom, _, _ = draw_ar_wrapped_shadow(
+        canvas, package["cover_text"], center_x=540, top=1260,
+        max_width=938, face_path=AMIRI, face_size=100, fill=PARCHMENT,
+        max_lines=2, align="center", line_gap=0, stroke_width=3,
+    )
+    credit_top = title_bottom + 18
+    credit_height = draw_ar_line_shadow(
+        canvas, "ياسر الحزيمي", center_x=540, top=credit_top,
+        face=font(PLEX_BOLD, 35), fill=PARCHMENT, stroke_width=1,
+    )
+    source_top = credit_top + credit_height + 8
+    source_face = font(PLEX, 24)
+    draw_ar_line_shadow(
+        canvas, "من حلقة «مركزية العلاقة مع الله»", center_x=540, top=source_top,
+        face=source_face, fill=GOLD_LIGHT, stroke_width=1,
+    )
+    draw_ar_line_shadow(
+        canvas, "بودكاست بدون ورق", center_x=540, top=source_top + 36,
+        face=source_face, fill=PARCHMENT, stroke_width=1,
+    )
 
-    # Thin frame stops above the mobile safe area; the last 240px are deliberately blank.
-    draw.line((28, 28, 1052, 28), fill=GOLD, width=2)
-    draw.line((28, 28, 28, 1638), fill=GOLD, width=2)
-    draw.line((1052, 28, 1052, 1638), fill=GOLD, width=2)
-    draw.line((28, 1638, 1052, 1638), fill=GOLD, width=2)
-    draw.rectangle((0, 1680, 1079, 1919), fill=DARK)
+    # Keep the inset gold rectangle complete; the photograph continues unobstructed behind it.
+    draw_vertical_frame(canvas)
     return canvas
-
 
 def parse_srt_blocks(text: str) -> list[list[str]]:
     normalized = text.replace("\r\n", "\n").replace("\r", "\n").lstrip("\ufeff")
@@ -471,11 +598,16 @@ def main() -> None:
                 image.save(out_path, format="JPEG" if extension == "jpg" else "PNG", **options)
                 assets[out_path.name] = image_info(out_path)
 
+        expected_vertical_background = full_bleed_background(
+            frame_path, (1080, 1920), package, "vertical"
+        )
         with Image.open(package_dir / "THUMBNAIL_1080x1920.png") as vertical_check:
-            footer = vertical_check.crop((0, 1680, 1080, 1920)).convert("RGB")
-            colors = footer.getcolors(maxcolors=2)
-            if colors != [(1080 * 240, (28, 27, 25))]:
-                raise ValueError(f"Last 240px must be a solid empty brand field: {package['id']}")
+            # Check a footer strip inside the border; it must remain the source photo, with no panel.
+            footer_box = (32, 1700, 1048, 1890)
+            footer = vertical_check.crop(footer_box).convert("RGB")
+            expected_footer = expected_vertical_background.crop(footer_box)
+            if ImageChops.difference(footer, expected_footer).getbbox():
+                raise ValueError(f"The portrait footer must remain photo-only: {package['id']}")
 
         description_ar_length = description_en_length = None
         if not args.build_covers_only:
@@ -519,6 +651,13 @@ def main() -> None:
             "source_episode_url": manifest["source_episode"]["url"],
             "source_ranges": package["source_ranges"],
             "chapters": package["chapters"],
+            "cover_revision": COVER_REVISION,
+            "cover_drive_sync_status": "not_updated_pending_in_place_binary_streaming",
+            "cover_treatment": {
+                "background": "full-bleed crop of the actual source still; no dark panel or gradient",
+                "text_effect": "directional drop shadow and dark keyline; no generated faces",
+                "outer_frame": "full inset rectangle matching the reference; brighter gold and 3px stroke",
+            },
             "local_files": assets,
             "ready_for_drive_upload": len(assets) == 7,
         }
