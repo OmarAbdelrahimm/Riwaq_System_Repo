@@ -1,50 +1,50 @@
-# أغلفة الفيديو 02 — «المقارنة أداة لا معيار»
+# Episode 02 covers — «المقارنة أداة لا معيار»
 
-> أول تطبيق حقيقي لنظام الأغلفة `docs/COVER_SYSTEM.md`.
-> المولّد: `scripts/publish/ep02_cover.py` · الملفات بأسماء `docs/FILE_NAMING.md`.
+> Delivered to Drive: folder `الفيديو 02 — المقارنة أداة لا معيار`
+> Generator: `scripts/publish/ep02_cover.py` · Rules: `docs/COVER_SYSTEM.md` · Names: `docs/FILE_NAMING.md`
 
-## الملفات
+## Files
 
-| الملف | الوظيفة |
+| File | Purpose |
 |---|---|
-| `02-CVR-H-A-المقارنة-أداة-لا-معيار-v1.jpg` | غلاف الرفع — النسخة A (بيان) |
-| `02-CVR-H-B-المقارنة-أداة-لا-معيار-v1.jpg` | غلاف الرفع — النسخة B (سؤال) |
-| `02-CVR-H-A-…-v1.png` / `02-CVR-H-B-…-v1.png` | الماستر الأرشيفي بلا فقد |
-| `qc168-A.png` / `qc168-B.png` | اختبار الإبهام 168px — المرجع الحقيقي للحكم |
+| `02-CVR-H-A-comparison-is-a-tool-not-a-standard-v1.jpg` | upload cover — variant A (statement) |
+| `02-CVR-H-B-upward-or-downward-comparison-v1.jpg` | upload cover — variant B (question) |
+| `…-v1.png` | lossless archival master |
+| `02-QC-A-thumb-168px-v1.png` / `02-QC-B-thumb-168px-v1.png` | 168px thumb test — the real verdict |
 
 ## A ↔ A · B ↔ B
 
-| | العنوان المقترح | الغلاف |
+| | Title | Cover |
 |---|---|---|
 | **A** | المقارنة أداة لا معيار: كيف تسعى للأفضل دون قسوة؟ \| ياسر الحزيمي | `…-A-…` |
 | **B** | الصاعدة أم الهابطة؟ المقارنة التي تنفعك وتلك التي تكسرك \| ياسر الحزيمي | `…-B-…` |
 
-**A** = ادعاء + تفسير (يناسب من يبحث عن الفكرة). **B** = سؤال يفرّق بين شيئين (يناسب من يبحث عن التصنيف).
-كل غلاف له عنوانه؛ لا خلط.
+**A** = claim + explanation (for people searching the idea). **B** = question splitting two things (for people searching the distinction).
+Never mix a cover with the other variant's title.
 
-## ما تغيّر عن الغلاف القديم
+## What changed from the old cover
 
-| القديم | الجديد |
+| Old | New |
 |---|---|
-| إطار بطبقتين | **ثلاث طبقات**: خارجي ذهبي 2px → شعرة بيضاء 1px → أقواس زوايا 30px + خط توقيع أسفل‑يسار |
-| شعار كبير + «تاريخ وتراث» | الشعار بنفس الموضع لكن أصغر (92px) — النص هو البطل لا الهوية |
-| عنوان بخط واحد ولون واحد (سطران أبيض) | **H1 أبيض (Sans) + H2 شامبانيا (Amiri)** = تباين ملمس داخل كتلة واحدة |
-| لا مسطرة | مسطرة 336px أقصر من الكلمتين، تكمل خط النظر للشارة |
-| لا شارة | **شارة 3D** = الادعاء القابل للاقتباس، وظيفتها إحداث فجوة فضول |
-| لا جسر | **جسر بخط ثالث (Plex Regular أرفع)** = نغمة مختلفة تنهي الصراخ |
-| اسم الشيخ بجانب الشارة في سطر واحد مزدحم | الاسم في سطر مستقل أسفل الكتلة — سلطة دون منافسة |
-| شارة «الحلقة 1 من 6» بخلفية داكنة | كبسولة رقيقة سطرية (pill) بلا تعبئة |
-| ذهبي مشبع | **شامبانيا `#C2AF8F`** فقط |
-| خلفية بلا معالجة | تعريض جانبي **بقناع يحمي مستطيل الوجه** — لا ضباب على البطل |
+| two-layer frame | **three layers**: 2px champagne → 1px warm-white hairline → 30px corner brackets + bottom-left signature rule |
+| big logo + tagline competing with the title | logo same position, smaller (92px) — the text is the hero, not the brand |
+| title in one font, one colour | **H1 white (Sans) + H2 champagne (Amiri)** = texture contrast inside one block |
+| no rule | 336px rule, shorter than the two words, carrying the eye into the badge |
+| no badge | **3D badge** = the quotable claim |
+| no bridge | **bridge in a third, lighter face** (Plex Regular) — a different tone that ends the shouting |
+| speaker name crammed beside the badge | name on its own line at the bottom — authority without competing |
+| dark-filled episode chip | thin outline pill |
+| saturated gold | **champagne `#C2AF8F`** only |
+| untreated background | directional shading behind a **face-protecting mask** — zero blur on the speaker |
 
-## التخطيط بالقياس لا بالتقدير
+## Layout is measured, not guessed
 
-`CS.ink_size()` يقيس **حبر النص المرئي** (getbbox في Pillow يُرجع أطول ascend/descend في الخط، +40% مع Amiri).
-`CS.draw_ink()` يرسم بحيث تكون حافة الحبر عند إحداثي محدّد ويُرجع أسفل الحبر — فالسطر التالي يبدأ من هنا بالضبط.
-النتيجة: مستحيل أن يتصادم سطران، ومستحيل أن يُدفن نص تحت الشارة (حدث فعلًا في أول محاولتين).
+`CS.ink_size()` measures the **visible ink** of the text (Pillow's `getbbox` returns the font's tallest
+ascender/descender — +40% with Amiri). `CS.draw_ink()` draws so the ink edge sits on a given coordinate and
+returns the ink bottom, so the next line starts exactly there.
+Result: two lines can never collide, and text can never be buried under the badge (both happened in earlier passes).
 
-## نتيجة اختبار الإبهام (168px)
+## 168px thumb test
 
-- **A:** H1 «المقارنة» واضح · H2 «أداة لا معيار» شكله مفهوم · الشارة حدّية.
-- **B:** H1 «الصاعدة» واضح · H2 «أم الهابطة؟» واضح · الشارة حدّية.
-> الحكم: الاثنان يجتازان شرط «H1 و H2 ينجوان». الباقي نسيج — كما هو مُقرَّر في النظام.
+Both variants pass: **H1 legible, H2 shape understandable**. The badge is borderline — by design.
+The system only guarantees H1 + H2 survive at phone size; everything else is texture.

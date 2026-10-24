@@ -1,77 +1,92 @@
-# 🗂️ نظام تسمية ملفات رواق — File Naming Standard v1
+# 🗂️ Riwaq File Naming Standard v2 — English only
 
-> **ملاحظة صريحة أولًا:** يوتيوب **لا يقرأ اسم الملف** في الترتيب ولا في البحث. القيمة الحقيقية للاسم في ثلاث نقاط فقط:
-> 1. **الترتيب** (الفرز الأبجدي = ترتيب النشر).
-> 2. **منع الخطأ** (A مع A — B مع B) قبل الرفع.
-> 3. **العنوان الافتراضي**: يوتيوب يقترح اسم الملف كعنوان عند الرفع ⇒ اسم فيه العنوان يوفّر عليك إعادة كتابته.
+> **Everything is Latin.** No Arabic characters in file names, no spaces, no underscores — hyphens only.
+> Why: clean sorting, safe uploads from a browser or phone, no broken names on any OS, and YouTube suggests
+> the file name as the default video title.
 >
-> أي كلام عن «SEO من اسم الملف» على يوتيوب = خرافة. القيمة في **الوصف والوسوم والعنوان** لا في الاسم.
+> **Honest note:** YouTube does **not** rank by file name. The value is (1) sorting, (2) preventing A/B mix-ups,
+> (3) a decent default title on upload. Real SEO lives in the title, description and tags. Latin names help
+> **you** and the platform move files around — not the algorithm.
 
 ---
 
-## 1️⃣ القاعدة
+## 1️⃣ The pattern
 
 ```
-{الرقم}-{النوع}-{البديل}-{slug من العنوان}-{النسخة}.{الصيغة}
+{number}-{KIND}-{A|B}-{english-slug}-v{n}.{ext}
 ```
 
-مثال: `01-CVR-H-A-العلاقات-أعمق-من-التواصل-v2.jpg`
+`02-CVR-H-A-comparison-is-a-tool-not-a-standard-v1.jpg`
 
-| الحقل | القيم | لماذا |
+| Field | Values | Why |
 |---|---|---|
-| **الرقم** | `01`…`06` للأفقي · `S01`…`S09` للشورت · `F01` للفيلم | **أول حقل دائمًا** — بدونه يفرز المجلد أبجديًا فتتفرّق الحلقات |
-| **النوع** | `CVR-H` غلاف أفقي · `CVR-V` غلاف عمودي · `SEO` وثيقة · `SUB-AR` `SUB-EN` `SUB-BI` · `VID` ماستر · `QC` ورقة معاينة | تعرف وظيفة الملف من اسمه بدون فتحه |
-| **البديل** | `A` / `B` · يُحذف لو مش موجود | يمنع خلط الغلاف A بالعنوان B |
-| **slug** | 3–5 كلمات من العنوان، بشرطات، بدون تشكيل ولا همزات معقّدة | البحث في Drive + عنوان افتراضي على يوتيوب |
-| **النسخة** | `v1` `v2` … | النسخ القديمة تبقى بجوار الجديدة، وترتيبها صحيح |
-| **الصيغة** | `.jpg` للرفع · `.png` للأرشيف · `.md` للوثائق | آخر حقل دائمًا |
+| **number** | `01`…`06` · `S01`…`S09` · `F01` | **Always first** — otherwise the folder sorts alphabetically and episodes scatter |
+| **KIND** | see table below | Know what a file is without opening it |
+| **A / B** | only for A/B pairs | Stops cover A being paired with title B |
+| **english-slug** | 3–6 words, kebab-case | Searchable in Drive + default title on YouTube |
+| **v** | `v1`, `v2` … | Old and new versions sort correctly side by side |
+| **ext** | `.jpg` (upload) · `.png` (archive) · `.md` · `.srt` · `.mp4` | Last, always |
 
-**الفاصل:** شرطة `-` فقط. ممنوع `_` (ترتيبها يختلف بين الأنظمة) وممنوع مسافات (تنكسر عند الرفع).
+### Kinds
 
----
-
-## 2️⃣ أمثلة كاملة
-
-| الملف | الاسم المعياري |
+| Code | Meaning |
 |---|---|
-| غلاف الفيديو 01 — النسخة A — الطبعة الثانية | `01-CVR-H-A-العلاقات-أعمق-من-التواصل-v2.jpg` |
-| وثيقة SEO لنفس الفيديو | `01-SEO-العلاقات-أعمق-من-التواصل-v2.md` |
-| غلاف الشورت 03 — البديل B | `S03-CVR-V-B-المقارنة-لازمة-غير-ملزمة-v1.jpg` |
-| ترجمة ثنائية للشورت 07 | `S07-SUB-BI-تتزوج-إرثا-لا-شخصا-v1.srt` |
-| غلاف الفيلم المجمّع — A | `F01-CVR-H-A-العلاقة-التي-تصلح-كل-العلاقات-v1.jpg` |
-| ماستر حلقة 04 | `04-VID-الشيطان-يجري-مجرى-الدم-v1.mp4` |
+| `CVR-H` | horizontal cover 1280×720 |
+| `CVR-V` | vertical cover 1080×1920 |
+| `SEO` | titles / description / tags doc |
+| `SUB-AR` `SUB-EN` `SUB-BI` | Arabic / English / bilingual subtitles |
+| `VID` | final master |
+| `QC` | preview sheet — **never uploaded** |
 
 ---
 
-## 3️⃣ الصيغة: JPG أم PNG؟
+## 2️⃣ Full examples
 
-القياس على غلاف فعلي عندنا (1280×720):
+| File | Standard name |
+|---|---|
+| Video 01 cover, variant A, second edition | `01-CVR-H-A-relationships-deeper-than-communication-v2.jpg` |
+| SEO doc for the same video | `01-SEO-relationships-deeper-than-communication-v2.md` |
+| Short 03 cover, variant B | `S03-CVR-V-B-comparison-necessary-not-binding-v1.jpg` |
+| Bilingual subs, Short 07 | `S07-SUB-BI-you-marry-a-legacy-not-a-person-v1.srt` |
+| Compiled film cover, A | `F01-CVR-H-A-the-relationship-that-fixes-all-relationships-v1.jpg` |
+| Episode 04 master | `04-VID-shaytan-runs-through-the-blood-v1.mp4` |
 
-| الصيغة | الحجم | ملاحظة |
+---
+
+## 3️⃣ Generating names
+
+```python
+from naming import cover_name, save_cover
+
+stem = cover_name("02", "CVR-H", "المقارنة أداة لا معيار",
+                  variant="A", v=1, en="comparison-is-a-tool-not-a-standard")
+save_cover(im, stem, "outputs/PUBLISH_PACK_EP02_COVERS")
+```
+
+- Pass `en=` with a **hand-written English slug**. It is the title the world sees; never leave it to a machine.
+- With no `en=`, `naming.translit()` falls back to a franco transliteration (`المقارنة أداة لا معيار` → `comparison-tool-not-standard`).
+  Good enough for internal files, **not** for anything a viewer might read.
+
+---
+
+## 4️⃣ JPG vs PNG — measured on a real cover (1280×720)
+
+| Format | Size | Note |
 |---|---|---|
-| PNG | **476 KB** | بلا فقد — خطوط الإطار 2px والتشكيل العربي تبقى حادّة تمامًا |
-| JPG `q92 sub=1` (المستخدم حاليًا) | 127 KB | `sub=1` يذوّب حدود الألوان ⇒ قد يهتز الذهبي الرفيع |
-| **JPG `q95 sub=0` (المعتمد)** | **190 KB** | 4:4:4 ⇒ لا تشويه لوني، والنص حادّ، وحجمه 1/10 من حد يوتيوب |
-| حد يوتيوب | **2 MB** | كل الخيارات أعلاه آمنة |
+| PNG | 476 KB | lossless — the 2px frame lines and Arabic diacritics stay perfectly sharp |
+| JPG `q92 sub=1` (old default) | 127 KB | `sub=1` smears colour edges → thin gold lines shimmer |
+| **JPG `q95 sub=0` (adopted)** | **190 KB** | 4:4:4 → no colour smearing, text stays crisp, still 1/10 of the limit |
+| YouTube limit | **2 MB** | everything above is safe |
 
-**القاعدة:**
-- **`.jpg` = ملف الرفع** (`quality=95`, `subsampling=0`). أصغر، ومقبول في كل المنصات.
-- **`.png` = الماستر الأرشيفي**. لو أعدنا التصميم لاحقًا نبدأ منه، لا من JPG (كل حفظ JPG يفقد جيلًا).
-- **لا تُرفع PNG** إلا لو كان الغلاف رسومًا مسطّحة بخطوط رفيعة جدًا — وهو ليس حالنا لأن يوتيوب يعيد الترميز أصلًا.
+**Rule:** `.jpg q95 4:4:4` is the **upload file** · `.png` is the **archival master** (future edits start here, never from a JPG).
+Don't upload the PNG — YouTube re-encodes anyway.
 
 ---
 
-## 4️⃣ ورقة المعاينة `QC` — قرار
+## 5️⃣ The `QC` comparison sheet — retired
 
-صورة «الغلافان مع بعض» **ليس لها وظيفة نشر**: لا تُرفع إلى يوتيوب ولا تُقرأ من الجمهور.
-وظيفتها الوحيدة: أن تقارن A و B بعينك مرة واحدة. لكن **المقارنة بالحجم الكامل مضلِّلة** — المشاهد يراها 168px في الجوال.
+A single PNG holding both covers has **no publishing function**: it can't be uploaded, viewers never see it.
+It also **misleads you**, because you judge at full size while viewers see **168px**.
 
-**القرار:** تُلغى من مجلدات التسليم على Drive.
-وإن لزم قرار مقارنة، تُعرض في المحادثة فقط، وبمقاس **168px** (اختبار الإبهام) لا بالحجم الكامل.
-
----
-
-## 5️⃣ التنفيذ
-
-`scripts/publish/naming.py` يولّد الأسماء ويحفظ الغلافين (JPG للرفع + PNG للأرشيف).
-كل سكربت أغلفة جديد يستخدمه، فلا اسم يدوي مرة أخرى.
+**Decision:** it is no longer produced or delivered. Cover decisions are made from **168px thumb tests**
+(`02-QC-A-thumb-168px-v1.png`) or shown in chat — never as a Drive deliverable.

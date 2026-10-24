@@ -130,14 +130,21 @@ def cover_b() -> Image.Image:
                  rule_len=300)
 
 
+EN = {   # اسم إنجليزي مقصود لكل نسخة (لا ترجمة آلية في أسماء التسليم)
+    "A": "comparison-is-a-tool-not-a-standard",
+    "B": "upward-or-downward-comparison",
+}
+
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
-    title = "المقارنة أداة لا معيار"
+    for old in list(OUT.glob("*.jpg")) + list(OUT.glob("*.png")):
+        old.unlink()                      # مجلد التسليم يحتوي النسخة الحالية فقط
     for tag, im, note in (("A", cover_a(), "بيان"), ("B", cover_b(), "سؤال")):
-        stem = naming.cover_name("02", "CVR-H", title, variant=tag, v=1)
+        stem = naming.cover_name("02", "CVR-H", "المقارنة أداة لا معيار",
+                                 variant=tag, v=1, en=EN[tag])
         jpg, png = naming.save_cover(im, stem, OUT)
         print(f"{tag} ({note}) -> {jpg.name} · {jpg.stat().st_size // 1024} KB")
-    for tag in ("A", "B"):
-        f = next(OUT.glob(f"02-CVR-H-{tag}-*.jpg"))
-        CS.qc_thumb(Image.open(f), str(OUT / f"qc168-{tag}.png"))
+        CS.qc_thumb(Image.open(jpg), str(OUT / naming.name("02", "QC", "", variant=tag, v=1,
+                                                          ext="png", en="thumb-168px")))
     print("done")
