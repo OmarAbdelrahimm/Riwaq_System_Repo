@@ -122,6 +122,9 @@
 
 # ⑥      فحص أي اسم ملف قبل رفعه إلى Drive (0 = مطابق)
 /tmp/venv/bin/python scripts/publish/naming.py --check S04-VID-be-better-not-the-best-v1.mp4
+
+# ⑥      فحص اسم مجلد Drive قبل إنشائه/تسميته
+/tmp/venv/bin/python scripts/publish/naming.py --check-folder 04-EP-shaytan-runs-through-the-blood
 ```
 
 **الفحص يفشل = لا تسليم.** الأوامر الثلاثة تُشغَّل في نهاية كل جولة، ونتيجتها تُذكر في التسليم.

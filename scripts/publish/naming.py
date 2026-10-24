@@ -154,6 +154,21 @@ def check_name(filename: str) -> list[str]:
     return errs
 
 
+FOLDER_RE = re.compile(r"^(?:(?P<num>(?:S\d{2}|\d{2}|CMP))-(?P<kind>EP|SHORT|SHORTS|COMPILED)-[a-z0-9-]+)$")
+
+
+def check_folder(name: str) -> list[str]:
+    """اسم مجلد Drive: `04-EP-slug` · `S07-SHORT-slug` · `00-SHORTS-01-to-09` · `CMP-COMPILED-slug`."""
+    errs: list[str] = []
+    if re.search(r"[\u0600-\u06FF]", name):
+        errs.append(f"«{name}»: حروف عربية — أسماء المجلدات لاتينية فقط")
+    if " " in name or "_" in name:
+        errs.append(f"«{name}»: مسافة أو شرطة سفلية")
+    if not FOLDER_RE.match(name):
+        errs.append(f"«{name}»: خارج النمط {{number}}-{{EP|SHORT|SHORTS|COMPILED}}-{{slug}}")
+    return errs
+
+
 def name(number: str, kind: str, title_or_en: str, *, variant: str | None = None,
          v: int = 1, ext: str = "jpg", words: int = 6, en: str | None = None) -> str:
     """{number}-{kind}-{A|B}-{english-slug}-{v}.{ext}"""
@@ -196,6 +211,16 @@ def save_cover(im: Image.Image, stem: str, out_dir: str | Path = ".") -> tuple[P
 
 if __name__ == "__main__":
     import sys
+
+    if len(sys.argv) > 1 and sys.argv[1] == "--check-folder":
+        bad = 0
+        for fn in sys.argv[2:]:
+            e = check_folder(fn)
+            print(("✅ " if not e else "❌ ") + fn)
+            for msg in e:
+                print("   ·", msg)
+            bad += bool(e)
+        raise SystemExit(1 if bad else 0)
 
     if len(sys.argv) > 1 and sys.argv[1] == "--check":
         # python naming.py --check "01-CVR-H-A-x-v1.jpg" ...  → 0 = كلها مطابقة
