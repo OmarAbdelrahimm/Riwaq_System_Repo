@@ -23,7 +23,7 @@
 | **number** | `01`…`06` · `S01`…`S09` · `F01` | **Always first** — otherwise the folder sorts alphabetically and episodes scatter |
 | **KIND** | see table below | Know what a file is without opening it |
 | **A / B** | only for A/B pairs | Stops cover A being paired with title B |
-| **english-slug** | 3–6 words, kebab-case | Searchable in Drive + default title on YouTube |
+| **english-slug** | 3–7 words, kebab-case, **lowercase only** (KIND and A/B are the only uppercase parts) | Searchable in Drive + default title on YouTube |
 | **v** | `v1`, `v2` … | Old and new versions sort correctly side by side |
 | **ext** | `.jpg` (upload) · `.png` (archive) · `.md` · `.srt` · `.mp4` | Last, always |
 

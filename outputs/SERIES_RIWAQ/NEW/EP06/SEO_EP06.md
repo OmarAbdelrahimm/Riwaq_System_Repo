@@ -1,7 +1,9 @@
 # حزمة نشر — الحلقة 6 من 6 — opinion-is-not-the-truth
 
 > **الكلمة المفتاحية المستهدفة:** `تطوير الذات` / `طور ذاتك`
-> **النسخة:** v2 · 2026-10-24 · تُلزِم نفسها بقواعد `docs/SEO_RULES.md`
+> **الدليل:** 66 — vidIQ (لوحة القناة) — 2026-10-22 — قديم: مقروء سابقًا ولم يُعَد قياسه؛ الحالة الكاملة في docs/KEYWORD_EVIDENCE.md
+> **اسم الملف:** `06-SEO-opinion-is-not-the-truth-v2.md`
+> **النسخة:** v2 · 2026-10-24 · تُلزِم نفسها بقواعد `docs/SEO_RULES.md` (الفصل ⑤ من `docs/PRODUCTION_RULES.md`)
 > **الغلافان:** `06-CVR-H-A-opinion-is-not-the-truth-v2.jpg` · `06-CVR-H-B-opinion-is-not-the-truth-v2.jpg`
 
 ---

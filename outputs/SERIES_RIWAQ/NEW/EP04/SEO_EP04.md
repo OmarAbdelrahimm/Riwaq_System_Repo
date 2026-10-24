@@ -1,7 +1,9 @@
 # حزمة نشر — الحلقة 4 من 6 — shaytan-runs-through-the-blood
 
 > **الكلمة المفتاحية المستهدفة:** `تطوير الذات` / `طور ذاتك`
-> **النسخة:** v2 · 2026-10-24 · تُلزِم نفسها بقواعد `docs/SEO_RULES.md`
+> **الدليل:** 66 — vidIQ (لوحة القناة) — 2026-10-22 — قديم: مقروء سابقًا ولم يُعَد قياسه؛ الحالة الكاملة في docs/KEYWORD_EVIDENCE.md
+> **اسم الملف:** `04-SEO-shaytan-runs-through-the-blood-v2.md`
+> **النسخة:** v2 · 2026-10-24 · تُلزِم نفسها بقواعد `docs/SEO_RULES.md` (الفصل ⑤ من `docs/PRODUCTION_RULES.md`)
 > **الغلافان:** `04-CVR-H-A-shaytan-runs-through-the-blood-v2.jpg` · `04-CVR-H-B-shaytan-runs-through-the-blood-v2.jpg`
 
 ---

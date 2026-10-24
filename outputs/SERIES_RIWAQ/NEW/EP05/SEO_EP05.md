@@ -1,7 +1,9 @@
 # حزمة نشر — الحلقة 5 من 6 — who-drives-your-car
 
 > **الكلمة المفتاحية المستهدفة:** `تطوير الذات` / `طور ذاتك`
-> **النسخة:** v2 · 2026-10-24 · تُلزِم نفسها بقواعد `docs/SEO_RULES.md`
+> **الدليل:** 66 — vidIQ (لوحة القناة) — 2026-10-22 — قديم: مقروء سابقًا ولم يُعَد قياسه؛ الحالة الكاملة في docs/KEYWORD_EVIDENCE.md
+> **اسم الملف:** `05-SEO-who-drives-your-car-v2.md`
+> **النسخة:** v2 · 2026-10-24 · تُلزِم نفسها بقواعد `docs/SEO_RULES.md` (الفصل ⑤ من `docs/PRODUCTION_RULES.md`)
 > **الغلافان:** `05-CVR-H-A-who-drives-your-car-v2.jpg` · `05-CVR-H-B-who-drives-your-car-v2.jpg`
 
 ---

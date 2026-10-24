@@ -80,6 +80,78 @@ def slug(text: str, words: int = 5) -> str:
     return "-".join(parts[:words])
 
 
+# ───────────────────────── فحص النمط (يُستخدم من seo_pack --audit) ─────────────────────────
+# {number}-{KIND}-{A|B}-{english-slug}-v{n}.{ext}
+NAME_RE = re.compile(
+    r"^(?P<num>(?:S|F)?\d{2})-"
+    r"(?P<kind>CVR-H|CVR-V|SEO|SUB-AR|SUB-EN|SUB-BI|VID|QC)"
+    r"(?:-(?P<variant>[AB]))?-"
+    r"(?P<slug>[a-z0-9]+(?:-[a-z0-9]+)*)-"
+    r"v(?P<v>\d+)\."
+    r"(?P<ext>[a-z0-9]+)$"
+)
+
+# الامتداد المسموح لكل نوع — ملف بـ .mp4 اسمه SEO خطأ يجب أن يُرفض
+ALLOWED_EXT = {
+    "CVR-H": {"jpg", "png"},
+    "CVR-V": {"jpg", "png"},
+    "SEO": {"md"},
+    "SUB-AR": {"srt"},
+    "SUB-EN": {"srt"},
+    "SUB-BI": {"srt"},
+    "VID": {"mp4", "mov"},
+    "QC": {"png", "pdf"},
+}
+
+# الأنواع التي تحتاج A/B، والأنواع التي يجب ألا تحملهما
+NEEDS_VARIANT = {"CVR-H", "CVR-V"}
+NO_VARIANT = {"SEO", "SUB-AR", "SUB-EN", "SUB-BI", "VID", "QC"}
+
+_SLUG_BAD = re.compile(r"[^a-z0-9-]")
+
+
+def parse_name(filename: str) -> dict | None:
+    """يفكّك اسمًا مطابقًا للنمط، أو None لو كان خارج النمط."""
+    m = NAME_RE.match(Path(filename).name)
+    if not m:
+        return None
+    d = m.groupdict()
+    return {"number": d["num"], "kind": d["kind"], "variant": d["variant"],
+            "slug": d["slug"], "v": int(d["v"]), "ext": d["ext"]}
+
+
+def check_name(filename: str) -> list[str]:
+    """يرجّع قائمة المخالفات؛ قائمة فارغة = الاسم مطابق للمعيار.
+
+    يفحص: النمط · الحروف اللاتينية فقط · الشرطة الواحدة · A/B في موضعه ·
+    الامتداد المناسب للنوع · طول الـ slug (≤ 6 كلمات).
+    """
+    errs: list[str] = []
+    base = Path(filename).name
+    if re.search(r"[\u0600-\u06FF]", base):
+        errs.append(f"«{base}»: حروف عربية — الأسماء لاتينية فقط")
+    if "_" in base or " " in base:
+        errs.append(f"«{base}»: مسافة أو شرطة سفلية — استخدم «-» فقط")
+    p = parse_name(base)
+    if p is None:
+        return errs + [f"«{base}»: خارج النمط {{number}}-{{KIND}}-{{A|B}}-{{slug}}-v{{n}}.{{ext}}"]
+
+    if p["kind"] in NEEDS_VARIANT and not p["variant"]:
+        errs.append(f"«{base}»: {p['kind']} يحتاج A أو B")
+    if p["kind"] in NO_VARIANT and p["variant"]:
+        errs.append(f"«{base}»: {p['kind']} لا يحمل A/B")
+    if p["ext"] not in ALLOWED_EXT.get(p["kind"], set()):
+        errs.append(f"«{base}»: امتداد .{p['ext']} غير مناسب لـ {p['kind']}")
+    if p["slug"] != p["slug"].lower():
+        errs.append(f"«{base}»: الـ slug بحروف كبيرة — صغير فقط (KIND وA/B فقط بأحرف كبيرة)")
+    words = p["slug"].split("-")
+    if len(words) > 7:
+        errs.append(f"«{base}»: الـ slug {len(words)} كلمة — الحد 7")
+    if _SLUG_BAD.search(p["slug"]):
+        errs.append(f"«{base}»: الـ slug يحتوي محارف غير مسموحة")
+    return errs
+
+
 def name(number: str, kind: str, title_or_en: str, *, variant: str | None = None,
          v: int = 1, ext: str = "jpg", words: int = 6, en: str | None = None) -> str:
     """{number}-{kind}-{A|B}-{english-slug}-{v}.{ext}"""
@@ -121,6 +193,19 @@ def save_cover(im: Image.Image, stem: str, out_dir: str | Path = ".") -> tuple[P
 
 
 if __name__ == "__main__":
+    import sys
+
+    if len(sys.argv) > 1 and sys.argv[1] == "--check":
+        # python naming.py --check "01-CVR-H-A-x-v1.jpg" ...  → 0 = كلها مطابقة
+        bad = 0
+        for fn in sys.argv[2:]:
+            e = check_name(fn)
+            print(("✅ " if not e else "❌ ") + fn)
+            for msg in e:
+                print("   ·", msg)
+            bad += bool(e)
+        raise SystemExit(1 if bad else 0)
+
     print(cover_name("02", "CVR-H", "المقارنة أداة لا معيار", variant="A", v=1,
                      en="comparison-is-a-tool-not-a-standard"))
     print(cover_name("S03", "CVR-V", "المقارنة لازمة غير ملزمة", variant="B",

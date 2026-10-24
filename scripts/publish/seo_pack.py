@@ -26,6 +26,24 @@ EPISODE_SOURCE = "https://www.youtube.com/watch?v=x-Hh9gx1xmc"
 SERIES_NAME = "«مركزية العلاقة مع الله» — بودكاست بدون ورق"
 GUEST = "ياسر الحزيمي"
 
+# سطر الدليل الملزم في كل حزمة — القاعدة §1 في docs/SEO_RULES.md
+# الصيغة: {الرقم} — {المصدر} — {التاريخ} — {مقيس|مفترض|قديم}
+EVIDENCE = ("66 — vidIQ (لوحة القناة) — 2026-10-22 — قديم: مقروء سابقًا ولم يُعَد قياسه؛ "
+            "الحالة الكاملة في docs/KEYWORD_EVIDENCE.md")
+
+# slug لاتيني لكل شورت — نفس الاسم المستخدم على Drive
+SHORT_SLUGS = {
+    "S01": "relationships-deeper-than-communication",
+    "S02": "tazkiya-before-self-development",
+    "S03": "comparison-necessary-not-binding",
+    "S04": "be-better-not-the-best",
+    "S05": "justification-enemy-of-change",
+    "S06": "money-reveals-not-changes",
+    "S07": "you-marry-a-legacy",
+    "S08": "every-exit-is-an-entry",
+    "S09": "jarir-and-the-horse",
+}
+
 RULES = {
     "title_max": 60,          # الجوال يقطع عند ~50–60
     "title_a_hook": 16,       # الهوك يحتلها — الكلمة المفتاحية لا تبدأ قبلها
@@ -370,17 +388,20 @@ REPLY_TEMPLATES = """## 5. قوالب الرد على التعليقات — م�
 
 
 def render_episode(num: str, ep: dict) -> str:
-    from naming import cover_name  # لاتيني فقط، مصدر التسمية الواحد
+    from naming import cover_name, seo_name  # لاتيني فقط، مصدر التسمية الواحد
 
     cov_a = cover_name(num, "CVR-H", "", variant="A", v=2, en=ep["slug"], ext="jpg")
     cov_b = cover_name(num, "CVR-H", "", variant="B", v=2, en=ep["slug"], ext="jpg")
+    seo_file = seo_name(num, "", v=2, en=ep["slug"])
     tags_line, tags = build_tags(ep["tags_extra"], TAGS_TAIL)
     desc = build_description(ep, num)
 
     return f"""# حزمة نشر — الحلقة {int(num)} من 6 — {ep['slug']}
 
 > **الكلمة المفتاحية المستهدفة:** `{KEYWORD}` / `{KEYWORD_ALT}`
-> **النسخة:** v2 · 2026-10-24 · تُلزِم نفسها بقواعد `docs/SEO_RULES.md`
+> **الدليل:** {EVIDENCE}
+> **اسم الملف:** `{seo_file}`
+> **النسخة:** v2 · 2026-10-24 · تُلزِم نفسها بقواعد `docs/SEO_RULES.md` (الفصل ⑤ من `docs/PRODUCTION_RULES.md`)
 > **الغلافان:** `{cov_a}` · `{cov_b}`
 
 ---
@@ -447,7 +468,9 @@ def render_episode(num: str, ep: dict) -> str:
 
 
 def render_short(key: str, s: dict) -> str:
+    from naming import seo_name
     n = str(int(key[1:]))
+    seo_file = seo_name(key, "", v=2, en=SHORT_SLUGS[key])
     tags_line, tags = build_tags(s["tags_extra"], SHORT_TAGS_TAIL)
     desc = "\n".join([
         s["hook"], "",
@@ -461,6 +484,8 @@ def render_short(key: str, s: dict) -> str:
     return f"""# حزمة نشر الشورت {n} من 9
 
 > **الكلمة المفتاحية:** `{KEYWORD}` — في أول 100 حرف من الوصف وأول وسم.
+> **الدليل:** {EVIDENCE}
+> **اسم الملف:** `{seo_file}`
 > **النسخة:** v2 · 2026-10-24
 
 ## 1. العنوانان (A/B) — كل عنوان مع غلافه
@@ -495,6 +520,37 @@ def render_short(key: str, s: dict) -> str:
 
 
 # ──────────────────────────────── الفحص الآلي ────────────────────────────────
+# كل العناصر التي لا يجوز أن تغيب: سطر الدليل (§1) + اسم ملف مطابق للنمط (المرحلة ⑥)
+_EVID = re.compile(r"\*\*الدليل:\*\*[^\n]*?[—–-]\s*(\d{4}-\d{2}-\d{2})\s*[—–-]\s*(مقيس|مفترض|قديم|مفترض[^|\n]*)")
+_FILE = re.compile(r"\*\*اسم الملف:\*\*\s*`([^`]+)`")
+
+
+def audit_provenance(tag: str, md: str) -> list[str]:
+    """يفرض §1 (الدليل بمصدره وتاريخه وحالته) + المرحلة ⑥ (اسم الملف من naming)."""
+    from naming import check_name
+    errs: list[str] = []
+
+    m = _EVID.search(md)
+    if not m:
+        errs.append(f"[{tag}] لا يوجد سطر دليل بالصيغة: {{الرقم}} — {{المصدر}} — YYYY-MM-DD — {{مقيس|مفترض|قديم}}")
+    else:
+        date, state = m.group(1), m.group(2)
+        if state.startswith("مفترض") and "مصدر" not in md and "vidIQ" not in md:
+            errs.append(f"[{tag}] الحالة «مفترض» بلا مصدر مذكور")
+
+    fm = _FILE.search(md)
+    if not fm:
+        errs.append(f"[{tag}] لا يوجد سطر «اسم الملف» — التسمية تُولَّد من naming.py لا يدويًا")
+    else:
+        name = fm.group(1)
+        for e in check_name(name):
+            errs.append(f"[{tag}] {e}")
+        if not re.search(r"-SEO-[a-z0-9-]+-v\d+\.md$", name):
+            errs.append(f"[{tag}] اسم ملف السيو «{name}» لا يتبع -SEO-<slug>-v<n>.md")
+    return errs
+
+
+
 def audit_episode(num: str, md: str) -> list[str]:
     errs: list[str] = []
     got = {m.group(1): m.group(2).strip() for m in
@@ -544,6 +600,7 @@ def audit_episode(num: str, md: str) -> list[str]:
     if len(norm) != len(set(norm)):
         dup = {t for t in norm if norm.count(t) > 1}
         errs.append(f"[{num}] وسوم مكرّرة: {dup}")
+    errs += audit_provenance(num, md)
     return errs
 
 
@@ -564,6 +621,7 @@ def audit_short(key: str, md: str) -> list[str]:
     tags = [t.strip() for t in line.split(",") if t.strip()]
     if tags[0] != KEYWORD:
         errs.append(f"[{key}] أول وسم «{tags[0]}» وليس «{KEYWORD}»")
+    errs += audit_provenance(key, md)
     return errs
 
 
