@@ -127,13 +127,55 @@ def ladder_fonts(k: float = 1.0) -> dict[str, ImageFont.FreeTypeFont]:
     }
 
 
+def draw_ink(im: Image.Image, text: str, fnt, right: int, top: int, fill,
+             layer: ImageDraw.ImageDraw | None = None) -> int:
+    """يرسم النص بحيث تكون **حافة الحبر** اليمنى عند right وأعلاه عند top.
+
+    يُرجع أسفل الحبر — أي أن السطر التالي يبدأ من هنا بالضبط.
+    """
+    w, h, x0, y0 = ink_size(text, fnt)
+    d = layer or ImageDraw.Draw(im, "RGBA")
+    d.text((right - (x0 + w), top - y0), G.ar(text), font=fnt, fill=fill, anchor="ls")
+    return top + h
+
+
+_INK_CACHE: dict[tuple, tuple[int, int, int, int]] = {}
+
+
+def ink_size(text: str, fnt) -> tuple[int, int, int, int]:
+    """(العرض، الارتفاع، x0، y0) لحبر النص **المرئي** فعلًا.
+
+    getbbox في Pillow يُرجع أطول ascender/descender في الخط (+40% مع Amiri)،
+    لذلك نرسم على قناع ونقيس البكسلات؛ الـx0/y0 إزاحتان من نقطة خط الأساس.
+    """
+    key = (text, getattr(fnt, "size", 0), getattr(fnt, "path", ""))
+    if key in _INK_CACHE:
+        return _INK_CACHE[key]
+    probe = Image.new("L", (2600, 700), 0)
+    ImageDraw.Draw(probe).text((120, 500), G.ar(text), font=fnt, fill=255, anchor="ls")
+    box = probe.getbbox()
+    res = (0, 0, 0, 0) if box is None else (box[2] - box[0], box[3] - box[1],
+                                            box[0] - 120, box[1] - 500)
+    _INK_CACHE[key] = res
+    return res
+
+
 def fit_width(text: str, family: str, max_w: int, start_px: int,
               floor_px: int = 18) -> ImageFont.FreeTypeFont:
-    """يُصغّر حتى يدخل العرض — يمنع خروج العربية من الإطار على اليسار."""
+    """يُصغّر حتى يدخل العرض — يمنع خروج العربية من الإطار على اليسار.
+
+    القياس على النص **المُشكَّل** (بعد reshaper+bidi) وإلا كان القياس خاطئًا.
+    """
     px = start_px
-    while px > floor_px and G.text_w(font(family, px), text) > max_w:
+    while px > floor_px and G.text_w(font(family, px), G.ar(text)) > max_w:
         px -= 2
     return font(family, px)
+
+
+def measure(text: str, fnt: ImageFont.FreeTypeFont) -> tuple[int, int, int]:
+    """(العرض، الارتفاع الفعلي للحروف، أعلى الحدّ) — للحروف العربية بعد التشكيل."""
+    b = fnt.getbbox(G.ar(text))
+    return b[2] - b[0], b[3] - b[1], b[1]
 
 
 # ---------------------------------------------------------------- الإطار
@@ -186,7 +228,8 @@ def badge3d(im: Image.Image, text: str, centre: tuple[int, int], *,
     px = px or LADDER.badge
     fnt = font("sans_b", px)
     s = G.ar(text)
-    tw, th = G.text_w(fnt, text), px
+    tw = G.text_w(fnt, s)          # القياس على النص المُشكَّل — وإلا كانت الشارة أوسع
+    th = px
     w, h = tw + pad_x * 2, th + pad_y * 2
     cx, cy = centre
     box = (cx - w // 2, cy - h // 2, cx + w // 2, cy + h // 2)
@@ -214,6 +257,110 @@ def badge3d(im: Image.Image, text: str, centre: tuple[int, int], *,
     d.text((cx, cy - int(px * 0.06)), s, font=fnt,
            fill=COLORS["white"] + (255,), anchor="mm")
     return box
+
+
+def cover_crop(path: str, W: int, H: int, fx: float = 0.5, fy: float = 0.5,
+               zoom: float = 1.0) -> Image.Image:
+    """قصّ 16:9 مع تحكّم في نقطة التركيز والتكبير.
+
+    zoom=1.0 ⇒ أوسع كادر ممكن. zoom=1.22 ⇒ اقتراب 22% (الوجه أكبر).
+    fx/fy نسبيّان في **الفائض** الذي نُزحزح فيه النافذة: 0.5 = المنتصف،
+    0.0 = الحافة الأولى، 1.0 = الحافة الأخيرة.
+    (المصدر 4:3 أوسع من 16:9 ⇒ الفائض أفقي كبير، والتحكم في fx هو ما يحرّك البطل.)
+    """
+    im = Image.open(path).convert("RGB")
+    base = max(W / im.width, H / im.height)
+    s = base * zoom
+    im = im.resize((max(1, int(im.width * s + 0.5)),
+                    max(1, int(im.height * s + 0.5))), Image.LANCZOS)
+    slack_x = max(0, im.width - W)
+    slack_y = max(0, im.height - H)
+    x = int(slack_x * fx)
+    y = int(slack_y * fy)
+    return im.crop((x, y, x + W, y + H))
+
+
+def grade(im: Image.Image, brightness: float = 1.04, contrast: float = 1.10,
+          color: float = 0.96) -> Image.Image:
+    """تصحيح لوني محافظ: الخلفية تهدأ قليلًا، البطل يبقى حقيقيًا."""
+    from PIL import ImageEnhance
+    im = ImageEnhance.Brightness(im).enhance(brightness)
+    im = ImageEnhance.Contrast(im).enhance(contrast)
+    return ImageEnhance.Color(im).enhance(color)
+
+
+def text_shadow(base: Image.Image, painter, blur: int = 10,
+                offsets=((0, 4), (0, 10), (0, 18)), alpha: int = 210) -> None:
+    """ظل نصّي متعدّد الطبقات — يضمن القراءة فوق أي خلفية بلا لوح داكن."""
+    layer = Image.new("RGBA", base.size, (0, 0, 0, 0))
+    painter(ImageDraw.Draw(layer))
+    sh = Image.new("RGBA", base.size, (0, 0, 0, 0))
+    sh.paste(Image.new("RGBA", base.size, (0, 0, 0, alpha)), (0, 0), layer.split()[-1])
+    for dx, dy in offsets:
+        b = sh.filter(ImageFilter.GaussianBlur(blur))
+        base.paste(Image.new("RGB", base.size, (0, 0, 0)), (dx, dy), b.split()[-1])
+    base.paste(layer, (0, 0), layer)
+
+
+def lockup(im: Image.Image, width: int = 92, xy: tuple[int, int] = (40, 26)) -> None:
+    """شعار رواق أعلى-اليسار — موضع ثابت في كل غلاف."""
+    lock = G.brand_lockup(width, color=G.PARCH)
+    layer = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    layer.alpha_composite(lock, xy)
+    text_shadow(im, lambda d: d.bitmap((0, 0), layer.split()[-1],
+                                       fill=(255, 255, 255, 255)),
+                blur=12, offsets=((0, 4),), alpha=190)
+    im.paste(layer, (0, 0), layer)
+
+
+def pill(im: Image.Image, text: str, centre: tuple[int, int], px: int = 20,
+         pad_x: int = 16, pad_y: int = 8) -> tuple[int, int, int, int]:
+    """كبسولة رقيقة (الشارة التصنيفية) — إطار شامبانيا + نص شامبانيا، بلا تعبئة."""
+    fnt = font("sans_m", px)
+    tw = G.text_w(fnt, text)
+    w, h = tw + pad_x * 2, px + pad_y * 2
+    cx, cy = centre
+    box = (cx - w // 2, cy - h // 2, cx + w // 2, cy + h // 2)
+    d = ImageDraw.Draw(im, "RGBA")
+    d.rounded_rectangle(box, radius=h // 2, fill=(0, 0, 0, 120),
+                        outline=COLORS["champagne"] + (225,), width=1)
+    d.text((cx, cy - 1), G.ar(text), font=fnt,
+           fill=COLORS["champagne"] + (250,), anchor="mm")
+    return box
+
+
+def neq(im: Image.Image, centre: tuple[int, int], size: int,
+        color: tuple[int, int, int] | None = None, width: int | None = None) -> None:
+    """علامة ≠ مرسومة يدويًا (لا تعتمد على وجود الحرف في الخط)."""
+    c = (color or COLORS["champagne"]) + (255,)
+    w = width or max(4, size // 9)
+    x, y = centre
+    d = ImageDraw.Draw(im, "RGBA")
+    d.line([(x - size // 2, y - size // 4), (x + size // 2, y - size // 4)], fill=c, width=w)
+    d.line([(x - size // 2, y + size // 4), (x + size // 2, y + size // 4)], fill=c, width=w)
+    d.line([(x - size // 3, y + size // 3), (x + size // 3, y - size // 3)], fill=c, width=w)
+
+
+def _ar_text(d, xy, text, fnt, fill, anchor="ra"):
+    """نص عربي مُشكَّل الاتجاه — نقطة واحدة للرسم في كل السكربتات."""
+    d.text(xy, G.ar(text), font=fnt, fill=fill, anchor=anchor)
+
+
+def arrow_marker(im: Image.Image, tip: tuple[int, int], size: int,
+                 direction: str = "up", width: int | None = None) -> None:
+    """سهم نظيف كمؤشّر بصري واحد — يُستخدم بدل السهم الملوّن الضخم."""
+    c = COLORS["champagne"] + (245,)
+    w = width or max(4, size // 7)
+    x, y = tip
+    d = ImageDraw.Draw(im, "RGBA")
+    if direction == "up":
+        d.line([(x, y), (x, y + size)], fill=c, width=w)
+        d.line([(x, y), (x - size // 2, y + size // 2)], fill=c, width=w)
+        d.line([(x, y), (x + size // 2, y + size // 2)], fill=c, width=w)
+    else:
+        d.line([(x, y), (x, y - size)], fill=c, width=w)
+        d.line([(x, y), (x - size // 2, y - size // 2)], fill=c, width=w)
+        d.line([(x, y), (x + size // 2, y - size // 2)], fill=c, width=w)
 
 
 def rule(im: Image.Image, xy: tuple[int, int], *, length: int | None = None,
