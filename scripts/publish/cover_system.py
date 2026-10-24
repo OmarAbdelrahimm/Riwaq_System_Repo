@@ -180,41 +180,92 @@ def measure(text: str, fnt: ImageFont.FreeTypeFont) -> tuple[int, int, int]:
 
 # ---------------------------------------------------------------- الإطار
 def frame3(im: Image.Image, scale: float | None = None, *,
-           signature: bool = True) -> Image.Image:
+           signature: bool = True, bevel: bool = True,
+           opaque: bool = True, thick: bool = False) -> Image.Image:
     """الإطار الثلاثي: خارجي ذهبي → شعرة بيضاء → أقواس زوايا.
 
-    scale=None ⇒ يُعاير على الضلع الأقصر (1280) تلقائيًا.
+    bevel=True   ⇒ حدّ فاتح فوق وحدّ داكن تحت على نفس الحافة = عمق 1px بلا أي توهّج.
+    opaque=True  ⇒ ألوان صريحة (بلا شفافية) — هي الفرق بين «فخم» و«باهت».
+    thick=True   ⇒ سُمك 3px بدل 2px للإطار الخارجي والأقواس (يبقى مقروءًا عند التصغير).
+    scale=None   ⇒ يُعاير على الضلع الأقصر مقابل 720 (مرجع 1280×720).
     """
     W, H = im.size
-    f = TOKENS.scale(scale) if scale is not None else TOKENS.scale(min(W, H) / 1280)
+    # ⚠️ المرجع 1280×720 وضلعه الأقصر 720 — القسمة على 1280 كانت تُصغّر الإطار
+    # إلى 56% وتُنتج إطارًا باهتًا (خطأ حقيقي اكتُشف بمقارنة البكسل).
+    f = TOKENS.scale(scale) if scale is not None else TOKENS.scale(min(W, H) / 720)
     d = ImageDraw.Draw(im, "RGBA")
+    k = max(1, round(min(W, H) / 1280))
+    ow = (3 if thick else 2) * (1 if min(W, H) >= 1000 else 1)
+    bw = (3 if thick else 2) * 1
+    hi = (255, 246, 226)          # حدّ الإضاءة (أعلى/يسار)
+    lo = (0, 0, 0)                # حدّ الظل (أسفل/يمين)
+    gold = COLORS["champagne"] + ((255,) if opaque else (225,))
+    gold_soft = COLORS["champagne"] + ((235,) if opaque else (200,))
 
-    # 1) الإطار الخارجي — سميك نسبيًا، هو الوحيد الذي ينجو عند 168px
-    d.rectangle([f.outer_inset, f.outer_inset,
-                 W - 1 - f.outer_inset, H - 1 - f.outer_inset],
-                outline=COLORS["champagne"] + (225,), width=f.outer_w)
+    def rect(inset: int, width: int, colour):
+        d.rectangle([inset, inset, W - 1 - inset, H - 1 - inset],
+                    outline=colour, width=width)
+
+    # 1) الإطار الخارجي + bevel: الظل داخل الحافة، الإضاءة خارجها
+    if bevel:
+        rect(f.outer_inset + ow, 1, lo + (110,))
+        rect(f.outer_inset - 1, 1, hi + (120,))
+    rect(f.outer_inset, ow, gold)
 
     # 2) الشعرة البيضاء — أضعف وضوحًا، نسيج لا إشارة
-    d.rectangle([f.hair_inset, f.hair_inset,
-                 W - 1 - f.hair_inset, H - 1 - f.hair_inset],
-                outline=COLORS["hairline"] + (150,), width=f.hair_w)
+    rect(f.hair_inset, f.hair_w, COLORS["hairline"] + (150,))
 
     # 3) أقواس الزوايا — زوايا فقط، لا صندوق كامل
-    i, arm, bw = f.bracket_inset, f.bracket_arm, f.bracket_w
-    c = COLORS["champagne"] + (245,)
+    i, arm = f.bracket_inset, f.bracket_arm
     x0, y0, x1, y1 = i, i, W - 1 - i, H - 1 - i
     for (cx, cy, sx, sy) in ((x0, y0, 1, 1), (x1, y0, -1, 1),
                              (x0, y1, 1, -1), (x1, y1, -1, -1)):
-        d.line([(cx, cy), (cx + sx * arm, cy)], fill=c, width=bw)
-        d.line([(cx, cy), (cx, cy + sy * arm)], fill=c, width=bw)
+        if bevel:   # ظل داخلي ثم إضاءة خارجية
+            d.line([(cx + sx * 1, cy + sy * 1), (cx + sx * arm, cy + sy * 1)],
+                   fill=hi + (110,), width=1)
+            d.line([(cx + sx * 1, cy + sy * 1), (cx + sx * 1, cy + sy * arm)],
+                   fill=hi + (110,), width=1)
+        d.line([(cx, cy), (cx + sx * arm, cy)], fill=gold_soft, width=bw)
+        d.line([(cx, cy), (cx, cy + sy * arm)], fill=gold_soft, width=bw)
 
     # 4) خط التوقيع — أسفل-يسار فقط (يكسر التماثل)
     if signature:
         sx = f.sig_x
         sy = H - f.sig_y_from_bottom
+        sw = max(f.sig_w, 2 if thick else f.sig_w)
         d.line([(sx, sy), (sx + f.sig_len, sy)],
-               fill=COLORS["gold_rule"] + (215,), width=f.sig_w)
+               fill=COLORS["gold_rule"] + ((245,) if opaque else (215,)), width=sw)
+        if bevel:
+            d.line([(sx, sy - 1), (sx + f.sig_len, sy - 1)], fill=hi + (90,), width=1)
     return im
+
+
+def series_badge(im: Image.Image, text: str, *, corner: str = "tr",
+                 px: int = 18, pad: tuple[int, int] = (14, 7)) -> tuple[int, int, int, int]:
+    """شارة السلسلة داخل زاوية الإطار (لا في السفل-يمين: يوتيوب يطبع شارة المدة فوقها).
+
+    corner: "tr" أعلى-يمين (الموصى به) · "bl" أسفل-يسار (مكان المرجع الأصلي) · "br" (مخاطرة).
+    """
+    fnt = font("sans_m", px)
+    tw = G.text_w(fnt, G.ar(text))
+    w, h = tw + pad[0] * 2, px + pad[1] * 2
+    # يُزاح داخل الأقواس: لا يلمس قوس الزاوية ولا الإطار (كان يتقاطع معهما)
+    clear = TOKENS.bracket_inset + TOKENS.bracket_arm + 14      # = 74 على 1280×720
+    if corner == "tr":
+        x1, y1 = im.size[0] - clear, clear
+        box = (x1 - w, y1, x1, y1 + h)
+    elif corner == "bl":
+        x0, y0 = clear, im.size[1] - clear - h
+        box = (x0, y0, x0 + w, y0 + h)
+    else:   # br — يوتيوب قد يغطّيه بشارة المدة
+        x1, y1 = im.size[0] - clear, im.size[1] - clear - h
+        box = (x1 - w, y1, x1, y1 + h)
+    d = ImageDraw.Draw(im, "RGBA")
+    d.rounded_rectangle(box, radius=h // 2, fill=(8, 7, 6, 170),
+                        outline=COLORS["champagne"] + (235,), width=1)
+    d.text(((box[0] + box[2]) // 2, (box[1] + box[3]) // 2 - 1), G.ar(text),
+           font=fnt, fill=COLORS["champagne"] + (250,), anchor="mm")
+    return box
 
 
 # ---------------------------------------------------------------- الشارة 3D
