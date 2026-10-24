@@ -268,6 +268,116 @@ def series_badge(im: Image.Image, text: str, *, corner: str = "tr",
     return box
 
 
+# ---------------------------------------------------------------- الإطار v3 (المعتمد نهائيًا)
+# قرار 24 أكتوبر: خطوط أفقية خارجية (فوق/تحت) تتلاشى عند الزوايا
+#              + خطوط رأسية داخلية أرفع وأخف (يمين/يسار) تتلاشى عند الزوايا
+#              + خط التوقيع أسفل-يسار. لا bevel، لا 3D على الإطار، لا أقواس.
+FRAME_V3 = {
+    "h_y_top": 16, "h_bot_inset": 16, "h_w": 2,  # أفقية: y=16 و y=H-17 (انعكاس)
+    "h_x_pad": 54, "h_fade": 78,
+    "v_x": 26, "v_pad": 62, "v_w": 1, "v_fade": 70,
+    "gold_h": (0xC1, 0xA2, 0x69),
+    "gold_v": (0x9C, 0x86, 0x5A),
+    "sig_x": 52, "sig_len": 91, "sig_from_bottom": 78, "sig_w": 2,
+    "sig": (0xBF, 0xAF, 0x8F),
+}
+
+
+def _fade_bar(length: int, thickness: int, fade: int, vertical: bool) -> Image.Image:
+    """قطعة خطّية بتلاشٍ تدريجي عند الطرفين (L mask)."""
+    n = max(1, length)
+    bar = Image.new("L", (1, n) if vertical else (n, 1), 255)
+    px = bar.load()
+    f = max(1, min(fade, n // 2))
+    for i in range(n):
+        a = 255
+        if i < f:
+            a = int(255 * (i / f) ** 0.85)
+        elif i >= n - f:
+            a = int(255 * ((n - 1 - i) / f) ** 0.85)
+        if vertical:
+            px[0, i] = a
+        else:
+            px[i, 0] = a
+    if vertical:
+        return bar.resize((thickness, n), Image.NEAREST)
+    return bar.resize((n, thickness), Image.NEAREST)
+
+
+def frame_v3(im: Image.Image, *, signature: bool = True,
+             scale: float | None = None) -> Image.Image:
+    """الإطار المعتمد: أفقي خارجي متلاشٍ + رأسي داخلي أرفع متلاشٍ + خط التوقيع."""
+    W, H = im.size
+    k = (scale if scale is not None else min(W, H) / 720)
+    q = lambda v: max(1, int(round(v * k)))  # noqa: E731
+    c = FRAME_V3
+
+    def draw_bar(length, thickness, fade, vertical, x, y, colour):
+        mask = _fade_bar(length, thickness, q(fade), vertical)
+        layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        solid = Image.new("RGBA", mask.size, colour + (255,))
+        layer.paste(solid, (x, y), mask)
+        im.alpha_composite(layer) if im.mode == "RGBA" else im.paste(layer, (0, 0), layer)
+
+    hw, pad, fade = q(c["h_w"]), q(c["h_x_pad"]), c["h_fade"]
+    length = W - 2 * pad
+    # أفقية خارجية — فوق وتحت
+    draw_bar(length, hw, fade, False, pad, q(c["h_y_top"]), c["gold_h"])
+    draw_bar(length, hw, fade, False, pad, H - 1 - q(c["h_bot_inset"]), c["gold_h"])
+    # رأسية داخلية — يمين ويسار (أرفع وأخف)
+    vpad, vlen = q(c["v_pad"]), H - 2 * q(c["v_pad"])
+    draw_bar(vlen, q(c["v_w"]), c["v_fade"], True, q(c["v_x"]), vpad, c["gold_v"])
+    draw_bar(vlen, q(c["v_w"]), c["v_fade"], True, W - 1 - q(c["v_x"]), vpad, c["gold_v"])
+
+    if signature:   # خط التوقيع — أسفل-يسار
+        d = ImageDraw.Draw(im, "RGBA")
+        sx = q(c["sig_x"])
+        sy = H - q(c["sig_from_bottom"])
+        d.line([(sx, sy), (sx + q(c["sig_len"]), sy)], fill=c["sig"] + (240,), width=c["sig_w"])
+    return im
+
+
+def corner_number(im: Image.Image, text: str, *, corner: str = "tr",
+                  px: int = 17) -> tuple[int, int, int, int]:
+    """رقم الحلقة — شارة صغيرة داخل منطقة الإطار (الخيار «ب»)."""
+    fnt = font("sans_m", px)
+    tw = G.text_w(fnt, G.ar(text))
+    w, h = tw + 22, px + 12
+    pad = 12
+    if corner == "tr":
+        x1, y1 = im.size[0] - pad - FRAME_V3["h_x_pad"], pad + 12
+        box = (x1 - w, y1, x1, y1 + h)
+    elif corner == "tl":
+        x0, y0 = pad + FRAME_V3["h_x_pad"], pad + 12
+        box = (x0, y0, x0 + w, y0 + h)
+    else:
+        x0, y0 = pad + FRAME_V3["h_x_pad"], im.size[1] - pad - h - 12
+        box = (x0, y0, x0 + w, y0 + h)
+    d = ImageDraw.Draw(im, "RGBA")
+    d.rounded_rectangle(box, radius=h // 2, fill=(8, 7, 6, 120),
+                        outline=COLORS["champagne"] + (150,), width=1)
+    d.text(((box[0] + box[2]) // 2, (box[1] + box[3]) // 2), G.ar(text),
+           font=fnt, fill=COLORS["champagne"] + (235,), anchor="mm")
+    return box
+
+
+def isolate(im: Image.Image, *, strength: float = 0.62) -> Image.Image:
+    """«العزل»: البطل مضيء ودافئ، والأطراف تهدأ — بلا أي ضباب على الوجه."""
+    W, H = im.size
+    im = grade(im, brightness=1.10, contrast=1.14, color=0.97)
+    # فينييت بيضاوي واسع: يترك مركز الكادر (البطل) كما هو ويُطفئ الحواف
+    mask = Image.new("L", (W, H), 0)
+    d = ImageDraw.Draw(mask)
+    d.ellipse([-W * 0.18, -H * 0.30, W * 1.18, H * 1.30], fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(W // 9))
+    dark = Image.new("RGB", (W, H), (8, 7, 6))
+    out = Image.composite(im, Image.blend(im, dark, strength), mask)
+    # دفء خفيف في الظلال (لا يُطبَّق على الإضاءة العالية)
+    warm = Image.new("RGB", (W, H), (26, 18, 12))
+    return Image.blend(out, Image.blend(out, warm, 0.10), 0.55)
+
+
+
 # ---------------------------------------------------------------- الإطار القديم (المعتمد)
 # قياسات مأخوذة بالبكسل من الغلاف القديم المعتمد (1280×720):
 #   قوس الزاوية : inset 11 · ذراع 27 · 1px · #C1B193  (خارج الإطار — هذه هي لمسة القديم)
