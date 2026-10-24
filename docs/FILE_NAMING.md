@@ -20,7 +20,7 @@
 
 | Field | Values | Why |
 |---|---|---|
-| **number** | `01`…`06` · `S01`…`S09` · `F01` | **Always first** — otherwise the folder sorts alphabetically and episodes scatter |
+| **number** | `01`…`06` · `S01`…`S09` · `CMP` (compiled) · `LIVE` (live stream) · `F01` · `00` (docs) | **Always first** — otherwise the folder sorts alphabetically and episodes scatter |
 | **KIND** | see table below | Know what a file is without opening it |
 | **A / B** | only for A/B pairs | Stops cover A being paired with title B |
 | **english-slug** | 3–7 words, kebab-case, **lowercase only** (KIND and A/B are the only uppercase parts) | Searchable in Drive + default title on YouTube |
@@ -51,6 +51,19 @@
 | Bilingual subs, Short 07 | `S07-SUB-BI-you-marry-a-legacy-not-a-person-v1.srt` |
 | Series index doc in the Drive root | `00-DOC-delivery-index-v1.md` |
 | Shorts numbering doc inside the shorts root | `00-DOC-shorts-titles-and-numbering-v1.md` |
+
+---
+
+## 2️⃣b Folders follow the same logic
+
+```
+{number}-{KIND}-{english-slug}          e.g. 04-EP-shaytan-runs-through-the-blood
+S0n-SHORT-{english-slug}                e.g. S07-SHORT-you-marry-a-legacy
+00-SHORTS-01-to-09                      the container of all shorts
+CMP-COMPILED-{english-slug}             the compiled episode
+```
+
+Latin only, hyphen-separated, number first — so the folder list sorts in publish order.
 
 ---
 

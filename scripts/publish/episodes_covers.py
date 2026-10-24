@@ -127,7 +127,7 @@ def plan(h1, h2, badge, bridge, name):
     raise RuntimeError("لا يوجد تدرّج يدخل المساحة")
 
 
-def build(spec: dict, num: str, variant: str) -> Image.Image:
+def build(spec: dict, num: str, variant: str, corner: str | None = None) -> Image.Image:
     im = CS.cover_crop(str(spec["src"]), W, H, fx=spec["fx"], fy=spec["fy"], zoom=spec["zoom"])
     im = CS.isolate(im, strength=0.60)
 
@@ -161,7 +161,7 @@ def build(spec: dict, num: str, variant: str) -> Image.Image:
     CS.rule(im, (X_RIGHT, rule_y), length=336)
     CS.badge3d(im, badge, (X_RIGHT - bd_w // 2,
                            rule_y + CS.LADDER.rule_h + g3 + bd_h // 2), px=f_bd.size)
-    CS.corner_number(im, f"{num} من 6", corner="tr")
+    CS.corner_number(im, corner or f"{num} من 6", corner="tr")
     CS.lockup(im, 84, (44, 26))
     CS.frame_v3(im)
     return im

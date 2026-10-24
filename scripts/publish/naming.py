@@ -84,7 +84,7 @@ def slug(text: str, words: int = 5) -> str:
 # ───────────────────────── فحص النمط (يُستخدم من seo_pack --audit) ─────────────────────────
 # {number}-{KIND}-{A|B}-{english-slug}-v{n}.{ext}
 NAME_RE = re.compile(
-    r"^(?P<num>(?:S|F)?\d{2})-"
+    r"^(?P<num>(?:S|F)?\d{2}|CMP|LIVE)-"
     r"(?P<kind>CVR-H|CVR-V|SEO|SUB-AR|SUB-EN|SUB-BI|VID|QC|DOC)"
     r"(?:-(?P<variant>[AB]))?-"
     r"(?P<slug>[a-z0-9]+(?:-[a-z0-9]+)*)-"
