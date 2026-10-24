@@ -97,9 +97,9 @@ def build(im, pill_txt, h1, h2, badge, bridge, name, rule_len=336):
     CS.rule(im, (X_RIGHT, rule_y), length=min(rule_len, MAX_W))
     CS.badge3d(im, badge, (X_RIGHT - bd_w // 2,
                            rule_y + CS.LADDER.rule_h + g3 + bd_h // 2), px=f_bd.size)
-    CS.pill(im, pill_txt, (X_RIGHT - 150, 118), px=19)
+    CS.pill(im, pill_txt, (0, 118), px=19, right=X_RIGHT)
     CS.lockup(im, 92, (40, 26))
-    CS.frame3(im)
+    CS.frame_classic(im)      # الإطار القديم المعتمد + خط التوقيع
     return im
 
 

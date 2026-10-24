@@ -268,44 +268,102 @@ def series_badge(im: Image.Image, text: str, *, corner: str = "tr",
     return box
 
 
+# ---------------------------------------------------------------- الإطار القديم (المعتمد)
+# قياسات مأخوذة بالبكسل من الغلاف القديم المعتمد (1280×720):
+#   قوس الزاوية : inset 11 · ذراع 27 · 1px · #C1B193  (خارج الإطار — هذه هي لمسة القديم)
+#   الإطار      : inset 16 · 2px  · #C1A269  (ذهبي دافئ أغمق من الشامبانيا)
+#   الشعرة      : inset 24 · 1px  · #7B623A  (ذهبي باهت، وليس أبيض)
+# + خط التوقيع (الإضافة الوحيدة المطلوبة)
+CLASSIC = {
+    "bracket_inset": 11, "bracket_arm": 27, "bracket_w": 1,
+    "gold_inset": 16, "gold_w": 2, "gold": (0xC1, 0xA2, 0x69),
+    "hair_inset": 24, "hair_w": 1, "hair": (0x7B, 0x62, 0x3A),
+    "bracket": (0xC1, 0xB1, 0x93),
+    "sig_x": 52, "sig_len": 91, "sig_from_bottom": 78, "sig_w": 2,
+    "sig": (0xBF, 0xAF, 0x8F),
+}
+
+
+def frame_classic(im: Image.Image, *, signature: bool = True,
+                  scale: float | None = None) -> Image.Image:
+    """الإطار القديم المعتمد حرفيًا + خط التوقيع. لا bevel، لا أقواس داخلية."""
+    W, H = im.size
+    k = scale if scale is not None else min(W, H) / 720
+    q = lambda v: max(1, int(round(v * k)))  # noqa: E731
+    c = CLASSIC
+    d = ImageDraw.Draw(im, "RGBA")
+
+    def rect(inset, width, colour, alpha=255):
+        d.rectangle([inset, inset, W - 1 - inset, H - 1 - inset],
+                    outline=colour + (alpha,), width=width)
+
+    # 1) أقواس الزوايا — رفيعة وخارج الإطار (سمة الإطار القديم)
+    bi, arm, bw = q(c["bracket_inset"]), q(c["bracket_arm"]), c["bracket_w"]
+    for (cx, cy, sx, sy) in ((bi, bi, 1, 1), (W - 1 - bi, bi, -1, 1),
+                             (bi, H - 1 - bi, 1, -1), (W - 1 - bi, H - 1 - bi, -1, -1)):
+        d.line([(cx, cy), (cx + sx * arm, cy)], fill=c["bracket"] + (235,), width=bw)
+        d.line([(cx, cy), (cx, cy + sy * arm)], fill=c["bracket"] + (235,), width=bw)
+
+    # 2) الإطار الذهبي الدافئ
+    rect(q(c["gold_inset"]), c["gold_w"], c["gold"], 255)
+
+    # 3) الشعرة الذهبية الباهتة
+    rect(q(c["hair_inset"]), c["hair_w"], c["hair"], 200)
+
+    # 4) خط التوقيع — أسفل-يسار فقط
+    if signature:
+        sx, sy = q(c["sig_x"]), H - q(c["sig_from_bottom"])
+        d.line([(sx, sy), (sx + q(c["sig_len"]), sy)],
+               fill=c["sig"] + (240,), width=c["sig_w"])
+    return im
+
+
 # ---------------------------------------------------------------- الشارة 3D
 def badge3d(im: Image.Image, text: str, centre: tuple[int, int], *,
-            px: int | None = None, pad_x: int = 22, pad_y: int = 12,
-            radius: int = 12) -> tuple[int, int, int, int]:
-    """شارة مستطيلة «ثلاثية الأبعاد»: قاعدة داكنة مُزاحة + إطار ذهبي + ظل ناعم.
+            px: int | None = None, pad_x: int = 26, pad_y: int = 14,
+            radius: int | None = None) -> tuple[int, int, int, int]:
+    """شارة النص الثلاثية الأبعاد — «المستوى الثالث» في سلّم الطباعة.
 
-    الظل على طبقة منفصلة ⇒ لا يلمس الوجه. تُعيد الـbox للاستخدام كمرجع.
+    طبقاتها (من أسفل لأعلى):
+      1) ظل ناعم واسع خارجها        → يفصلها عن الصورة
+      2) قاعدة داكنة مُزاحة 2px      → سُمك مرئي
+      3) حدّ ذهبي خارجي 2px
+      4) حدّ ذهبي داخلي 1px @+5px    → «الذهبي ظاهر فوق وتحت»
+      5) النص الأبيض
+    الزوايا دائرية بنسبة ~45% من الارتفاع (لا حادّة).
     """
     px = px or LADDER.badge
     fnt = font("sans_b", px)
-    s = G.ar(text)
-    tw = G.text_w(fnt, s)          # القياس على النص المُشكَّل — وإلا كانت الشارة أوسع
-    th = px
-    w, h = tw + pad_x * 2, th + pad_y * 2
+    s_txt = G.ar(text)
+    tw = G.text_w(fnt, s_txt)
+    h = px + pad_y * 2
+    w = tw + pad_x * 2
+    r = radius if radius is not None else max(10, int(h * 0.28))
     cx, cy = centre
     box = (cx - w // 2, cy - h // 2, cx + w // 2, cy + h // 2)
 
-    # ظل ناعم
-    sh = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    # 1) ظل ناعم واسع — يُركّب كطبقة قناع (يعمل مع RGB و RGBA)
+    sh = Image.new("L", im.size, 0)
     ImageDraw.Draw(sh).rounded_rectangle(
-        [box[0], box[1] + 6, box[2], box[3] + 6], radius=radius,
-        fill=(0, 0, 0, 115))
-    im.alpha_composite(sh.filter(ImageFilter.GaussianBlur(12))) if im.mode == "RGBA" \
-        else im.paste(Image.new("RGB", im.size, (0, 0, 0)), (0, 0),
-                      sh.filter(ImageFilter.GaussianBlur(12)).split()[-1])
+        [box[0] + 1, box[1] + 8, box[2] + 1, box[3] + 9], radius=r, fill=150)
+    sh = sh.filter(ImageFilter.GaussianBlur(14))
+    im.paste(Image.new("RGB", im.size, (0, 0, 0)), (0, 0), sh)
 
+    # 2) القاعدة الداكنة مُزاحة للأسفل = سُمك 2px
     d = ImageDraw.Draw(im, "RGBA")
-    # طبقة القاعدة (أسود مُزاح 2.5px للأسفل)
     d.rounded_rectangle([box[0], box[1] + 2, box[2], box[3] + 2],
-                        radius=radius, fill=COLORS["ink"] + (205,))
-    # الوجه الذهبي فوقها
-    d.rounded_rectangle(box, radius=radius, outline=COLORS["champagne"] + (240,),
-                        width=2)
-    d.rounded_rectangle([box[0] + 4, box[1] + 4, box[2] - 4, box[3] - 4],
-                        radius=max(2, radius - 4), outline=COLORS["champagne"] + (90,),
-                        width=1)
-    # النص — يُرفع قليلًا حتى لا تلمس النقاط (ي) الحدّ السفلي
-    d.text((cx, cy - int(px * 0.06)), s, font=fnt,
+                        radius=r, fill=(10, 9, 8, 215))
+    # 3) الوجه الداخلي
+    d.rounded_rectangle(box, radius=r, fill=(12, 11, 9, 140))
+    # 4) الحدّ الذهبي الخارجي
+    d.rounded_rectangle(box, radius=r, outline=COLORS["champagne"] + (255,), width=2)
+    # 5) الحدّ الذهبي الداخلي (يظهر فوق وتحت)
+    inset = 5
+    d.rounded_rectangle([box[0] + inset, box[1] + inset, box[2] - inset, box[3] - inset],
+                        radius=max(2, r - inset),
+                        outline=COLORS["champagne"] + (110,), width=1)
+    # 6) النص — يُرفع 2% لأن النقاط العربية تنزل تحت خط الأساس
+    d.text((cx, cy - int(px * 0.03)), s_txt, font=fnt,
            fill=COLORS["white"] + (255,), anchor="mm")
     return box
 
@@ -365,12 +423,18 @@ def lockup(im: Image.Image, width: int = 92, xy: tuple[int, int] = (40, 26)) -> 
 
 
 def pill(im: Image.Image, text: str, centre: tuple[int, int], px: int = 20,
-         pad_x: int = 16, pad_y: int = 8) -> tuple[int, int, int, int]:
-    """كبسولة رقيقة (الشارة التصنيفية) — إطار شامبانيا + نص شامبانيا، بلا تعبئة."""
+         pad_x: int = 16, pad_y: int = 8, right: int | None = None
+         ) -> tuple[int, int, int, int]:
+    """كبسولة رقيقة (الشارة التصنيفية) — إطار شامبانيا + نص شامبانيا، بلا تعبئة.
+
+    right= ⇒ تُحاذى حافّتها اليمنى على هذا الإحداثي (يمنع خروجها عن عمود النص).
+    """
     fnt = font("sans_m", px)
     tw = G.text_w(fnt, text)
     w, h = tw + pad_x * 2, px + pad_y * 2
     cx, cy = centre
+    if right is not None:
+        cx = right - w // 2
     box = (cx - w // 2, cy - h // 2, cx + w // 2, cy + h // 2)
     d = ImageDraw.Draw(im, "RGBA")
     d.rounded_rectangle(box, radius=h // 2, fill=(0, 0, 0, 120),
