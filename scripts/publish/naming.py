@@ -27,6 +27,7 @@ TYPES = {
     "SUB-BI": "bilingual subtitles",
     "VID": "final master",
     "QC": "preview sheet (never uploaded)",
+    "DOC": "planning / numbering / reference doc (never uploaded)",
 }
 
 _DIACRITICS = re.compile(r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]")
@@ -84,7 +85,7 @@ def slug(text: str, words: int = 5) -> str:
 # {number}-{KIND}-{A|B}-{english-slug}-v{n}.{ext}
 NAME_RE = re.compile(
     r"^(?P<num>(?:S|F)?\d{2})-"
-    r"(?P<kind>CVR-H|CVR-V|SEO|SUB-AR|SUB-EN|SUB-BI|VID|QC)"
+    r"(?P<kind>CVR-H|CVR-V|SEO|SUB-AR|SUB-EN|SUB-BI|VID|QC|DOC)"
     r"(?:-(?P<variant>[AB]))?-"
     r"(?P<slug>[a-z0-9]+(?:-[a-z0-9]+)*)-"
     r"v(?P<v>\d+)\."
@@ -101,11 +102,12 @@ ALLOWED_EXT = {
     "SUB-BI": {"srt"},
     "VID": {"mp4", "mov"},
     "QC": {"png", "pdf"},
+    "DOC": {"md"},
 }
 
 # الأنواع التي تحتاج A/B، والأنواع التي يجب ألا تحملهما
 NEEDS_VARIANT = {"CVR-H", "CVR-V"}
-NO_VARIANT = {"SEO", "SUB-AR", "SUB-EN", "SUB-BI", "VID", "QC"}
+NO_VARIANT = {"SEO", "SUB-AR", "SUB-EN", "SUB-BI", "VID", "QC", "DOC"}
 
 _SLUG_BAD = re.compile(r"[^a-z0-9-]")
 

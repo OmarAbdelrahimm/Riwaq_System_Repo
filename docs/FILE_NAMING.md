@@ -37,6 +37,7 @@
 | `SUB-AR` `SUB-EN` `SUB-BI` | Arabic / English / bilingual subtitles |
 | `VID` | final master |
 | `QC` | preview sheet — **never uploaded** |
+| `DOC` | planning / numbering / index doc — **never uploaded** (`00-DOC-…`) |
 
 ---
 
@@ -48,6 +49,26 @@
 | SEO doc for the same video | `01-SEO-relationships-deeper-than-communication-v2.md` |
 | Short 03 cover, variant B | `S03-CVR-V-B-comparison-necessary-not-binding-v1.jpg` |
 | Bilingual subs, Short 07 | `S07-SUB-BI-you-marry-a-legacy-not-a-person-v1.srt` |
+| Series index doc in the Drive root | `00-DOC-delivery-index-v1.md` |
+| Shorts numbering doc inside the shorts root | `00-DOC-shorts-titles-and-numbering-v1.md` |
+
+---
+
+## 3️⃣ Enforcement (no manual naming, ever)
+
+```bash
+/tmp/venv/bin/python scripts/publish/naming.py --check <file> [<file> ...]   # 0 = compliant
+```
+
+`check_name()` rejects: Arabic characters, spaces, underscores, uppercase inside the slug,
+a missing A/B on `CVR-*`, an A/B on anything else, the wrong extension for the kind,
+a slug longer than 7 words, and anything outside the pattern.
+
+The same function runs inside `seo_pack.py --audit` on the `**اسم الملف:**` line of every pack,
+so a pack cannot ship with a name the pattern would reject.
+
+**Retroactive rule:** the convention applies to every file already on Drive, not only new output —
+IDs stay the same, only the name changes (see `docs/PRODUCTION_RULES.md` §⑥).
 | Compiled film cover, A | `F01-CVR-H-A-the-relationship-that-fixes-all-relationships-v1.jpg` |
 | Episode 04 master | `04-VID-shaytan-runs-through-the-blood-v1.mp4` |
 
