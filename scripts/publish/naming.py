@@ -16,8 +16,6 @@ import re
 import unicodedata
 from pathlib import Path
 
-from PIL import Image
-
 TYPES = {
     "CVR-H": "horizontal cover 1280x720",
     "CVR-V": "vertical cover 1080x1920",
@@ -193,8 +191,13 @@ def seo_name(number: str, title: str, **kw) -> str:
     return name(number, "SEO", title, **kw)
 
 
-def save_cover(im: Image.Image, stem: str, out_dir: str | Path = ".") -> tuple[Path, Path]:
-    """PNG ماستر أرشيفي + JPG للرفع (q95 · 4:4:4 ⇒ لا تشويه لوني على الذهبي الرفيع)."""
+def save_cover(im, stem: str, out_dir: str | Path = ".") -> tuple[Path, Path]:
+    """PNG ماستر أرشيفي + JPG للرفع (q95 · 4:4:4 ⇒ لا تشويه لوني على الذهبي الرفيع).
+
+    Pillow يُستورد هنا لا في أعلى الملف: فحص الأسماء (`--check`) لا يحتاج تصويرًا،
+    وكان غياب PIL يمنع فحص اسم — وهو أرخص فحص عندنا.
+    """
+    from PIL import Image  # noqa: F401
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     base = Path(stem)

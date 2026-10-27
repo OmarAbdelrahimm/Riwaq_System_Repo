@@ -228,8 +228,7 @@ def main(argv: list[str]) -> int:
     if "lra" in audio:
         add(audio["lra"] <= a.lra, "LRA", f'{audio["lra"]} (≤ {a.lra})')
     if info.get("audio_hz"):
-        add(None if info["audio_hz"] == 48000 else False,
-            "معدل عينة الصوت",
+        add(info["audio_hz"] == 48000, "معدل عينة الصوت",
             f'{info["audio_hz"]}Hz' + ("" if info["audio_hz"] == 48000
             else " — loudnorm يرفع إلى 96k؛ أضف -ar 48000 بعده"))
     if "true_peak" in audio:
