@@ -43,7 +43,31 @@ ffmpeg -i exports/MASTER_<ID>.mp4 \
 
 ---
 
+## 2.5) جهّز ffmpeg مرة واحدة (الذهبي: لا تفترض وجوده)
+
+```bash
+python3 -m venv /tmp/venv2 && /tmp/venv2/bin/pip install imageio-ffmpeg numpy pillow
+export FFMPEG=$(/tmp/venv2/bin/python -c "import imageio_ffmpeg as f; print(f.get_ffmpeg_exe())")
+"$FFMPEG" -version | head -1     # 7.0.2-static
+```
+
+المستودع لا يشحن ffmpeg (حجمه ~80MB) — لكن **غيابه ليس عذرًا** لعدم القياس: `imageio-ffmpeg` يجيب ثنائيًا ثابتًا في ثوانٍ. لو تعذّر كل ذلك، يُكتب في التقرير `غير مقيس` صريحًا، ولا يُدَّعى قياس.
+
+> **مصيدة loudnorm:** بعد `loudnorm` يخرج الصوت **96kHz** لا 48k. أضف `-ar 48000` بعده دائمًا؛ `qc_media.py` يعطي `FAIL` على أي معدل ≠ 48k.
+
+---
+
 ## 3) فحوص ما بعد التصدير (على الملف المسلَّم نفسه)
+
+**التنفيذ الآلي للصفوف 1–4 و7 (سكربت واحد):**
+
+```bash
+python3 scripts/qc_media.py exports/…-VID-<slug>-v1.mp4 \
+  --aspect 9x16 --frames 6 --report reports/QC_MEDIA_<ID>.md
+# exit 0 = يمر · exit 1 = مخالفة واحدة على الأقل (التقرير يسمّيها)
+```
+
+يعيد: المدة/الفريمات/الأبعاد/fps · `+faststart` (موضع `moov` أمام `mdat` من الـheader مباشرة) · LUFS/LRA/TP عبر `ebur128` · `blackdetect` · `freezedetect` · سلامة الفك · معدل عينة الصوت · لقطات إطارات للمعاينة. الصفوف 5–6 تبقى بصرية/يدوية.
 
 | # | الفحص | الأمر | القبول |
 |---|---|---|---|

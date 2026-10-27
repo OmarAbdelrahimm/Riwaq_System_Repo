@@ -37,6 +37,12 @@ python scripts/voice_finish.py public/projects/D04/audio/vo_raw.wav
 ```
 > ⛔ **ممنوع pitch-shift على التعليق الصوتي** — المطابقة الطبيعية تحدث في مرحلة التوليد (الصوت المستنسخ الرسمي).
 
+## 4.5) فحص الملف النهائي قبل أي رفع
+```bash
+python3 scripts/qc_media.py exports/MASTER_<ID>.mp4 --aspect 9x16 --report reports/QC_MEDIA_<ID>.md
+```
+لو طلع `❌` — لا يُرفع الملف. التقرير نفسه هو `…-QC-…` الذي يروح Drive.
+
 ## 5) الكابشنز
 ```bash
 python scripts/make_srt.py data/projects/D04/episode_meta.json outputs
