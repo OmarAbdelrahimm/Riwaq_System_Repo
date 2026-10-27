@@ -3,7 +3,7 @@
 يعيد استخدام أدوات abu_simbel_pack (قصّ، تعتيم متدرّج، ظلّ نص متعدّد الطبقات،
 إطار ذهبي، علامة رواق) ويضيف تدرّجًا باردًا يناسب موضوع الذكاء الاصطناعي.
 
-    /tmp/venv/bin/python scripts/publish/ai_jobs_pack.py
+    python3 scripts/publish/ai_jobs_pack.py
 """
 from __future__ import annotations
 

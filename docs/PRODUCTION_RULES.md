@@ -64,9 +64,11 @@
 | التزامن | الكابشن من طاقة الصوت، لا من تقدير يدوي |
 | الكلمات | 3 كلمات لكل كابشن، والكلمة المنطوقة مميزة |
 | المربع | شفاف، بلا تكبير، بلا نصف مربع فارغ في الشورت |
-| **لوحة السطوع** | استثناء مضبوط: عند سطوع الخلفية العالي (`luma > 0.46`) تُطفأ طبقة **مسطّحة** بشفافية محسوبة — **لا تدرّج**، وتختفي وحدها على الخلفية الداكنة |
+| **لوحة السطوع** | استثناء مضبوط: عند سطوع الخلفية العالي (`luma > 0.46`) تُطفأ طبقة **مسطّحة** بشفافية محسوبة — **لا تدرّج**، وتختفي وحدها على الخلفية الداكنة. القرار **لكل مشهد لا لكل كادر** (وميض اللوحة أسوأ من غيابها)، ويُحسب بـ`scrim_map.py` بمقياس **الوسيط** لا المتوسط (لمعة واحدة ما تقرّرش) |
 | الموسيقى | هوية ثابتة + خفض تلقائي تحت الصوت (ducking) |
 | الملفات | `SUB-AR` + `SUB-EN` + `SUB-BI` دائمًا — الثلاثة |
+
+**مصيدة burn-in مع libass (مقيسة 2026-10-27):** الأرقام العربية-الهندية `٠١٢٣` تُرسم **معكوسة** في مسار `ffmpeg/ASS` (اختبار على `١٤٠٠` ⇒ ظهرت `٠٠٤١`)، و`LRM`/`FSI` **لم يصلحاها**. الأرقام اللاتينية `1400` تُرسم صحيحة. ⇒ في أي كابشن محروق عبر libass تُكتب الأرقام لاتينية؛ ولغة الواجهة إن لزمت العربية-الهندية تبقى في المراحل التي يرسمها المتصفح (Remotion) لا في libass.
 
 ### ④ الأغلفة
 | البند | القاعدة |
@@ -152,16 +154,24 @@
 
 ```bash
 # ①–⑤  الحزمة: يولّد ويكتب ويفحص (منها سطر الدليل واسم الملف)
-/tmp/venv/bin/python scripts/publish/seo_pack.py
+python3 scripts/publish/seo_pack.py
 
 # ⑤      فحص الموجود فقط، بلا كتابة
-/tmp/venv/bin/python scripts/publish/seo_pack.py --audit
+python3 scripts/publish/seo_pack.py --audit
 
 # ⑥      فحص أي اسم ملف قبل رفعه إلى Drive (0 = مطابق)
-/tmp/venv/bin/python scripts/publish/naming.py --check S04-VID-be-better-not-the-best-v1.mp4
+python3 scripts/publish/naming.py --check S04-VID-be-better-not-the-best-v1.mp4
 
 # ⑥      فحص اسم مجلد Drive قبل إنشائه/تسميته
-/tmp/venv/bin/python scripts/publish/naming.py --check-folder 04-EP-shaytan-runs-through-the-blood
+python3 scripts/publish/naming.py --check-folder 04-EP-shaytan-runs-through-the-blood
+
+# ⑧      فحص الملف المسلَّم نفسه (exit 0 = يمر)
+python3 scripts/qc_media.py exports/…-VID-<slug>-v1.mp4 --aspect 9x16
+
+# ③      خريطة اللوحة التكيفية لهذا المصدر + حقن luma في أسطر الكابشن
+python3 scripts/scrim_map.py exports/MASTER.mp4 --aspect 9x16 \
+  --out data/projects/<ID>/scrim_map.json \
+  --apply public/projects/<ID>/captions.json
 ```
 
 **الفحص يفشل = لا تسليم.** الأوامر الثلاثة تُشغَّل في نهاية كل جولة، ونتيجتها تُذكر في التسليم.
@@ -183,3 +193,5 @@
 - [ ] ملف المنصّة صادر بـ`crf 21` + `+faststart` + `keyint 60` (الماستر يبقى 18)
 - [ ] فحوص التصدير: `LRA ≤ 8` · صفر black · حِدّة النص ≥ 0.85× المرجع
 - [ ] `preview_720p.mp4` مرفق مع الماستر
+- [ ] `qc_media.py` عدّى على الملف المسلَّم (`exit 0`) — لا رفع على `FAIL`
+- [ ] `scrim_map.json` مولّد من المصدر الفعلي، ولا لوحة مفعّلة يدويًا

@@ -8,7 +8,7 @@
   A = تخطيط نصف/نصف (التواصل ≠ العلاقة) مع علامة ≠ ذهبية بينهما.
   B = وجه مكبّر مع سهم ذهبي يشير إلى الضيف.
 
-    /tmp/venv/bin/python scripts/publish/tawasul_v2.py
+    python3 scripts/publish/tawasul_v2.py
 """
 from __future__ import annotations
 

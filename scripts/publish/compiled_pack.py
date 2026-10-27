@@ -1,6 +1,6 @@
 """الحلقة المجمّعة — غلافان (A/B) بنظام v3 + حزمة سيو كاملة بنفس قواعد الحلقات.
 
-    /tmp/venv/bin/python scripts/publish/compiled_pack.py        # يولّد + يفحص
+    python3 scripts/publish/compiled_pack.py        # يولّد + يفحص
 
 يُعيد استخدام نفس النظام بلا نسخة موازية:
   • الأغلفة: episodes_covers.build (frame_v3 + isolate + badge3d + corner)

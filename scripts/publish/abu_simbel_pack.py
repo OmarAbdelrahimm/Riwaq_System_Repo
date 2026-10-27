@@ -4,7 +4,7 @@
 كل النصوص مطبوعة فوق الصورة بظلّ متعدّد الطبقات، والزاوية السفلية اليمنى خالية
 كي لا تتعارض مع شارة المدة في يوتيوب.
 
-    /tmp/venv/bin/python scripts/publish/abu_simbel_pack.py
+    python3 scripts/publish/abu_simbel_pack.py
 """
 from __future__ import annotations
 

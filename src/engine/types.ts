@@ -117,6 +117,10 @@ export interface CaptionLine {
   ar: string;
   en?: string;
   keywords?: string[];
+  /** سطوع شريط الكابشن المقيس لهذا المشهد (من scrim_map.py) — غيابه = غير مقيس */
+  luma?: number;
+  /** تجاوز صريح: true/false. غيابه = تُحسب من luma */
+  scrim?: boolean;
 }
 
 export interface EpisodeMeta {

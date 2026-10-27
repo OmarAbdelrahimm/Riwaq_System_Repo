@@ -4,8 +4,8 @@
 القاعدة بعد جولتين (الكلمة المفتاحية غابت عن العنوان والوصف وأول وسم في خمس
 حلقات). الآن المحتوى معرَّف هنا مرة واحدة، والملفات تُولَّد وتُفحَص آليًا:
 
-    /tmp/venv/bin/python scripts/publish/seo_pack.py          # ولّد + افحص
-    /tmp/venv/bin/python scripts/publish/seo_pack.py --audit   # افحص الموجود فقط
+    python3 scripts/publish/seo_pack.py          # ولّد + افحص
+    python3 scripts/publish/seo_pack.py --audit   # افحص الموجود فقط
 
 كل قاعدة في RULES مأخوذة من قرار صاحب القناة أو من تجربة الحلقة الأولى
 (انظر docs/SEO_RULES.md). أي ملف لا يعدّي الفحص لا يُسلَّم.

@@ -3,7 +3,7 @@
 الغلاف العمودي بملء الإطار (الصورة 9:16 أصلًا)، والنص في أعلى الإطار حيث الظلام
 الطبيعي للصورة — بعيدًا عن شريط العنوان في أسفل الشورتس وأزرار التفاعل على اليمين.
 
-    /tmp/venv/bin/python scripts/publish/rosetta_pack.py
+    python3 scripts/publish/rosetta_pack.py
 """
 from __future__ import annotations
 

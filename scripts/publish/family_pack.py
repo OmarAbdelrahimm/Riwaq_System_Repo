@@ -3,7 +3,7 @@
 الغلاف بملء الإطار، والنص في أعلى الصورة (المنطقة المظلمة طبيعيًا) بعيدًا عن
 شريط العنوان أسفل الشورتس وأزرار التفاعل على اليمين.
 
-    /tmp/venv/bin/python scripts/publish/family_pack.py
+    python3 scripts/publish/family_pack.py
 """
 from __future__ import annotations
 

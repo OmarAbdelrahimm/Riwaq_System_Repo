@@ -4,7 +4,7 @@
 إطار ذهبي، علامة رواق أعلى اليسار، والزاوية اليمنى السفلى خالية لشارة المدة)،
 لكن بتدرّج دافئ يناسب الرسوم الليلية/الصباحية.
 
-    /tmp/venv/bin/python scripts/publish/stress_pack.py
+    python3 scripts/publish/stress_pack.py
 """
 from __future__ import annotations
 

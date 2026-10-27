@@ -1,6 +1,6 @@
 """اختبار الإطار فقط — الزاوية بمقاس 4× — القديم / الحالي / المقترح جنبًا إلى جنب.
 
-    /tmp/venv/bin/python scripts/publish/frame_test.py
+    python3 scripts/publish/frame_test.py
 
 لا يُنتج أي ملف تسليم: صورة واحدة للمراجعة في outputs/FRAME_TEST/.
 """

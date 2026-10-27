@@ -1,6 +1,6 @@
 """أغلفة الحلقات الستة (أفقي 1280×720) بنظام الأغلفة المعتمد — A و B لكل حلقة.
 
-    /tmp/venv/bin/python scripts/publish/episodes_covers.py [01 02 ...]
+    python3 scripts/publish/episodes_covers.py [01 02 ...]
 
 المخرجات: outputs/PUBLISH_PACK_SERIES_COVERS/ — أسماء إنجليزية من naming.py
 النظام: docs/COVER_SYSTEM.md

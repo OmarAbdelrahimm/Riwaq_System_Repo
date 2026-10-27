@@ -70,7 +70,7 @@ Latin only, hyphen-separated, number first — so the folder list sorts in publi
 ## 3️⃣ Enforcement (no manual naming, ever)
 
 ```bash
-/tmp/venv/bin/python scripts/publish/naming.py --check <file> [<file> ...]   # 0 = compliant
+python3 scripts/publish/naming.py --check <file> [<file> ...]   # 0 = compliant
 ```
 
 `check_name()` rejects: Arabic characters, spaces, underscores, uppercase inside the slug,

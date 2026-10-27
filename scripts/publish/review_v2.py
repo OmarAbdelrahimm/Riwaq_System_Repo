@@ -1,6 +1,6 @@
 """ورقة مراجعة v2 — إطار القديم مع خط التوقيع + شارة النص 4× + خيارا الترقيم.
 
-    /tmp/venv/bin/python scripts/publish/review_v2.py
+    python3 scripts/publish/review_v2.py
 الناتج: outputs/FRAME_TEST/REVIEW-v2-frame-textbadge-numbering.png
 """
 from __future__ import annotations

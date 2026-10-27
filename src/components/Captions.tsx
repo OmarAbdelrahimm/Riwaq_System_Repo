@@ -14,10 +14,31 @@ export const Captions: React.FC<{
   line: CaptionLine;
   style: "clean_bottom" | "keyword_highlight" | "bilingual_stack";
 }> = ({ line, style }) => {
-  const { color, bodyFont, safe, width } = useTheme();
+  const { brand, color, bodyFont, safe, width } = useTheme();
   const [y0, y1] = safe.captionY;
   const fontSize = scalePx(56, width);
   const enSize = fontSize * 0.6;
+
+  /**
+   * لوحة السطوع التكيفية (استثناء مضبوط في الثيم: theme.captions.scrim).
+   * القرار يأتي من `scrim_map.json` (لكل مشهد) عبر `line.luma`/`line.scrim`،
+   * وليس من كود ثابت: الكادر اللي مفيهوش قياس ولا تجاوز ⇒ بلا لوحة.
+   * اللوحة مسطّحة دائمًا (لا تدرّج)، والشفافية تتدرّج من القراءة لا من الجمال.
+   */
+  const scrimCfg = (brand.theme.captions && brand.theme.captions.scrim) || {};
+  const threshold = typeof scrimCfg.threshold === "number" ? scrimCfg.threshold : 0.46;
+  const opacityMax = typeof scrimCfg.opacity_max === "number" ? scrimCfg.opacity_max : 0.72;
+  const opacityMin = typeof scrimCfg.opacity_min === "number" ? scrimCfg.opacity_min : 0.35;
+  const scrimOn =
+    line.scrim === true ||
+    (line.scrim === undefined && typeof line.luma === "number" && line.luma > threshold);
+
+  const scrimAlpha = (() => {
+    if (!scrimOn) return 0;
+    if (typeof line.luma !== "number") return opacityMax;
+    const t = Math.min(1, Math.max(0, (line.luma - threshold) / (1 - threshold)));
+    return Math.min(opacityMax, opacityMin + t * (opacityMax - opacityMin));
+  })();
 
   const renderAr = () => {
     if (style !== "keyword_highlight" || !line.keywords?.length) return line.ar;
@@ -52,8 +73,8 @@ export const Captions: React.FC<{
         <div
           style={{
             display: "inline-block",
-            background: "#0f0e0ce8",
-            border: `1px solid ${color("gold")}33`,
+            background: scrimOn ? `rgba(15, 14, 12, ${scrimAlpha})` : "transparent",
+            border: scrimOn ? `1px solid ${color("gold")}22` : "1px solid transparent",
             borderRadius: width * 0.009,
             padding: `${width * 0.012}px ${width * 0.02}px`,
           }}
