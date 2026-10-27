@@ -169,9 +169,19 @@
     "watermark": {
       "asset": "assets/riwaq-watermark-gold.svg",
       "opacity": 0.8,
-      "position": "top-center",
+      "position": "top-left",
+      "position_options": [
+        "top-left",
+        "top-center",
+        "top-right",
+        "bottom-right"
+      ],
+      "inset_from_safe_zone": true,
+      "from_first_frame": true,
+      "visible_after_s": 0,
       "size_px": 72,
-      "animated": false
+      "animated": false,
+      "notes": "ثابتة من أول فريم لآخر فريم — لا تظهر ولا تختفي (حماية الـLoop ولا قفزة بصرية). الموضع داخل المنطقة الآمنة للاتجاه الحالي، لا فوق شريط المنصة."
     },
     "look": {
       "paper_texture": {
@@ -210,12 +220,74 @@
         "hard_cut",
         "fade_black_200ms"
       ],
+      "effects_policy": {
+        "ask_before_use": true,
+        "rule": "المؤثرات الحركية تُطلب بإذن قبل التنفيذ: يُذكر الموضع (ثانية) والوظيفة (لماذا هنا) والبديل الهادئ — ثم يُقرَّر. لا تُضاف تلقائيًا في أي مونتاج.",
+        "applies_to": [
+          "16x9",
+          "9x16",
+          "1x1",
+          "4x5"
+        ],
+        "budget_per_minute": 2,
+        "never_two_at_once": true,
+        "never_on_face": true,
+        "never_during_caption": true,
+        "log_required": "reports/MOTION_LOG_<ID>.md — الموضع · النوع · السبب · البديل المرفوض"
+      },
+      "effects": {
+        "flash": {
+          "enabled": true,
+          "duration_ms": 160,
+          "max_per_video": 1,
+          "use_when": "قطع حاسم واحد فقط — أشرش انتقال في الفيديو",
+          "forbidden_near": [
+            "hook_first_500ms",
+            "end_screen"
+          ]
+        },
+        "whip": {
+          "enabled": true,
+          "duration_ms": 220,
+          "max_per_video": 2,
+          "max_px": 120,
+          "use_when": "حدود مقارنة أو انتقال بين مكانين/زمنين",
+          "forbidden_near": [
+            "hook_first_500ms",
+            "quote_card"
+          ]
+        },
+        "zoom_punch": {
+          "enabled": true,
+          "duration_ms": 420,
+          "scale": 1.12,
+          "max_per_video": 1,
+          "use_when": "جملة واحدة هي ذروة الفيديو — مرة واحدة لا أكثر",
+          "forbidden_near": [
+            "hook_first_500ms"
+          ]
+        },
+        "shake": {
+          "enabled": true,
+          "duration_ms": 220,
+          "max_px": 8,
+          "max_per_video": 2,
+          "use_when": "جملة مقاومة أو صادمة تُنطق",
+          "forbidden_near": [
+            "caption_block",
+            "end_screen"
+          ]
+        },
+        "rise": {
+          "enabled": true,
+          "duration_ms": 500,
+          "max_per_video": 2,
+          "use_when": "تصاعد ضوء عند كشف معلومة — بديل هادئ عن الـflash"
+        }
+      },
       "forbidden": [
-        "flash",
-        "whip",
         "spin",
-        "bounce",
-        "zoom_punch"
+        "bounce"
       ]
     },
     "safe_zones": {
@@ -284,6 +356,19 @@
         "highlight_numbers": true,
         "max_lines": 2,
         "max_chars_ar": 28
+      },
+      "scrim": {
+        "mode": "adaptive",
+        "enabled": true,
+        "trigger": "local_luma_above",
+        "threshold": 0.46,
+        "opacity_min": 0.0,
+        "opacity_max": 0.72,
+        "sample": "median luma داخل مستطيل الكابشن قبل الرسم",
+        "gradient": false,
+        "mandatory_when": "الخلفية فاتحة أو متغيّرة (سماء/ورق/جدار)",
+        "forbidden_when": "الخلفية داكنة أصلًا — اللوحة تُطفأ تمامًا",
+        "notes": "استثناء مضبوط من قاعدة «ممنوع تدرّج داكن»: لا تدرّج، بل طبقة مسطّحة بشفافية محسوبة من سطوع الخلفية، تختفي وحدها على الخلفية الداكنة."
       }
     }
   },

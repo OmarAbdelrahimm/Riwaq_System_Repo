@@ -22,7 +22,18 @@ export interface Brand {
     };
     type_scale_1080x1920: Record<string, any>;
     logo: Record<string, any>;
-    watermark: { asset: string; opacity: number; position: string; size_px: number };
+    watermark: {
+      asset: string;
+      opacity: number;
+      position: string;
+      size_px: number;
+      position_options?: string[];
+      inset_from_safe_zone?: boolean;
+      from_first_frame?: boolean;
+      visible_after_s?: number;
+      animated?: boolean;
+      notes?: string;
+    };
     look: { paper_texture: any; grain: number; vignette: number; bloom: number };
     motion: {
       ease: string;
@@ -32,6 +43,18 @@ export interface Brand {
       ken_burns: { from: number; to: number };
       cut_rhythm_s: Record<string, number[]>;
       transitions: string[];
+      effects_policy?: {
+        ask_before_use: boolean;
+        rule: string;
+        applies_to: string[];
+        budget_per_minute: number;
+        never_two_at_once: boolean;
+        never_on_face: boolean;
+        never_during_caption: boolean;
+        log_required: string;
+      };
+      effects?: Record<string, any>;
+      forbidden?: string[];
     };
     safe_zones: Record<string, SafeZoneRaw>;
     captions?: any;
