@@ -4,7 +4,12 @@ node_modules/
 .DS_Store
 google_drive/
 exports/*.mp4
+exports/**/*.mp4
 exports/_DRAFT*
+
+# وسائط كبيرة تُعاد توليدها بالسكربتات أو تُرفع إلى Drive
+public/projects/*/audio_v4/*.wav
+public/projects/*/frame_v3/
 
 # سلسلة رواق: مولّدات الموسيقى تُعاد توليدها، والفيديوهات النهائية تُرفع إلى Drive
 assets/series_riwaq/music/*.wav
@@ -16,5 +21,7 @@ scripts/series/__pycache__/
 # مجلد العمل الوسيط للتركيب (مقاطع، بطاقات، سجلات)
 work/
 
-# مخلفات بايثون
+# مخلفات بايثون والبيئات
 __pycache__/
+*.pyc
+.venv*/
