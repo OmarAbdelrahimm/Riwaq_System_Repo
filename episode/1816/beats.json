@@ -1,0 +1,1642 @@
+[
+ {
+  "line": 0,
+  "i": 0,
+  "visual": "حقل قمح عند الفجر: سنابل ثقيلة مبلولة، سماء رمادية مسطحة، أرض موحلة بين الخطوط",
+  "type": "WIDE",
+  "cam": "push-in 4% · crop sway · dust motes",
+  "txt": ""
+ },
+ {
+  "line": 1,
+  "i": 0,
+  "visual": "أرض زراعية مفتوحة في نيو إنجلاند: سياج خشب مائل، عشب ميت، سماء رصاصية ثقيلة",
+  "type": "WIDE",
+  "cam": "crane-down 5% · wind in grass",
+  "txt": ""
+ },
+ {
+  "line": 1,
+  "i": 1,
+  "visual": "ساقا فلاح من الخلف وسط زرع مبلول، سروال ملطخ بالطين، لا وجه ولا ملامح",
+  "type": "SILHOUETTE",
+  "cam": "handheld drift · breath",
+  "txt": ""
+ },
+ {
+  "line": 2,
+  "i": 0,
+  "visual": "مطر غزير على حقل أوروبي: برك صغيرة تتكوّن بين خطوط الزرع، سطح الماء يهتز",
+  "type": "WIDE",
+  "cam": "lateral drift L→R · rain streaks",
+  "txt": ""
+ },
+ {
+  "line": 2,
+  "i": 1,
+  "visual": "براعم صغيرة غارقة في الماء، أوراقها السفلية مغطاة بالطين",
+  "type": "MACRO",
+  "cam": "push-in 3% · water wobble",
+  "txt": ""
+ },
+ {
+  "line": 3,
+  "i": 0,
+  "visual": "خيط ذهبي رفيع يعبر خريطة مطموسة ورقية، يخرج من القارات نحو نقطة واحدة",
+  "type": "THREAD",
+  "cam": "thread draw 0.4s · soft whoosh",
+  "txt": ""
+ },
+ {
+  "line": 4,
+  "i": 0,
+  "visual": "قوس مسافة على خريطة جدارية قديمة: من ساحل نيو إنجلاند إلى أرخبيل بعيد",
+  "type": "MAP",
+  "cam": "thread travel 1.2s · paper parallax",
+  "txt": ""
+ },
+ {
+  "line": 5,
+  "i": 0,
+  "visual": "شفرة قلم تُغمس في حبر داكن، انعكاس ضوء شمعة على المعدن، فقاعة هواء واحدة",
+  "type": "MACRO",
+  "cam": "rack focus 1.5s",
+  "txt": ""
+ },
+ {
+  "line": 5,
+  "i": 1,
+  "visual": "ظل يد تكتب على ورق، الخط غير مقروء، الظل يغطي نصف الصفحة",
+  "type": "SILHOUETTE",
+  "cam": "slow drift · ink bite",
+  "txt": ""
+ },
+ {
+  "line": 6,
+  "i": 0,
+  "visual": "سوق بلدة صغيرة في الصباح الباكر: عربات فارغة، أكياس ملقاة، أرض مبلولة، لا وجوه",
+  "type": "WIDE",
+  "cam": "slow dolly 3% · market murmur",
+  "txt": ""
+ },
+ {
+  "line": 6,
+  "i": 1,
+  "type": "THREAD",
+  "visual": "خيط ذهبي يلتف حول حافة الإطار ويهبط على حقول مبلولة",
+  "cam": "thread draw 0.4s · whoosh",
+  "txt": ""
+ },
+ {
+  "line": 7,
+  "i": 0,
+  "visual": "نافذة زجاج مغبشة من الداخل، قطرات تتجمّد على الحافة الخارجية",
+  "type": "DETAIL",
+  "cam": "rack focus · cold light",
+  "txt": ""
+ },
+ {
+  "line": 7,
+  "i": 1,
+  "visual": "سياج خشب عليه طبقة صقيع بيضاء، عشب ميت أسفله، بخار نفس قريب من العدسة",
+  "type": "DETAIL",
+  "cam": "push-in 3% · frozen breath",
+  "txt": ""
+ },
+ {
+  "line": 8,
+  "i": 0,
+  "visual": "صفحة سجل طقس قديم مفتوحة على طاولة خشب، خط يد غير مقروء، ضوء نافذة بارد",
+  "type": "DOC",
+  "cam": "5.5s dolly-in 6% · paper fibre",
+  "txt": "نيو إنجلاند · 8 يونيو"
+ },
+ {
+  "line": 8,
+  "i": 1,
+  "visual": "إصبع يشير إلى سطر في السجل، الظفر متسخ، الكم صوفي، لا وجه",
+  "type": "SILHOUETTE",
+  "cam": "micro-drift · page shadow",
+  "txt": ""
+ },
+ {
+  "line": 8,
+  "i": 2,
+  "type": "DOC",
+  "visual": "دفتر مزرعة صغير مفتوح بجانب النافذة، خط غير مقروء، حافة ورق متآكلة",
+  "cam": "slow dolly · paper",
+  "txt": ""
+ },
+ {
+  "line": 9,
+  "i": 0,
+  "visual": "طريق ريفي أوروبي مبلول، أشجار عارية، ضباب منخفض يمشي على الأرض",
+  "type": "WIDE",
+  "cam": "lateral drift · mist roll",
+  "txt": ""
+ },
+ {
+  "line": 10,
+  "i": 0,
+  "visual": "مائدة مطبخ فارغة: ثلاث أطباق نظيفة، كرسي مسحوب للخلف، لا بشر",
+  "type": "MEDIUM",
+  "cam": "push-in 3% · dust in light",
+  "txt": ""
+ },
+ {
+  "line": 11,
+  "i": 0,
+  "visual": "حقل قمح مسطّح بعد المطر، أثر قدم واحدة في الطين، لا بشر في الإطار",
+  "type": "WIDE",
+  "cam": "crane-down 4% · wind",
+  "txt": "اختفى من الحقول"
+ },
+ {
+  "line": 12,
+  "i": 0,
+  "visual": "لوحة أسعار خشبية فارغة أمام دكان مغلق، الطباشير ممسوح جزئيًا",
+  "type": "DETAIL",
+  "cam": "slow dolly · chalk dust",
+  "txt": ""
+ },
+ {
+  "line": 13,
+  "i": 0,
+  "visual": "طاولة تحقيق: ملف ورقي يُفتح، دبوس ذهبي واحد في المنتصف",
+  "type": "BOARD",
+  "cam": "push-in 4% · paper lift",
+  "txt": ""
+ },
+ {
+  "line": 14,
+  "i": 0,
+  "visual": "ثلاثة دبابيس ذهبية تُغرس واحدة بعد الأخرى على خريطة ممددة",
+  "type": "BOARD",
+  "cam": "pin drops · soft thuds",
+  "txt": ""
+ },
+ {
+  "line": 14,
+  "i": 1,
+  "type": "HUMAN",
+  "visual": "ظل مزارع يقف عند طرف الحقل، القبعة في يده، الظهر للكاميرا",
+  "cam": "drift · wind",
+  "txt": ""
+ },
+ {
+  "line": 15,
+  "i": 0,
+  "visual": "خط بياني باهت لحرارة قديمة على ورق مقوّى، بلا أرقام مقروءة، الخط يُرسم ببطء",
+  "type": "DATA",
+  "cam": "line draws · dust",
+  "txt": ""
+ },
+ {
+  "line": 16,
+  "i": 0,
+  "visual": "قرص شمس مصغّر على ورق، إشعاعه يخفت تدريجيًا حتى يصير هالة باردة",
+  "type": "DATA",
+  "cam": "radial fade · ember cool",
+  "txt": "فترة دالتون"
+ },
+ {
+  "line": 17,
+  "i": 0,
+  "visual": "خريطة العالم: مناطق غير محددة تتوهّج باهتًا ثم تختفي واحدة تلو الأخرى",
+  "type": "MAP",
+  "cam": "region fades · parallax",
+  "txt": ""
+ },
+ {
+  "line": 17,
+  "i": 1,
+  "visual": "بطاقة تحقيق بيضاء بلا اسم، ختم باهت يهبط عليها ثم يُسحب",
+  "type": "BOARD",
+  "cam": "stamp thud · ink bleed",
+  "txt": "[M] غير محدد"
+ },
+ {
+  "line": 18,
+  "i": 0,
+  "visual": "سحابة رمادية على خريطة فارغة، موقعها غير محدد، خط متقطع يدور حولها",
+  "type": "MAP",
+  "cam": "dashed line draws · haze",
+  "txt": ""
+ },
+ {
+  "line": 18,
+  "i": 1,
+  "type": "WIDE",
+  "visual": "ممر ضيق بين بيوت حجرية، حبال غسيل فارغة، سماء رمادية بلا شمس",
+  "cam": "push-in · wind",
+  "txt": ""
+ },
+ {
+  "line": 19,
+  "i": 0,
+  "visual": "جزيرة سومباوا من الجو: مثلث بركاني في بحر أزرق-رمادي، سحاب منخفض",
+  "type": "WIDE",
+  "cam": "aerial push 5% · wind bed",
+  "txt": "سومباوا"
+ },
+ {
+  "line": 19,
+  "i": 1,
+  "visual": "خط ذهبي يقطع المحيط من حافة الإطار إلى الجزيرة، ثم يثبت",
+  "type": "THREAD",
+  "cam": "thread draw · soft whoosh",
+  "txt": ""
+ },
+ {
+  "line": 19,
+  "i": 2,
+  "type": "HUMAN",
+  "visual": "نافذة كوخ عند الفجر: كتف رجل يمرّ خلف الزجاج المغبش، لا وجه",
+  "cam": "doorway light · slow push",
+  "txt": ""
+ },
+ {
+  "line": 20,
+  "i": 0,
+  "visual": "ثلاثة خيوط ذهبية على طاولة التحقيق، واحد منها أسمك وأكثر سطوعًا",
+  "type": "THREAD",
+  "cam": "tension drift · fibre gleam",
+  "txt": ""
+ },
+ {
+  "line": 21,
+  "i": 0,
+  "visual": "خيط ذهبي واحد يخرج من الإطار نحو الغرب، الإطار يفرغ إلا من الورق",
+  "type": "THREAD",
+  "cam": "thread wipe · fade",
+  "txt": ""
+ },
+ {
+  "line": 22,
+  "i": 0,
+  "visual": "مشهد واسع: جزيرة سومباوا عند الغروب، دخان خفيف يتصاعد من القمة، بحر هادئ",
+  "type": "WIDE",
+  "cam": "5.0s crane-up 6% · distant rumble",
+  "txt": "إبريل 1815"
+ },
+ {
+  "line": 22,
+  "i": 1,
+  "visual": "خرطوم دخان أبيض رفيع فوق القمة، السماء تتدرج من ذهبي إلى رمادي",
+  "type": "DETAIL",
+  "cam": "push-in 2% · plume rise",
+  "txt": ""
+ },
+ {
+  "line": 23,
+  "i": 0,
+  "visual": "فوهة بركانية من الحافة: صخور داكنة، بخار يتصاعد من شقوق، لا بشر",
+  "type": "MEDIUM",
+  "cam": "slow push · heat shimmer",
+  "txt": ""
+ },
+ {
+  "line": 24,
+  "i": 0,
+  "visual": "سحابة رماد سوداء تتصاعد عموديًا، برق داخلها يضيء الحافة لجزء من الثانية",
+  "type": "WIDE",
+  "cam": "vertical rise · ash fall",
+  "txt": ""
+ },
+ {
+  "line": 25,
+  "i": 0,
+  "visual": "عمود رماد يغطي نصف السماء، الشمس قرص برتقالي باهت خلفه",
+  "type": "WIDE",
+  "cam": "slow tilt-up · ash drift",
+  "txt": ""
+ },
+ {
+  "line": 26,
+  "i": 0,
+  "visual": "حصى ورماد يتساقطان في الهواء أمام العدسة، عمق ميداني ضحل جدًا",
+  "type": "DETAIL",
+  "cam": "falling particles · shallow DOF",
+  "txt": ""
+ },
+ {
+  "line": 27,
+  "i": 0,
+  "visual": "أرض مغطاة برماد رمادي، آثار أقدام غائرة، لا بشر",
+  "type": "DETAIL",
+  "cam": "slow drift · ash puff",
+  "txt": ""
+ },
+ {
+  "line": 27,
+  "i": 1,
+  "visual": "حقل مرويّ مدفون تحت طبقة رماد، ساق واحدة مكسورة ظاهرة",
+  "type": "MEDIUM",
+  "cam": "push-in 3% · dust",
+  "txt": ""
+ },
+ {
+  "line": 28,
+  "i": 0,
+  "visual": "أطلال قرية قرب البركان: سقف منهار، عوارض محروقة، لا بشر",
+  "type": "WIDE",
+  "cam": "slow crane-down 5% · wind",
+  "txt": ""
+ },
+ {
+  "line": 28,
+  "i": 1,
+  "visual": "مدخنة وحيدة قائمة وسط الرماد، لا دخان يخرج منها",
+  "type": "MEDIUM",
+  "cam": "push-in 4% · silence",
+  "txt": ""
+ },
+ {
+  "line": 29,
+  "i": 0,
+  "visual": "أكياس قماش فارغة مكدسة على عربة، حبل مربوط بإحكام",
+  "type": "DETAIL",
+  "cam": "drift · rope creak",
+  "txt": ""
+ },
+ {
+  "line": 30,
+  "i": 0,
+  "visual": "خط ذهبي يخرج من الجزيرة ويعبر الإطار نحو الأعلى",
+  "type": "THREAD",
+  "cam": "thread rise · whoosh",
+  "txt": ""
+ },
+ {
+  "line": 31,
+  "i": 0,
+  "visual": "رياح عالية: سحب رقيقة تتحرك بسرعة فوق محيط داكن، ظل سحاب على الماء",
+  "type": "WIDE",
+  "cam": "lateral drift · wind swell",
+  "txt": ""
+ },
+ {
+  "line": 32,
+  "i": 0,
+  "visual": "طبقة غاز شفافة تتحرك فوق خريطة، خطوط تدفّق دقيقة تنتشر شرقًا",
+  "type": "DATA",
+  "cam": "flow lines · parallax",
+  "txt": ""
+ },
+ {
+  "line": 33,
+  "i": 0,
+  "visual": "بخار خفيف ينساب في طبقة عليا، ضوء شمس من الأعلى يخترقه",
+  "type": "DETAIL",
+  "cam": "slow rise · volumetric light",
+  "txt": ""
+ },
+ {
+  "line": 34,
+  "i": 0,
+  "visual": "عدسة مكبّرة فوق خريطة، تكبّر نقطة واحدة حتى تصير بقعة",
+  "type": "BOARD",
+  "cam": "push-in 6% · glass glint",
+  "txt": ""
+ },
+ {
+  "line": 35,
+  "i": 0,
+  "visual": "قدر ماء يغلي على موقد حجري، بخار يخرج من تحت الغطاء ويغطي الحافة",
+  "type": "MEDIUM",
+  "cam": "drift · steam",
+  "txt": ""
+ },
+ {
+  "line": 35,
+  "i": 1,
+  "type": "THREAD",
+  "visual": "خيط ذهبي يعبر مقطعًا أرضيًا وينزل إلى عمق البركان",
+  "cam": "thread dive · ember",
+  "txt": ""
+ },
+ {
+  "line": 36,
+  "i": 0,
+  "visual": "حجر بازلتي ساخن يُغمر في ماء، بخار كثيف ينفجر للأعلى",
+  "type": "DETAIL",
+  "cam": "rack focus · steam burst",
+  "txt": ""
+ },
+ {
+  "line": 36,
+  "i": 1,
+  "visual": "يد تحسّ حرارة حجر ثم تنسحب بسرعة، لا وجه",
+  "type": "SILHOUETTE",
+  "cam": "handheld drift · flinch",
+  "txt": ""
+ },
+ {
+  "line": 37,
+  "i": 0,
+  "visual": "شمس باهتة خلف طبقة غبار، الضوء لا يصل إلى الأرض، ظلال بلا اتجاه",
+  "type": "WIDE",
+  "cam": "slow tilt · haze",
+  "txt": ""
+ },
+ {
+  "line": 38,
+  "i": 0,
+  "visual": "فقاعات غاز تتصاعد من شق في الأرض البركانية، ضوء جانبي يقطع البخار",
+  "type": "DETAIL",
+  "cam": "vertical rise · gas wisps",
+  "txt": ""
+ },
+ {
+  "line": 39,
+  "i": 0,
+  "visual": "مقطع عرضي للغلاف الجوي: طبقات متراكبة، سهم رفيع يصعد من الأرض",
+  "type": "DATA",
+  "cam": "arrow rises · layer reveal",
+  "txt": ""
+ },
+ {
+  "line": 40,
+  "i": 0,
+  "visual": "مقطع عرضي: جسيمات دقيقة تنتشر في طبقة الستراتوسفير، الرماد الخشن يهبط تحتها",
+  "type": "DATA",
+  "cam": "5.5s particle drift · split layers",
+  "txt": ""
+ },
+ {
+  "line": 41,
+  "i": 0,
+  "visual": "رياح عالية تلفّ كرة أرضية مصغّرة، خطوط بيضاء تكمل الدورة حول الكوكب",
+  "type": "MAP",
+  "cam": "wrap-around · globe turn",
+  "txt": ""
+ },
+ {
+  "line": 42,
+  "i": 0,
+  "visual": "جسيمات كبريتات تتكثّف واحدة حول الأخرى، هالة باهتة تتشكل حولها",
+  "type": "DETAIL",
+  "cam": "condensation · soft bloom",
+  "txt": "هباء الكبريتات"
+ },
+ {
+  "line": 43,
+  "i": 0,
+  "visual": "شعاع شمس يصطدم بطبقة الهباء ويرتد للأعلى، مساره يتحول من ذهبي إلى رمادي",
+  "type": "DATA",
+  "cam": "ray deflect · prism",
+  "txt": ""
+ },
+ {
+  "line": 44,
+  "i": 0,
+  "visual": "الأرض من الفضاء: الجانب المضيء أقل سطوعًا من المعتاد، غطاء أبيض رقيق",
+  "type": "WIDE",
+  "cam": "slow orbit drift · terminator",
+  "txt": ""
+ },
+ {
+  "line": 45,
+  "i": 0,
+  "visual": "ترمومتر خشبي على حائط، المؤشر يهبط ببطء، الزجاج يعكس ضوءًا باهتًا",
+  "type": "DETAIL",
+  "cam": "needle drop · glass reflection",
+  "txt": ""
+ },
+ {
+  "line": 46,
+  "i": 0,
+  "visual": "سطح أرضي بارد، ضوء شمس ساقط بزاوية منخفضة، ظلال طويلة وممتدة",
+  "type": "MEDIUM",
+  "cam": "slow push · cold grade",
+  "txt": ""
+ },
+ {
+  "line": 47,
+  "i": 0,
+  "visual": "حرّاثة مهجورة في حقل، صدأ على الحديد، مقبض مكسور",
+  "type": "DETAIL",
+  "cam": "drift · rust texture",
+  "txt": ""
+ },
+ {
+  "line": 48,
+  "i": 0,
+  "visual": "معاطف صوفية إضافية معلّقة على خط غسيل، الريح تحرّكها، لا أحد",
+  "type": "MEDIUM",
+  "cam": "sway + drift · fabric",
+  "txt": ""
+ },
+ {
+  "line": 49,
+  "i": 0,
+  "visual": "رجل عجوز يجلس بجانب موقد منطفئ، ظهره للكاميرا، ظل رأسه على الجدار",
+  "type": "SILHOUETTE",
+  "cam": "slow push 3% · ember dead",
+  "txt": ""
+ },
+ {
+  "line": 50,
+  "i": 0,
+  "visual": "حقل مجمّد من الأعلى: خطوط المحصول غير منتظمة، بقع صقيع بيضاء",
+  "type": "WIDE",
+  "cam": "aerial drift · frost",
+  "txt": ""
+ },
+ {
+  "line": 51,
+  "i": 0,
+  "visual": "قبضة يد تفتح كفًا فيه بذور قليلة، البذور متجمدة قليلًا",
+  "type": "MACRO",
+  "cam": "rack focus · breath",
+  "txt": ""
+ },
+ {
+  "line": 52,
+  "i": 0,
+  "visual": "باب مفتوح على حقل مظلم، الضوء كله داخل البيت، لا بشر",
+  "type": "WIDE",
+  "cam": "push-in · doorway",
+  "txt": ""
+ },
+ {
+  "line": 53,
+  "i": 0,
+  "visual": "فلاح من الخلف واقف أمام خط محصول مقطوع، قبعة مطر، الأرض سوداء",
+  "type": "SILHOUETTE",
+  "cam": "drift · rain tail",
+  "txt": ""
+ },
+ {
+  "line": 53,
+  "i": 1,
+  "type": "THREAD",
+  "visual": "خيط ذهبي يمر بين السيقان المكسورة في الحقل ويتجه شرقًا",
+  "cam": "thread travel · wind",
+  "txt": ""
+ },
+ {
+  "line": 54,
+  "i": 0,
+  "visual": "براعم ملفوفة بالصقيع، حافة الورقة شفافة، بلورات صغيرة على السطح",
+  "type": "MACRO",
+  "cam": "push-in 3% · ice glint",
+  "txt": ""
+ },
+ {
+  "line": 55,
+  "i": 0,
+  "visual": "حصى برد متراكمة في زاوية حقل، حجمها مقدّر بالمقارنة بيد، بلا أرقام",
+  "type": "DETAIL",
+  "cam": "drift · hail rattle",
+  "txt": ""
+ },
+ {
+  "line": 56,
+  "i": 0,
+  "visual": "أثر عاصفة: خطوط محصول مكسورة في اتجاه واحد، سيقان مسطحة",
+  "type": "WIDE",
+  "cam": "lateral drift · wind",
+  "txt": ""
+ },
+ {
+  "line": 57,
+  "i": 0,
+  "visual": "حصّادة غارقة في الطين حتى نصف عجلها، حصان واقف في الخلف",
+  "type": "MEDIUM",
+  "cam": "push-in · mud",
+  "txt": ""
+ },
+ {
+  "line": 58,
+  "i": 0,
+  "visual": "يد تزرع بذرة في تربة باردة، الأنفاس مرئية فوق اليد",
+  "type": "SILHOUETTE",
+  "cam": "rack focus · frost breath",
+  "txt": ""
+ },
+ {
+  "line": 59,
+  "i": 0,
+  "visual": "دفتر حسابات مزرعة: أعمدة بلا أرقام مقروءة، الورق رطب من الحافة",
+  "type": "DOC",
+  "cam": "slow dolly · wet paper",
+  "txt": ""
+ },
+ {
+  "line": 60,
+  "i": 0,
+  "visual": "ساحة تعبئة فارغة، براميل معدنية بعيدة، ميزان مقلوب",
+  "type": "WIDE",
+  "cam": "crane-down 5% · metal clank",
+  "txt": ""
+ },
+ {
+  "line": 61,
+  "i": 0,
+  "visual": "غرفة سفرة: طبق فيه بطاطس قليلة، كرسيان فارغان، شمعة واحدة",
+  "type": "MEDIUM",
+  "cam": "push-in 3% · candle flicker",
+  "txt": ""
+ },
+ {
+  "line": 62,
+  "i": 0,
+  "visual": "نافذة مغبشة من الداخل، ظل قضبان، لا وجوه، بخار نفس على الزجاج",
+  "type": "DETAIL",
+  "cam": "drift · condensation",
+  "txt": ""
+ },
+ {
+  "line": 63,
+  "i": 0,
+  "visual": "سوق مغلق: أكشاك فارغة، ميزان صدئ، مطر خفيف على القماش الممزق",
+  "type": "WIDE",
+  "cam": "slow dolly · market silence",
+  "txt": "سوق فارغ"
+ },
+ {
+  "line": 64,
+  "i": 0,
+  "visual": "سجادة مطوية وكومة قش في الزاوية، حبل غسيل فارغ فوقها",
+  "type": "MEDIUM",
+  "cam": "push-in · dust",
+  "txt": ""
+ },
+ {
+  "line": 65,
+  "i": 0,
+  "visual": "يد تصبّ حساءً رقيقًا في وعاء خشبي، بخار قليل جدًا",
+  "type": "SILHOUETTE",
+  "cam": "rack focus · steam thin",
+  "txt": ""
+ },
+ {
+  "line": 66,
+  "i": 0,
+  "visual": "باب جار يفتح، ظل يضع كيسًا على العتبة ثم ينسحب",
+  "type": "SILHOUETTE",
+  "cam": "drift · door creak",
+  "txt": ""
+ },
+ {
+  "line": 67,
+  "i": 0,
+  "visual": "دفتر يوميات مفتوح، خط غير مقروء، مكتبة صغيرة خلفه، شمعة قصيرة",
+  "type": "DOC",
+  "cam": "slow push · candle",
+  "txt": ""
+ },
+ {
+  "line": 67,
+  "i": 1,
+  "type": "DETAIL",
+  "visual": "خيط غزل رفيع يُلفّ على مكبّ، اليد تظهر من الحافة فقط",
+  "cam": "rack focus · yarn",
+  "txt": ""
+ },
+ {
+  "line": 68,
+  "i": 0,
+  "visual": "خريطة أوروبا بمناطق مختلفة الظل، بلا أرقام، الحدود مرسومة باليد",
+  "type": "MAP",
+  "cam": "regions animate · paper",
+  "txt": ""
+ },
+ {
+  "line": 69,
+  "i": 0,
+  "visual": "طريق جبلي مغلق بالثلج، عوائق خشبية، لا بشر",
+  "type": "WIDE",
+  "cam": "drift · snow wind",
+  "txt": ""
+ },
+ {
+  "line": 69,
+  "i": 1,
+  "visual": "عجل عربة في الثلج حتى المحور، الثلج يغطي نصف العجلة",
+  "type": "DETAIL",
+  "cam": "push-in · snow settle",
+  "txt": ""
+ },
+ {
+  "line": 69,
+  "i": 2,
+  "type": "THREAD",
+  "visual": "خيط ذهبي يعبر خريطة ويقف عند حدود منطقة رمادية",
+  "cam": "thread stop · glint",
+  "txt": ""
+ },
+ {
+  "line": 70,
+  "i": 0,
+  "visual": "مخزن حبوب: أكياس مكدسة، شوكة قش، ضوء باب مفتوح يقطع الظلام",
+  "type": "MEDIUM",
+  "cam": "dolly · grain dust",
+  "txt": ""
+ },
+ {
+  "line": 71,
+  "i": 0,
+  "visual": "ثلاثة خطوط باهتة على ورق تشير إلى مناطق مختلفة، لا أرقام",
+  "type": "DATA",
+  "cam": "lines draw · dust",
+  "txt": ""
+ },
+ {
+  "line": 71,
+  "i": 1,
+  "visual": "دائرة شمس باهتة فوق خريطة، مناطق تتوهّج بخفوت متقطّع",
+  "type": "MAP",
+  "cam": "glow pulse · parallax",
+  "txt": ""
+ },
+ {
+  "line": 71,
+  "i": 2,
+  "visual": "بطاقة تحقيق بجوار نقطة مجهولة على الخريطة، خيط ذهبي يربطها",
+  "type": "BOARD",
+  "cam": "thread tie · pin settle",
+  "txt": ""
+ },
+ {
+  "line": 71,
+  "i": 3,
+  "type": "WIDE",
+  "visual": "حقل أوروبي من بعيد تحت سحاب منخفض: ثلاث قطع أرض مختلفة الظل، لا بشر",
+  "cam": "slow push 3% · wind",
+  "txt": ""
+ },
+ {
+  "line": 72,
+  "i": 0,
+  "visual": "جبل تامبورا من بعيد عند الغسق، غيوم منخفضة تحيط بالقمة",
+  "type": "WIDE",
+  "cam": "slow push 4% · dusk",
+  "txt": ""
+ },
+ {
+  "line": 72,
+  "i": 1,
+  "type": "HUMAN",
+  "visual": "ظل راعٍ يقف على تلة بعيدة، عصا في يده، الظهر للكاميرا",
+  "cam": "drift · wind",
+  "txt": ""
+ },
+ {
+  "line": 73,
+  "i": 0,
+  "visual": "طاولة بيضاء فارغة، كأس ماء، ضوء يقترب من الحافة ببطء",
+  "type": "MEDIUM",
+  "cam": "drift · water tremble",
+  "txt": ""
+ },
+ {
+  "line": 74,
+  "i": 0,
+  "visual": "واجهة فيلا حجرية ليلاً، نافذتان مضاءتان بشموع، مطر يجري على الزجاج",
+  "type": "WIDE",
+  "cam": "slow crane-up 5% · rain on stone",
+  "txt": "فيلا ديوداتي"
+ },
+ {
+  "line": 75,
+  "i": 0,
+  "visual": "بحيرة جنيف تحت عاصفة: ماء داكن، خطوط مطر مائلة، ضفة بعيدة مطموسة",
+  "type": "WIDE",
+  "cam": "lateral drift · storm wind",
+  "txt": ""
+ },
+ {
+  "line": 75,
+  "i": 1,
+  "type": "THREAD",
+  "visual": "خيط ذهبي يمرّ فوق سطح البحيرة بموازاة خطوط المطر",
+  "cam": "thread skims water · rain",
+  "txt": ""
+ },
+ {
+  "line": 76,
+  "i": 0,
+  "visual": "نافذة زجاج من الداخل: مطر غزير يجري، ظل مائل واقف خلفها",
+  "type": "DETAIL",
+  "cam": "rack focus · rain streaks",
+  "txt": ""
+ },
+ {
+  "line": 76,
+  "i": 1,
+  "visual": "زجاج داخلي مبلول، ومضة برق قصيرة تضيء الحافة ثم تختفي",
+  "type": "DETAIL",
+  "cam": "soft lightning bloom 0.4s · rain",
+  "txt": "[QT] كان صيفًا مبلولًا… ومش لطيفًا"
+ },
+ {
+  "line": 77,
+  "i": 0,
+  "visual": "ممر مغطى بالفيلا، أرضية حجرية مبلولة، مقعد فارغ، لا بشر",
+  "type": "MEDIUM",
+  "cam": "dolly · wet stone",
+  "txt": ""
+ },
+ {
+  "line": 77,
+  "i": 1,
+  "type": "WIDE",
+  "visual": "برق يضيء كتلة سحابة فوق البحيرة، سطح الماء ينعكس لحظة واحدة",
+  "cam": "lightning bloom 0.4s · thunder",
+  "txt": ""
+ },
+ {
+  "line": 77,
+  "i": 2,
+  "type": "DETAIL",
+  "visual": "مزراب معدني يفيض ماءً على الحجر، رذاذ يلمع في ضوء الشمعة",
+  "cam": "rack focus · splash",
+  "txt": ""
+ },
+ {
+  "line": 77,
+  "i": 3,
+  "type": "MEDIUM",
+  "visual": "مصاريع خشبية تتحرك مع الريح، المطر يدخل من الشق",
+  "cam": "drift · shutter knock",
+  "txt": ""
+ },
+ {
+  "line": 78,
+  "i": 0,
+  "visual": "سماء العاصفة فوق البحيرة: سحب سوداء منخفضة، برق داخل السحاب يضيء كتلته",
+  "type": "WIDE",
+  "cam": "slow push · thunder roll",
+  "txt": ""
+ },
+ {
+  "line": 78,
+  "i": 1,
+  "type": "DETAIL",
+  "visual": "شعاع مطر يقطع ضوء نافذة الفيلا من الخارج",
+  "cam": "backlight rain · slow push",
+  "txt": ""
+ },
+ {
+  "line": 78,
+  "i": 2,
+  "type": "SILHOUETTE",
+  "visual": "ظل أغصان شجرة يتمايل على جدار الغرفة من الداخل",
+  "cam": "shadow sway · candle",
+  "txt": ""
+ },
+ {
+  "line": 79,
+  "i": 0,
+  "visual": "غرفة معيشة بالفيلا: أربع شموع على طاولة، ظلال ثقيلة على الجدران",
+  "type": "WIDE",
+  "cam": "push-in 3% · candle flicker",
+  "txt": ""
+ },
+ {
+  "line": 80,
+  "i": 0,
+  "visual": "رف كتب قديمة، ضوء شمعة يتحرك على كعوب الكتب",
+  "type": "MEDIUM",
+  "cam": "drift · book spines",
+  "txt": ""
+ },
+ {
+  "line": 80,
+  "i": 1,
+  "visual": "ظل يد تقلب صفحة في كتاب قديم، الخط غير مقروء، لا وجه",
+  "type": "SILHOUETTE",
+  "cam": "rack focus · page turn",
+  "txt": ""
+ },
+ {
+  "line": 81,
+  "i": 0,
+  "visual": "ظل بايرون يميل للأمام فوق الطاولة، الكتفان مرتفعان، لا وجه",
+  "type": "SILHOUETTE",
+  "cam": "push-in 4% · fire crackle",
+  "txt": ""
+ },
+ {
+  "line": 81,
+  "i": 1,
+  "visual": "أصابع تحسب على الطاولة: واحدة، اثنتان، ثلاث — ثم تتوقف",
+  "type": "MACRO",
+  "cam": "rack focus · knuckle shadows",
+  "txt": ""
+ },
+ {
+  "line": 81,
+  "i": 2,
+  "visual": "خمس شموع تنطفئ واحدة تلو الأخرى، الدخان يبقى في الهواء",
+  "type": "DETAIL",
+  "cam": "flame guttering · smoke",
+  "txt": "[QT] «كل واحد يكتب حكاية أشباح»"
+ },
+ {
+  "line": 81,
+  "i": 3,
+  "type": "DETAIL",
+  "visual": "قارورة حبر مفتوحة، السطح يهتز مع صوت بعيد",
+  "cam": "rack focus · liquid tremor",
+  "txt": ""
+ },
+ {
+  "line": 81,
+  "i": 4,
+  "type": "MEDIUM",
+  "visual": "باب الغرفة مفتوح قليلًا، ضوء الممر يقطع أرضية الغرفة",
+  "cam": "slow push · draught",
+  "txt": ""
+ },
+ {
+  "line": 82,
+  "i": 0,
+  "visual": "أوراق فارغة موزعة على الطاولة، أربعة أقلام متوازية، لا بشر",
+  "type": "BOARD",
+  "cam": "slow push · paper texture",
+  "txt": ""
+ },
+ {
+  "line": 82,
+  "i": 1,
+  "visual": "خيط ذهبي يبدأ من الورقة الأولى ويتفرّع إلى أربعة مسارات",
+  "type": "THREAD",
+  "cam": "thread draw · branch",
+  "txt": ""
+ },
+ {
+  "line": 82,
+  "i": 2,
+  "type": "DETAIL",
+  "visual": "أربعة أقلام على أربع أوراق، يد تدفع واحدة للأمام",
+  "cam": "rack focus · paper slide",
+  "txt": ""
+ },
+ {
+  "line": 82,
+  "i": 3,
+  "type": "SILHOUETTE",
+  "visual": "ظلان ينحنيان على الورق في نفس اللحظة، لا وجوه",
+  "cam": "drift · candle sway",
+  "txt": ""
+ },
+ {
+  "line": 82,
+  "i": 4,
+  "type": "DETAIL",
+  "visual": "قلم يتوقف فوق الورقة، رأس القلم يرتجف، لا كلمة تُكتب",
+  "cam": "2.0s rack focus · held breath",
+  "txt": ""
+ },
+ {
+  "line": 83,
+  "i": 0,
+  "visual": "واجهة الفيلا من الحديقة ليلاً: مطر، نافذتان مضاءتان، شجرة تتحرك بقوة",
+  "type": "WIDE",
+  "cam": "5.5s slow push-in · rain + wind",
+  "txt": ""
+ },
+ {
+  "line": 83,
+  "i": 1,
+  "type": "DETAIL",
+  "visual": "مزراب حجري يصبّ ماءً على الأرض المبلولة، رذاذ عند الاصطدام",
+  "cam": "rack focus · splash",
+  "txt": ""
+ },
+ {
+  "line": 84,
+  "i": 0,
+  "visual": "أربعة ظلال على الحائط حول بقعة ضوء شمعة، الظلال تتحرك ببطء",
+  "type": "SILHOUETTE",
+  "cam": "drift · shadow sway",
+  "txt": ""
+ },
+ {
+  "line": 84,
+  "i": 1,
+  "visual": "أربعة كؤوس على صينية، واحد منها مائل قليلًا",
+  "type": "DETAIL",
+  "cam": "push-in · glass glint",
+  "txt": ""
+ },
+ {
+  "line": 85,
+  "i": 0,
+  "visual": "حقيبة طبيب جلدية مفتوحة، أدوات معدنية مرتبة، مقبض خشبي",
+  "type": "DETAIL",
+  "cam": "push-in 4% · metal sheen",
+  "txt": ""
+ },
+ {
+  "line": 85,
+  "i": 1,
+  "type": "SILHOUETTE",
+  "visual": "معطف صوفي مبلول معلّق عند الباب، الماء يقطر على الحجر",
+  "cam": "drift · drip",
+  "txt": ""
+ },
+ {
+  "line": 86,
+  "i": 0,
+  "visual": "كتاب ألماني قديم مفتوح، خط قوطي غير مقروء، ضوء شمعة على الحرف",
+  "type": "DOC",
+  "cam": "rack focus · vellum",
+  "txt": ""
+ },
+ {
+  "line": 86,
+  "i": 1,
+  "type": "MEDIUM",
+  "visual": "حقائب سفر مفتوحة في الممر، ملابس مبلولة على الحافة",
+  "cam": "push-in · dim light",
+  "txt": ""
+ },
+ {
+  "line": 87,
+  "i": 0,
+  "visual": "يد تدفع ورقة فارغة إلى مركز الطاولة، الأصابع تتراجع",
+  "type": "SILHOUETTE",
+  "cam": "push-in · paper slide",
+  "txt": ""
+ },
+ {
+  "line": 88,
+  "i": 0,
+  "visual": "ماري من الخلف: ظل شعر مرفوع ورأس مائل، الكتاب مفتوح أمامها، لا وجه",
+  "type": "SILHOUETTE",
+  "cam": "drift · candle shadow",
+  "txt": ""
+ },
+ {
+  "line": 88,
+  "i": 1,
+  "type": "MEDIUM",
+  "visual": "رفّ شموع: ثلاث شموع نصف محترقة، الشمع يجري على الخشب",
+  "cam": "push-in 3% · flame",
+  "txt": ""
+ },
+ {
+  "line": 89,
+  "i": 0,
+  "visual": "غلاف مخطوطة بخط يد غير مقروء، ورق مصفر، خيط شمع أحمر",
+  "type": "DOC",
+  "cam": "4.5s dolly-in · paper grain",
+  "txt": ""
+ },
+ {
+  "line": 89,
+  "i": 1,
+  "visual": "خيط ذهبي ينسحب من حافة الغلاف نحو الداخل، الورق ينثني قليلًا",
+  "type": "THREAD",
+  "cam": "thread draw · paper flex",
+  "txt": ""
+ },
+ {
+  "line": 90,
+  "i": 0,
+  "visual": "شفرة قلم تتوقف فوق ورق أبيض، قطرة حبر تتكوّن ولا تنزل",
+  "type": "MACRO",
+  "cam": "3.5s rack focus · held breath",
+  "txt": ""
+ },
+ {
+  "line": 90,
+  "i": 1,
+  "visual": "ظل طالب شاحب راكع، ظهره محدّب، الكتفان يهتزان مع النفس",
+  "type": "SILHOUETTE",
+  "cam": "slow push · lamp flicker",
+  "txt": ""
+ },
+ {
+  "line": 90,
+  "i": 2,
+  "visual": "شكل غير مكتمل على طاولة، أجزاء مفكوكة، لا تفاصيل صادمة",
+  "type": "DETAIL",
+  "cam": "drift · lamp flicker",
+  "txt": ""
+ },
+ {
+  "line": 91,
+  "i": 0,
+  "visual": "ظل يصعد على الحائط ببطء، حجمه يتضخم مع اقترابه من الضوء",
+  "type": "SILHOUETTE",
+  "cam": "slow rise · shadow stretch",
+  "txt": ""
+ },
+ {
+  "line": 91,
+  "i": 1,
+  "visual": "باب يفتح على ممر مظلم، لا أحد في الإطار، الهواء يحرّك الستارة",
+  "type": "MEDIUM",
+  "cam": "push-in · draught",
+  "txt": ""
+ },
+ {
+  "line": 92,
+  "i": 0,
+  "visual": "دفتر صغير مغلق، قلم ريشة موضوع على الغلاف بزاوية",
+  "type": "DETAIL",
+  "cam": "push-in 3% · quill shadow",
+  "txt": ""
+ },
+ {
+  "line": 93,
+  "i": 0,
+  "visual": "غلاف كتاب بعنوان غير مقروء، ورق داكن، حواف مهترئة",
+  "type": "DOC",
+  "cam": "dolly · paper edge",
+  "txt": ""
+ },
+ {
+  "line": 93,
+  "i": 1,
+  "visual": "ختم «يُرجَّح» يهبط على بطاقة التحقيق ثم يثبت",
+  "type": "BOARD",
+  "cam": "stamp thud · ink bleed",
+  "txt": "[M] يُرجَّح"
+ },
+ {
+  "line": 94,
+  "i": 0,
+  "visual": "خيط ذهبي يسحب بطاقة من تحت أخرى حتى تنزلق للخارج",
+  "type": "THREAD",
+  "cam": "tension pull · slide",
+  "txt": ""
+ },
+ {
+  "line": 95,
+  "i": 0,
+  "visual": "صفحات كتاب تُقلب بسرعة معتدلة، ضوء شمعة يقفز بين السطور",
+  "type": "DOC",
+  "cam": "page flip · candle",
+  "txt": ""
+ },
+ {
+  "line": 95,
+  "i": 1,
+  "type": "HUMAN",
+  "visual": "يد تقلب صفحة كتاب قديم، الإصبع على الحرف، لا وجه",
+  "cam": "rack focus · paper",
+  "txt": ""
+ },
+ {
+  "line": 96,
+  "i": 0,
+  "visual": "خطان ذهبيان يتوازيان ولا يتقاطعان أبدًا",
+  "type": "THREAD",
+  "cam": "drift apart · gleam",
+  "txt": ""
+ },
+ {
+  "line": 97,
+  "i": 0,
+  "visual": "طاولة التحقيق: بطاقتان مضاءتان فقط، الباقي في الظل",
+  "type": "BOARD",
+  "cam": "slow push · lamp pool",
+  "txt": ""
+ },
+ {
+  "line": 97,
+  "i": 1,
+  "type": "HUMAN",
+  "visual": "ظل رأس مائل يقرأ عند ضوء شمعة، الظهر للكاميرا، لا ملامح",
+  "cam": "heavy vignette · slow push",
+  "txt": ""
+ },
+ {
+  "line": 98,
+  "i": 0,
+  "visual": "بطاقة واحدة تُرفع بالخيط الذهبي فوق البقية",
+  "type": "BOARD",
+  "cam": "lift · thread tension",
+  "txt": ""
+ },
+ {
+  "line": 99,
+  "i": 0,
+  "visual": "الصفحة الأولى من مخطوطة، ضوء يتحرك عليها، الخط غير مقروء",
+  "type": "DOC",
+  "cam": "slow drift · paper",
+  "txt": ""
+ },
+ {
+  "line": 100,
+  "i": 0,
+  "visual": "ظل يد تُغلق كتابًا ثقيلًا على طاولة، الغبار يرتفع من الحافة",
+  "type": "SILHOUETTE",
+  "cam": "push-in · dust puff",
+  "txt": ""
+ },
+ {
+  "line": 101,
+  "i": 0,
+  "visual": "طبعة قديمة على رف، كعب الكتاب متآكل، رقم غير مقروء على الكعب",
+  "type": "DETAIL",
+  "cam": "rack focus · spine",
+  "txt": "1818"
+ },
+ {
+  "line": 102,
+  "i": 0,
+  "visual": "صفحة عنوان، إصبع يمر تحت سطر دون أن يلمسه",
+  "type": "MACRO",
+  "cam": "rack focus · fingertip",
+  "txt": ""
+ },
+ {
+  "line": 103,
+  "i": 0,
+  "visual": "جدار عليه ظلال وجوه فقط، لا ملامح، الضوء يقطعها أفقيًا",
+  "type": "SILHOUETTE",
+  "cam": "drift · projector light",
+  "txt": ""
+ },
+ {
+  "line": 104,
+  "i": 0,
+  "visual": "كتاب في واجهة مكتبة، ظلال المارّة تعبر الواجهة خارج الإطار",
+  "type": "WIDE",
+  "cam": "slow dolly · street light",
+  "txt": ""
+ },
+ {
+  "line": 104,
+  "i": 1,
+  "type": "MEDIUM",
+  "visual": "نافذة محل كتب من الشارع ليلاً، ظل عابر يمرّ خلف الزجاج",
+  "cam": "slow dolly · street light",
+  "txt": ""
+ },
+ {
+  "line": 105,
+  "i": 0,
+  "visual": "سبابة ترفع ورقة عن الطاولة، الورقة تتوقف في الهواء",
+  "type": "MACRO",
+  "cam": "hold + tiny drift",
+  "txt": ""
+ },
+ {
+  "line": 106,
+  "i": 0,
+  "visual": "شعلة شمعة تنطفئ ببطء، دخان رفيع يصعد في خط مستقيم",
+  "type": "DETAIL",
+  "cam": "smoke · flame die",
+  "txt": ""
+ },
+ {
+  "line": 107,
+  "i": 0,
+  "visual": "خط ذهبي يربط بين حجر صغير وورقة على الطاولة",
+  "type": "THREAD",
+  "cam": "draw · glint",
+  "txt": ""
+ },
+ {
+  "line": 108,
+  "i": 0,
+  "visual": "سلسلة على ورق: بركان صغير، سهم يصعد إلى طبقة رقيقة",
+  "type": "DATA",
+  "cam": "arrow rise · paper",
+  "txt": ""
+ },
+ {
+  "line": 108,
+  "i": 1,
+  "visual": "السلسلة تكمل: طبقة الهباء، سهم ينعكس للأعلى، مقياس حرارة يهبط",
+  "type": "DATA",
+  "cam": "reflection arrow · gauge drop",
+  "txt": ""
+ },
+ {
+  "line": 108,
+  "i": 2,
+  "type": "HUMAN",
+  "visual": "طاولة مكتوبة: أصابع تمسك قلمًا فوق ورق، ظل اليد يغطي نصف الصفحة",
+  "cam": "rack focus · pencil shadow",
+  "txt": ""
+ },
+ {
+  "line": 109,
+  "i": 0,
+  "visual": "نافذة مغبشة، مطر، ظل يقف بالداخل بلا حركة لثوانٍ",
+  "type": "MEDIUM",
+  "cam": "4.7s slow push · rain",
+  "txt": ""
+ },
+ {
+  "line": 110,
+  "i": 0,
+  "visual": "طاولة عليها أوراق وأقلام وشمعتان، الكراسي فارغة",
+  "type": "BOARD",
+  "cam": "dolly · candle",
+  "txt": ""
+ },
+ {
+  "line": 111,
+  "i": 0,
+  "visual": "كرة أرضية صغيرة على مكتب، خط ذهبي يقطع بين قارتين",
+  "type": "DATA",
+  "cam": "orbit drift · globe",
+  "txt": ""
+ },
+ {
+  "line": 112,
+  "i": 0,
+  "visual": "قوس ذهبي يُرسم على خريطة من نقطة البركان إلى نقطة الفيلا",
+  "type": "MAP",
+  "cam": "arc draw · paper",
+  "txt": ""
+ },
+ {
+  "line": 112,
+  "i": 1,
+  "visual": "طاولة التحقيق من الأعلى، الخيط الذهبي يمر عبرها من طرف لطرف",
+  "type": "BOARD",
+  "cam": "crane-down · top light",
+  "txt": ""
+ },
+ {
+  "line": 112,
+  "i": 2,
+  "type": "WIDE",
+  "visual": "طريق جبلي مبلول عند الفجر، ضباب بين الشجر، لا بشر",
+  "cam": "lateral drift · mist",
+  "txt": ""
+ },
+ {
+  "line": 113,
+  "i": 0,
+  "visual": "ثلاث بطاقات خرافة تُثبَّت على اللوح واحدة تلو الأخرى",
+  "type": "BOARD",
+  "cam": "pins drop · board",
+  "txt": ""
+ },
+ {
+  "line": 113,
+  "i": 1,
+  "visual": "خيط ذهبي يمر تحت البطاقات الثلاث ويربطها",
+  "type": "THREAD",
+  "cam": "draw · tension",
+  "txt": ""
+ },
+ {
+  "line": 114,
+  "i": 0,
+  "visual": "خريطة العالم كاملة، مناطق كثيرة رمادية وبلا تظليل، الحدود باهتة",
+  "type": "MAP",
+  "cam": "drift · paper",
+  "txt": ""
+ },
+ {
+  "line": 114,
+  "i": 1,
+  "type": "THREAD",
+  "visual": "خيط ذهبي يدور حول بطاقة خرافة ثم ينثني بعيدًا عنها",
+  "cam": "thread loop · ink",
+  "txt": ""
+ },
+ {
+  "line": 114,
+  "i": 2,
+  "type": "WIDE",
+  "visual": "حقل أوروبي تحت سحاب فيروزي، أرض داكنة وخط محصول واحد",
+  "cam": "slow push · wind",
+  "txt": ""
+ },
+ {
+  "line": 115,
+  "i": 0,
+  "visual": "خريطة أوروبا وأمريكا الشمالية فقط تتوهّج، الباقي يبقى رماديًا",
+  "type": "MAP",
+  "cam": "regions fade in · glow",
+  "txt": ""
+ },
+ {
+  "line": 115,
+  "i": 1,
+  "type": "HUMAN",
+  "visual": "ظل امرأة تعلق بطانية على حبل غسيل، الريح تشدّها",
+  "cam": "drift · fabric",
+  "txt": ""
+ },
+ {
+  "line": 116,
+  "i": 0,
+  "visual": "تقويم قديم على حائط، أيام مظللة بشكل عشوائي، لا أرقام مقروءة",
+  "type": "DETAIL",
+  "cam": "push-in · paper",
+  "txt": ""
+ },
+ {
+  "line": 117,
+  "i": 0,
+  "visual": "ثلاث موجات صقيع على خط زمني منقّط، بلا أرقام، الموجات متقطعة",
+  "type": "DATA",
+  "cam": "waves draw · dust",
+  "txt": ""
+ },
+ {
+  "line": 118,
+  "i": 0,
+  "visual": "دبوس واحد كبير على خريطة، وحده في منتصف اللوح",
+  "type": "BOARD",
+  "cam": "push-in · pin shadow",
+  "txt": ""
+ },
+ {
+  "line": 119,
+  "i": 0,
+  "visual": "ثلاثة دبابيس أصغر حول الدبوس الكبير، متصلة بخيوط ذهبية",
+  "type": "DATA",
+  "cam": "pins drop · threads",
+  "txt": ""
+ },
+ {
+  "line": 120,
+  "i": 0,
+  "visual": "ختم «يُرجَّح» على ورق، حبر ذهبي ينتشر في الألياف",
+  "type": "BOARD",
+  "cam": "stamp · ink spread",
+  "txt": "[M] يُرجَّح"
+ },
+ {
+  "line": 121,
+  "i": 0,
+  "visual": "الميزان الخشبي البسيط، كفتان فارغتان تتوازنان ببطء",
+  "type": "DETAIL",
+  "cam": "drift · balance",
+  "txt": ""
+ },
+ {
+  "line": 122,
+  "i": 0,
+  "visual": "شاشة رادار قديمة، خطوط دائرية تدور، لا أرقام ولا نص",
+  "type": "DATA",
+  "cam": "sweep · phosphor glow",
+  "txt": ""
+ },
+ {
+  "line": 123,
+  "i": 0,
+  "visual": "الأرض من الفضاء، عمود بركاني رفيع يصعد من نقطة واحدة",
+  "type": "WIDE",
+  "cam": "slow orbit · plume",
+  "txt": ""
+ },
+ {
+  "line": 123,
+  "i": 1,
+  "visual": "مقياس زمني طويل على ورق، علامات تُرسم بلا أرقام",
+  "type": "DATA",
+  "cam": "marks appear · paper",
+  "txt": ""
+ },
+ {
+  "line": 123,
+  "i": 2,
+  "type": "THREAD",
+  "visual": "خيط ذهبي يهبط من حافة الإطار على كرة أرضية صغيرة",
+  "cam": "thread drop · soft whoosh",
+  "txt": ""
+ },
+ {
+  "line": 124,
+  "i": 0,
+  "visual": "ورقة تقويم فارغة تمامًا، لا تواريخ، قلم موضوع فوقها",
+  "type": "DETAIL",
+  "cam": "push-in · paper fibre",
+  "txt": ""
+ },
+ {
+  "line": 124,
+  "i": 1,
+  "type": "HUMAN",
+  "visual": "يد تضع كوب شاي على ورقة تقويم فارغة، البخار يعبر الورق",
+  "cam": "rack focus · steam",
+  "txt": ""
+ },
+ {
+  "line": 125,
+  "i": 0,
+  "visual": "غرفة عمليات: شاشات منطفئة، كراسي فارغة، خريطة على الجدار",
+  "type": "WIDE",
+  "cam": "slow dolly · room tone",
+  "txt": ""
+ },
+ {
+  "line": 126,
+  "i": 0,
+  "visual": "ميناء حديث: حاويات متراصة، رافعات ثابتة، ضباب خفيف",
+  "type": "WIDE",
+  "cam": "4.0s push 3% · port hum",
+  "txt": ""
+ },
+ {
+  "line": 127,
+  "i": 0,
+  "visual": "طائرة على المدرج في الضباب، أضواء منخفضة الرؤية تومض",
+  "type": "SILHOUETTE",
+  "cam": "drift · fog",
+  "txt": ""
+ },
+ {
+  "line": 128,
+  "i": 0,
+  "visual": "سفينة شحن تعبر ضبابًا كثيفًا، الصاري يظهر أولًا",
+  "type": "WIDE",
+  "cam": "slow push · fog roll",
+  "txt": ""
+ },
+ {
+  "line": 129,
+  "i": 0,
+  "visual": "رافعة ميناء تفرغ حاوية في الضباب، الكابلات مشدودة",
+  "type": "DETAIL",
+  "cam": "crane · cable tension",
+  "txt": ""
+ },
+ {
+  "line": 130,
+  "i": 0,
+  "visual": "مرصد: قبة تُفتح، تلسكوب يتجه صعودًا نحو السماء",
+  "type": "WIDE",
+  "cam": "tilt-up · dome motor",
+  "txt": ""
+ },
+ {
+  "line": 131,
+  "i": 0,
+  "visual": "سماء ليلية صافية، نقطة واحدة أكثر سطوعًا من الباقي",
+  "type": "WIDE",
+  "cam": "drift · star field",
+  "txt": ""
+ },
+ {
+  "line": 131,
+  "i": 1,
+  "type": "HUMAN",
+  "visual": "طاولة بجانب النافذة: كوب شاي، كتاب مفتوح، كتف جالس في الظل، لا وجه",
+  "cam": "slow push · curtain light",
+  "txt": ""
+ },
+ {
+  "line": 132,
+  "i": 0,
+  "visual": "مائدة عليها صحن وكوب، راديو قديم بجانبه، هوائي مائل",
+  "type": "MEDIUM",
+  "cam": "push-in · warm light",
+  "txt": ""
+ },
+ {
+  "line": 132,
+  "i": 1,
+  "type": "THREAD",
+  "visual": "خيط ذهبي يخرج من الإطار نحو نقطة غير مرئية",
+  "cam": "thread exit · fade",
+  "txt": ""
+ },
+ {
+  "line": 133,
+  "i": 0,
+  "visual": "ثلاث أيقونات مرسومة على ورق: سلة، طائرة، كابل — بلا نص",
+  "type": "DATA",
+  "cam": "icons fade · pencil",
+  "txt": ""
+ },
+ {
+  "line": 134,
+  "i": 0,
+  "visual": "دفتر مفتوح وقلم على الطاولة، ضوء نافذة يعبر الصفحة",
+  "type": "DOC",
+  "cam": "dolly · window light",
+  "txt": ""
+ },
+ {
+  "line": 135,
+  "i": 0,
+  "visual": "طاولة التحقيق كاملة من الأعلى، البطاقات مثبتة، الضوء يخفت تدريجيًا",
+  "type": "BOARD",
+  "cam": "4.0s crane-down · light fall",
+  "txt": ""
+ },
+ {
+  "line": 135,
+  "i": 1,
+  "visual": "علامة رِواق الصغيرة في الزاوية اليمنى، شفافة بلا مستطيل خلفها",
+  "type": "END",
+  "cam": "hold 2.7s · corner mark breathes 1.02→1.04",
+  "txt": ""
+ },
+ {
+  "line": 136,
+  "i": 0,
+  "visual": "كريدتس: أسماء المصادر بخط صغير + وسم «مشاهد مُعاد تخيّلها»",
+  "type": "END",
+  "cam": "slow fade · dust",
+  "txt": ""
+ }
+]
