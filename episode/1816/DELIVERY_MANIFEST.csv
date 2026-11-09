@@ -1,13 +1,16 @@
 ﻿phase,file_name,format,size_bytes,md5,drive_folder,drive_link,date,note
 1,SHOT_LIST_v2.1.csv,csv,76929,367fcfcc8334f0576f6966a9de9c0c5e,01_Data,https://drive.google.com/file/d/1BuqOhPoK3NI-a6OFRxTLBEGumyab0soq/view,2026-11-09,"186 shots, UTF-8 BOM, Arabic verified, 0 placeholder glyphs"
-1,SHOT_LIST_v2.1.md,md,44352,efba268bbd103f2751dd78d005eedaca,01_Data,https://drive.google.com/file/d/1_QUaNdQXpAk5SMjpor7beRnEgMJzWG1d/view,2026-11-09,"same list, readable form"
+1,SHOT_LIST_v2.1.md,md,44352,efba268bbd103f2751dd78d005eedaca,01_Data,https://drive.google.com/file/d/1CDNwf1YR4C2Pm4NkfO0zOrAKOQT0Zb2j/view,2026-11-09,"same list, readable form (re-uploaded with correct text/markdown type)"
 1,SHOT_LIST_v2.1_CHANGELOG.md,md,5250,488e915f5bd42aa8357c841077f074b1,00_Reports,https://docs.google.com/document/d/13Gds0bnpq51r4ZYZczJgBV9K6PlRzhO0YHFXWTvoskk/edit,2026-11-09,"v2 to v2.1 changelog, uploaded as Google Doc"
 1,QA_PHASE1_v2.1.md,md,3982,35e8d55fff83a26dce852922bc94015f,00_Reports,https://docs.google.com/document/d/10yjiEZI5xufP5uMR5bi6IY87fuFOLcl1OB9T-pB8Z_w/edit,2026-11-09,"Phase 1 QA, measured gates, uploaded as Google Doc"
 1,LOOKDEV_NOTE.md,md,4551,5eb2fc9523d7140df1ee4f8270155406,00_Reports,https://docs.google.com/document/d/1KZIs48QBSa1rbZFdVQ-2LhM1HNsqAKi4I0uKGatAaJ0/edit,2026-11-09,"LOOK-DEV note, tool disclosure, settings, uploaded as Google Doc"
 1,AUDIO_VERIFICATION.md,md,4211,38971d29c4db961b5f2d28a675d2324c,00_Reports,https://docs.google.com/document/d/19i-CQiBm0mfRjhjUSagT2yKBmev36PPMAdqLHBIhaKE/edit,2026-11-09,"master vs v4 cross-correlation, uploaded as Google Doc"
 1,RUWAQ_1816_v2.1_AR.srt,srt,15266,7b7e4ebf8c445a82842b2584a8180900,05_Final,https://drive.google.com/file/d/1fUxV3Jn6Kkbi4gbdtDpx7WmgH-vy2J8f/view,2026-11-09,"Arabic subtitles, 137 cues, text from approved script"
+0,FACT_CHECK_SHEET.csv,csv,7197,758cb65cdba88c1d9f01a9c70d1a8c6b,06_Sources,https://drive.google.com/file/d/15Aqn_Ez48vmaVGWE2NCnnByDiWffUqHb/view,2026-11-09,"fact-check rows per claim, UTF-8 BOM"
+0,SOURCES_SHEET.md,md,8846,6e2f779acc708ab397d61a0099e828da,06_Sources,https://drive.google.com/file/d/1u-ZW6E2uF3cmkbVupvKiLjgQvZ9bSQdF/view,2026-11-09,S1-S12 source table and licence notes
 1,LOOK01_field_dawn_2560.png,png,6316697,a7d97fdd5dfcd30f0b782792344890f7,03_LookDev,https://drive.google.com/file/d/1CzayqrFSQ5f1-NQgQa7jl7f243aFIBow/view,2026-11-09,"opening field at dawn, 2560 wide"
 1,LOOK02_sulfate_haze_2560.png,png,5632463,fbb38f49e2f597c3f116636e6bb7b651,03_LookDev,https://drive.google.com/file/d/1gfPWwhu4OFz6j6It0vPD5tAS-udebbzx/view,2026-11-09,"haze and sunbeam atmosphere, 2560 wide"
 1,LOOK03_villa_storm_2560.png,png,5418235,1dfc41f55ce0c6d200a98d87d09a5655,03_LookDev,https://drive.google.com/file/d/1Ro0vJCB24HUntOimVuVfbVUlALXl2j8L/view,2026-11-09,"Villa Diodati, storm night, 2560 wide"
 1,LOOK04_upscale_before_after.png,png,697273,32ec3d623df7f850ddf03e47063c6336,03_LookDev,https://drive.google.com/file/d/1QiP2L5InpPrHFpsxsCeTrqgs5TN6_2dj/view,2026-11-09,native 1376 vs upscaled 2560 comparison
 1,LOOK05_parallax_5s_1080p.mp4,mp4,4810260,0c93e21cff381916cc69e5aa99238267,03_LookDev,https://drive.google.com/file/d/1Rv9KkibwM3aZ5CA8RrVli62E8G0tzB2o/view,2026-11-09,"5 s 2.5D parallax proof, 1080p30, FFmpeg"
+0,master_vo_LOSSLESS_asdelivered_675.08s.flac,flac,46991673,9e3de5df923de19d042b2b86e6aa48c0,02_Audio,https://drive.google.com/file/d/1beMuVI8UUtrgofGYEHEgNL_FdmAMJDwg/view,2026-11-09,"master VO as received, 675.08 s; reference only, not the locked 626.37 s"
