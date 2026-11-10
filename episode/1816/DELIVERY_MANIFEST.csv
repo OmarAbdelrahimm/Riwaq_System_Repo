@@ -1,4 +1,23 @@
 ﻿phase,file_name,format,size_bytes,md5,drive_folder,drive_link,date,note
+1,SHOT_LIST_v2.1.csv,csv,76929,367fcfcc8334f0576f6966a9de9c0c5e,01_Data,https://drive.google.com/file/d/1BuqOhPoK3NI-a6OFRxTLBEGumyab0soq/view,2026-11-09,"186 shots, UTF-8 BOM, superseded by v2.2"
+1,SHOT_LIST_v2.1.md,md,44352,efba268bbd103f2751dd78d005eedaca,01_Data,https://drive.google.com/file/d/1CDNwf1YR4C2Pm4NkfO0zOrAKOQT0Zb2j/view,2026-11-09,readable form of v2.1
+1,SHOT_LIST_v2.1_CHANGELOG.md,md,5250,488e915f5bd42aa8357c841077f074b1,00_Reports,https://docs.google.com/document/d/13Gds0bnpq51r4ZYZczJgBV9K6PlRzhO0YHFXWTvoskk/edit,2026-11-09,"v2 to v2.1 changelog, Google Doc"
+1,QA_PHASE1_v2.1.md,md,3982,35e8d55fff83a26dce852922bc94015f,00_Reports,https://docs.google.com/document/d/10yjiEZI5xufP5uMR5bi6IY87fuFOLcl1OB9T-pB8Z_w/edit,2026-11-09,"Phase 1 QA, 21 gates, Google Doc"
+1,LOOKDEV_NOTE.md,md,4551,5eb2fc9523d7140df1ee4f8270155406,00_Reports,https://docs.google.com/document/d/1KZIs48QBSa1rbZFdVQ-2LhM1HNsqAKi4I0uKGatAaJ0/edit,2026-11-09,"first LOOK-DEV note, Google Doc"
+1,AUDIO_VERIFICATION.md,md,4211,38971d29c4db961b5f2d28a675d2324c,00_Reports,https://docs.google.com/document/d/19i-CQiBm0mfRjhjUSagT2yKBmev36PPMAdqLHBIhaKE/edit,2026-11-09,"675.08 s negative result, Google Doc"
+1,RUWAQ_1816_v2.1_AR.srt,srt,15266,7b7e4ebf8c445a82842b2584a8180900,05_Final,https://drive.google.com/file/d/1fUxV3Jn6Kkbi4gbdtDpx7WmgH-vy2J8f/view,2026-11-09,"137 cues, text from approved script"
+0,FACT_CHECK_SHEET.csv,csv,7197,758cb65cdba88c1d9f01a9c70d1a8c6b,06_Sources,https://drive.google.com/file/d/15Aqn_Ez48vmaVGWE2NCnnByDiWffUqHb/view,2026-11-09,fact-check rows per claim
+0,SOURCES_SHEET.md,md,8846,6e2f779acc708ab397d61a0099e828da,06_Sources,https://drive.google.com/file/d/1u-ZW6E2uF3cmkbVupvKiLjgQvZ9bSQdF/view,2026-11-09,S1-S12 source table and licences
+1,LOOK01_field_dawn_2560.png,png,6316697,a7d97fdd5dfcd30f0b782792344890f7,03_LookDev,https://drive.google.com/file/d/1CzayqrFSQ5f1-NQgQa7jl7f243aFIBow/view,2026-11-09,"2560x1429, superseded by the 2560x1440 crop"
+1,LOOK02_sulfate_haze_2560.png,png,5632463,fbb38f49e2f597c3f116636e6bb7b651,03_LookDev,https://drive.google.com/file/d/1gfPWwhu4OFz6j6It0vPD5tAS-udebbzx/view,2026-11-09,"2560x1429, superseded"
+1,LOOK03_villa_storm_2560.png,png,5418235,1dfc41f55ce0c6d200a98d87d09a5655,03_LookDev,https://drive.google.com/file/d/1Ro0vJCB24HUntOimVuVfbVUlALXl2j8L/view,2026-11-09,"2560x1429, superseded"
+1,LOOK04_upscale_before_after.png,png,697273,32ec3d623df7f850ddf03e47063c6336,03_LookDev,https://drive.google.com/file/d/1QiP2L5InpPrHFpsxsCeTrqgs5TN6_2dj/view,2026-11-09,native 1376 vs upscaled 2560
+1,LOOK05_parallax_5s_1080p.mp4,mp4,4810260,0c93e21cff381916cc69e5aa99238267,03_LookDev,https://drive.google.com/file/d/1Rv9KkibwM3aZ5CA8RrVli62E8G0tzB2o/view,2026-11-09,"old heuristic parallax, superseded by LOOK08"
+0,master_vo_LOSSLESS_asdelivered_675.08s.flac,flac,46991673,9e3de5df923de19d042b2b86e6aa48c0,02_Audio/reference_only,https://drive.google.com/file/d/1beMuVI8UUtrgofGYEHEgNL_FdmAMJDwg/view,2026-11-09,"rejected 675.08 s delivery, reference only"
+0,master_vo_tight_LOSSLESS.flac,flac,45080898,0a50e83efe40e6443899c7ac10e1eb84,02_Audio,https://drive.google.com/file/d/10T9V1sWkI2hpsH1RIT7eEBbauvh3afKv/view,2026-11-10,"MASTER, 626.37 s, -16.4 LUFS, -1.0 dBTP, r=0.9998 vs v4"
+0,v4_AAC_audio_only_reference.m4a,m4a,15211501,,02_Audio/reference_only,https://drive.google.com/file/d/1S1iD9Ke6a42XIhaXvUcRS1IdPvDozjea/view,2026-11-10,"AAC audio lifted from v4, stream copy, reference only"
+0,RUWAQ_1816_v4_ROUGHCUT_AACaudio_reference_only.mp4,mp4,35761218,0586d1ebb9825c633c608ff669303a5a,02_Audio/reference_only,https://drive.google.com/file/d/1qmzhIFmVdGW7TlVuFgw6FGPaTVJHssPp/view,2026-11-10,"v4 rough cut whole, reference only"
+0,1816.zip,zip,204247827,,02_Audio/reference_only,https://drive.google.com/file/d/12KB1QEKXs3IKp52ZgAvrOrWCpnHg7ISW/view,2026-11-10,"what the earlier link pointed to, reference only"
 2,SHOT_LIST_v2.2.csv,csv,77296,47e1a209e9749c1382e4958044576b82,01_Data,https://drive.google.com/file/d/1Ge_AgBpBiUma9bL9v4ynuebFhpZToknT/view,2026-11-10,"186 shots, UTF-8 BOM, person_present 22, duplicates 0"
 2,SHOT_LIST_v2.2_CHANGELOG.md,md,5332,fc5d2345c112ba9d5437c0d49fd7666d,00_Reports,https://drive.google.com/file/d/1Rdr6K1qfZU-BdTUT3j3Vaz0ljiBuSZ3F/view,2026-11-10,"D1 person_present, D2 near-duplicates, D3 space_kind"
 2,LOOKDEV_REVIEW,gdoc,9192,d11ba8b3cfc57c9896d7b12c97b9968b,00_Reports,https://docs.google.com/document/d/1x7Zmxd6hS-HGdtpn4XWDwXvujzkCDlMkMUpZJinHq44/edit,2026-11-10,"framing correction, plate plan, depth, LUT, similarity gate"
