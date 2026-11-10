@@ -1,0 +1,15 @@
+n,file,drive_id,width,height,fps,duration_s,used_in_pilot,segment
+1,01_Line_002_Farmers_Snow_America.mp4,1jaZGNBqtBsQy-RrTegeQaPauCDBqQV0c,1344,768,24,10.124,S2_farmers + S6_return,4.35-9.97 and 28.97-30.00
+2,02_Line_003_Europe_Rain_Mud.mp4,1CstQA98V36cUxmYizwMDJj5aNRGo7pMg,1280,720,24,7.916,S3_europe,9.97-15.96
+3,03_Line_006_Hook_Frankenstein_Silhouette.mp4,1K01C4tAJ4buN121IYWuGqxGGp7GZr6X8,1280,720,24,7.916,S5_monster,22.42-28.97
+4,04_Line_024_Tambora_Waking_Up.mp4,1mqZyx83h3XA7ukklRQIBy2SxiNGyBR1E,1280,720,24,7.916,no,chapter body
+5,05_Line_025_Tambora_Climax_Eruption.mp4,1ZqUw1w4Ng0u0haSg8ycrpa-BIohjUz4N,1280,720,24,9.999,no,chapter body
+6,06_Line_028_Village_Buried_In_Ash.mp4,1hlIPna3tJi7oLNWR1R_rFUq78X-D_nIa,1280,720,24,7.916,no,chapter body
+7,07_Line_051_Macro_Frost_Killing_Crop.mp4,1nEs6uHICeVZpvUxvbWtcS6_XRJ-APZyV,1280,720,24,7.916,no,chapter body
+8,08_Line_062_Family_Bread_Shortage.mp4,1IbKhqOLCtHQP69BWs8ZLqcR9-oLENfaa,1280,720,24,7.999,no,chapter body
+9,09_Line_075_Villa_Diodati_Exterior_Storm.mp4,1vJ7E-t0aG5RxSNFi1nQPPpagFAbUcWFs,1920,1080,24,7.833,S1_cold_open,0.00-4.35
+10,10_Line_080_Writers_Inside_Villa_Candles.mp4,1hryH4ItqEc-6hkFCSgqIHujAnwGFn5Ya,1280,720,24,9.999,no,chapter body
+11,11_Line_089_Mary_Shelley_Blank_Page.mp4,1AuUYqrXHquUxTxHXB9RC3MnH1P71Ov7-,1920,1080,24,7.833,no,chapter body
+12,12_Line_091_Frankenstein_Lab_Vision.mp4,1cjW00oUomDPZTtPyAdxZ9NXdmXPMb1I8,1280,720,24,9.958,no,chapter body
+13,13_Line_093_Polidori_Aristocratic_Vampire.mp4,1LSBf_Imp-IQ7SqJtHl5ThcuBBjapSpWE,1920,1080,24,7.833,no,chapter body
+14,14_Line_112_Quill_Ash_To_Ink.mp4,15PvyJfXuwkHiG9nIdKw2P2Hw0X8sbnYJ,1920,1080,24,7.833,no,chapter body

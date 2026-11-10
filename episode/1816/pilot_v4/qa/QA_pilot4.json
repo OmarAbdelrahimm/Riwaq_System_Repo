@@ -1,0 +1,445 @@
+{
+ "layers": {
+  "S1_cold_open": {
+   "frames": 131,
+   "min": 4,
+   "median": 4,
+   "max": 4
+  },
+  "S2_farmers": {
+   "frames": 169,
+   "min": 5,
+   "median": 5,
+   "max": 5
+  },
+  "S3_europe": {
+   "frames": 179,
+   "min": 4,
+   "median": 4,
+   "max": 4
+  },
+  "S4_map": {
+   "frames": 194,
+   "min": 5,
+   "median": 5,
+   "max": 5
+  },
+  "S5_monster": {
+   "frames": 197,
+   "min": 5,
+   "median": 5,
+   "max": 5
+  },
+  "S6_return": {
+   "frames": 30,
+   "min": 3,
+   "median": 3,
+   "max": 3
+  }
+ },
+ "layers_min_overall": 3,
+ "layers_ok": true,
+ "events": {
+  "count": 24,
+  "mean_gap": 1.133,
+  "max_gap": 1.78,
+  "per_10s": {
+   "0-10s": 6,
+   "10-20s": 10,
+   "20-30s": 8
+  },
+  "list": [
+   {
+    "t": 2.92,
+    "shot": "S1",
+    "event": "stamp «يونيو 1816»",
+    "sfx": "stamp",
+    "frame": 88
+   },
+   {
+    "t": 4.02,
+    "shot": "S1",
+    "event": "cold grade completes, snow thickens",
+    "sfx": "sleet",
+    "frame": 121
+   },
+   {
+    "t": 5.05,
+    "shot": "S2",
+    "event": "tag فلاحين · أمريكا",
+    "sfx": "pin",
+    "frame": 152
+   },
+   {
+    "t": 6.25,
+    "shot": "S2",
+    "event": "thermometer needle drops on زرعهم",
+    "sfx": "needle",
+    "frame": 188
+   },
+   {
+    "t": 7.43,
+    "shot": "S2",
+    "event": "tag والتلج بينزل + snow thickens",
+    "sfx": "pin",
+    "frame": 223
+   },
+   {
+    "t": 8.65,
+    "shot": "S2",
+    "event": "snow begins (design hit)",
+    "sfx": "sleet",
+    "frame": 260
+   },
+   {
+    "t": 10.23,
+    "shot": "S3",
+    "event": "tag أوروبا · مطر وبرد",
+    "sfx": "pin",
+    "frame": 307
+   },
+   {
+    "t": 11.02,
+    "shot": "S3",
+    "event": "rain doubles on «مطر»",
+    "sfx": "sleet",
+    "frame": 331
+   },
+   {
+    "t": 11.52,
+    "shot": "S3",
+    "event": "rain hammering at full weight",
+    "sfx": "water",
+    "frame": 346
+   },
+   {
+    "t": 12.26,
+    "shot": "S3",
+    "event": "sleet layer in",
+    "sfx": "sleet",
+    "frame": 368
+   },
+   {
+    "t": 13.65,
+    "shot": "S3",
+    "event": "strip المحاصيل ما كبرتش",
+    "sfx": "paper_slide",
+    "frame": 410
+   },
+   {
+    "t": 14.78,
+    "shot": "S3",
+    "event": "strip برد pinned على تكبر",
+    "sfx": "paper_slide",
+    "frame": 443
+   },
+   {
+    "t": 16.53,
+    "shot": "S4",
+    "event": "New England pinned",
+    "sfx": "pin",
+    "frame": 496
+   },
+   {
+    "t": 17.35,
+    "shot": "S4",
+    "event": "thread leg 1 draws",
+    "sfx": "thread_draw",
+    "frame": 520
+   },
+   {
+    "t": 19.04,
+    "shot": "S4",
+    "event": "thread lands on Europe",
+    "sfx": "pin",
+    "frame": 571
+   },
+   {
+    "t": 19.72,
+    "shot": "S4",
+    "event": "thread turns for Sumbawa",
+    "sfx": "thread_draw",
+    "frame": 592
+   },
+   {
+    "t": 21.02,
+    "shot": "S4",
+    "event": "Sumbawa pinned + counter lands",
+    "sfx": "pin",
+    "frame": 631
+   },
+   {
+    "t": 22.42,
+    "shot": "S5",
+    "event": "brand sting + dip",
+    "sfx": "sting",
+    "frame": 673
+   },
+   {
+    "t": 23.1,
+    "shot": "S5",
+    "event": "mark draws",
+    "sfx": "thread_draw",
+    "frame": 693
+   },
+   {
+    "t": 24.3,
+    "shot": "S5",
+    "event": "mark resolved (keystone dot)",
+    "sfx": "thread_draw",
+    "frame": 729
+   },
+   {
+    "t": 25.6,
+    "shot": "S5",
+    "event": "mark clears, plate returns",
+    "sfx": "paper_slide",
+    "frame": 768
+   },
+   {
+    "t": 26.28,
+    "shot": "S5",
+    "event": "tag أشهر وحش في الأدب",
+    "sfx": "pin",
+    "frame": 788
+   },
+   {
+    "t": 27.19,
+    "shot": "S5",
+    "event": "plate lightning across the window",
+    "sfx": "thunder",
+    "frame": 816
+   },
+   {
+    "t": 28.97,
+    "shot": "S6",
+    "event": "corner logo + return",
+    "sfx": null,
+    "frame": 869
+   }
+  ]
+ },
+ "event_density_ok": true,
+ "events_with_cuts": {
+  "count": 29,
+  "mean_gap": 0.93,
+  "max_gap": 1.78,
+  "ok": true,
+  "note": "cut points counted as visible events"
+ },
+ "motion": {
+  "frames": 900,
+  "mean_diff": 7.888,
+  "min_diff": 0.466,
+  "static_frames": 0,
+  "longest_static_run": 0,
+  "note": "frame 0 excluded: it has no preceding frame to differ from"
+ },
+ "duplicates": {
+  "pairs": [],
+  "threshold": 12,
+  "method": "dhash64 on shot midpoints"
+ },
+ "logo": {
+  "corner_mean_before_24s": 20.95,
+  "corner_mean_after_24s": 30.67,
+  "present_after_24s": true
+ },
+ "text_contrast": {},
+ "text_contrast_all_pass": true,
+ "audio": {
+  "vo_i": -13.61,
+  "vo_tp": 0.29,
+  "music_ducked_i": -35.02,
+  "sfx_bed_i": -37.98,
+  "sfx_designed_i": -22.31,
+  "duck_db_bed_vs_voice": -21.41,
+  "master_i": -13.99,
+  "master_tp": -1.54,
+  "master_lra": 5.2,
+  "delivery_ok": true
+ },
+ "sync": {
+  "hits": [
+   {
+    "event": "stamp «يونيو 1816»",
+    "cue": 2.92,
+    "measured_peak": 2.9226,
+    "error_ms": 2.6,
+    "error_frames": 0.08,
+    "ok": true
+   },
+   {
+    "event": "tag فلاحين · أمريكا",
+    "cue": 5.05,
+    "measured_peak": 5.0501,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "thermometer needle drops on زرعهم",
+    "cue": 6.25,
+    "measured_peak": 6.2504,
+    "error_ms": 0.4,
+    "error_frames": 0.01,
+    "ok": true
+   },
+   {
+    "event": "tag والتلج بينزل + snow thickens",
+    "cue": 7.43,
+    "measured_peak": 7.4301,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "tag أوروبا · مطر وبرد",
+    "cue": 10.23,
+    "measured_peak": 10.2301,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "strip المحاصيل ما كبرتش",
+    "cue": 13.65,
+    "measured_peak": 13.6671,
+    "error_ms": 17.1,
+    "error_frames": 0.51,
+    "ok": true
+   },
+   {
+    "event": "strip برد pinned على تكبر",
+    "cue": 14.78,
+    "measured_peak": 14.7971,
+    "error_ms": 17.1,
+    "error_frames": 0.51,
+    "ok": true
+   },
+   {
+    "event": "New England pinned",
+    "cue": 16.53,
+    "measured_peak": 16.5301,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "thread leg 1 draws",
+    "cue": 17.35,
+    "measured_peak": 17.3504,
+    "error_ms": 0.4,
+    "error_frames": 0.01,
+    "ok": true
+   },
+   {
+    "event": "thread lands on Europe",
+    "cue": 19.04,
+    "measured_peak": 19.0401,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "thread turns for Sumbawa",
+    "cue": 19.72,
+    "measured_peak": 19.7204,
+    "error_ms": 0.4,
+    "error_frames": 0.01,
+    "ok": true
+   },
+   {
+    "event": "Sumbawa pinned + counter lands",
+    "cue": 21.02,
+    "measured_peak": 21.0201,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "brand sting + dip",
+    "cue": 22.42,
+    "measured_peak": 22.4259,
+    "error_ms": 5.9,
+    "error_frames": 0.18,
+    "ok": true
+   },
+   {
+    "event": "mark draws",
+    "cue": 23.1,
+    "measured_peak": 23.1019,
+    "error_ms": 1.9,
+    "error_frames": 0.06,
+    "ok": true
+   },
+   {
+    "event": "mark resolved (keystone dot)",
+    "cue": 24.3,
+    "measured_peak": 24.3004,
+    "error_ms": 0.4,
+    "error_frames": 0.01,
+    "ok": true
+   },
+   {
+    "event": "mark clears, plate returns",
+    "cue": 25.6,
+    "measured_peak": 25.6171,
+    "error_ms": 17.1,
+    "error_frames": 0.51,
+    "ok": true
+   },
+   {
+    "event": "tag أشهر وحش في الأدب",
+    "cue": 26.28,
+    "measured_peak": 26.2801,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   }
+  ],
+  "within_2_frames": true,
+  "sfx_source_note": "designed in code: the supplied SFX stem is a continuous bed with no discrete transients"
+ },
+ "broll": [
+  {
+   "shot": "S1_cold_open",
+   "dur": 4.35,
+   "ok": true
+  },
+  {
+   "shot": "S2_farmers",
+   "dur": 5.62,
+   "ok": true
+  },
+  {
+   "shot": "S3_europe",
+   "dur": 5.99,
+   "ok": true
+  },
+  {
+   "shot": "S4_map",
+   "dur": 6.46,
+   "ok": true
+  },
+  {
+   "shot": "S5_monster",
+   "dur": 6.55,
+   "ok": true
+  }
+ ],
+ "broll_note": "S6 is a 1.0 s button out of the cold open; it is not a B-roll window and is excluded from this check",
+ "broll_in_range": "5/5",
+ "camera_runs": {
+  "longest_same_move": 1,
+  "ok": true,
+  "moves": [
+   "s1_cold_open",
+   "s2_farmers",
+   "s3_europe",
+   "s4_map",
+   "s5_monster",
+   "s6_return"
+  ]
+ }
+}
