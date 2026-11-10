@@ -48,20 +48,28 @@ PLATE = {
     '12': f'{PL}/ch1_12_frost_window_raw.png',
     '13': f'{PL}/ch1_13_frost_fence_raw.png',
     '17': f'{PL}/ch1_17_road_raw.png',
-    '18': f'{PL}/ch1_10_market_raw.png',
-    '19': f'{PL}/ch1_02_farmland_raw.png',
-    '20': f'{GD}/LOOK01_field_dawn_graded_2560x1440.png',
-    '23': f'{PL}/ch1_03_legs_raw.png',
-    '29': f'{PL}/ch1_17_road_raw.png',
-    '30': f'{GD}/LOOK02_sulfate_haze_graded_2560x1440.png',
-    '32': f'{PL}/ch1_12_frost_window_raw.png',
+    '18': f'{PL}/ch1_18_table_raw.png',
+    '19': f'{PL}/ch1_19_footprint_raw.png',
+    '20': f'{PL}/ch1_20_window_outside_raw.png',
+    '23': f'{PL}/ch1_23_shadow_raw.png',
+    '29': f'{PL}/ch1_29_alley_raw.png',
+    '30': f'{PL}/ch1_30_sumbawa_raw.png',
+    '32': f'{PL}/ch1_32_window_inside_raw.png',
 }
-# shots that reuse an earlier image instead of a plate made for them, and the
-# re-framing each one gets so the reuse is not visible as a repeat
-STAND_IN = {'18': ('10', 'tight'), '19': ('2', 'low'), '20': ('1 LOOK01', 'right'),
-            '23': ('3', 'left'), '29': ('17', 'low'), '30': ('LOOK02', 'tight'),
-            '32': ('12', 'high')}
-VARIANT = {k: v[1] for k, v in STAND_IN.items()}
+# Chapter 1 now has a made plate for every photographic shot: no stand-ins left.
+STAND_IN = {}
+VARIANT = {}
+
+# Per-shot grade fixes. These are colour decisions, not new content, and are
+# declared here so the report can list them:
+#   23 arrived with warm sunset light, which breaks the chapter's cold overcast
+#      palette -> desaturate hard and push it back to slate.
+#   32 arrived too dark -> lift shadows 18 % and hold the highlights.
+GRADE_FIX = {
+    '23': dict(sat=0.30, cool=1.10, lift=0.02, gain=0.96),
+    '32': dict(sat=0.90, cool=1.03, lift=0.03, gain=1.05),
+    '19': dict(sat=0.85, cool=1.05, lift=0.03, gain=1.02),
+}
 # small colour separation per scene so the archive never feels like one grade
 TEMP = {'1': 1.00, '2': 0.97, '3': 1.03}
 
@@ -161,6 +169,20 @@ def prep(path, w=2560, h=1440, seed=5, variant='center'):
         g = rng.normal(0, 6.0, (h, w, 1)).astype(np.float32)
         a = a * 255.0 + g
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+
+
+def grade_fix(im, key):
+    g = GRADE_FIX.get(key)
+    if not g:
+        return im
+    a = np.asarray(im, np.float32) / 255.0
+    lum = a @ np.array([0.2126, 0.7152, 0.0722], np.float32)
+    k = g.get('sat', 1.0)
+    a = lum[..., None] + (a - lum[..., None]) * k          # desaturate / resaturate
+    a[..., 2] *= g.get('cool', 1.0)                        # cool the shadows toward blue
+    a[..., 0] *= (2.0 - g.get('cool', 1.0)) * 0.5 + 0.5
+    a = a * g.get('gain', 1.0) + g.get('lift', 0.0) * (1.0 - a)
+    return Image.fromarray(np.clip(a * 255.0, 0, 255).astype(np.uint8))
 
 
 def _fit(lay, path):
@@ -267,6 +289,7 @@ def main():
         else:
             src = prep(PLATE[str(shot)], seed=int(shot) * 13,
                        variant=VARIANT.get(str(shot), 'center'))
+            src = grade_fix(src, str(shot))
             t = TEMP.get(r['scene'], 1.0)
             if abs(t - 1.0) > 1e-3:
                 a = np.asarray(src, np.float32)
