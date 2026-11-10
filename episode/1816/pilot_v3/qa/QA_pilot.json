@@ -1,0 +1,495 @@
+{
+ "layers": {
+  "S1_wheat": {
+   "frames": 99,
+   "min": 3,
+   "median": 4,
+   "max": 5
+  },
+  "S2_boots": {
+   "frames": 124,
+   "min": 4,
+   "median": 5,
+   "max": 6
+  },
+  "S3_silhouette": {
+   "frames": 77,
+   "min": 3,
+   "median": 4,
+   "max": 4
+  },
+  "S4_map_flood": {
+   "frames": 160,
+   "min": 4,
+   "median": 5,
+   "max": 5
+  },
+  "S5a_frost": {
+   "frames": 65,
+   "min": 3,
+   "median": 4,
+   "max": 4
+  },
+  "S5_thread_exit": {
+   "frames": 86,
+   "min": 4,
+   "median": 7,
+   "max": 7
+  },
+  "S6_globe": {
+   "frames": 62,
+   "min": 6,
+   "median": 7,
+   "max": 8
+  },
+  "S7_sting": {
+   "frames": 47,
+   "min": 4,
+   "median": 4,
+   "max": 6
+  },
+  "S8_monster": {
+   "frames": 116,
+   "min": 4,
+   "median": 6,
+   "max": 6
+  },
+  "S9_return": {
+   "frames": 64,
+   "min": 4,
+   "median": 4,
+   "max": 4
+  }
+ },
+ "layers_min_overall": 3,
+ "layers_ok": true,
+ "events": {
+  "count": 22,
+  "mean_gap": 1.24,
+  "max_gap": 2.87,
+  "per_10s": {
+   "0-10s": 6,
+   "10-20s": 7,
+   "20-30s": 9
+  },
+  "list": [
+   {
+    "t": 2.92,
+    "shot": "S1_wheat",
+    "event": "stamp «يونيو 1816» lands",
+    "sfx": "stamp",
+    "frame": 88
+   },
+   {
+    "t": 3.92,
+    "shot": "S2_boots",
+    "event": "thermometer slides onto the frame",
+    "sfx": "paper_slide",
+    "frame": 118
+   },
+   {
+    "t": 4.35,
+    "shot": "S2_boots",
+    "event": "place tag «نيو إنجلاند · 8 يونيو» pinned",
+    "sfx": "pin",
+    "frame": 130
+   },
+   {
+    "t": 6.2,
+    "shot": "S2_boots",
+    "event": "thermometer needle falls to frost",
+    "sfx": "needle",
+    "frame": 186
+   },
+   {
+    "t": 7.43,
+    "shot": "S2_boots",
+    "event": "snow thickens on the field",
+    "sfx": "wind",
+    "frame": 223
+   },
+   {
+    "t": 8.65,
+    "shot": "S3_silhouette",
+    "event": "snow begins to fall on him",
+    "sfx": "wind",
+    "frame": 260
+   },
+   {
+    "t": 11.52,
+    "shot": "S4_map_flood",
+    "event": "rain falls over Europe",
+    "sfx": "rain",
+    "frame": 346
+   },
+   {
+    "t": 12.26,
+    "shot": "S4_map_flood",
+    "event": "the rain turns to sleet",
+    "sfx": "sleet",
+    "frame": 368
+   },
+   {
+    "t": 13.65,
+    "shot": "S4_map_flood",
+    "event": "the crops never grew",
+    "sfx": "wind",
+    "frame": 410
+   },
+   {
+    "t": 14.6,
+    "shot": "S4_map_flood",
+    "event": "the furrows go under water",
+    "sfx": "water",
+    "frame": 438
+   },
+   {
+    "t": 15.89,
+    "shot": "S5a_frost",
+    "event": "frost returns on the window glass",
+    "sfx": "wind",
+    "frame": 477
+   },
+   {
+    "t": 16.87,
+    "shot": "S5a_frost",
+    "event": "frost that should not be there: circled",
+    "sfx": "paper_slide",
+    "frame": 506
+   },
+   {
+    "t": 19.04,
+    "shot": "S5_thread_exit",
+    "event": "the secret was not in the continents",
+    "sfx": "riser",
+    "frame": 571
+   },
+   {
+    "t": 20.12,
+    "shot": "S5_thread_exit",
+    "event": "the thread leaves frame westward",
+    "sfx": "thread_draw",
+    "frame": 604
+   },
+   {
+    "t": 20.36,
+    "shot": "S6_globe",
+    "event": "thousands of kilometres away",
+    "sfx": "pin",
+    "frame": 611
+   },
+   {
+    "t": 21.42,
+    "shot": "S6_globe",
+    "event": "the line lands on the far side",
+    "sfx": "paper_slide",
+    "frame": 643
+   },
+   {
+    "t": 22.42,
+    "shot": "S7_sting",
+    "event": "brand sting begins",
+    "sfx": "sting",
+    "frame": 673
+   },
+   {
+    "t": 23.1,
+    "shot": "S7_sting",
+    "event": "the thread writes the mark",
+    "sfx": "thread_draw",
+    "frame": 693
+   },
+   {
+    "t": 24.62,
+    "shot": "S8_monster",
+    "event": "the note scrap is pinned to the frame",
+    "sfx": "pin",
+    "frame": 739
+   },
+   {
+    "t": 25.55,
+    "shot": "S8_monster",
+    "event": "caption slip lands",
+    "sfx": "paper_slide",
+    "frame": 766
+   },
+   {
+    "t": 26.28,
+    "shot": "S8_monster",
+    "event": "the most famous monster in literature",
+    "sfx": "riser",
+    "frame": 788
+   },
+   {
+    "t": 28.97,
+    "shot": "S9_return",
+    "event": "let us begin with",
+    "sfx": "wind",
+    "frame": 869
+   }
+  ]
+ },
+ "event_density_ok": false,
+ "events_with_cuts": {
+  "count": 31,
+  "mean_gap": 0.868,
+  "max_gap": 1.85,
+  "ok": true,
+  "note": "cut points counted as visible events"
+ },
+ "motion": {
+  "frames": 900,
+  "mean_diff": 12.428,
+  "min_diff": 9.642,
+  "static_frames": 0,
+  "longest_static_run": 0
+ },
+ "duplicates": {
+  "pairs": [],
+  "threshold": 12,
+  "method": "dhash64 on shot midpoints"
+ },
+ "logo": {
+  "corner_mean_before_24s": 14.05,
+  "corner_mean_after_24s": 65.54,
+  "present_after_24s": true
+ },
+ "text_contrast": {
+  "آلاف الكيلومترات": {
+   "n": 7,
+   "min": 11.31,
+   "max": 11.61,
+   "median": 11.45,
+   "pass_4_5": true
+  },
+  "أشهر وحش في الأدب": {
+   "n": 12,
+   "min": 4.62,
+   "max": 4.87,
+   "median": 4.76,
+   "pass_4_5": true
+  },
+  "رِواق": {
+   "n": 3,
+   "min": 12.75,
+   "max": 12.75,
+   "median": 12.75,
+   "pass_4_5": true
+  },
+  "مشاهد مُعاد تخيّلها": {
+   "n": 11,
+   "min": 7.54,
+   "max": 7.68,
+   "median": 7.62,
+   "pass_4_5": true
+  },
+  "نيو إنجلاند · 8 يونيو": {
+   "n": 17,
+   "min": 7.05,
+   "max": 7.7,
+   "median": 7.3,
+   "pass_4_5": true
+  },
+  "يونيو 1816": {
+   "n": 2,
+   "min": 10.02,
+   "max": 10.03,
+   "median": 10.02,
+   "pass_4_5": true
+  }
+ },
+ "text_contrast_all_pass": true,
+ "audio": {
+  "vo_i": -13.61,
+  "vo_tp": 0.29,
+  "music_ducked_i": -35.02,
+  "sfx_bed_i": -37.98,
+  "sfx_designed_i": -21.38,
+  "duck_db_bed_vs_voice": -21.41,
+  "master_i": -14.01,
+  "master_tp": -1.48,
+  "master_lra": 5.3,
+  "delivery_ok": true
+ },
+ "sync": {
+  "hits": [
+   {
+    "event": "stamp «يونيو 1816» lands",
+    "cue": 2.92,
+    "measured_peak": 2.9226,
+    "error_ms": 2.6,
+    "error_frames": 0.08,
+    "ok": true
+   },
+   {
+    "event": "thermometer slides onto the frame",
+    "cue": 3.92,
+    "measured_peak": 3.9371,
+    "error_ms": 17.1,
+    "error_frames": 0.51,
+    "ok": true
+   },
+   {
+    "event": "place tag «نيو إنجلاند · 8 يونيو» pinned",
+    "cue": 4.35,
+    "measured_peak": 4.3501,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "thermometer needle falls to frost",
+    "cue": 6.2,
+    "measured_peak": 6.2004,
+    "error_ms": 0.4,
+    "error_frames": 0.01,
+    "ok": true
+   },
+   {
+    "event": "frost that should not be there: circled",
+    "cue": 16.87,
+    "measured_peak": 16.8871,
+    "error_ms": 17.1,
+    "error_frames": 0.51,
+    "ok": true
+   },
+   {
+    "event": "the thread leaves frame westward",
+    "cue": 20.12,
+    "measured_peak": 20.1204,
+    "error_ms": 0.4,
+    "error_frames": 0.01,
+    "ok": true
+   },
+   {
+    "event": "thousands of kilometres away",
+    "cue": 20.36,
+    "measured_peak": 20.3601,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "the line lands on the far side",
+    "cue": 21.42,
+    "measured_peak": 21.4371,
+    "error_ms": 17.1,
+    "error_frames": 0.51,
+    "ok": true
+   },
+   {
+    "event": "brand sting begins",
+    "cue": 22.42,
+    "measured_peak": 22.4259,
+    "error_ms": 5.9,
+    "error_frames": 0.18,
+    "ok": true
+   },
+   {
+    "event": "the thread writes the mark",
+    "cue": 23.1,
+    "measured_peak": 23.1019,
+    "error_ms": 1.9,
+    "error_frames": 0.06,
+    "ok": true
+   },
+   {
+    "event": "the note scrap is pinned to the frame",
+    "cue": 24.62,
+    "measured_peak": 24.6201,
+    "error_ms": 0.1,
+    "error_frames": 0.0,
+    "ok": true
+   },
+   {
+    "event": "caption slip lands",
+    "cue": 25.55,
+    "measured_peak": 25.5671,
+    "error_ms": 17.1,
+    "error_frames": 0.51,
+    "ok": true
+   }
+  ],
+  "within_2_frames": true,
+  "sfx_source_note": "designed in code: the supplied SFX stem is a continuous bed with no discrete transients"
+ },
+ "broll": [
+  {
+   "shot": "S1_wheat",
+   "dur": 3.3,
+   "cam": "push",
+   "ok": false
+  },
+  {
+   "shot": "S2_boots",
+   "dur": 4.13,
+   "cam": "pull",
+   "ok": true
+  },
+  {
+   "shot": "S3_silhouette",
+   "dur": 2.54,
+   "cam": "drift",
+   "ok": false
+  },
+  {
+   "shot": "S4_map_flood",
+   "dur": 5.34,
+   "cam": "pan",
+   "ok": true
+  },
+  {
+   "shot": "S5a_frost",
+   "dur": 2.19,
+   "cam": "push",
+   "ok": false
+  },
+  {
+   "shot": "S5_thread_exit",
+   "dur": 2.86,
+   "cam": "lateral",
+   "ok": false
+  },
+  {
+   "shot": "S6_globe",
+   "dur": 2.06,
+   "cam": "drift",
+   "ok": false
+  },
+  {
+   "shot": "S7_sting",
+   "dur": 1.58,
+   "cam": "hold",
+   "ok": false
+  },
+  {
+   "shot": "S8_monster",
+   "dur": 3.85,
+   "cam": "push",
+   "ok": false
+  },
+  {
+   "shot": "S9_return",
+   "dur": 2.15,
+   "cam": "pull",
+   "ok": false
+  }
+ ],
+ "broll_in_range": "2/10",
+ "camera_runs": {
+  "longest_same_move": 1,
+  "ok": true,
+  "moves": [
+   "push",
+   "pull",
+   "drift",
+   "pan",
+   "push",
+   "lateral",
+   "drift",
+   "hold",
+   "push",
+   "pull"
+  ]
+ }
+}
