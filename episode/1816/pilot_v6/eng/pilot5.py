@@ -394,6 +394,9 @@ def logo_report():
 EVENTS = [
     dict(t=1.20, what='snow arrives over the lake', sfx=None, shot='S1'),
     dict(t=2.10, what='stamp «يونيو 1816»', sfx='stamp', shot='S1'),
+    # the S1->S2 dissolve is the one place the event chain can go quiet: with the year
+    # card leaving at 3.90 the next hit has to land inside 2 s of it.
+    dict(t=4.05, what='snow brightens as the house falls away', sfx=None, shot='S1'),
     dict(t=4.35, what='snow drives in on فلاحين', sfx='sleet', shot='S2'),
     dict(t=5.05, what='tag فلاحين · أمريكا enters', sfx='paper_in', shot='S2'),
     dict(t=6.25, what='thermometer needle drops', sfx='needle', shot='S2'),

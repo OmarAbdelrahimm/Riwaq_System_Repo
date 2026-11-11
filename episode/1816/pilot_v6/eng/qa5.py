@@ -127,6 +127,7 @@ def plate_integrity(P, n_frames=900, fps=30.0):
 
 
 def main():
+    from eng5 import core5 as C
     from eng5 import pilot5 as P
 
     rows = log_rows(TAG)
