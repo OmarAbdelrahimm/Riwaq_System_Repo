@@ -9,3 +9,6 @@ _build/tmp/
 !public/projects/*/audio/*.wav
 node_modules/
 .venv/
+
+__pycache__/
+*.pyc
