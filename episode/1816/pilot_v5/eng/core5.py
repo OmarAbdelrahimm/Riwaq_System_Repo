@@ -73,24 +73,49 @@ def text_sprite(text, size=64, fill=INK, fname='IBMPlexSansArabic-Bold.ttf', pad
 # ---------------------------------------------------------------- camera
 
 class Camera:
-    """sub-pixel crop: an integer crop makes slow moves stutter"""
+    """sub-pixel crop, always derived from the image actually passed in.
 
-    def __init__(self, zoom=1.0, cx=None, cy=None, pan=(0.0, 0.0), src=(W, H)):
+    v5 built this with src=(1280,720) -- the source file's size -- while the plate frames
+    on disk were already 1920x1080. The crop therefore took a 1103x621 window out of the
+    1080p frame and scaled it back up to 1920: a 1.74x upscale stacked on the 1.5x the
+    decoder had done, 2.6x in total, which is what made the farmer's face blocky at
+    0:11. `src` is gone; the transform reads im.size, so a mismatch cannot happen again.
+    """
+
+    def __init__(self, zoom=1.0, cx=None, cy=None, pan=(0.0, 0.0), src=None):
         self.z = zoom
-        self.src = src
-        self.cx = (cx if cx is not None else src[0] / 2) + pan[0]
-        self.cy = (cy if cy is not None else src[1] / 2) + pan[1]
+        self.src = src          # kept only for callers that still pass it; ignored
+        self._c = None
+        self.off = pan
 
-    def crop(self):
-        w, h = self.src[0] / self.z, self.src[1] / self.z
-        x0 = min(max(0, self.cx - w / 2), self.src[0] - w)
-        y0 = min(max(0, self.cy - h / 2), self.src[1] - h)
+    def _centre(self, sw, sh):
+        return (sw / 2 + self.off[0], sh / 2 + self.off[1])
+
+    def crop_for(self, sw, sh):
+        w, h = sw / self.z, sh / self.z
+        cx, cy = self._centre(sw, sh)
+        x0 = min(max(0, cx - w / 2), sw - w)
+        y0 = min(max(0, cy - h / 2), sh - h)
         return x0, y0, w, h
 
     def apply(self, im):
-        x0, y0, w, h = self.crop()
+        sw, sh = im.size
+        x0, y0, w, h = self.crop_for(sw, sh)
+        # never upscale: if the window is smaller than the frame, widen it instead
+        if w < W or h < H:
+            w, h = max(w, W), max(h, H)
+            w, h = min(w, sw), min(h, sh)
+            x0 = min(max(0, x0), sw - w)
+            y0 = min(max(0, y0), sh - h)
+        self._c = (x0, y0, w, h)
         return im.transform((W, H), Image.AFFINE,
-                            (w / W, 0, x0, 0, h / H, y0), resample=Image.BILINEAR)
+                            (w / W, 0, x0, 0, h / H, y0), resample=Image.BICUBIC)
+
+    def to_screen(self, x, y):
+        if self._c is None:
+            raise RuntimeError('camera has no crop yet')
+        x0, y0, w, h = self._c
+        return ((x - x0) * W / w, (y - y0) * H / h)
 
     def to_screen(self, x, y):
         x0, y0, w, h = self.crop()
@@ -100,18 +125,25 @@ class Camera:
 class Plate:
     _cache = {}
 
-    def __init__(self, key, in_point=0.0, loop=True):
+    def __init__(self, key, in_point=0.0, loop=True, src_fps=24.0):
         self.key = key
         self.dir = os.path.join(SRC, key)
         self.files = sorted(os.listdir(self.dir))
         self.n = len(self.files)
         self.in_point = in_point
         self.loop = loop
+        # the clip was decoded 1:1, so one file is one source frame; at 24 fps a 30 fps
+        # timeline must step 0.8 files per frame or the action runs 25 % fast
+        # 24 fps source on a 30 fps timeline -> 0.8 source frames per output frame
+        self.ratio = src_fps / FPS
+        self.seconds = self.n / src_fps
 
     def idx(self, t):
-        i = int(round(self.in_point * FPS + t * FPS))
+        i = int(round(self.in_point * FPS + t * FPS * self.ratio))
         if i >= self.n:
-            i = (i - self.n) % max(1, self.n - 1) if self.loop else self.n - 1
+            # hold the last frame rather than wrap: wrapping replays the clip from the
+            # top inside the same shot, which reads as a jump cut
+            i = self.n - 1
         return max(0, min(self.n - 1, i))
 
     def frame(self, t, cam=None):

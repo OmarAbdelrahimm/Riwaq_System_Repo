@@ -24,10 +24,12 @@ from . import world5 as W5
 
 W, H = C.W, C.H
 
-P09 = C.Plate('09')
-P01 = C.Plate('01')
-P02 = C.Plate('02')
-P03 = C.Plate('03')
+# every clip is 24 fps; the timeline is 30, so the plate steps 0.8 files per frame and
+# plays at its true speed. No speed ramp, no frame blending, no optical flow anywhere.
+P09 = C.Plate('09', src_fps=24.0)
+P01 = C.Plate('01', src_fps=24.0)
+P02 = C.Plate('02', src_fps=24.0)
+P03 = C.Plate('03', src_fps=24.0)
 
 SNOW_FG = C.Snow(n=46, speed=(240, 380), size=(1.6, 3.2), wind=-40, seed=21, alpha=(40, 80))
 SNOW_MID = C.Snow(n=300, speed=(90, 200), size=(0.9, 2.2), wind=-26, seed=7, alpha=(60, 140))
@@ -114,8 +116,8 @@ def base_s1(t):
 def base_s2(t):
     """the farmers, slow push, snow thickening on the word"""
     lt = t - S2
-    cam = C.Camera(zoom=1.04 + 0.09 * ease(lt / 5.62), pan=(10, 0), src=(1344, 768))
-    base = C.grade5(P01.frame(t, cam), warmth=0.92, sat=0.80).convert('RGBA')
+    cam = C.Camera(zoom=1.04 + 0.09 * ease(lt / 5.62), pan=(10, 0))
+    base = C.grade5(P01.frame(lt, cam), warmth=0.92, sat=0.80).convert('RGBA')
     base = SNOW_MID.draw(base, t, density=0.55 + 0.30 * ramp(t, 7.43, 8.65))
     base = SNOW_FG.draw(base, t, density=0.6, blur=1.6)
     return base
@@ -124,8 +126,8 @@ def base_s2(t):
 def base_s3(t):
     """Europe: rain and mud, rain hammering from the word مطر"""
     lt = t - S3
-    cam = C.Camera(zoom=1.16 - 0.10 * ease(lt / 5.99), pan=(-8, 0), src=(1280, 720))
-    base = C.grade5(P02.frame(t, cam), warmth=0.80, sat=0.74).convert('RGBA')
+    cam = C.Camera(zoom=1.05 - 0.03 * ease(lt / 5.99), pan=(-8, 0))
+    base = C.grade5(P02.frame(lt, cam), warmth=0.80, sat=0.74).convert('RGBA')
     base = RAIN.draw(base, t, density=0.30 + 0.55 * ramp(t, 10.6, 11.9))
     base = SNOW_FG.draw(base, t, density=0.22, blur=1.8)
     return base
@@ -193,8 +195,8 @@ def base_s4(t):
 def base_s5(t):
     """the silhouette plate; its own lightning flash is retimed to land inside the shot"""
     lt = t - S5
-    src_t = 0.30 + 0.44 * lt
-    cam = C.Camera(zoom=1.10 - 0.06 * ease(lt / 6.55), pan=(0, 0), src=(1280, 720))
+    src_t = 0.30 + lt
+    cam = C.Camera(zoom=1.10 - 0.06 * ease(lt / 6.55), pan=(0, 0))
     im = C.grade5(P03.frame(src_t, cam), warmth=0.86, sat=0.60)
     f = 0.0
     for peak in (2.40, 2.80):
@@ -238,7 +240,7 @@ def base_s5(t):
 def base_s6(t):
     """the button: back to the farmers, corner watermark"""
     lt = t - S6
-    cam = C.Camera(zoom=1.30 + 0.06 * ease(lt / 1.03), pan=(-70, -46), src=(1344, 768))
+    cam = C.Camera(zoom=1.30 + 0.06 * ease(lt / 1.03), pan=(-70, -46))
     base = C.grade5(P01.frame(9.2 + lt, cam), warmth=0.92, sat=0.80).convert('RGBA')
     base = SNOW_MID.draw(base, t, density=0.5)
     return base
