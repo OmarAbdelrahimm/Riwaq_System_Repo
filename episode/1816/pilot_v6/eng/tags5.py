@@ -134,6 +134,15 @@ class TagLayoutQueue:
         self.t_end = t_end
         self._schedule()
 
+    def retime(self, t_end=None):
+        """re-plan after the cue times have been edited (Chapter 1 is long enough that the
+        director's cue times pile up faster than the queue can retire them)."""
+        if t_end is not None:
+            self.t_end = t_end
+        self.tags.sort(key=lambda x: x.t_in)
+        self._schedule()
+        return self
+
     def _schedule(self):
         """walk the queue in time order; nothing enters until the previous tag is gone.
 
