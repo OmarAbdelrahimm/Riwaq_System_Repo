@@ -1,0 +1,158 @@
+{
+ "elements": [
+  {
+   "text": "stamp_1816",
+   "ink": [
+    94,
+    34,
+    48
+   ],
+   "bg": [
+    237,
+    230,
+    214
+   ],
+   "ratio": 9.67,
+   "ok": true,
+   "kind": "ink on paper"
+  },
+  {
+   "text": "place_usa",
+   "ink": [
+    26,
+    22,
+    18
+   ],
+   "bg": [
+    243,
+    235,
+    219
+   ],
+   "ratio": 15.18,
+   "ok": true,
+   "kind": "ink on paper"
+  },
+  {
+   "text": "place_eu",
+   "ink": [
+    26,
+    22,
+    18
+   ],
+   "bg": [
+    243,
+    235,
+    219
+   ],
+   "ratio": 15.18,
+   "ok": true,
+   "kind": "ink on paper"
+  },
+  {
+   "text": "crops",
+   "ink": [
+    26,
+    22,
+    18
+   ],
+   "bg": [
+    243,
+    235,
+    219
+   ],
+   "ratio": 15.18,
+   "ok": true,
+   "kind": "ink on paper"
+  },
+  {
+   "text": "monster",
+   "ink": [
+    26,
+    22,
+    18
+   ],
+   "bg": [
+    243,
+    235,
+    219
+   ],
+   "ratio": 15.16,
+   "ok": true,
+   "kind": "ink on paper"
+  },
+  {
+   "text": "disclaimer",
+   "t": 1.55,
+   "ink": [
+    153,
+    151,
+    142
+   ],
+   "bg": [
+    23,
+    39,
+    51
+   ],
+   "ratio": 5.26,
+   "ok": true,
+   "kind": "gold on dark"
+  },
+  {
+   "text": "map counter",
+   "t": 21.3,
+   "ink": [
+    244,
+    233,
+    211
+   ],
+   "bg": [
+    16,
+    22,
+    31
+   ],
+   "ratio": 15.18,
+   "ok": true,
+   "kind": "gold on dark"
+  },
+  {
+   "text": "map label",
+   "t": 17.6,
+   "ink": [
+    225,
+    215,
+    195
+   ],
+   "bg": [
+    0,
+    6,
+    15
+   ],
+   "ratio": 14.32,
+   "ok": true,
+   "kind": "gold on dark"
+  },
+  {
+   "text": "corner wordmark",
+   "t": 29.5,
+   "ink": [
+    235,
+    228,
+    213
+   ],
+   "bg": [
+    48,
+    62,
+    74
+   ],
+   "ratio": 8.73,
+   "ok": true,
+   "kind": "gold on dark"
+  }
+ ],
+ "n": 9,
+ "n_ok": 9,
+ "min_ratio": 5.26,
+ "failures": [],
+ "threshold": 4.5,
+ "ok": true
+}

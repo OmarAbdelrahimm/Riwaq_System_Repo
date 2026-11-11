@@ -1,0 +1,579 @@
+{
+ "plates": {
+  "steps_back": 0,
+  "wraps": 0,
+  "max_run": {
+   "09": 0,
+   "01": 0,
+   "02": 0,
+   "03": 0
+  },
+  "long_runs": [],
+  "clamp_runs": [],
+  "sources": {
+   "09": {
+    "n": 188,
+    "bsf": 0.8,
+    "seconds": 7.83
+   },
+   "01": {
+    "n": 243,
+    "bsf": 0.8,
+    "seconds": 10.12
+   },
+   "02": {
+    "n": 190,
+    "bsf": 0.8,
+    "seconds": 7.92
+   },
+   "03": {
+    "n": 190,
+    "bsf": 0.8,
+    "seconds": 7.92
+   }
+  },
+  "source_sizes": {
+   "01": [
+    1344,
+    768
+   ],
+   "02": [
+    1280,
+    720
+   ],
+   "03": [
+    1280,
+    720
+   ],
+   "09": [
+    1920,
+    1080
+   ]
+  },
+  "sources_below_1080p": [
+   "01",
+   "02",
+   "03"
+  ],
+  "min_source_w": 1280,
+  "ok": true
+ },
+ "tags": {
+  "audit": {
+   "frames": 900,
+   "frames_with_multiple_tags": 0,
+   "overlap_frames": 0,
+   "ok": true,
+   "multi_sample": [],
+   "overlap_sample": []
+  },
+  "max_tags_in_any_frame": 1,
+  "timeline": {
+   "entries": [
+    [
+     2.1,
+     "stamp_1816",
+     "A"
+    ],
+    [
+     5.05,
+     "place_usa",
+     "A"
+    ],
+    [
+     9.97,
+     "place_eu",
+     "A"
+    ],
+    [
+     13.27,
+     "crops",
+     "C"
+    ],
+    [
+     25.75,
+     "monster",
+     "C"
+    ]
+   ],
+   "exits": [
+    [
+     3.9,
+     "stamp_1816",
+     "A"
+    ],
+    [
+     8.35,
+     "place_usa",
+     "A"
+    ],
+    [
+     12.47,
+     "place_eu",
+     "A"
+    ],
+    [
+     16.07,
+     "crops",
+     "C"
+    ],
+    [
+     28.55,
+     "monster",
+     "C"
+    ]
+   ]
+  },
+  "min_gap_between_exit_and_entry": 0.8,
+  "slots_used": [
+   "A",
+   "C"
+  ]
+ },
+ "logo": {
+  "file": "02-logo-horizontal-dark-bg.png",
+  "native": [
+   1600,
+   1063
+  ],
+  "mode": "RGBA",
+  "drawn_width_px": 300,
+  "aspect_native": 1.5052,
+  "ivory_px_corner_23_0s": 0,
+  "ivory_px_corner_29_0s": 6755,
+  "visible_after_26_3": true
+ },
+ "audio": {
+  "music_db_vs_vo": -16.99,
+  "duck_depth_db": -13.0,
+  "music_source": "eng5/music5.py (composed, 116 BPM)",
+  "paper_hits": [
+   {
+    "t": 5.05,
+    "db_vs_speech": -14.64,
+    "dbfs": -32.97
+   },
+   {
+    "t": 9.97,
+    "db_vs_speech": -14.35,
+    "dbfs": -36.95
+   },
+   {
+    "t": 12.9,
+    "db_vs_speech": -14.44,
+    "dbfs": -38.52
+   },
+   {
+    "t": 25.75,
+    "db_vs_speech": -15.55,
+    "dbfs": -33.94
+   }
+  ],
+  "paper_range_dB": [
+   -15.55,
+   -14.35
+  ],
+  "text_hits_in_band_12_18": true,
+  "paper_under_music_dB": 2.24,
+  "all_hits": [
+   {
+    "event": "stamp «يونيو 1816»",
+    "t": 2.1,
+    "kind": "stamp",
+    "dur": 0.5,
+    "designed_db": -16.0,
+    "dbfs": -36.52,
+    "vs_vo_global": -16.0,
+    "vs_vo_speech": -16.1
+   },
+   {
+    "event": "snow drives in on فلاحين",
+    "t": 4.35,
+    "kind": "sleet",
+    "dur": 1.1,
+    "designed_db": -21.0,
+    "dbfs": -41.53,
+    "vs_vo_global": -21.0,
+    "vs_vo_speech": -20.89
+   },
+   {
+    "event": "tag فلاحين · أمريكا enters",
+    "t": 5.05,
+    "kind": "paper_in",
+    "dur": 0.55,
+    "designed_db": -15.0,
+    "dbfs": -32.97,
+    "vs_vo_global": -12.45,
+    "vs_vo_speech": -14.64
+   },
+   {
+    "event": "thermometer needle drops",
+    "t": 6.25,
+    "kind": "needle",
+    "dur": 0.22,
+    "designed_db": -19.0,
+    "dbfs": -39.53,
+    "vs_vo_global": -19.0,
+    "vs_vo_speech": -19.5
+   },
+   {
+    "event": "snow thickens on والتلج",
+    "t": 7.43,
+    "kind": "sleet",
+    "dur": 1.1,
+    "designed_db": -21.0,
+    "dbfs": -41.53,
+    "vs_vo_global": -21.0,
+    "vs_vo_speech": -14.52
+   },
+   {
+    "event": "snow reaches full weight on بينزل",
+    "t": 8.65,
+    "kind": "sleet",
+    "dur": 1.1,
+    "designed_db": -21.0,
+    "dbfs": -41.53,
+    "vs_vo_global": -21.0,
+    "vs_vo_speech": -15.71
+   },
+   {
+    "event": "tag أوروبا enters",
+    "t": 9.97,
+    "kind": "paper_in",
+    "dur": 0.55,
+    "designed_db": -15.0,
+    "dbfs": -36.95,
+    "vs_vo_global": -16.43,
+    "vs_vo_speech": -14.35
+   },
+   {
+    "event": "rain at full weight on مطر",
+    "t": 11.52,
+    "kind": "water",
+    "dur": 1.3,
+    "designed_db": -18.5,
+    "dbfs": -39.03,
+    "vs_vo_global": -18.5,
+    "vs_vo_speech": -15.0
+   },
+   {
+    "event": "sleet layer in on وبرد",
+    "t": 12.26,
+    "kind": "sleet",
+    "dur": 1.1,
+    "designed_db": -21.0,
+    "dbfs": -41.53,
+    "vs_vo_global": -21.0,
+    "vs_vo_speech": -18.41
+   },
+   {
+    "event": "tag المحاصيل ما كبرتش enters",
+    "t": 12.9,
+    "kind": "paper_in",
+    "dur": 0.55,
+    "designed_db": -15.0,
+    "dbfs": -38.52,
+    "vs_vo_global": -18.0,
+    "vs_vo_speech": -14.44
+   },
+   {
+    "event": "crop strip pinned on تكبر",
+    "t": 14.78,
+    "kind": "pin",
+    "dur": 0.18,
+    "designed_db": -18.0,
+    "dbfs": -38.53,
+    "vs_vo_global": -18.0,
+    "vs_vo_speech": -18.58
+   },
+   {
+    "event": "New England pinned",
+    "t": 16.53,
+    "kind": "pin",
+    "dur": 0.18,
+    "designed_db": -18.0,
+    "dbfs": -38.53,
+    "vs_vo_global": -18.0,
+    "vs_vo_speech": -15.81
+   },
+   {
+    "event": "thread leg 1 draws",
+    "t": 17.35,
+    "kind": "thread_draw",
+    "dur": 0.9,
+    "designed_db": -17.5,
+    "dbfs": -38.03,
+    "vs_vo_global": -17.5,
+    "vs_vo_speech": -19.25
+   },
+   {
+    "event": "thread lands on Europe",
+    "t": 19.04,
+    "kind": "pin",
+    "dur": 0.18,
+    "designed_db": -18.0,
+    "dbfs": -38.53,
+    "vs_vo_global": -18.0,
+    "vs_vo_speech": -15.82
+   },
+   {
+    "event": "thread turns for Sumbawa",
+    "t": 19.72,
+    "kind": "thread_draw",
+    "dur": 0.9,
+    "designed_db": -17.5,
+    "dbfs": -38.03,
+    "vs_vo_global": -17.5,
+    "vs_vo_speech": -17.86
+   },
+   {
+    "event": "Sumbawa pinned + counter",
+    "t": 21.02,
+    "kind": "pin",
+    "dur": 0.18,
+    "designed_db": -18.0,
+    "dbfs": -38.53,
+    "vs_vo_global": -18.0,
+    "vs_vo_speech": -17.39
+   },
+   {
+    "event": "brand sting: wordmark writes on",
+    "t": 22.42,
+    "kind": "sting",
+    "dur": 2.4,
+    "designed_db": -10.0,
+    "dbfs": -30.52,
+    "vs_vo_global": -10.0,
+    "vs_vo_speech": -7.6
+   },
+   {
+    "event": "plate lightning across the window",
+    "t": 23.6,
+    "kind": "thunder",
+    "dur": 2.6,
+    "designed_db": -13.0,
+    "dbfs": -33.53,
+    "vs_vo_global": -13.0,
+    "vs_vo_speech": -13.26
+   },
+   {
+    "event": "tag أشهر وحش في الأدب enters",
+    "t": 25.75,
+    "kind": "paper_in",
+    "dur": 0.55,
+    "designed_db": -15.0,
+    "dbfs": -33.94,
+    "vs_vo_global": -13.42,
+    "vs_vo_speech": -15.55
+   },
+   {
+    "event": "last word الأدب, ash at full",
+    "t": 28.19,
+    "kind": "sleet",
+    "dur": 1.1,
+    "designed_db": -21.0,
+    "dbfs": -41.53,
+    "vs_vo_global": -21.0,
+    "vs_vo_speech": -12.15
+   }
+  ]
+ },
+ "music": {
+  "source": "eng5/music5.py",
+  "bpm": 116.5,
+  "autocorr": 0.388,
+  "bands_pct": {
+   "20-80": 3.6,
+   "80-200": 14.4,
+   "200-600": 69.5,
+   "600-2000": 10.6,
+   "2000-6000": 1.9,
+   "6000-20000": 0.0
+  },
+  "in_95_120": true
+ },
+ "pacing": {
+  "frames": 900,
+  "motion_mean": 8.523,
+  "motion_min": 4.299,
+  "static_frames": 0,
+  "static_at": [],
+  "cuts": [
+   4.033,
+   4.067,
+   4.1,
+   4.133,
+   4.167,
+   4.2,
+   4.233,
+   4.267,
+   4.3,
+   4.333,
+   4.367,
+   4.4,
+   4.433,
+   4.467,
+   4.5,
+   4.533,
+   4.567,
+   4.6,
+   4.633,
+   4.667,
+   9.667,
+   9.7,
+   9.733,
+   9.767,
+   9.8,
+   9.833,
+   9.867,
+   9.9,
+   9.933,
+   9.967,
+   10.0,
+   10.033,
+   10.067,
+   10.1,
+   10.133,
+   10.167,
+   10.2,
+   10.233,
+   10.267,
+   15.667,
+   15.7,
+   15.733,
+   15.767,
+   15.8,
+   15.833,
+   15.867,
+   15.9,
+   15.933,
+   15.967,
+   16.0,
+   16.033,
+   16.067,
+   16.1,
+   16.133,
+   16.167,
+   16.2,
+   16.233,
+   16.267,
+   22.1,
+   22.133,
+   22.167,
+   22.2,
+   22.233,
+   22.267,
+   22.3,
+   22.333,
+   22.367,
+   22.4,
+   22.433,
+   22.467,
+   22.5,
+   22.533,
+   22.567,
+   22.6,
+   22.633,
+   22.667,
+   22.7,
+   22.733,
+   28.667,
+   28.7,
+   28.733,
+   28.767,
+   28.8,
+   28.833,
+   28.867,
+   28.9,
+   28.933,
+   28.967,
+   29.0,
+   29.033,
+   29.067,
+   29.1,
+   29.133,
+   29.167,
+   29.2,
+   29.233,
+   29.267
+  ],
+  "shot_lengths": {
+   "S1_cold_open": 4.37,
+   "S2_farmers": 5.63,
+   "S3_europe": 5.97,
+   "S4_map": 6.47,
+   "S5_monster": 6.57,
+   "S6_return": 1.0
+  },
+  "longest_shot_s": 6.57,
+  "layers_min": 3,
+  "events": 27,
+  "max_event_gap_s": 1.95,
+  "gaps": [
+   0.9,
+   1.95,
+   0.3,
+   0.7,
+   1.2,
+   1.18,
+   1.22,
+   1.32,
+   1.55,
+   0.74,
+   0.64,
+   1.88,
+   1.75,
+   0.82,
+   1.69,
+   0.68,
+   1.3,
+   1.4,
+   1.18,
+   1.3,
+   0.85,
+   0.85,
+   0.64,
+   0.95,
+   0.78,
+   0.68
+  ]
+ },
+ "transitions": {
+  "S2 dissolve": {
+   "peak_jump": 14.35,
+   "mean_jump": 9.94
+  },
+  "S3 whip": {
+   "peak_jump": 30.66,
+   "mean_jump": 14.68
+  },
+  "S4 in": {
+   "peak_jump": 79.11,
+   "mean_jump": 11.42
+  },
+  "S5 hard cut": {
+   "peak_jump": 19.8,
+   "mean_jump": 9.92
+  },
+  "S6 hard cut": {
+   "peak_jump": 51.8,
+   "mean_jump": 8.25
+  }
+ },
+ "image": {
+  "sampled_t": 18.4,
+  "frame": "dark map: raw luma is content, not vignette",
+  "centre_luma": 24.9,
+  "top_edge_luma": 9.2,
+  "corner_luma": 14.4,
+  "radial_falloff_top_edge_pct": 63.2,
+  "note": "the radial vignette is measured on a flat field below",
+  "in_12_15": true,
+  "flat_field_vignette_pct": 14.1
+ },
+ "loudness": {
+  "I": -14.01,
+  "TP": -1.49,
+  "LRA": 5.3
+ }
+}
