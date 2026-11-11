@@ -24,7 +24,7 @@ from bidi.algorithm import get_display
 
 W, H = 1920, 1080
 FPS = 30
-SRC = '/home/user/work/src'
+SRC = '/home/user/riwaq_assets/src'
 FONTS = '/home/user/Riwaq_System_Repo/public/fonts'
 GD = '/home/user/Riwaq_System_Repo/google_drive'
 

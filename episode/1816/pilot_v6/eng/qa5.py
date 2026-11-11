@@ -114,7 +114,7 @@ def plate_integrity(P, n_frames=900, fps=30.0):
     from PIL import Image as _Im
     widths = {}
     for k in ('01', '02', '03', '09'):
-        d = os.path.join('/home/user/work/src', k)
+        d = os.path.join('/home/user/riwaq_assets/src', k)
         if os.path.isdir(d):
             f = sorted(os.listdir(d))[0]
             widths[k] = _Im.open(os.path.join(d, f)).size

@@ -19,7 +19,7 @@ pilot differ, the difference is a rule, not a taste:
 import math
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 from eng5 import core5 as C
 from eng5 import tags5 as TG
@@ -54,17 +54,21 @@ def ramp(t, a, b):
 # ---------------------------------------------------------------- shot map
 # (name, plate, t_in, t_out, in-point, rate) -- rate < 1 is a constant slow-down
 SHOTS = [
+    # CHAPTER 1 OWNS THE FOUR AMERICA / EUROPE / HOOK CLIPS AND NOTHING ELSE.
+    # The AI clips are for the dramatic beats spread across the ten minutes, not for
+    # filling a chapter. Everything else in this chapter is documentary motion graphics:
+    # the map and its plates, the case board, the sun, the archive and the collage.
     ('S01_house',     '09',   0.00,   4.35, 0.00, 1.0000),
     ('S02_farmers',   '01',   4.35,   9.97, 0.00, 1.0000),
     ('S03_europe',    '02',   9.97,  15.96, 0.00, 1.0000),
     ('S04_map',       'map', 15.96,  22.42, 0.00, 1.0000),
     ('S05_monster',   '03',  22.42,  28.97, 2.95, 0.7455),
-    ('S06_return',    '01',  28.97,  33.14, 2.60, 1.0000),
-    ('S07_village',   '06',  33.14,  38.58, 0.00, 0.8000),
-    ('S08_frost',     '07',  38.58,  46.22, 0.00, 1.0000),
+    ('S06_map_arc',   'map', 28.97,  33.14, 0.00, 1.0000),
+    ('S07_archive',   'gfx', 33.14,  38.58, 0.00, 1.0000),
+    ('S08_archive',   'gfx', 38.58,  46.22, 0.00, 1.0000),
     ('S09_map_frost', 'map', 46.22,  51.31, 0.00, 1.0000),
-    ('S10_rain_wide', '02',  51.31,  57.20, 0.00, 1.0000),
-    ('S11_famine',    '08',  57.20,  64.31, 0.00, 0.8800),
+    ('S10_archive',   'gfx', 51.31,  57.20, 0.00, 1.0000),
+    ('S11_map_frost', 'map', 57.20,  64.31, 0.00, 1.0000),
     ('S12_board',     'map', 64.31,  71.92, 0.00, 1.0000),
     ('S13_sun',       'map', 71.92,  79.25, 0.00, 1.0000),
     ('S14_1809',      'map', 79.25,  88.89, 0.00, 1.0000),
@@ -74,7 +78,8 @@ SHOTS = [
 ]
 T_END = 109.48
 BY_NAME = {s[0]: s for s in SHOTS}
-MAP_SHOTS = {'S04_map', 'S09_map_frost', 'S12_board', 'S13_sun', 'S14_1809', 'S17_reckoning'}
+MAP_SHOTS = {'S04_map', 'S06_map_arc', 'S09_map_frost', 'S11_map_frost', 'S12_board',
+             'S13_sun', 'S14_1809', 'S17_reckoning'}
 
 # transitions: a dissolve between live plates, the map's zoom-blur in/out, and three
 # hard cuts where a dissolve would blunt the edit
@@ -122,8 +127,9 @@ def plate_src(t):
     """exactly which decoded file fed this frame; the QA reads this, not a claim"""
     s = shot_at(t)
     name, key, t0, t1, ip, rate = s
-    if key == 'map':
-        return ('map', int(round((t - t0) * 30)), 0, 0.0)
+    if key in ('map', 'gfx'):
+        # graphics plates are generated per frame, so there is no clip frame to report
+        return (key, int(round((t - t0) * 30)), 0, 0.0)
     p = PL[key]
     return (key, p.idx(ip + (t - t0) * rate), p.n, p.bsf)
 
@@ -168,6 +174,83 @@ def focus(base, cx, cy, r=260, colour=(255, 196, 128), amount=0.30):
     a = np.asarray(base.convert('RGB'), np.float32)
     a += g[..., None] * np.array(colour, np.float32)
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert('RGBA')
+
+
+ARCHIVE_TINT = (238, 231, 216)
+
+
+def archive_sheet(w, h, seed=0, age=0.55):
+    """a sheet of paper that is allowed to look old, drawn rather than photographed.
+
+    Public-domain archive scans are the right source for real documents; this is the
+    frame's paper STOCK, and it says nothing historically. What makes it read as held
+    paper is the uneven age staining and a slightly torn edge, so both are generated from
+    a seed and are identical every frame.
+    """
+    rng = np.random.default_rng(seed)
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    base = np.zeros((h, w, 3), np.float32)
+    base[...] = np.array(ARCHIVE_TINT, np.float32)
+    # broad staining: two low-frequency fields, so the paper is not evenly yellow
+    for k in range(2):
+        fy = rng.uniform(1.5, 3.5, 4)
+        fx = rng.uniform(1.5, 3.5, 4)
+        f = (np.sin(xx / w * math.pi * fy[0] + 0.7 * k) * 0.5 + 0.5) *             (np.cos(yy / h * math.pi * fx[1] + 1.1 * k) * 0.5 + 0.5)
+        base -= (f * 14.0 * age)[..., None] * np.array([0.9, 1.0, 1.3], np.float32)
+    # edge darkening, like a page that has been handled for two hundred years
+    edge = np.minimum(np.minimum(xx, w - 1 - xx) / (w * 0.5),
+                      np.minimum(yy, h - 1 - yy) / (h * 0.5))
+    base *= (0.80 + 0.20 * np.clip(edge * 2.6, 0, 1))[..., None]
+    base += rng.normal(0, 3.2, (h, w, 1)).astype(np.float32)
+    return Image.fromarray(np.clip(base, 0, 255).astype(np.uint8)).convert('RGBA')
+
+
+def ruled_lines(im, x0, x1, y0, dy, n, colour=(92, 84, 72), alpha=54, wobble=0.0, seed=0):
+    """the ruled lines of a ledger page. The handwriting on a real scan is unreadable at
+    this size anyway; what the shot has to communicate is 'a page of a weather diary',
+    which the ruling and the ink blocks do."""
+    rng = np.random.default_rng(seed)
+    d = ImageDraw.Draw(im, 'RGBA')
+    for k in range(n):
+        y = y0 + k * dy + (rng.normal(0, wobble) if wobble else 0)
+        d.line([(x0, y), (x1, y + (rng.normal(0, 1.2) if wobble else 0))],
+               fill=colour + (alpha,), width=2)
+    return im
+
+
+def ink_blocks(im, x0, x1, y0, dy, n, seed=0, alpha=150):
+    """words that are deliberately not words: ink of the right weight and rhythm, no
+    readable content, so nothing here can be mistaken for a quotation from a source."""
+    rng = np.random.default_rng(seed + 11)
+    d = ImageDraw.Draw(im, 'RGBA')
+    for k in range(n):
+        y = y0 + k * dy
+        x = x0
+        while x < x1 - 20:
+            w = int(rng.uniform(28, 96))
+            if x + w > x1:
+                break
+            d.rounded_rectangle([x, y, x + w, y + int(dy * 0.22)],
+                                radius=2, fill=(58, 50, 42, int(alpha * 0.78)))
+            x += w + int(rng.uniform(14, 26))
+    return im
+
+
+def caption(base, text, x, y, t, t_in, t_out, size=44):
+    """a line over archive paper has to be dark ink on its own strip: the ivory label reads
+    white-on-white there, which is how it looked on the first pass."""
+    if not (t_in <= t < t_out) or not C.T():
+        return base
+    a = min(ramp(t, t_in, t_in + 0.4), 1.0 - ramp(t, t_out - 0.35, t_out))
+    if a <= 0:
+        return base
+    sp = C.text_sprite(text, size=size, fill=(38, 32, 28))
+    strip = Image.new('RGBA', (sp.width + 44, sp.height + 26), (238, 231, 216, 0))
+    strip.alpha_composite(sp, (22, 13))
+    if a < 1:
+        strip.putalpha(strip.split()[3].point(lambda v: int(v * a)))
+    base.alpha_composite(strip, (x, y))
+    return base
 
 
 def label(base, text, x, y, t, t_in, t_out, size=48, fill=(226, 218, 200)):
@@ -284,29 +367,102 @@ def base_s05(t):
 
 
 def base_s06(t):
-    """back to the farmers: «وفي آخر الحلقة هتعرف…»"""
+    """«خلّينا نبدأ باللي شافوه الناس» — the arc from America to the whole north-east"""
     lt = t - 28.97
-    cam = C.Camera(zoom=1.30 + 0.06 * ease(lt / 4.17), pan=(-70, -46))
-    base = C.grade5(PL['01'].frame(2.6 + lt, cam), warmth=0.92, sat=0.80).convert('RGBA')
-    return SNOW_MID.draw(base, t, density=0.5)
+    dur = 4.17
+    m = map_obj()
+    cam = C.Camera(zoom=1.30 - 0.06 * ease(lt / dur), pan=(10 * (0.5 - lt / dur), 0),
+                   src=(MAP_W, MAP_H))
+    base = cam.apply(map_base()).convert('RGBA')
+    base = SNOW_MID.draw(base, t, density=0.45)
+    d = ImageDraw.Draw(base)
+    S = lambda ll: cam.to_screen(*m.px(*ll))
+    p = S(NE_LL)
+    C.pin(base, p[0], p[1], t, 28.97, r=11)
+    if lt > 0.4:
+        W5.dashed_line(d, [S(ll) for ll in ((-71.0, 42.3), (-73.4, 43.6), (-70.8, 45.2),
+                                            (-68.2, 44.6), (-67.0, 46.0))],
+                       C.GOLD + (220,), width=4, dash=16, gap=12, upto=ramp(lt, 0.4, 2.6))
+    base = focus(base, p[0], p[1], r=260, amount=0.14 * ramp(lt, 0.2, 1.2))
+    base = label(base, 'نيو إنجلاند · شرق أمريكا', 96, H - 150, t, 29.30, 33.0, size=46)
+    return grader(base)
+
+
+def _archive_stage(lt, dur, cam_zoom=1.03, drift=(14, 6), rot=-0.9, seed=7):
+    """the desk: a paper sheet in the frame, the camera drifting over it"""
+    z = cam_zoom - 0.02 * ease(lt / dur)
+    w, h = 1300, 880
+    sheet = archive_sheet(w, h, seed=seed)
+    base = archive_sheet(1920, 1080, seed=seed + 100, age=0.9).convert('RGBA')
+    base = C.grade5(base.convert('RGB'), warmth=0.55, sat=0.55).convert('RGBA')
+    # the sheet sits at a slight angle: it is being looked at, not scanned
+    s = sheet.rotate(rot, expand=True, resample=Image.BICUBIC)
+    x = int((1920 - s.width) / 2 + drift[0] * (0.5 - lt / dur))
+    y = int((1080 - s.height) / 2 + drift[1] * (0.5 - lt / dur))
+    # the sheet is the brightest thing in the frame; on a 0-255 scale it was landing at
+    # 240 and reading as a lightbox, so it is held back and let the grade sit on top
+    a = np.asarray(s, np.float32)
+    a[..., :3] *= 0.86
+    s = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+    base.alpha_composite(s, (x, y))
+    base = base.resize((int(1920 * z), int(1080 * z)), Image.BICUBIC)
+    ox, oy = int((base.width - 1920) * 0.5), int((base.height - 1080) * 0.5)
+    out = base.crop((ox, oy, ox + 1920, oy + 1080)).convert('RGBA')
+    return C.grade5(out.convert('RGB'), warmth=0.72, sat=0.62, lift=0.012).convert('RGBA')
 
 
 def base_s07(t):
-    """«خلّينا نبدأ باللي شافوه الناس» — an ash-buried village, people still standing"""
+    """the record: a weather page, 8 June, frost and a little snow"""
     lt = t - 33.14
-    cam = C.Camera(zoom=1.06 - 0.035 * ease(lt / 5.44), pan=(14 * (0.5 - lt / 5.44), 2))
-    base = C.grade5(PL['06'].frame(lt * 0.800, cam), warmth=0.88, sat=0.58).convert('RGBA')
-    base = ASH_HVY.draw(base, t, density=0.55)
-    return MOTE.draw(base, t, density=0.5)
+    dur = 5.44
+    base = _archive_stage(lt, dur, seed=7)
+    sheet = ruled_lines(archive_sheet(1300, 880, seed=7), 70, 1230, 150, 46, 14,
+                        wobble=1.2, seed=3)
+    sheet = ink_blocks(sheet, 74, 1220, 148, 46, 13, seed=5)
+    s = sheet.rotate(-0.9, expand=True, resample=Image.BICUBIC)
+    base = _archive_stage(lt, dur, seed=7)
+    base.alpha_composite(s, ((1920 - s.width) // 2 + int(14 * (0.5 - lt / dur)),
+                             (1080 - s.height) // 2 + int(6 * (0.5 - lt / dur))))
+    # the reading strip: the one line the shot is about
+    u = ramp(lt, 0.9, 1.7)
+    if u > 0:
+        hl = Image.new('RGBA', (1180, 40), (205, 150, 60, int(70 * u)))
+        base.alpha_composite(hl, (380, 372))
+    if lt >= 1.9:
+        C.pin(base, 1090, 392, t, 1.9 + 33.14 - 33.14, r=9)
+    base = caption(base, '٨ يونيو ١٨١٦ · برد وتلج', 96, H - 150, t, 34.10, 38.3)
+    return base
 
 
 def base_s08(t):
-    """the frost came back when it was supposed to be gone: macro on a living leaf"""
+    """«الصقيع رجع وهو المفروض غايب» — a temperature sheet, the trace falling"""
     lt = t - 38.58
-    cam = C.Camera(zoom=1.05 - 0.045 * ease(lt / 7.64), pan=(-10 * (0.5 - lt / 7.64), 0))
-    base = C.grade5(PL['07'].frame(lt, cam), warmth=0.82, sat=0.74).convert('RGBA')
-    base = SNOW_FG.draw(base, t, density=0.30, blur=1.4)
-    return MOTE.draw(base, t, density=0.6)
+    dur = 7.64
+    base = _archive_stage(lt, dur, seed=19, drift=(8, 10), rot=-0.5)
+    sheet = archive_sheet(1300, 880, seed=19)
+    sheet = ruled_lines(sheet, 90, 1210, 120, 60, 12, alpha=40, seed=6)
+    # the trace: a ruled graph with a line that drops out of its own band
+    d = ImageDraw.Draw(sheet, 'RGBA')
+    gx0, gx1, gy0, gy1 = 120, 1180, 170, 720
+    for k in range(9):
+        y = gy0 + k * (gy1 - gy0) / 8
+        d.line([(gx0, y), (gx1, y)], fill=(90, 84, 74, 52), width=2)
+        d.text((60, y - 12), str(12 - k), fill=(70, 64, 56, 160))
+    pts = []
+    for k in range(0, 61):
+        x = gx0 + k * (gx1 - gx0) / 60
+        base_y = gy0 + (gy1 - gy0) * (0.62 + 0.10 * math.sin(k * 0.55) - 0.006 * k)
+        if k > 34:
+            base_y += (k - 34) ** 1.55 * 1.6          # the drop
+        pts.append((x, min(gy1, base_y)))
+    u = ramp(lt, 0.5, 4.6)
+    n = max(2, int(len(pts) * u))
+    d.line(pts[:n], fill=(150, 40, 44, 235), width=5, joint='curve')
+    s = sheet.rotate(-0.5, expand=True, resample=Image.BICUBIC)
+    base.alpha_composite(s, ((1920 - s.width) // 2 + int(8 * (0.5 - lt / dur)),
+                             (1080 - s.height) // 2 + int(10 * (0.5 - lt / dur))))
+    base = caption(base, 'سجل حرارة · الصقيع رجع', 96, H - 150, t, 39.10, 45.9)
+    return base
 
 
 def base_s09(t):
@@ -320,9 +476,8 @@ def base_s09(t):
     base = SNOW_MID.draw(base, t, density=0.40)
     d = ImageDraw.Draw(base)
     S = lambda ll: cam.to_screen(*m.px(*ll))
-    # the frost is drawn as a cold shroud over the north-east: concentric dashed rings
-    # that pulse outward, so the frame has a moving layer that is not the camera
     p = S(NE_LL)
+    base = focus(base, p[0], p[1], r=280, amount=0.20 * ramp(lt, 0.2, 1.4))
     for k, (r0, ph) in enumerate(((90, 0.0), (150, 0.55), (210, 1.1))):
         u = ((lt / 2.2) + ph) % 1.0
         rr = r0 * (0.75 + 0.45 * u)
@@ -336,20 +491,66 @@ def base_s09(t):
 
 
 def base_s10(t):
-    """rain over the whole European summer: the same fields, a different part of the storm"""
+    """«المطر والبرد طالوا الصيف كله» — a season strip: twelve months, most of them red"""
     lt = t - 51.31
-    cam = C.Camera(zoom=1.20 - 0.06 * ease(lt / 5.89), pan=(-16 * (0.5 - lt / 5.89), 8))
-    base = C.grade5(PL['02'].frame(lt, cam), warmth=0.78, sat=0.70).convert('RGBA')
-    base = RAIN.draw(base, t, density=0.55)
-    return SNOW_FG.draw(base, t, density=0.20, blur=1.9)
+    dur = 5.89
+    base = _archive_stage(lt, dur, seed=31, drift=(6, 8), rot=0.6)
+    sheet = archive_sheet(1300, 880, seed=31)
+    d = ImageDraw.Draw(sheet, 'RGBA')
+    d.text((80, 70), 'MAY — SEP 1816', fill=(60, 54, 46, 200))
+    d.line([(80, 118), (1220, 118)], fill=(60, 54, 46, 120), width=3)
+    months = ['MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT']
+    cw = 178
+    for k, mo in enumerate(months):
+        x = 90 + k * cw
+        u = ramp(lt, 0.6 + k * 0.42, 1.5 + k * 0.42)
+        d.rectangle([x, 190, x + cw - 26, 620], outline=(80, 74, 64, 90), width=2)
+        if u > 0:
+            hh = int(300 * u)
+            d.rectangle([x + 6, 614 - hh, x + cw - 32, 614], fill=(150, 52, 48, 190))
+        d.text((x + 10, 646), mo, fill=(60, 54, 46, 210))
+    # the caption: frost and rain in months that should be summer
+    d.text((90, 720), 'FROST + RAIN, RECORDED', fill=(150, 52, 48, 210))
+    s = sheet.rotate(0.6, expand=True, resample=Image.BICUBIC)
+    base.alpha_composite(s, ((1920 - s.width) // 2 + int(6 * (0.5 - lt / dur)),
+                             (1080 - s.height) // 2 + int(8 * (0.5 - lt / dur))))
+    base = caption(base, 'مايو — سبتمبر ١٨١٦', 96, H - 150, t, 52.00, 57.0)
+    return base
 
 
 def base_s11(t):
-    """«الصيف ما اختفاش من التقويم، اختفى من الحقول» — a family at a bare table"""
+    """«اختفى من الحقول» — the map empties, the field layer recedes"""
     lt = t - 57.20
-    cam = C.Camera(zoom=1.06 - 0.04 * ease(lt / 7.11), pan=(6 * (0.5 - lt / 7.11), -4))
-    base = C.grade5(PL['08'].frame(lt * 0.880, cam), warmth=0.94, sat=0.68).convert('RGBA')
-    return MOTE.draw(base, t, density=0.55)
+    dur = 7.11
+    m = map_obj()
+    cam = C.Camera(zoom=1.22 - 0.10 * (0.4 * ease(lt / dur) + 0.6 * (lt / dur)),
+                   pan=(-24 * (0.5 - lt / dur), 12 * (0.5 - lt / dur)), src=(MAP_W, MAP_H))
+    base = cam.apply(map_base()).convert('RGBA')
+    base = RAIN.draw(base, t, density=0.42)
+    d = ImageDraw.Draw(base)
+    S = lambda ll: cam.to_screen(*m.px(*ll))
+    # the harvest belt, dimming month by month: four contours that fade out of the frame
+    # the harvest belt cools band by band: a soft wash that retreats north, not a set of
+    # empty rectangles floating on the ocean
+    for k, (lat0, lat1) in enumerate(((-6, 16), (16, 34), (34, 50), (50, 62))):
+        u = ramp(lt, 0.8 + k * 0.85, 2.4 + k * 0.85)
+        if u <= 0:
+            continue
+        p0, p1 = S((-22, lat0)), S((62, lat1))
+        x0, y0 = min(p0[0], p1[0]), min(p0[1], p1[1])
+        x1, y1 = max(p0[0], p1[0]), max(p0[1], p1[1])
+        yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+        band = ((xx >= x0) & (xx < x1) & (yy >= y0) & (yy < y1)).astype(np.float32)
+        if band.sum() < 100:
+            continue
+        band = np.asarray(Image.fromarray((band * 255).astype(np.uint8))
+                          .filter(ImageFilter.GaussianBlur(26)), np.float32) / 255.0
+        a = np.asarray(base.convert('RGB'), np.float32)
+        a += (band * 26 * u)[..., None] * np.array([-0.35, -0.05, 0.30], np.float32)
+        base = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert('RGBA')
+        d = ImageDraw.Draw(base)
+    base = label(base, 'الحصاد في أوروبا · 1816', 96, H - 150, t, 57.9, 63.9, size=46)
+    return grader(base)
 
 
 def base_s12(t):
@@ -479,9 +680,10 @@ def base_s17(t):
 
 SHOT_FNS = {
     'S01_house': base_s01, 'S02_farmers': base_s02, 'S03_europe': base_s03,
-    'S04_map': base_s04, 'S05_monster': base_s05, 'S06_return': base_s06,
-    'S07_village': base_s07, 'S08_frost': base_s08, 'S09_map_frost': base_s09,
-    'S10_rain_wide': base_s10, 'S11_famine': base_s11, 'S12_board': base_s12,
+    'S04_map': base_s04, 'S05_monster': base_s05,
+    'S06_map_arc': base_s06, 'S07_archive': base_s07, 'S08_archive': base_s08,
+    'S09_map_frost': base_s09, 'S10_archive': base_s10, 'S11_map_frost': base_s11,
+    'S12_board': base_s12,
     'S13_sun': base_s13, 'S14_1809': base_s14, 'S15_sumbawa': base_s15,
     'S16_eruption': base_s16, 'S17_reckoning': base_s17,
 }
@@ -692,20 +894,20 @@ EVENTS.sort(key=lambda e: e['t'])
 
 
 def levels():
-    """three moving layers in every shot, reported so QA can check it rather than trust it"""
+    """three moving layers in every shot, reported so QA can check it not trust it"""
     return {
         'S01_house': ['plate 09 + camera', 'snow mid', 'grade drift'],
         'S02_farmers': ['plate 01 + push', 'snow mid', 'snow fg'],
         'S03_europe': ['plate 02 + push', 'rain', 'snow fg'],
         'S04_map': ['map plate + drift', 'route + pins', 'ash drift'],
         'S05_monster': ['plate 03 + camera', 'lightning flash', 'ash drift'],
-        'S06_return': ['plate 01 + push', 'snow mid', 'corner wordmark'],
-        'S07_village': ['plate 06 + push', 'ash heavy', 'motes'],
-        'S08_frost': ['plate 07 + push', 'snow fg', 'motes'],
+        'S06_map_arc': ['map plate + push', 'pin + route', 'snow mid'],
+        'S07_archive': ['paper sheet + drift', 'reading strip', 'pin'],
+        'S08_archive': ['paper sheet + drift', 'temperature trace', 'ruling'],
         'S09_map_frost': ['map plate + drift', 'frost rings', 'snow mid'],
-        'S10_rain_wide': ['plate 02 + push', 'rain', 'snow fg'],
-        'S11_famine': ['plate 08 + push', 'candle glow', 'motes'],
-        'S12_board': ['map plate + push', 'pins', 'motes'],
+        'S10_archive': ['paper sheet + drift', 'season bars', 'caption'],
+        'S11_map_frost': ['map plate + push', 'harvest contours', 'rain'],
+        'S12_board': ['map plate + push', 'pins + thread', 'motes'],
         'S13_sun': ['map plate + drift', 'sun rings', 'motes'],
         'S14_1809': ['map plate + drift', 'smear rings', 'ash drift'],
         'S15_sumbawa': ['plate 04 + push', 'ash drift', 'plume'],

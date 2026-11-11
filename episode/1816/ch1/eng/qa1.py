@@ -60,9 +60,9 @@ def plates(R):
     long_runs = []
     for r in R:
         k = r['plate']
-        if k == 'map':
-            prev.pop('map', None)
-            run.pop('map', None)
+        if k in ('map', 'gfx'):
+            prev.pop(k, None)
+            run.pop(k, None)
             continue
         idx, n = r['plate_idx'], r['plate_n']
         if idx >= n:
@@ -83,8 +83,8 @@ def plates(R):
             long_runs.append(dict(plate=k, idx=st[0], run=st[1], t=st[2]))
     from PIL import Image
     sizes = {}
-    for k in sorted({r['plate'] for r in R if r['plate'] != 'map'}):
-        d = f'/home/user/work/src/{k}'
+    for k in sorted({r['plate'] for r in R if r['plate'] not in ('map', 'gfx')}):
+        d = f'/home/user/riwaq_assets/src/{k}'
         f = sorted(os.listdir(d))[0]
         sizes[k] = list(Image.open(os.path.join(d, f)).size)
     return dict(steps_back=back, wraps=wrap, long_runs=long_runs,
