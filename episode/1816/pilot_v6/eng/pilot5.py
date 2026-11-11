@@ -396,10 +396,10 @@ EVENTS = [
     dict(t=6.25, what='thermometer needle drops', sfx='needle', shot='S2'),
     dict(t=7.43, what='snow thickens on والتلج', sfx='sleet', shot='S2'),
     dict(t=8.65, what='snow reaches full weight on بينزل', sfx='sleet', shot='S2'),
-    dict(t=S3 + 0.30, what='tag أوروبا enters', sfx='paper_in', shot='S3'),
+    dict(t=S3, what='tag أوروبا enters', sfx='paper_in', shot='S3'),
     dict(t=11.52, what='rain at full weight on مطر', sfx='water', shot='S3'),
     dict(t=12.26, what='sleet layer in on وبرد', sfx='sleet', shot='S3'),
-    dict(t=13.27, what='tag المحاصيل ما كبرتش enters', sfx='paper_in', shot='S3'),
+    dict(t=12.90, what='tag المحاصيل ما كبرتش enters', sfx='paper_in', shot='S3'),
     dict(t=14.78, what='crop strip pinned on تكبر', sfx='pin', shot='S3'),
     dict(t=16.53, what='New England pinned', sfx='pin', shot='S4'),
     dict(t=17.35, what='thread leg 1 draws', sfx='thread_draw', shot='S4'),
@@ -419,7 +419,7 @@ EVENTS = [
 EVENTS.sort(key=lambda e: e['t'])
 
 TEXTS = [
-    ('disclaimer', 'S1', 2.20, (96, 84, 300, 60), 'ink on paper'),
+    ('disclaimer', 'S1', 2.20, (96, 84, 300, 60), 'ivory on plate'),
     ('stamp 1816', 'S1', 3.30, (W - 700, 300, 470, 130), 'ink on paper'),
     ('place_usa', 'S2', 6.00, (120, 120, 430, 96), 'ink on paper'),
     ('place_eu', 'S3', 11.00, (110, 116, 300, 94), 'ink on paper'),
