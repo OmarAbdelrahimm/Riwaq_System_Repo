@@ -1,0 +1,210 @@
+{
+ "duck_depth_db": -11.0,
+ "scale_db": 0.0,
+ "music_src": "eng5/music5.py (composed, 116 BPM)",
+ "music_db_vs_vo": -8.0,
+ "hits": [
+  {
+   "event": "stamp «يونيو 1816»",
+   "t": 2.6,
+   "kind": "stamp",
+   "dur": 0.5,
+   "designed_db": -16.0,
+   "dbfs": -36.52,
+   "vs_vo_global": -16.0,
+   "vs_vo_speech": -15.8
+  },
+  {
+   "event": "snow drives in on فلاحين",
+   "t": 4.35,
+   "kind": "sleet",
+   "dur": 1.1,
+   "designed_db": -21.0,
+   "dbfs": -41.53,
+   "vs_vo_global": -21.0,
+   "vs_vo_speech": -20.89
+  },
+  {
+   "event": "tag فلاحين · أمريكا enters",
+   "t": 5.05,
+   "kind": "paper_in",
+   "dur": 0.55,
+   "designed_db": -15.0,
+   "dbfs": -32.97,
+   "vs_vo_global": -12.45,
+   "vs_vo_speech": -14.64
+  },
+  {
+   "event": "thermometer needle drops",
+   "t": 6.25,
+   "kind": "needle",
+   "dur": 0.22,
+   "designed_db": -19.0,
+   "dbfs": -39.53,
+   "vs_vo_global": -19.0,
+   "vs_vo_speech": -19.5
+  },
+  {
+   "event": "snow thickens on والتلج",
+   "t": 7.43,
+   "kind": "sleet",
+   "dur": 1.1,
+   "designed_db": -21.0,
+   "dbfs": -41.53,
+   "vs_vo_global": -21.0,
+   "vs_vo_speech": -14.52
+  },
+  {
+   "event": "snow reaches full weight on بينزل",
+   "t": 8.65,
+   "kind": "sleet",
+   "dur": 1.1,
+   "designed_db": -21.0,
+   "dbfs": -41.53,
+   "vs_vo_global": -21.0,
+   "vs_vo_speech": -15.71
+  },
+  {
+   "event": "tag أوروبا enters",
+   "t": 10.27,
+   "kind": "paper_in",
+   "dur": 0.55,
+   "designed_db": -15.0,
+   "dbfs": -36.95,
+   "vs_vo_global": -16.43,
+   "vs_vo_speech": -14.23
+  },
+  {
+   "event": "rain at full weight on مطر",
+   "t": 11.52,
+   "kind": "water",
+   "dur": 1.3,
+   "designed_db": -18.5,
+   "dbfs": -39.03,
+   "vs_vo_global": -18.5,
+   "vs_vo_speech": -15.0
+  },
+  {
+   "event": "sleet layer in on وبرد",
+   "t": 12.26,
+   "kind": "sleet",
+   "dur": 1.1,
+   "designed_db": -21.0,
+   "dbfs": -41.53,
+   "vs_vo_global": -21.0,
+   "vs_vo_speech": -18.41
+  },
+  {
+   "event": "tag المحاصيل ما كبرتش enters",
+   "t": 13.27,
+   "kind": "paper_in",
+   "dur": 0.55,
+   "designed_db": -15.0,
+   "dbfs": -35.62,
+   "vs_vo_global": -15.1,
+   "vs_vo_speech": -14.59
+  },
+  {
+   "event": "crop strip pinned on تكبر",
+   "t": 14.78,
+   "kind": "pin",
+   "dur": 0.18,
+   "designed_db": -18.0,
+   "dbfs": -38.53,
+   "vs_vo_global": -18.0,
+   "vs_vo_speech": -18.58
+  },
+  {
+   "event": "New England pinned",
+   "t": 16.53,
+   "kind": "pin",
+   "dur": 0.18,
+   "designed_db": -18.0,
+   "dbfs": -38.53,
+   "vs_vo_global": -18.0,
+   "vs_vo_speech": -15.81
+  },
+  {
+   "event": "thread leg 1 draws",
+   "t": 17.35,
+   "kind": "thread_draw",
+   "dur": 0.9,
+   "designed_db": -17.5,
+   "dbfs": -38.03,
+   "vs_vo_global": -17.5,
+   "vs_vo_speech": -19.25
+  },
+  {
+   "event": "thread lands on Europe",
+   "t": 19.04,
+   "kind": "pin",
+   "dur": 0.18,
+   "designed_db": -18.0,
+   "dbfs": -38.53,
+   "vs_vo_global": -18.0,
+   "vs_vo_speech": -15.82
+  },
+  {
+   "event": "thread turns for Sumbawa",
+   "t": 19.72,
+   "kind": "thread_draw",
+   "dur": 0.9,
+   "designed_db": -17.5,
+   "dbfs": -38.03,
+   "vs_vo_global": -17.5,
+   "vs_vo_speech": -17.86
+  },
+  {
+   "event": "Sumbawa pinned + counter",
+   "t": 21.02,
+   "kind": "pin",
+   "dur": 0.18,
+   "designed_db": -18.0,
+   "dbfs": -38.53,
+   "vs_vo_global": -18.0,
+   "vs_vo_speech": -17.39
+  },
+  {
+   "event": "brand sting: wordmark writes on",
+   "t": 22.42,
+   "kind": "sting",
+   "dur": 2.4,
+   "designed_db": -10.0,
+   "dbfs": -30.52,
+   "vs_vo_global": -10.0,
+   "vs_vo_speech": -7.6
+  },
+  {
+   "event": "plate lightning across the window",
+   "t": 23.6,
+   "kind": "thunder",
+   "dur": 2.6,
+   "designed_db": -13.0,
+   "dbfs": -33.53,
+   "vs_vo_global": -13.0,
+   "vs_vo_speech": -13.26
+  },
+  {
+   "event": "tag أشهر وحش في الأدب enters",
+   "t": 25.75,
+   "kind": "paper_in",
+   "dur": 0.55,
+   "designed_db": -15.0,
+   "dbfs": -33.94,
+   "vs_vo_global": -13.42,
+   "vs_vo_speech": -15.55
+  },
+  {
+   "event": "last word الأدب, ash at full",
+   "t": 28.19,
+   "kind": "sleet",
+   "dur": 1.1,
+   "designed_db": -21.0,
+   "dbfs": -41.53,
+   "vs_vo_global": -21.0,
+   "vs_vo_speech": -12.15
+  }
+ ],
+ "samples": 1440000,
+ "vo_rms_db": -20.53
+}
