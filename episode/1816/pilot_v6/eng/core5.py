@@ -132,6 +132,7 @@ class Plate:
         # timeline must step 0.8 files per frame or the action runs 25 % fast
         # 24 fps source on a 30 fps timeline -> 0.8 source frames per output frame
         self.ratio = src_fps / FPS
+        self.bsf = src_fps / FPS          # decoded files consumed per output frame
         self.seconds = self.n / src_fps
 
     def idx(self, t):

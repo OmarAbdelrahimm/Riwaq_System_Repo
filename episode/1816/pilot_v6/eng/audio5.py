@@ -170,8 +170,13 @@ def build(t_end=30.0, events=None, tag='pilot5', score_gain=None):
                         vs_vo_global=round(solo - db(vo_r), 2),
                         vs_vo_speech=round(solo - db(rms(vo[i0:i1])), 2)))
     mus_ratio = db(rms(mus_ducked)) - db(vo_r)
+    under_voice, in_pause = music_levels(vo, mus_ducked)
     return wav, stems, dict(duck_depth_db=deepest, scale_db=0.0,
                             music_src=music_src, music_db_vs_vo=round(mus_ratio, 2),
+                            music_under_voice_db=None if under_voice is None
+                            else round(under_voice - db(vo_r), 2),
+                            music_in_pause_db=None if in_pause is None
+                            else round(in_pause - db(vo_r), 2),
                             hits=per, samples=n,
                             vo_rms_db=round(db(vo_r), 2))
 
@@ -193,11 +198,15 @@ def master(src, dst, target_i=-14.0, tp=-1.0):
 if __name__ == '__main__':
     from eng5 import pilot5 as P
     evs = [dict(t=e['t'], sfx=e['sfx'], what=e['what']) for e in P.EVENTS if e.get('sfx')]
-    wav, stems, meta = build(30.0, evs, 'pilot5')
-    j = master(wav, os.path.join(OUT, 'PILOT5_mix_master.wav'))
+    wav, stems, meta = build(30.0, evs, 'pilot6')
+    j = master(wav, os.path.join(OUT, 'pilot6_master.wav'))
+    json.dump(meta, open(os.path.join(OUT, 'audio5_meta.json'), 'w'), indent=1,
+              ensure_ascii=False)
     print('mix', wav)
     print('music:', meta['music_src'], meta['music_db_vs_vo'], 'dB vs VO')
     print('duck depth', round(meta['duck_depth_db'], 2))
+    print('under voice', meta['music_under_voice_db'], 'in pause', meta['music_in_pause_db'])
+    print('loudnorm measured in', j['input_i'], 'TP', j['input_tp'], 'LRA', j['input_lra'])
     for h in meta['hits']:
         print(f"   {h['t']:6.2f} {h['kind']:12s} speech {h['vs_vo_speech']:+6.2f}  "
               f"global {h['vs_vo_global']:+6.2f}  {h['dbfs']:+6.2f} dBFS  {h['event']}")

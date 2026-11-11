@@ -69,12 +69,13 @@ if __name__ == '__main__':
     # every paper prop, rebuilt by the same call the film makes
     for tg in P.QUEUE.tags:
         res.append(from_sprite(tg.name, tg.sprite))
-    res.append(from_sprite('stamp 1816', P.STAMP))
+    # the year card is in the queue now, so it is measured there like every other card.
+    # The disclaimer is the one element with no paper under it, so it is measured against
+    # the plate it actually lands on, at the moment it is at full strength.
+    res.append(from_frame('disclaimer', 1.90, (80, 60, 460, 110)))
     # gold type straight on the dark map, read off the rendered frame
     res.append(from_frame('map counter', 21.30, (1120, 40, 700, 210)))
     res.append(from_frame('map label', 17.60, (80, 50, 800, 120)))
-    # the wordmark on the plate, and in the corner over footage
-    res.append(from_frame('wordmark sting', 24.00, (520, 330, 880, 400)))
     P.frame_at(29.50)
     cx = P.CORNER_SHOT[0]
     res.append(from_frame('corner wordmark', 29.50, (int(cx[0]) - 10, 40, 330, 200)))

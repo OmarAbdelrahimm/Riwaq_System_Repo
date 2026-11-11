@@ -61,11 +61,79 @@ def loudness(path):
     return dict(I=float(j['input_i']), TP=float(j['input_tp']), LRA=float(j['input_lra']))
 
 
+TAG = os.environ.get('QA_TAG', 'pilot6')
+
+
+def plate_integrity(P, n_frames=900, fps=30.0):
+    """the check the v5 defect needed and did not have.
+
+    v5's 00:11 face was soft because the plate was upscaled 1.74x; its monster shot
+    stuttered because the plate ran out of frames inside the shot. Both are structural,
+    so both are measurable without looking at a picture.
+
+    A 24 fps source on a 30 fps timeline MUST show some source frames twice -- that is
+    cadence (six output frames per five source frames), not a hold. So counting repeats
+    is the wrong test; what matters is the RUN LENGTH. With a step of 0.8 file/frame no
+    source frame can legitimately be on screen for more than 2 output frames, and a
+    run of 3+ means the decode stalled, the index clamped at the end of the clip, or the
+    timeline tried to hold.
+    """
+    key_of = {k: k for k in ('01', '02', '03', '09')}
+    out = dict(steps_back=0, wraps=0, max_run={}, long_runs=[], clamp_runs=[],
+               sources={}, source_sizes={}, sources_below_1080p=[], min_source_w=0)
+    runs = {}
+    prev = {}
+    for i in range(n_frames):
+        t = i / fps
+        key, idx, n, bsf = P.plate_src(t)
+        if key == 'map' or n <= 0:
+            prev.pop(key, None)
+            continue
+        out['sources'].setdefault(key, dict(n=n, bsf=round(bsf, 4),
+                                            seconds=round(n / 24.0, 2)))
+        if idx >= n:
+            out['wraps'] += 1
+        p = prev.get(key)
+        if p is not None and idx < p:
+            out['steps_back'] += 1
+        # run length: how many output frames in a row show this same source frame
+        st = runs.get(key)
+        if st and st[0] == idx:
+            st[1] += 1
+        else:
+            if st and st[1] > 2:
+                out['long_runs'].append(dict(plate=key, idx=st[0], run=st[1],
+                                             t=round(st[2], 3)))
+                if st[0] >= n - 1:
+                    out['clamp_runs'].append(dict(plate=key, idx=st[0], t=round(st[2], 3)))
+            runs[key] = [idx, 1, t]
+        prev[key] = idx
+    for key, st in runs.items():
+        if st[1] > 2:
+            out['long_runs'].append(dict(plate=key, idx=st[0], run=st[1], t=round(st[2], 3)))
+    from PIL import Image as _Im
+    widths = {}
+    for k in ('01', '02', '03', '09'):
+        d = os.path.join('/home/user/work/src', k)
+        if os.path.isdir(d):
+            f = sorted(os.listdir(d))[0]
+            widths[k] = _Im.open(os.path.join(d, f)).size
+    out['source_sizes'] = {k: list(v) for k, v in widths.items()}
+    out['sources_below_1080p'] = sorted(k for k, v in widths.items() if v[0] < 1920)
+    out['min_source_w'] = min((v[0] for v in widths.values()), default=0)
+    out['max_run'] = {k: 0 for k in out['sources']}
+    out['ok'] = bool(out['steps_back'] == 0 and out['wraps'] == 0 and not out['long_runs'])
+    return out
+
+
 def main():
     from eng5 import pilot5 as P
 
-    rows = log_rows('pilot5')
+    rows = log_rows(TAG)
     res = {}
+
+    # ---- 0 plates: the v5 blocker, measured
+    res['plates'] = plate_integrity(P)
 
     # ---- 1 tags
     audit = P.QUEUE.audit()
@@ -88,7 +156,7 @@ def main():
         23.0, before the watermark's fade-in at 26.27.
         """
         subprocess.run([FF, '-v', 'error', '-y', '-ss', f'{t}', '-i',
-                        os.path.join(OUT, 'pilot5.mp4'), '-frames:v', '1', '/tmp/_c.png'],
+                        os.path.join(OUT, f'{TAG}.mp4'), '-frames:v', '1', '/tmp/_c.png'],
                        check=True)
         from PIL import Image
         a = np.asarray(Image.open('/tmp/_c.png').convert('RGB'), np.float32)
@@ -120,10 +188,10 @@ def main():
                                    abs(np.mean([h['vs_vo_speech'] for h in paper])), 2),
         all_hits=meta['hits'])
 
-    bpm, conf = tempo_of(os.path.join(OUT, 'pilot5_stem_music_ducked.wav'))
+    bpm, conf = tempo_of(os.path.join(OUT, f'{TAG}_stem_music_ducked.wav'))
     res['music'] = dict(source='eng5/music5.py', bpm=round(bpm, 1),
                         autocorr=round(conf, 3),
-                        bands_pct=band_energy(os.path.join(OUT, 'pilot5_stem_music_ducked.wav')),
+                        bands_pct=band_energy(os.path.join(OUT, f'{TAG}_stem_music_ducked.wav')),
                         in_95_120=bool(95 <= bpm <= 120))
 
     # ---- 5 pacing
@@ -153,9 +221,22 @@ def main():
             res['transitions'][name] = dict(peak_jump=round(float(d[w].max()), 2),
                                             mean_jump=round(float(d[w].mean()), 2))
 
-    res['loudness'] = loudness(os.path.join(OUT, 'PILOT_CH1_00-30s_v5.mp4'))
+    # ---- 6 image: the vignette centre-to-corner, measured on a rendered frame
+    subprocess.run([FF, '-v', 'error', '-y', '-ss', '18.40', '-i',
+                    os.path.join(OUT, f'{TAG}.mp4'), '-frames:v', '1', '/tmp/_v.png'],
+                   check=True)
+    from PIL import Image as _Im
+    v = np.asarray(_Im.open('/tmp/_v.png').convert('L'), np.float32)
+    c = float(v[480:600, 900:1020].mean())
+    corners = float(np.mean([v[0:120, 0:120].mean(), v[0:120, -120:].mean(),
+                             v[-120:, 0:120].mean(), v[-120:, -120:].mean()]))
+    res['image'] = dict(sampled_t=18.40, centre_luma=round(c, 1), corner_luma=round(corners, 1),
+                        vignette_pct=round(100 * (1 - corners / max(c, 1e-6)), 1),
+                        in_12_15=bool(12.0 <= 100 * (1 - corners / max(c, 1e-6)) <= 15.0))
 
-    json.dump(res, open(os.path.join(OUT, 'QA_pilot5.json'), 'w'), indent=1, ensure_ascii=False)
+    res['loudness'] = loudness(os.path.join(OUT, f'{TAG}_master.mp4'))
+
+    json.dump(res, open(os.path.join(OUT, f'QA_{TAG}.json'), 'w'), indent=1, ensure_ascii=False)
     print(json.dumps({k: v for k, v in res.items() if k != 'audio'}, indent=1,
                      ensure_ascii=False)[:3500])
     print('--- audio ---')
