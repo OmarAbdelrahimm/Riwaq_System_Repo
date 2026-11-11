@@ -118,7 +118,14 @@ class Score:
         self.add(beat * BEAT, x, gain)
 
 
-def build(t_end=30.0, sting_t=22.42):
+def build(t_end=30.0, sting_t=22.42, marks=None, stings=None):
+    """`marks` are the section boundaries, `stings` the moments that get a riser and a hit.
+
+    The pilot hard-wired 4.35 / 9.97 / 15.96 / 22.42 / 25.60 into this function, which is
+    fine for 30 s and wrong for a 109 s chapter: the accelerando has to follow the film.
+    """
+    mk = marks or dict(b2=4.35, b3=9.97, b4=15.96, b5=22.42, out=25.60)
+    st = stings or [sting_t]
     s = Score(t_end)
     hk = t_axis(0.9)
     bs = t_axis(0.7)
@@ -128,16 +135,16 @@ def build(t_end=30.0, sting_t=22.42):
     tk = t_axis(0.12)
 
     s.add(0.0, pad([D3, A3, F4], pd, attack=1.2), 0.15)
-    s.add(9.97, pad([D3, F3, C4], pd, attack=0.6), 0.13)
-    s.add(15.96, pad([BB3, D4, F4], pd, attack=0.5), 0.14)
-    s.add(22.42, pad([D3, A3, D4, F4], pd, attack=0.06, release=1.1), 0.20)
-    s.add(25.60, pad([D3, F3, A3], pd, attack=0.25), 0.13)
+    s.add(mk['b3'], pad([D3, F3, C4], pd, attack=0.6), 0.13)
+    s.add(mk['b4'], pad([BB3, D4, F4], pd, attack=0.5), 0.14)
+    s.add(mk['b5'], pad([D3, A3, D4, F4], pd, attack=0.06, release=1.1), 0.20)
+    s.add(mk['out'], pad([D3, F3, A3], pd, attack=0.25), 0.13)
 
     b = 0.0
     while b * BEAT < t_end - 0.2:
         t0 = b * BEAT
-        g = 0.55 if t0 < 4.35 else 0.5
-        if 22.42 <= t0 < 25.60:
+        g = 0.55 if t0 < mk['b2'] else 0.5
+        if mk['b5'] <= t0 < mk['out']:
             g = 0.75
         s.at(b, bs, g)
         b += 1.0
@@ -155,15 +162,15 @@ def build(t_end=30.0, sting_t=22.42):
     while b * BEAT < t_end - 0.2:
         t0 = b * BEAT
         g = 0.30
-        if t0 < 4.35:
+        if t0 < mk['b2']:
             g = 0.20
-        if 22.42 <= t0 < 25.60:
+        if mk['b5'] <= t0 < mk['out']:
             g = 0.0
-        if t0 >= 25.60:
+        if t0 >= mk['out']:
             g = 0.26
         if g:
             f = arp[i % len(arp)]
-            if 9.97 <= t0 < 15.96:
+            if mk['b3'] <= t0 < mk['b4']:
                 f = f / 2.0
             s.at(b, pluck(f, hk, decay=9.0), g)
         b += 0.5
@@ -172,13 +179,13 @@ def build(t_end=30.0, sting_t=22.42):
     b = 8.5
     while b * BEAT < t_end - 0.3:
         t0 = b * BEAT
-        if not (22.42 <= t0 < 25.60):
-            g = 0.06 if t0 < 9.97 else 0.09
+        if not (mk['b5'] <= t0 < mk['out']):
+            g = 0.06 if t0 < mk['b3'] else 0.09
             s.at(b, hat(hh, seed=int(b * 7) + 1), g)
         b += 1.0
 
     b = 32.0
-    while b * BEAT < 22.42:
+    while b * BEAT < mk['b5']:
         s.at(b, tk, 0.030)
         b += 1.0
 
@@ -187,10 +194,12 @@ def build(t_end=30.0, sting_t=22.42):
     fr = 90 * (1 + 3.2 * (tr / rl) ** 2)
     riser = np.sin(2 * np.pi * np.cumsum(fr) / SR) * (tr / rl) ** 2
     riser += 0.25 * np.random.default_rng(3).normal(0, 1, len(tr)) * (tr / rl) ** 3
-    s.add(sting_t - rl, riser, 0.16)
+    for s_t in st:
+        s.add(s_t - rl, riser, 0.13 if s_t != st[0] else 0.16)
 
-    s.at(int(round(29.0 / BEAT)), pluck(D4, hk, decay=2.2), 0.34)
-    s.at(int(round(29.0 / BEAT + 2)), pluck(A4, hk, decay=2.2), 0.28)
+    # the last two beats of the chapter, on the button
+    s.at(int(round((t_end - 0.85) / BEAT)), pluck(D4, hk, decay=2.2), 0.34)
+    s.at(int(round((t_end - 0.85) / BEAT + 2)), pluck(A4, hk, decay=2.2), 0.28)
 
     x = s.buf
     x = x - x.mean()

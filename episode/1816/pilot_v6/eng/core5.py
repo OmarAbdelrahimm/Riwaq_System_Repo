@@ -189,7 +189,8 @@ def apply_flash(im, amount):
 
 class Snow:
     def __init__(self, n=420, speed=(70, 190), size=(1.2, 3.4), wind=-26.0, seed=7,
-                 alpha=(90, 210)):
+                 alpha=(90, 210), color=(248, 252, 255)):
+        self.color = color
         rng = np.random.default_rng(seed)
         self.n = n
         self.x0 = rng.uniform(-200, W + 200, n)
@@ -216,7 +217,7 @@ class Snow:
         mask = mask.resize((W, H), Image.BICUBIC).filter(ImageFilter.GaussianBlur(0.9))
         if blur:
             mask = mask.filter(ImageFilter.GaussianBlur(blur))
-        flake = Image.new('RGBA', (W, H), (248, 252, 255, 0))
+        flake = Image.new('RGBA', (W, H), self.color + (0,))
         flake.putalpha(mask)
         return Image.alpha_composite(dst, flake)
 
