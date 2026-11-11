@@ -58,7 +58,7 @@ SHOTS = [
     ('S02_farmers',   '01',   4.35,   9.97, 0.00, 1.0000),
     ('S03_europe',    '02',   9.97,  15.96, 0.00, 1.0000),
     ('S04_map',       'map', 15.96,  22.42, 0.00, 1.0000),
-    ('S05_monster',   '03',  22.42,  28.97, 2.95, 0.8180),
+    ('S05_monster',   '03',  22.42,  28.97, 2.95, 0.7455),
     ('S06_return',    '01',  28.97,  33.14, 2.60, 1.0000),
     ('S07_village',   '06',  33.14,  38.58, 0.00, 0.8000),
     ('S08_frost',     '07',  38.58,  46.22, 0.00, 1.0000),
@@ -273,7 +273,7 @@ def base_s05(t):
     """the monster in the arch window"""
     lt = t - 22.42
     cam = C.Camera(zoom=1.10 - 0.06 * ease(lt / 6.55), pan=(0, 0))
-    src_t = 2.95 + lt * 0.8180
+    src_t = 2.95 + lt * 0.7455
     base = C.grade5(PL['03'].frame(src_t, cam), warmth=0.86, sat=0.60).convert('RGBA')
     for peak in (4.90, 5.35):
         d = src_t - peak

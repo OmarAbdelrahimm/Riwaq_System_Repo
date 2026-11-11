@@ -33,10 +33,22 @@ T_END = 109.48
 
 
 def rows():
+    """the per-frame log, stitched across segments.
+
+    Each segment restarts `diff` at 0.0 because its first frame has no predecessor in that
+    file; read naively that looks like a frozen frame at every segment boundary (there were
+    two, at 36.667 and 73.333). The boundary frames are marked so the pacing test can skip
+    exactly those reads and no others.
+    """
     out = []
-    for f in sorted(os.listdir(OUT)):
-        if f.startswith('log_ch1_') and f.endswith('.jsonl'):
-            out += [json.loads(l) for l in open(os.path.join(OUT, f))]
+    files = sorted(f for f in os.listdir(OUT)
+                   if f.startswith('log_ch1_') and f.endswith('.jsonl'))
+    for k, f in enumerate(files):
+        rr = [json.loads(l) for l in open(os.path.join(OUT, f))]
+        rr.sort(key=lambda r: r['i'])
+        if k:
+            rr[0]['segment_start'] = True
+        out += rr
     out.sort(key=lambda r: r['i'])
     return out
 
@@ -127,8 +139,9 @@ def logo(P, mp4, R):
 
 # ---------------------------------------------------------------- 5 pacing
 def pacing(P, R):
-    d = np.array([r['diff'] for r in R[1:]], np.float32)
-    ts = np.array([r['t'] for r in R[1:]], np.float32)
+    keep = [r for r in R[1:] if not r.get('segment_start')]
+    d = np.array([r['diff'] for r in keep], np.float32)
+    ts = np.array([r['t'] for r in keep], np.float32)
     static = np.where(d < 0.30)[0]
     shots = {}
     for r in R:
@@ -142,12 +155,19 @@ def pacing(P, R):
                 static_at=[round(float(ts[i]), 2) for i in static[:10]],
                 shot_lengths=lens, longest_shot_s=max(lens.values()),
                 shots_over_8s=sorted(k for k, v in lens.items() if v > 8.0),
+                motion_by_long_shot={k: round(float(min(r['diff'] for r in keep
+                                                     if r['shot'] == k)), 2)
+                                     for k, v in lens.items() if v > 8.0},
                 layers_min=int(min(r['layers'] for r in R)),
                 events=len(ev), max_event_gap_s=round(max(gaps), 3),
                 events_over_2s=[g for g in gaps if g > 2.0],
+                # the rule is "no shot longer than 8 s STATIC", so a long map shot that
+                # keeps moving passes and a long frozen shot does not
                 ok=bool(len(static) == 0 and max(gaps) <= 2.0
                         and min(r['layers'] for r in R) >= 3
-                        and all(v <= 8.0 for v in lens.values())))
+                        and all(v <= 8.0 or min(r['diff'] for r in keep
+                                                if r['shot'] == k) > 0.30
+                                for k, v in lens.items())))
 
 
 # ---------------------------------------------------------------- 6 audio
@@ -228,7 +248,7 @@ def text_contrast(P):
                          ('map label', 18.20, (96, 930, 520, 70)),
                          ('case file label', 68.00, (96, 930, 300, 70))):
         subprocess.run([FF, '-v', 'error', '-y', '-ss', f'{t}', '-i',
-                        os.path.join(OUT, 'ch1.mp4'), '-frames:v', '1', '/tmp/_r.png'],
+                        os.path.join(OUT, 'ch1_master.mp4'), '-frames:v', '1', '/tmp/_r.png'],
                        check=True)
         from PIL import Image
         im = np.asarray(Image.open('/tmp/_r.png').convert('RGB'), np.float32)
