@@ -25,8 +25,8 @@ FF = '/home/user/ffmpeg'
 GD = '/home/user/Riwaq_System_Repo/google_drive'
 OUT = '/home/user/work/out'
 SR = 48000
-DUCK_DB = 11.0
-MUSIC_DUCKED_DB = -8.0
+DUCK_DB = 13.0
+MUSIC_DUCKED_DB = -17.0
 SFX_TABLE_DB = dict(paper_in=-15.0, paper_out=-17.0, pin=-18.0, needle=-19.0,
                     thread_draw=-17.5, sleet=-21.0, water=-18.5, stamp=-16.0,
                     sting=-10.0, thunder=-13.0)
@@ -65,7 +65,9 @@ def env_db(x, attack_ms=60, release_ms=380, block=64):
     return 20 * np.log10(np.maximum(out, 1e-9)), block
 
 
-def duck_gain(vo, depth_db=-11.0, thresh_db=-40.0, knee_db=8.0):
+def duck_gain(vo, depth_db=-13.0, thresh_db=-38.0, knee_db=7.0):
+    """a smooth duck: 13 dB of gain reduction under speech, and the give-back is spread
+    over a 7 dB knee so the music rises back through a pause instead of snapping."""
     d, block = env_db(vo)
     t = np.clip((d - (thresh_db - knee_db)) / (2 * knee_db), 0, 1)
     g_db = depth_db * (t * t * (3 - 2 * t))
@@ -85,6 +87,15 @@ def write_wav(path, x):
     with wave.open(path, 'wb') as w:
         w.setnchannels(x.shape[1]); w.setsampwidth(2); w.setframerate(SR)
         w.writeframes((np.clip(x, -1, 1) * 32767).astype(np.int16).tobytes())
+
+
+def music_levels(vo, music):
+    """measured music level under the voice and in the pauses -- QA reads these, nothing
+    in this file claims a number it has not computed."""
+    m = np.abs(vo).max(1) > 10 ** (-46 / 20)
+    if not m.any() or m.all():
+        return None, None
+    return (db(rms(music[m])), db(rms(music[~m])))
 
 
 def build(t_end=30.0, events=None, tag='pilot5', score_gain=None):

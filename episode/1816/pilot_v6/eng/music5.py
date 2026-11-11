@@ -72,6 +72,31 @@ def hat(t, seed=1, decay=90.0):
     return nz * np.exp(-t * decay) * 0.5
 
 
+def _bell_cut(x, f=1100.0, depth_db=-6.0):
+    """take a slice out of the band where speech carries its intelligibility.
+
+    The brief asks for -6 dB across 400 Hz - 3 kHz and nominates 1.1 kHz as the centre.
+    The suffix form of the high-pass is a cascade, which is exactly what gives a smooth
+    6 dB shelf rather than a notch with ringing -- a notch rings, a shelf does not.
+    """
+    X = np.fft.rfft(x, axis=0)
+    fr = np.fft.rfftfreq(len(x), 1 / SR)
+    lf = np.log2(np.maximum(fr, 1.0) / f)
+    g = 10 ** (depth_db / 20.0)
+    curve = 1.0 - (1.0 - g) * np.exp(-(lf / 0.55) ** 2)
+    X *= curve[:, None] if X.ndim > 1 else curve
+    return np.fft.irfft(X, len(x), axis=0).astype(np.float32)
+
+
+def _warmer(x, f=5200.0):
+    """a gentle top-end roll-off: the v5 score read as bright and synthetic under a
+    narrator with a dark, close voice."""
+    X = np.fft.rfft(x, axis=0)
+    fr = np.fft.rfftfreq(len(x), 1 / SR)
+    X *= (1.0 / (1.0 + (fr / f) ** 2))[:, None]
+    return np.fft.irfft(X, len(x), axis=0).astype(np.float32)
+
+
 def tick(t, f=1800.0, decay=60.0):
     return np.sin(2 * np.pi * f * t) * np.exp(-t * decay) * 0.35
 
@@ -140,7 +165,7 @@ def build(t_end=30.0, sting_t=22.42):
             f = arp[i % len(arp)]
             if 9.97 <= t0 < 15.96:
                 f = f / 2.0
-            s.at(b, pluck(f, hk), g)
+            s.at(b, pluck(f, hk, decay=9.0), g)
         b += 0.5
         i += 1
 
@@ -148,13 +173,13 @@ def build(t_end=30.0, sting_t=22.42):
     while b * BEAT < t_end - 0.3:
         t0 = b * BEAT
         if not (22.42 <= t0 < 25.60):
-            g = 0.10 if t0 < 9.97 else 0.16
+            g = 0.06 if t0 < 9.97 else 0.09
             s.at(b, hat(hh, seed=int(b * 7) + 1), g)
         b += 1.0
 
     b = 32.0
     while b * BEAT < 22.42:
-        s.at(b, tk, 0.055)
+        s.at(b, tk, 0.030)
         b += 1.0
 
     rl = 2.6
@@ -171,13 +196,17 @@ def build(t_end=30.0, sting_t=22.42):
     x = x - x.mean()
     X = np.fft.rfft(x)
     fr = np.fft.rfftfreq(len(x), 1 / SR)
-    X *= np.clip((fr - 18.0) / 18.0, 0, 1) ** 2
+    X *= np.clip((fr - 18.0) / 18.0, 0, 1) ** 2      # DC / subsonic
+    X *= 1.0 / (1.0 + (fr / 5200.0) ** 2)            # air off: warmer, softer
+    lf = np.log2(np.maximum(fr, 1.0) / 1100.0)
+    X *= 1.0 - 0.5 * np.exp(-(lf / 0.55) ** 2)       # -6 dB vocal pocket at 1.1 kHz
     x = np.fft.irfft(X, len(x)).astype(np.float32)
-    x = np.tanh(x * 1.1) * 0.92
+    x = np.tanh(x * 1.05) * 0.92
+    x = np.stack([x, x], 1)
     m = np.max(np.abs(x))
     if m > 0:
         x = x / m * 0.85
-    return np.stack([x, x], 1).astype(np.float32)
+    return x.astype(np.float32)
 
 
 def write_wav(path, x):
