@@ -75,16 +75,41 @@ class Tag:
     def h(self):
         return self.sprite['sprite'].height
 
+    def sprite_rect(self):
+        """where the visible ink actually lands on screen, given the shadow padding.
+
+        `home()` is the top-left of the PADDED sprite, which is drawn shadow-padding to the
+        left and above the card; so for a left slot the card itself starts pad px in. The
+        audit and the overlap test must use the ink rectangle, not the padded one.
+        """
+        x, y = self.home()                       # ink-box origin, sprite coordinate space
+        cx0, cy0, cx1, cy1 = self.sprite['card_box']
+        ix0, iy0, _, _ = self.sprite['box']
+        return (x - (ix0 - cx0), y - (iy0 - cy0),
+                x - (ix0 - cx0) + (cx1 - cx0), y - (iy0 - cy0) + (cy1 - cy0))
+
     def home(self):
+        """where the sprite's TEXT-INK box goes, which is what render() composites against.
+
+        The layout margin applies to the CARD, not to the ink and not to the shadow: the
+        card is `padx` inside the sprite and the shadow adds `pad` outside it. Both offsets
+        are subtracted here and nowhere else, so there is exactly one place that can be
+        wrong and one place to check it (sprite_rect()).
+        """
         m = int(round(0.05 * W))
-        w, h = self.w, self.h
+        top = int(round(0.08 * H))
+        bot = int(round(0.08 * H))
+        cx0, cy0, cx1, cy1 = self.sprite['card_box']
+        ix0, iy0, _, _ = self.sprite['box']
+        padx, pady = ix0 - cx0, iy0 - cy0      # ink offset inside the card
+        cw, ch = cx1 - cx0, cy1 - cy0
         if self.slot == 'A':
-            return m, int(round(0.08 * H))
+            return m + padx, top + pady
         if self.slot == 'B':
-            return W - m - w, int(round(0.08 * H))
+            return W - m - cw + padx, top + pady
         if self.slot == 'C':
-            return m, H - int(round(0.08 * H)) - h
-        return W - m - w, H - int(round(0.08 * H)) - h
+            return m + padx, H - bot - ch + pady
+        return W - m - cw + padx, H - bot - ch + pady
 
     def edge_dir(self):
         if self.slot in ('A', 'C'):
@@ -171,8 +196,7 @@ class TagLayoutQueue:
                 multi.append(round(t, 3))
             boxes = []
             for tag, st in act:
-                x, y = tag.home()
-                boxes.append((tag.name, x, y, x + tag.w, y + tag.h))
+                boxes.append((tag.name,) + tag.sprite_rect())
             for a in range(len(boxes)):
                 for b in range(a + 1, len(boxes)):
                     A, B = boxes[a], boxes[b]

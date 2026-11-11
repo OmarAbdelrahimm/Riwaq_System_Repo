@@ -331,9 +331,12 @@ def card(text, size=54, fill=INK, paper=PAPER, padx=40, pady=26, accent=ACCENT,
 
     blur, op = shadow
     sh, pad = shadow_of(sheet, blur=blur, off=(6, 10), alpha=int(255 * op))
+    # `box` is the TEXT ink rectangle; `card_box` is the card itself inside the padded
+    # sprite (the shadow adds `pad` on the top and left). Anchoring needs card_box: using
+    # box as if it were the card left the cards 39 px further from the edge than planned.
     return dict(sprite=sh,
                 box=(pad + padx, pad + pady, pad + padx + sp.width, pad + pady + sp.height),
-                pad=pad)
+                card_box=(pad, pad, pad + w, pad + h), pad=pad)
 
 
 def paper_tag(text, **kw):
@@ -363,7 +366,8 @@ def floating_line(text, size=40, fill=CREAM, alpha=0.65, shadow=True):
     sp2 = sp.copy()
     sp2.putalpha(sp2.split()[3].point(lambda v: int(v * alpha)))
     out.alpha_composite(sp2, (24, 24))
-    return dict(sprite=out, box=(24, 24, 24 + sp.width, 24 + sp.height), pad=24)
+    return dict(sprite=out, box=(24, 24, 24 + sp.width, 24 + sp.height),
+                card_box=(24, 24, 24 + sp.width, 24 + sp.height), pad=24)
 
 
 def stamp_sprite(text, size=86, ink=BURG, paper=PAPER_2, shadow=(18, 0.45)):
@@ -385,7 +389,8 @@ def stamp_sprite(text, size=86, ink=BURG, paper=PAPER_2, shadow=(18, 0.45)):
     im = big.resize((w, h), Image.LANCZOS)
     im.alpha_composite(sp, (48, 37))
     sh, pad = shadow_of(im, blur=shadow[0], off=(6, 10), alpha=int(255 * shadow[1]))
-    return dict(sprite=sh, box=(pad + 48, pad + 37, pad + 48 + sp.width, pad + 37 + sp.height))
+    return dict(sprite=sh, box=(pad + 48, pad + 37, pad + 48 + sp.width, pad + 37 + sp.height),
+                card_box=(pad, pad, pad + w, pad + h), pad=pad)
 
 
 def pin(dst, x, y, t, t0, r=13, col=GOLD):

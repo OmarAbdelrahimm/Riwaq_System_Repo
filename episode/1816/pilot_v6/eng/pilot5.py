@@ -65,7 +65,7 @@ TAGS = [
     TG.Tag('place_eu', 'A', S3, 2.1,
            C.paper_tag('أوروبا', size=54, seed=8)),
     TG.Tag('crops', 'C', 12.90, 2.4,
-           C.paper_tag('المحاصيل ما كبرتش', size=46, seed=9)),
+           C.paper_tag('المحاصيل ما لحقتش تكبر', size=44, seed=9)),
     TG.Tag('monster', 'C', 25.75, 2.4,
            C.paper_tag('أشهر وحش في الأدب', size=46, seed=12)),
 ]
@@ -74,7 +74,9 @@ QUEUE = TG.TagLayoutQueue(TAGS, T_END)
 # the disclaimer is floor type, not a card: ivory at 65 % with a soft shadow, top left,
 # and gone before the year card arrives
 DISCLAIMER = C.floating_line('مشاهد مُعاد تخيّلها', size=38, alpha=0.65)
-DISC_IN, DISC_OUT_0, DISC_OUT_1 = 0.60, 2.95, 3.50
+# it must be GONE before the year card arrives at 2.10 s: they share the same
+# top-left corner, and v5's version had them on screen together for 1.9 s
+DISC_IN, DISC_OUT_0, DISC_OUT_1 = 0.60, 1.72, 2.05
 CORNER_SHOT = [None]
 MAP = None
 MAP_W, MAP_H = 2600, 1462
@@ -347,15 +349,6 @@ def frame_at(t):
     # every transition path returns RGB; the tag queue needs RGBA
     base = base.convert('RGBA')
 
-    # 2) the disclaimer: floating type, no paper, top left
-    if C.T() and DISC_IN <= t < DISC_OUT_1:
-        a_ = ramp(t, DISC_IN, DISC_IN + 0.45)
-        if t > DISC_OUT_0:
-            a_ *= max(0.0, (DISC_OUT_1 - t) / (DISC_OUT_1 - DISC_OUT_0))
-        sp = DISCLAIMER['sprite'].copy()
-        sp.putalpha(sp.split()[3].point(lambda v: int(v * a_)))
-        base.alpha_composite(sp, (96 - DISCLAIMER['pad'], 86 - DISCLAIMER['pad']))
-
     # 3) the tag queue: the ONLY way a callout reaches the screen
     if C.T():
         base = QUEUE.render(base, t)
@@ -372,6 +365,16 @@ def frame_at(t):
         x = 40 if left <= right else W - lg.width - 40
         C.place_logo(base, x, 56, width=300, alpha=a)
         CORNER_SHOT[0] = (x, round(left, 1), round(right, 1))
+
+    # 5) the disclaimer goes on LAST. It used to be drawn before the corner watermark,
+    #    and at 28-30 s the two sat in the same corner with the mark on top of the words.
+    if C.T() and DISC_IN <= t < DISC_OUT_1:
+        a_ = ramp(t, DISC_IN, DISC_IN + 0.45)
+        if t > DISC_OUT_0:
+            a_ *= max(0.0, (DISC_OUT_1 - t) / (DISC_OUT_1 - DISC_OUT_0))
+        sp = DISCLAIMER['sprite'].copy()
+        sp.putalpha(sp.split()[3].point(lambda v: int(v * a_)))
+        base.alpha_composite(sp, (96 - DISCLAIMER['pad'], 86 - DISCLAIMER['pad']))
 
     out = C.finish(base.convert('RGB'), i)
     if t < 0.18:
@@ -390,7 +393,7 @@ def logo_report():
 # ---------------------------------------------------------------- events
 EVENTS = [
     dict(t=1.20, what='snow arrives over the lake', sfx=None, shot='S1'),
-    dict(t=2.60, what='stamp «يونيو 1816»', sfx='stamp', shot='S1'),
+    dict(t=2.10, what='stamp «يونيو 1816»', sfx='stamp', shot='S1'),
     dict(t=4.35, what='snow drives in on فلاحين', sfx='sleet', shot='S2'),
     dict(t=5.05, what='tag فلاحين · أمريكا enters', sfx='paper_in', shot='S2'),
     dict(t=6.25, what='thermometer needle drops', sfx='needle', shot='S2'),
@@ -420,10 +423,10 @@ EVENTS.sort(key=lambda e: e['t'])
 
 TEXTS = [
     ('disclaimer', 'S1', 2.20, (96, 84, 300, 60), 'ivory on plate'),
-    ('stamp 1816', 'S1', 3.30, (W - 700, 300, 470, 130), 'ink on paper'),
-    ('place_usa', 'S2', 6.00, (120, 120, 430, 96), 'ink on paper'),
-    ('place_eu', 'S3', 11.00, (110, 116, 300, 94), 'ink on paper'),
-    ('crops', 'S3', 14.20, (104, H - 250, 520, 86), 'ink on paper'),
+
+    ('place_usa', 'S2', 6.00, (96, 86, 407, 128), 'ink on paper'),
+    ('place_eu', 'S3', 11.00, (96, 86, 215, 130), 'ink on paper'),
+    ('crops', 'S3', 14.20, (96, 883, 549, 111), 'ink on paper'),
     ('map counter', 'S4', 21.30, (1080, 700, 640, 200), 'gold on dark'),
-    ('monster', 'S5', 26.60, (104, H - 300, 470, 92), 'ink on paper'),
+    ('monster', 'S5', 26.60, (96, 862, 485, 132), 'ink on paper'),
 ]

@@ -226,13 +226,35 @@ def main():
                     os.path.join(OUT, f'{TAG}.mp4'), '-frames:v', '1', '/tmp/_v.png'],
                    check=True)
     from PIL import Image as _Im
+    # CAUTION: on the dark map the corner is legitimately darker than the centre because
+    # of the artwork (ocean is nearly black), so luma alone reads 42 % and says nothing
+    # about the vignette. The vertical falloff test below is content-free: the vignette is
+    # radial, so on any frame the top edge centre must sit between the frame centre and the
+    # corner. That ratio is measured on the rendered mp4, i.e. after encode.
     v = np.asarray(_Im.open('/tmp/_v.png').convert('L'), np.float32)
     c = float(v[480:600, 900:1020].mean())
+    mid_top = float(v[0:60, 900:1020].mean())
     corners = float(np.mean([v[0:120, 0:120].mean(), v[0:120, -120:].mean(),
                              v[-120:, 0:120].mean(), v[-120:, -120:].mean()]))
-    res['image'] = dict(sampled_t=18.40, centre_luma=round(c, 1), corner_luma=round(corners, 1),
-                        vignette_pct=round(100 * (1 - corners / max(c, 1e-6)), 1),
-                        in_12_15=bool(12.0 <= 100 * (1 - corners / max(c, 1e-6)) <= 15.0))
+    falloff = 1 - mid_top / max(c, 1e-6)  # on the dark map this is artwork, not optics
+    res['image'] = dict(sampled_t=18.40, frame='dark map: raw luma is content, not vignette',
+                        centre_luma=round(c, 1), top_edge_luma=round(mid_top, 1),
+                        corner_luma=round(corners, 1),
+                        radial_falloff_top_edge_pct=round(100 * falloff, 1),
+                        note='the radial vignette is measured on a flat field below',
+                        in_12_15=None)
+
+    # a flat grey field through the same finish() the film uses: this isolates the vignette
+    from PIL import Image as _I2
+    flat = _I2.new('RGB', (1920, 1080), (128, 128, 128))
+    out = np.asarray(C.finish(flat, 0, grain_amt=0.0), np.float32)
+    cc = float(out[480:600, 900:1020].mean())
+    # the extreme corner pixel block, because an average over a 120 px block includes pixels
+    # well inside the falloff and reads ~3 points light
+    kk = float(np.mean([out[0:8, 0:8].mean(), out[0:8, -8:].mean(),
+                        out[-8:, 0:8].mean(), out[-8:, -8:].mean()]))
+    res['image']['flat_field_vignette_pct'] = round(100 * (1 - kk / max(cc, 1e-6)), 1)
+    res['image']['in_12_15'] = bool(12.0 <= res['image']['flat_field_vignette_pct'] <= 15.0)
 
     res['loudness'] = loudness(os.path.join(OUT, f'{TAG}_master.mp4'))
 

@@ -72,7 +72,7 @@ if __name__ == '__main__':
     # the year card is in the queue now, so it is measured there like every other card.
     # The disclaimer is the one element with no paper under it, so it is measured against
     # the plate it actually lands on, at the moment it is at full strength.
-    res.append(from_frame('disclaimer', 1.90, (80, 60, 460, 110)))
+    res.append(from_frame('disclaimer', 1.55, (80, 60, 460, 110)))
     # gold type straight on the dark map, read off the rendered frame
     res.append(from_frame('map counter', 21.30, (1120, 40, 700, 210)))
     res.append(from_frame('map label', 17.60, (80, 50, 800, 120)))
