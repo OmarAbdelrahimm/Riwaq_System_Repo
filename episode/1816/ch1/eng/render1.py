@@ -23,7 +23,7 @@ def _seg_cmd(dst, crf):
     return [FF, '-hide_banner', '-loglevel', 'error', '-y',
             '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-',
             '-c:v', 'libx264', '-preset', 'medium', '-crf', str(crf),
-            '-pix_fmt', 'yuv420p', '-g', '60', dst]
+            '-pix_fmt', 'yuv420p', '-g', '30', '-force_key_frames', 'expr:eq(n,0)', dst]
 
 
 def render(i0, i1, tag='ch1', crf=17, log=True):
