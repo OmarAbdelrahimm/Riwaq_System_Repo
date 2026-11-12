@@ -442,6 +442,75 @@ def logo_info():
     return LOGO
 
 
+# ---------------------------------------------------------------- the logo law
+# ONE position for the corner mark, in every chapter, for the whole ten minutes:
+# top-left, (56, 44), 145 px wide, 80 % opacity.
+#
+# v2 chose the corner per shot by sampling frame brightness, so the mark jumped left to
+# right at 0:40-0:43 and settled on the right for the rest of the chapter. A brand bug
+# that moves is a defect, not a layout decision: nothing in this engine may pass a
+# different x/y to corner_logo().
+CORNER_LOGO = dict(x=56, y=44, width=145, alpha=0.80)
+
+# the mark's footprint, so a card, tag or caption can be kept out of it
+CORNER_LOGO_BOX = (56, 44, 56 + 145, 44 + int(round(145 * 1063 / 1600)))
+
+
+def corner_logo(dst, alpha=None):
+    """draw the one and only corner watermark. Position is not a parameter.
+
+    The mark is knocked out of whatever is under it first: paper, a map label or a bright
+    plate would otherwise show through its counters and read as a doubled logo. A soft
+    plate-coloured pad at 88 % keeps it legible without drawing a box.
+    """
+    a = CORNER_LOGO['alpha'] if alpha is None else alpha
+    if a <= 0.004:
+        return dst
+    lg, _ = logo_scaled(CORNER_LOGO['width'])
+    pad = 14
+    iso = Image.new('RGBA', (lg.width + pad * 2, lg.height + pad * 2), (0, 0, 0, 0))
+    iso.alpha_composite(lg, (pad, pad))
+    mask = iso.split()[3].filter(ImageFilter.GaussianBlur(10)).point(lambda v: int(v * 0.74))
+    knock = Image.new('RGBA', iso.size, (16, 13, 10, 0))
+    knock.putalpha(mask)
+    dst.alpha_composite(knock, (CORNER_LOGO['x'] - pad, CORNER_LOGO['y'] - pad))
+    place_logo(dst, CORNER_LOGO['x'], CORNER_LOGO['y'], width=CORNER_LOGO['width'],
+               alpha=a, shadow=False)
+    return dst
+
+
+def hero_logo(dst, cx=960, cy=540, width=420, scale=1.0, alpha=1.0, dim=0.0):
+    """the cinematic centre reveal: the mark, a soft scrim behind it, ease-out scale.
+
+    `dim` (0-1) lowers the frame behind the mark so a bright plate cannot swallow an ivory
+    wordmark. The scrim is a radial falloff, not a box: a rectangle behind the logo reads
+    as a title card and fights the film.
+    """
+    if alpha <= 0.004:
+        return dst
+    if dim > 0.004:
+        yy, xx = np.mgrid[0:dst.height, 0:dst.width].astype(np.float32)
+        r = np.sqrt(((xx - cx) / (dst.width * 0.42)) ** 2 +
+                    ((yy - cy) / (dst.height * 0.52)) ** 2)
+        m = np.clip(1.0 - r, 0, 1) ** 1.6 * dim
+        a = np.asarray(dst.convert('RGB'), np.float32)
+        a *= (1.0 - 0.74 * m)[..., None]
+        dst = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert('RGBA')
+    lg, _ = logo_scaled(int(round(width * scale)))
+    if alpha < 1.0:
+        lg = lg.copy()
+        lg.putalpha(lg.split()[3].point(lambda v: int(v * alpha)))
+    pad = 30
+    gl = Image.new('RGBA', (lg.width + pad * 2, lg.height + pad * 2), (0, 0, 0, 0))
+    gl.alpha_composite(lg, (pad, pad))
+    sh = Image.new('RGBA', gl.size, (0, 0, 0, 0))
+    sh.putalpha(gl.split()[3].filter(ImageFilter.GaussianBlur(18))
+                .point(lambda v: int(v * 0.55)))
+    dst.alpha_composite(sh, (int(cx - gl.width / 2) + 2, int(cy - gl.height / 2) + 6))
+    dst.alpha_composite(gl, (int(cx - gl.width / 2), int(cy - gl.height / 2)))
+    return dst
+
+
 def logo_scaled(width):
     """scale the supplied lockup to `width`, preserving its aspect ratio exactly"""
     li = logo_info()

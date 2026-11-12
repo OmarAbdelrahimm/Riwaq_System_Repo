@@ -1248,6 +1248,11 @@ def build_tags():
 build_tags()
 DISCLAIMER = C.floating_line('مشاهد مُعاد تخيّلها', size=38, alpha=0.65)
 DISC_IN, DISC_OUT_0, DISC_OUT_1 = 0.60, 1.72, 2.05
+# the centre logo reveal over the end of the monster shot
+HERO_IN, HERO_OUT = 27.00, 29.00
+# test switches: the logo audit renders the same frame with the marks suppressed and
+# differences the two, which locates the ink exactly instead of guessing from brightness
+logo_off = {'corner': False, 'hero': False}
 
 
 # ---------------------------------------------------------------- transitions
@@ -1307,19 +1312,22 @@ def frame_at(t):
     if C.T():
         base = QUEUE.render(base, t)
 
-    # 2) the corner watermark is present for the whole chapter after the button
-    if 28.97 <= t < 64.31:
-        a = min(1.0, ramp(t, 28.97, 29.42))
-        lg, _ = C.logo_scaled(300)
-        L = np.asarray(base.convert('L'), np.float32)
-        zy = (56, 56 + 210)
-        left = float(L[zy[0]:zy[1], 40:40 + lg.width].mean())
-        right = float(L[zy[0]:zy[1], W - 40 - lg.width:W - 40].mean())
-        x = 40 if left <= right else W - lg.width - 40
-        C.place_logo(base, x, 56, width=300, alpha=a)
-    if t >= 64.31:
-        a = min(1.0, ramp(t, 64.31, 64.76))
-        C.place_logo(base, W - 340, 56, width=300, alpha=a)
+    # 2) the logo. ONE corner, locked at (56, 44), 145 px, 80 %, every frame of the
+    # chapter -- and it is suppressed only while the centre reveal is on screen, so the
+    # two marks can never share a frame.
+    # the two marks are mutually exclusive, but each has its own suppression switch so the
+    # audit can difference them independently
+    hero_on = HERO_IN <= t < HERO_OUT
+    if hero_on and not logo_off['hero']:
+        # 1:27.0-1:29.0: scrim, ease-out scale 0.94 -> 1.0, fade out before the cut
+        u = ramp(t, HERO_IN, HERO_IN + 0.70)
+        a = min(ramp(t, HERO_IN + 0.06, HERO_IN + 0.44),
+                1.0 - ramp(t, HERO_OUT - 0.30, HERO_OUT))
+        sc = 0.94 + 0.06 * (1.0 - (1.0 - u) ** 3)
+        base = C.hero_logo(base, 960, 540, width=420, scale=sc, alpha=a,
+                           dim=0.55 * ease(ramp(t, HERO_IN, HERO_IN + 0.5)))
+    if not hero_on and not logo_off['corner']:
+        C.corner_logo(base)          # 80 %, from the first frame to the last
 
     # 3) the disclaimer goes on before anything can share its corner, and leaves first
     if C.T() and DISC_IN <= t < DISC_OUT_1:

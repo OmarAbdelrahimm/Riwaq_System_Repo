@@ -24,6 +24,9 @@ from PIL import Image
 
 W, H = 1920, 1080
 
+# the fixed footprint of the corner mark; see core5.CORNER_LOGO
+CORNER_LOGO_BOX = (56, 44, 201, 140)
+
 ENTER = 0.40
 EXIT = 0.30
 STAGGER = 0.50
@@ -97,7 +100,9 @@ class Tag:
         wrong and one place to check it (sprite_rect()).
         """
         m = int(round(0.05 * W))
-        top = int(round(0.08 * H))
+        # slot A clears the corner watermark (56,44 145x97) by 12 px: the logo never moves,
+        # so the card is the thing that gets out of its way
+        top = CORNER_LOGO_BOX[3] + 12
         bot = int(round(0.08 * H))
         cx0, cy0, cx1, cy1 = self.sprite['card_box']
         ix0, iy0, _, _ = self.sprite['box']
@@ -108,7 +113,8 @@ class Tag:
         if self.slot == 'B':
             return W - m - cw + padx, top + pady
         if self.slot == 'C':
-            return m + padx, H - bot - ch + pady
+            # 96 px up from the bottom margin keeps a tag clear of the map caption at y=930
+            return m + padx, H - bot - ch + pady - 44
         return W - m - cw + padx, H - bot - ch + pady
 
     def edge_dir(self):
