@@ -875,8 +875,8 @@ CARDS = [
     ('c2_vei',      'B', 122.30, 2.30, 'VEI 7 — أكبر تصنيف مسجّل'),
     ('c2_bury',     'C', 139.90, 2.00, 'قرية كاملة تحت الرماد'),
     ('c2_hidden',   'C', 160.45, 1.95, 'غازات… مش رماد'),
-    ('c2_so2',      'A', 183.60, 2.10, 'SO₂ في الستراتوسفير'),
-    ('c2_verdict',  'C', 191.60, 2.70, 'VERDICT:gas'),
+    ('c2_so2',      'B', 183.60, 2.10, 'SO₂ في الستراتوسفير'),
+    ('c2_verdict',  'D', 191.60, 2.70, 'VERDICT:gas'),
     ('c2_hold',     'C', 219.60, 2.20, 'التبريد مش آخر الفصل'),
 ]
 TAGS, QUEUE = [], None
@@ -1467,18 +1467,15 @@ def _vei_sheet(u):
         im.alpha_composite(sp, (x + bw // 2 - sp.width // 2, base_y - int(hh) - 32))
     sp = C.text_sprite('حجم الرماد (م٣)', 24, fill=(96, 82, 66), fname=AR)
     im.alpha_composite(sp, (56, 148))
-    # the 1815 mark: a leader from the VEI-7 bar out to the right margin, where there is
-    # paper for the words. Over the bars it printed on top of the value labels.
-    if u > 0.60:
-        a = ramp(u, 0.60, 0.92)
+    # the 1815 mark goes UNDER the axis, on the year's own bar: any label drawn beside
+    # bars 6 and 7 lands on a bar, because the last bar is the right edge of the sheet.
+    if u > 0.56:
+        a = ramp(u, 0.56, 0.90)
         x = x0 + 7 * step + bw // 2
-        ly = base_y - int((base_y - top_y) * 0.62)
-        d.line([(x + 10, ly), (w - 210, ly)], fill=(150, 50, 36, int(190 * a)), width=3)
-        d.ellipse([x + 4, ly - 5, x + 14, ly + 5], fill=(150, 50, 36, int(230 * a)))
-        sp = C.text_sprite('تامبورا ١٨١٥', 30, fill=(150, 50, 36), fname=AR)
+        sp = _num_sprite('١٨١٥', 36, (150, 50, 36))
         sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
-        im.alpha_composite(sp, (int(w - 202), int(ly - sp.height / 2)))
-    hand_text(im, 56, h - 134, 'أكبر ثوران مسجّل في التاريخ البشري', size=32,
+        im.alpha_composite(sp, (x - sp.width // 2, base_y + 54))
+    hand_text(im, 56, h - 134, 'تامبورا — أكبر ثوران مسجّل في التاريخ البشري', size=32,
               fill=(64, 48, 36), font_name=AR)
     return im
 
@@ -1529,6 +1526,15 @@ def _column_sheet(u):
     return im
 
 
+def _num_sprite(text, size, fill):
+    """Arabic-Indic figures with no bidi pass, in the one font that actually has them."""
+    f = C.font('Amiri-Bold.ttf', size)
+    box = f.getbbox(text)
+    im = Image.new('RGBA', (box[2] - box[0] + 16, box[3] - box[1] + 16), (0, 0, 0, 0))
+    ImageDraw.Draw(im).text((8 - box[0], 8 - box[1]), text, font=f, fill=fill + (255,))
+    return im
+
+
 def _toll_sheet(u):
     w, h = 1000, 560
     im = _card(w, h, (238, 230, 214), seed=321)
@@ -1541,8 +1547,8 @@ def _toll_sheet(u):
         if k and k % 3 == 0:
             grp = '،' + grp
         grp = arabic[int(ch)] + grp
-    sp = C.text_sprite(grp, 150, fill=(150, 52, 38))
-    im.alpha_composite(sp, ((w - sp.width) // 2, 120))
+    sp = _num_sprite(grp, 168, (150, 52, 38))
+    im.alpha_composite(sp, ((w - sp.width) // 2, 108))
     sp2 = C.text_sprite('تقديرات مختلفة لعشرات الآلاف', 36, fill=(60, 46, 34),
                         fname=AR)
     im.alpha_composite(sp2, ((w - sp2.width) // 2, 330))
@@ -1652,25 +1658,45 @@ def _so2_sheet(u):
     hand_text(im, 52, 36, 'SO₂ — ثاني أكسيد الكبريت', size=40, fill=(52, 38, 26),
               font_name=AR)
     d.line([(52, 104), (w - 52, 104)], fill=(120, 96, 74, 140), width=3)
-    cx, cy = w // 2, int(h * 0.46)
-    # the molecule, drawn to scale-ish: S centre, two O at 120 degrees
-    r = 74
+    # the molecule alone left two thirds of the sheet blank; give it the reaction it
+    # stands for, with the atoms in the same two colours as the diagram
+    cx, cy = int(w * 0.30), int(h * 0.47)
+    r = 66
     for ang in (-90 - 58, -90 + 58):
-        ax = cx + r * 1.55 * math.cos(math.radians(ang))
-        ay = cy + r * 1.55 * math.sin(math.radians(ang))
+        ax = cx + r * 1.5 * math.cos(math.radians(ang))
+        ay = cy + r * 1.5 * math.sin(math.radians(ang))
         a = ramp(u, 0.25, 0.8)
-        d.ellipse([ax - 44, ay - 44, ax + 44, ay + 44],
-                  fill=(196, 78, 58, int(225 * a)))
-        sp = C.text_sprite('O', 44, fill=(250, 244, 234))
-        sp = sp.copy()
+        d.ellipse([ax - 40, ay - 40, ax + 40, ay + 40], fill=(196, 78, 58, int(225 * a)))
+        sp = C.text_sprite('O', 42, fill=(250, 244, 234)).copy()
         sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
         im.alpha_composite(sp, (int(ax - sp.width / 2), int(ay - sp.height / 2)))
     a = ramp(u, 0.10, 0.6)
-    d.ellipse([cx - 52, cy - 52, cx + 52, cy + 52], fill=(214, 176, 84, int(240 * a)))
-    sp = C.text_sprite('S', 50, fill=(60, 46, 30))
-    sp = sp.copy()
+    d.ellipse([cx - 48, cy - 48, cx + 48, cy + 48], fill=(214, 176, 84, int(240 * a)))
+    sp = C.text_sprite('S', 48, fill=(60, 46, 30)).copy()
     sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
     im.alpha_composite(sp, (cx - sp.width // 2, cy - sp.height // 2))
+
+    # the reaction, on the paper to the right of the molecule. Stacked, not arrowed
+    # across: an LTR arrow inside an RTL layout reads backwards whichever way it points.
+    rx = w - 96
+    a = ramp(u, 0.45, 0.90)
+
+    def row(txt, right, y, size, fill, fname=None):
+        sp = C.text_sprite(txt, size, fill=fill, **({'fname': fname} if fname else {})).copy()
+        sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
+        im.alpha_composite(sp, (int(right - sp.width), int(y)))
+        return sp.width
+
+    y0 = int(h * 0.28)
+    row('H₂O', rx, y0, 44, (56, 44, 32))
+    row('+', rx - 96, y0, 44, (120, 100, 80))
+    row('SO₂', rx - 150, y0, 44, (56, 44, 32))
+    d.line([(rx - 300, y0 + 78), (rx, y0 + 78)],
+           fill=(150, 62, 44, int(190 * a)), width=3)
+    d.polygon([(rx - 150, y0 + 92), (rx - 162, y0 + 74), (rx - 138, y0 + 74)],
+              fill=(150, 62, 44, int(200 * a)))
+    row('H₂SO₄', rx, y0 + 128, 46, (150, 52, 38))
+    row('قطرات حمض كبريتيك', rx, y0 + 200, 28, (96, 80, 64), 'Amiri-Regular.ttf')
     sp = C.text_sprite('غاز انطلق مع الثوران وطلع لطبقات عالية', 32, fill=(64, 50, 38),
                        fname=AR)
     im.alpha_composite(sp, ((w - sp.width) // 2, h - 96))
@@ -1711,33 +1737,57 @@ def _rise_sheet(u):
 
 def _split_sheet(u):
     """one eruption, two hemispheres: the veil closes in the south too."""
-    w, h = 1200, 660
+    w, h = 1200, 620
     im = _card(w, h, (234, 226, 210), seed=381)
     d = ImageDraw.Draw(im, 'RGBA')
-    hand_text(im, 52, 36, 'نص الكرة الشمالي ونصها الجنوبي', size=38, fill=(52, 38, 26),
+    hand_text(im, 52, 34, 'نص الكرة الشمالي ونصها الجنوبي', size=38, fill=(52, 38, 26),
               font_name=AR)
-    d.line([(52, 102), (w - 52, 102)], fill=(120, 96, 74, 140), width=3)
-    eq = int(h * 0.54)
-    # two bands of veil, north first, then south
-    for k, (y0, y1, t0) in enumerate(((150, eq - 10, 0.10), (eq + 10, h - 120, 0.55))):
-        a = ramp(u, t0, t0 + 0.35)
-        d.rectangle([80, y0, w - 80, y1], fill=(168, 156, 138, int(70 * a)))
-        for j in range(4):
-            yy = y0 + (y1 - y0) * (j + 0.5) / 4.0
-            d.line([(80, yy), (w - 80, yy + 3)], fill=(214, 204, 186, int(70 * a)), width=2)
-        # the label goes in the paper margin, in dark ink: red on a grey veil was
-        # unreadable, and a label is not decoration
-        sp = C.text_sprite('فوق' if k == 0 else 'وتحت', 34, fill=(140, 52, 38), fname=AR)
+    d.line([(52, 100), (w - 52, 100)], fill=(120, 96, 74, 140), width=3)
+    # a globe on the left: graticule, terminator, equator
+    cx, cy, rr = 300, 340, 190
+    d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=(30, 46, 60, 255))
+    for k in range(1, 7):
+        yy = cy - rr + k * (2 * rr / 7.0)
+        hw = math.sqrt(max(rr * rr - (yy - cy) ** 2, 0))
+        d.line([(cx - hw, yy), (cx + hw, yy)], fill=(78, 106, 128, 110), width=2)
+    for k in range(1, 9):
+        xx = cx - rr + k * (2 * rr / 9.0)
+        hh = math.sqrt(max(rr * rr - (xx - cx) ** 2, 0))
+        d.line([(xx, cy - hh), (xx, cy + hh)], fill=(78, 106, 128, 90), width=2)
+    d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], outline=(120, 140, 158, 220), width=3)
+    d.line([(cx - rr, cy), (cx + rr, cy)], fill=(226, 206, 168, 235), width=4)
+    # the veil, closing in the north first and then the south
+    for k, (y0, t0, name, den) in enumerate(((cy - rr, 0.10, 'فوق', 156),
+                                             (cy, 0.50, 'وتحت', 96))):
+        a = ramp(u, t0, t0 + 0.32)
+        if a <= 0.02:
+            continue
+        ov = Image.new('RGBA', im.size, (0, 0, 0, 0))
+        od = ImageDraw.Draw(ov)
+        od.rectangle([cx - rr, y0, cx + rr, y0 + rr], fill=(226, 214, 186, int(den * a)))
+        mask = Image.new('L', im.size, 0)
+        ImageDraw.Draw(mask).ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=255)
+        od = Image.composite(ov, Image.new('RGBA', im.size, (0, 0, 0, 0)), mask)
+        im.alpha_composite(od)
+        sp = C.text_sprite(name, 34, fill=(150, 52, 38), fname=AR)
         sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
-        im.alpha_composite(sp, (w - 74 - sp.width + 22, int((y0 + y1) / 2) - sp.height // 2))
-    d.line([(60, eq), (w - 60, eq)], fill=(120, 100, 78, 220), width=4)
-    sp = C.text_sprite('خط الاستواء', 26, fill=(96, 80, 64), fname=AR)
-    im.alpha_composite(sp, (74, eq - sp.height - 6))
-    if u > 0.75:
-        a = ramp(u, 0.75, 1.0)
-        sp = C.text_sprite('التأثير مش محصور في نص واحد', 34, fill=(56, 44, 32), fname=AR)
+        im.alpha_composite(sp, (cx - rr - sp.width - 24, int(y0 + rr * 0.45) - sp.height // 2))
+    # the notes, on the paper to the right of the globe
+    tx = cx + rr + 70
+    sp = C.text_sprite('الشمال', 34, fill=(56, 44, 32), fname=AR)
+    im.alpha_composite(sp, (tx, 170))
+    sp = C.text_sprite('الرماد والغازات لفوق', 28, fill=(96, 80, 64), fname=AR)
+    im.alpha_composite(sp, (tx, 218))
+    sp = C.text_sprite('الجنوب', 34, fill=(56, 44, 32), fname=AR)
+    im.alpha_composite(sp, (tx, 330))
+    sp = C.text_sprite('برضو اتأثر', 28, fill=(96, 80, 64), fname=AR)
+    im.alpha_composite(sp, (tx, 378))
+    d.line([(tx, 316), (tx + 180, 316)], fill=(120, 96, 74, 140), width=2)
+    if u > 0.80:
+        a = ramp(u, 0.80, 1.0)
+        sp = C.text_sprite('التأثير مش محصور في نص واحد', 30, fill=(56, 44, 32), fname=AR)
         sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
-        im.alpha_composite(sp, ((w - sp.width) // 2, h - 76))
+        im.alpha_composite(sp, ((w - sp.width) // 2, h - 66))
     return im
 
 
@@ -1953,19 +2003,29 @@ def _mechanism_sheet(u):
     d = ImageDraw.Draw(im, 'RGBA')
     hand_text(im, 52, 36, 'الآلية، خطوة بخطوة', size=38, fill=(52, 38, 26), font_name=AR)
     d.line([(52, 102), (w - 52, 102)], fill=(120, 96, 74, 140), width=3)
+    # the chain reads right to left across the card, not down a spine: the five steps
+    # only need one line, and a stack left two thirds of the paper empty
     steps = ('ثوران', 'SO₂ لفوق', 'كبريتات', 'شمس أضعف', 'برودة')
-    top, bot = 160, h - 120
+    y = 300
+    arts, gap = [], 54
     for k, s in enumerate(steps):
-        y = top + (bot - top) * k / (len(steps) - 1.0)
-        a = ramp(u, 0.06 * k, 0.06 * k + 0.35)
-        sp = C.text_sprite(s, 34, fill=(56, 44, 32), fname=AR)
-        sp = sp.copy()
+        a = ramp(u, 0.13 * k, 0.13 * k + 0.26)
+        sp = C.text_sprite(s, 38, fill=(56, 44, 32), fname=AR).copy()
         sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
-        x = w - 120 - sp.width
-        im.alpha_composite(sp, (x, int(y) - sp.height // 2))
-        d.ellipse([w - 96, int(y) - 9, w - 78, int(y) + 9],
-                  fill=(150, 62, 44, int(230 * a)))
-        if k < len(steps) - 1:
-            _arrow(d, (w - 87, int(y) + 14), (w - 87, int(y) + (bot - top) /
-                   (len(steps) - 1.0) - 16), (140, 116, 88, int(190 * a)), 3, 11)
+        arts.append((sp, a))
+    arts = arts[::-1]        # RTL: the first beat of the chain sits at the right edge
+    y = 300
+    total = sum(a.width for a, _ in arts) + gap * (len(arts) - 1)
+    x = (w - total) // 2
+    for k, (sp, a) in enumerate(arts):
+        im.alpha_composite(sp, (x, y - sp.height // 2))
+        if k < len(arts) - 1:
+            ax = x + sp.width + 10
+            _arrow(d, (ax + gap - 20, y), (ax, y), (150, 62, 44, int(220 * a)), 3, 12)
+        x += sp.width + gap
+    d.line([(84, y + 96), (w - 84, y + 96)], fill=(120, 96, 74, int(120 * u)), width=2)
+    a = ramp(u, 0.5, 0.85)
+    sp = C.text_sprite('من الثوران لحد البرودة', 30, fill=(96, 80, 64), fname=AR).copy()
+    sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
+    im.alpha_composite(sp, ((w - sp.width) // 2, y + 132))
     return im
