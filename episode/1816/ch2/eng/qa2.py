@@ -299,7 +299,7 @@ def text_contrast(P):
         subprocess.run([FF, '-v', 'error', '-y', '-ss', f'{t - P.T0:.3f}', '-i', mp4p,
                         '-frames:v', '1', '/tmp/_r.png'], check=True)
         im = np.asarray(Image.open('/tmp/_r.png').convert('RGB'), np.float32)
-        crop = im[900:1020, 60:900].reshape(-1, 3)
+        crop = im[880:1030, 40:960].reshape(-1, 3)
         l = crop @ np.array([0.2126, 0.7152, 0.0722], np.float32)
         ink = crop[l >= np.percentile(l, 90)].mean(0)
         bg = np.median(crop[l <= np.percentile(l, 45)], axis=0)

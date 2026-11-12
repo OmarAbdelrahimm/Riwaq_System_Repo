@@ -39,7 +39,7 @@ def main(mp4='RUWAQ_CH2_master.mp4'):
                             stdout=subprocess.PIPE)
     rows, prev = [], None
     layers = P.levels()
-    out = open(os.path.join(OUT, 'log_ch2_all.jsonl'), 'w')
+    out = open(os.path.join(OUT, 'log_%s.jsonl' % os.environ.get('CH2_TAG', 'ch2')), 'w')
     for i in range(n):
         t = P.T0 + i / FPS
         buf = proc.stdout.read(W * H * 3)

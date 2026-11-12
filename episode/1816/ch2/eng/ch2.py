@@ -249,7 +249,7 @@ def label(base, text, x, y, t, t_in, t_out, size=48, fill=(226, 218, 200), shado
         sc = Image.new('RGBA', (sp.width + pad * 2, sp.height + pad * 2), (0, 0, 0, 0))
         sc.alpha_composite(sp, (pad, pad))
         al = sc.split()[3].filter(ImageFilter.GaussianBlur(11)).point(
-            lambda v: int(min(255, v * 2.5) * 0.92))
+            lambda v: int(min(255, v * 3.4) * 0.95))
         dark = Image.new('RGBA', sc.size, (6, 8, 11, 0))
         dark.putalpha(al)
         if a < 1:
@@ -856,13 +856,13 @@ LINES = [
     ('S02_map',      106.60, 112.40, 48, 'إبريل ١٨١٥ — جزيرة سومباوا'),
     ('S03_wake',     112.70, 117.20, 46, 'تونجّار، إندونيسيا'),
     ('S07_ashfall',  131.40, 138.15, 48, 'الرماد غطّى الجزر'),
-    ('S08_village',  138.50, 144.70, 44, 'كارثة مباشرة'),
+    ('S08_village',  143.95, 144.70, 44, 'كارثة مباشرة'),
     ('S10_map_out',  149.90, 153.25, 46, 'الانفجار ما وقفش عند الجزيرة'),
-    ('S12_hidden',   159.10, 163.05, 46, 'حاجة شغّالة بعيد عن العيون'),
+    ('S12_hidden',   159.10, 160.25, 46, 'حاجة شغّالة بعيد عن العيون'),
     ('S13_change',   163.40, 166.25, 46, 'صيف السنة اللي بعدها'),
     ('S14_question', 166.60, 168.80, 46, 'إيه اللي حصل؟'),
     ('S21_planet',   196.20, 197.98, 44, 'الرياح لفته حوالي الكوكب'),
-    ('S27_turn',     218.30, 225.30, 46, 'بس التبريد لوحده مش أخطر حاجة'),
+    ('S27_turn',     218.30, 219.45, 46, 'بس التبريد لوحده مش أخطر حاجة'),
 ]
 LINES_BY_SHOT = {}
 for _n, _a, _b, _sz, _tx in LINES:
@@ -873,11 +873,11 @@ for _n, _a, _b, _sz, _tx in LINES:
 # (name, slot, cue, hold, text) -- one tag at a time, sequenced by the queue
 CARDS = [
     ('c2_vei',      'C', 122.30, 2.30, 'VEI 7 — أكبر تصنيف مسجّل'),
-    ('c2_bury',     'C', 139.60, 3.20, 'قرية كاملة تحت الرماد'),
-    ('c2_hidden',   'C', 160.00, 2.20, 'غازات… مش رماد'),
+    ('c2_bury',     'C', 139.90, 2.00, 'قرية كاملة تحت الرماد'),
+    ('c2_hidden',   'C', 160.40, 2.00, 'غازات… مش رماد'),
     ('c2_so2',      'A', 183.60, 2.10, 'SO₂ في الستراتوسفير'),
     ('c2_verdict',  'C', 191.60, 2.70, 'VERDICT:gas'),
-    ('c2_hold',     'C', 219.20, 2.60, 'التبريد مش آخر الفصل'),
+    ('c2_hold',     'C', 219.60, 2.20, 'التبريد مش آخر الفصل'),
 ]
 TAGS, QUEUE = [], None
 CORNER = C.CORNER_LOGO_BOX
@@ -1306,8 +1306,8 @@ def _beach_backdrop(lt, dur, seed=11):
                            .filter(ImageFilter.GaussianBlur(26)), np.float32) / 40.0
         a = np.zeros((H, W, 3), np.float32)
         sky = np.clip((hz - yy) / hz, 0, 1)
-        a[...] = np.array([15, 16, 18], np.float32)
-        a += (sky ** 1.7)[..., None] * np.array([34, 29, 23], np.float32)
+        a[...] = np.array([11, 12, 14], np.float32)
+        a += (sky ** 1.9)[..., None] * np.array([22, 19, 15], np.float32)
         a += (cloud * sky * 18)[..., None] * np.array([0.62, 0.55, 0.46], np.float32)
         # the water: horizontal streaks, not concentric ripples. Stretching the noise
         # 6:1 vertically is what makes a surface read as water at night; regular rings
@@ -1317,7 +1317,7 @@ def _beach_backdrop(lt, dur, seed=11):
         streak = np.asarray(Image.fromarray(((n3 * 40) + 128).clip(0, 255).astype(np.uint8))
                             .resize((W, H), Image.BICUBIC), np.float32) / 40.0
         depth = np.clip((yy - hz) / (H * 0.36), 0, 1)
-        a += (sea * (1 - depth * 0.7))[..., None] * np.array([9, 13, 18], np.float32)
+        a += (sea * (1 - depth * 0.7))[..., None] * np.array([6, 9, 13], np.float32)
         glow = np.exp(-((xx - W * 0.60) / 460.0) ** 2 - ((yy - hz) / (H * 0.30)) ** 2)
         a += (sea * np.clip(streak + 0.4, 0, 1) ** 2 * glow * 34)[..., None] * \
             np.array([0.72, 0.80, 0.88], np.float32)
