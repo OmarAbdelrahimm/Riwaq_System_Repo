@@ -17,11 +17,13 @@ from ch2.eng import ch2 as P                              # noqa: E402
 
 CELL = (960, 540)
 PROOF = [
+    # Arabic only at the END of a caption: a mixed run in the middle of an English
+    # sentence re-orders visually and the two halves collide
     (108.6, '1:48.6  land on Sumbawa · إبريل ١٨١٥'),
     (119.6, '1:59.6  the section: 4300 m down to 2850 m'),
-    (123.3, '2:03.3  VEI 7 · تامبورا ١٨١٥ marked on the bar'),
+    (123.3, '2:03.3  VEI 7 marked on the bar'),
     (141.0, '2:21.0  clip 06 — the buried village, faces cropped out'),
-    (148.0, '2:28.0  عشرات الآلاف, counted on stock'),
+    (148.0, '2:28.0  the toll, counted on stock'),
     (197.0, '3:17.0  the veil goes round the planet'),
 ]
 
@@ -50,8 +52,23 @@ def main(out='/home/user/work/out2/CH2_PROOF_FRAMES.jpg'):
         cell.paste(im, (0, 0))
         d = __import__('PIL.ImageDraw', fromlist=['ImageDraw']).Draw(cell)
         d.rectangle([0, CELL[1], CELL[0], CELL[1] + BAR], fill=(18, 16, 14))
-        sp = C.text_sprite(cap, 26, fill=(238, 230, 214))
-        cell.paste(sp, (16, CELL[1] + (BAR - sp.height) // 2), sp)
+        # the legend mixes a timecode and Arabic, and no single face carries both
+        # well: the sans has no Arabic-Indic figures, and Amiri's Latin figures read
+        # as a different hand. So lay the line out as runs, each in its own face.
+        x = 16
+        runs = []
+        for tok in cap.split(' '):
+            arab = any('\u0600' <= ch <= '\u06ff' for ch in tok)
+            if runs and runs[-1][1] == arab:
+                runs[-1][0].append(tok)
+            else:
+                runs.append([[tok], arab])
+        for toks, arab in runs:
+            txt = ' '.join(toks)
+            sp = (C.text_sprite(txt, 27, fill=(238, 230, 214), fname='Amiri-Regular.ttf')
+                  if arab else C.text_sprite(txt, 25, fill=(238, 230, 214)))
+            cell.paste(sp, (x, CELL[1] + (BAR - sp.height) // 2 - 1), sp)
+            x += sp.width - 14
         cells.append(cell)
 
     W = CELL[0] * 3
