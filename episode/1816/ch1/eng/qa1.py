@@ -41,8 +41,9 @@ def rows():
     exactly those reads and no others.
     """
     out = []
+    tag = os.environ.get('CH1_TAG', 'v2')
     files = sorted(f for f in os.listdir(OUT)
-                   if f.startswith('log_ch1_') and f.endswith('.jsonl'))
+                   if f.startswith('log_%s_' % tag) and f.endswith('.jsonl'))
     for k, f in enumerate(files):
         rr = [json.loads(l) for l in open(os.path.join(OUT, f))]
         rr.sort(key=lambda r: r['i'])
@@ -125,10 +126,10 @@ def logo_on_frame(P, mp4, t, box):
 
 def logo(P, mp4, R):
     li = P.C.logo_info()
-    left = logo_on_frame(P, mp4, 30.5, (30, 30, 380, 220))
-    right = logo_on_frame(P, mp4, 30.5, (1540, 30, 1900, 220))
-    both = logo_on_frame(P, mp4, 70.0, (30, 30, 380, 220)) + \
-        logo_on_frame(P, mp4, 70.0, (1540, 30, 1900, 220))
+    left = logo_on_frame(P, mp4, 34.5, (30, 30, 380, 220))
+    right = logo_on_frame(P, mp4, 34.5, (1540, 30, 1900, 220))
+    both = logo_on_frame(P, mp4, 80.0, (30, 30, 380, 220)) + \
+        logo_on_frame(P, mp4, 80.0, (1540, 30, 1900, 220))
     return dict(file=li['file'].split('/')[-1], native=list(li['native']), mode=li['mode'],
                 drawn_width=300, ivory_px_left_30s=left, ivory_px_right_30s=right,
                 ivory_px_both_70s=both,
@@ -175,7 +176,8 @@ def audio(P):
     meta = json.load(open(os.path.join(OUT, 'audio1_meta.json')))
     paper = [h for h in meta['hits'] if h['kind'] in ('paper_in', 'paper_out')]
     p = subprocess.run([FF, '-hide_banner', '-nostats', '-i',
-                        os.path.join(OUT, 'ch1_master.mp4'), '-af', 'loudnorm=print_format=json',
+                        os.path.join(OUT, os.environ.get('CH1_MP4', 'ch1_master.mp4')),
+                '-af', 'loudnorm=print_format=json',
                         '-f', 'null', '-'], capture_output=True, text=True)
     e = p.stderr
     j = json.loads(e[e.rindex('{'):e.rindex('}') + 1])
@@ -246,9 +248,10 @@ def text_contrast(P):
     # type with no paper under it is read off the rendered frame
     for name, t, box in (('disclaimer', 1.40, (96, 86, 320, 56)),
                          ('map label', 18.20, (96, 930, 520, 70)),
-                         ('case file label', 68.00, (96, 930, 300, 70))):
+                         ('frost label', 34.60, (96, 930, 320, 70))):
         subprocess.run([FF, '-v', 'error', '-y', '-ss', f'{t}', '-i',
-                        os.path.join(OUT, 'ch1_master.mp4'), '-frames:v', '1', '/tmp/_r.png'],
+                        os.path.join(OUT, os.environ.get('CH1_MP4', 'ch1_master.mp4')),
+                        '-frames:v', '1', '/tmp/_r.png'],
                        check=True)
         from PIL import Image
         im = np.asarray(Image.open('/tmp/_r.png').convert('RGB'), np.float32)
@@ -266,7 +269,7 @@ def text_contrast(P):
 def main():
     from ch1.eng import ch1 as P
     R = rows()
-    mp4 = os.path.join(OUT, 'ch1_master.mp4')
+    mp4 = os.path.join(OUT, os.environ.get('CH1_MP4', 'ch1_master.mp4'))
     res = dict(plates=plates(R), tags=tags(P, R), logo=logo(P, mp4, R),
                pacing=pacing(P, R), audio=audio(P), image=image(P),
                text=text_contrast(P))

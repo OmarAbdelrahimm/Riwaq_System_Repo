@@ -25,6 +25,10 @@ from bidi.algorithm import get_display
 W, H = 1920, 1080
 FPS = 30
 SRC = '/home/user/riwaq_assets/src'
+# the fonts live in the REPO at public/fonts, not under episode/1816/public/fonts.
+# EVERY previous run pointed one directory too deep, ImageFont raised FileNotFoundError,
+# and the caller swallowed it -- which is why the archive page came out blank and the
+# date card fell back to whatever the system had. A missing font must now be fatal.
 FONTS = '/home/user/Riwaq_System_Repo/public/fonts'
 GD = '/home/user/Riwaq_System_Repo/google_drive'
 
@@ -50,12 +54,17 @@ def ar(text):
 
 
 _fc = {}
+FONTS_LOADED = {}
 
 
 def font(name, size):
     key = (name, size)
     if key not in _fc:
-        _fc[key] = ImageFont.truetype(os.path.join(FONTS, name), size)
+        path = os.path.join(FONTS, name)
+        if not os.path.exists(path):
+            raise FileNotFoundError(f'font not found: {path}')
+        _fc[key] = ImageFont.truetype(path, size)
+        FONTS_LOADED.setdefault(name, path)
     return _fc[key]
 
 
