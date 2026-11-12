@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""proof1.py — the acceptance artefact: CH1_PROOF_FRAMES_v2.jpg
+"""proof1.py — the acceptance artefact: CH1_PROOF_FRAMES_v3.jpg
 
 Six frames, pulled from the engine at the six times the review asked for, assembled as a
 2 x 3 grid at 960 x 540 per cell. Every cell is labelled with its timecode and with what
@@ -17,12 +17,12 @@ from ch1.eng import ch1 as P                              # noqa: E402
 
 CELL = (960, 540)
 PROOF = [
+    (28.2, '0:28.2  FIX 1 — the centre mark is back, corner mark hidden'),
+    (34.5, '0:34.5  FIX 2 — corner mark at (56,44), 145 px, 80 %'),
     (41.8, '0:41.8  DOC A — the ledger, 8 June line shaded'),
-    (49.0, '0:49.0  DOC B — eight rows of real readings'),
-    (66.5, '1:06.5  the file lands on the cork board'),
-    (76.5, '1:16.5  suspect 1 pinned · فترة دالتون'),
-    (85.0, '1:25.0  suspect 2 pinned · thread drawn'),
-    (90.5, '1:30.5  suspect 3 pinned · third card'),
+    (66.5, '1:06.5  the case board, on the cork'),
+    (76.5, '1:16.5  the corner mark has not moved between cards'),
+    (90.5, '1:30.5  suspect 3 · still one mark, same coordinate'),
 ]
 
 BAR = 46
@@ -34,12 +34,12 @@ def frame_from_master(t):
     what was delivered, not what the engine produced before encoding."""
     import subprocess
     subprocess.run(['/home/user/ffmpeg', '-v', 'error', '-y', '-ss', f'{t:.3f}', '-i',
-                    '/home/user/work/out1/RUWAQ_CH1_v2_master_av.mp4', '-frames:v', '1',
+                    '/home/user/work/out1/RUWAQ_CH1_v3_master_av.mp4', '-frames:v', '1',
                     '/tmp/_proof.png'], check=True)
     return Image.open('/tmp/_proof.png').convert('RGB')
 
 
-def main(out='/home/user/work/out1/CH1_PROOF_FRAMES_v2.jpg'):
+def main(out='/home/user/work/out1/CH1_PROOF_FRAMES_v3.jpg'):
     cells = []
     for t, cap in PROOF:
         im = frame_from_master(t).resize(CELL, Image.LANCZOS)
@@ -55,7 +55,7 @@ def main(out='/home/user/work/out1/CH1_PROOF_FRAMES_v2.jpg'):
     H = (CELL[1] + BAR) * 2 + HDR
     sheet = Image.new('RGB', (W, H), (12, 11, 10))
     d = __import__('PIL.ImageDraw', fromlist=['ImageDraw']).Draw(sheet)
-    head = C.text_sprite('RUWAQ 1816 · CHAPTER 1 v2 · PROOF FRAMES', 30, fill=(230, 200, 150))
+    head = C.text_sprite('RUWAQ 1816 · CHAPTER 1 v3 · PROOF FRAMES', 30, fill=(230, 200, 150))
     sheet.paste(head, (18, (HDR - head.height) // 2), head)
     note = C.text_sprite('frames from the delivered master, 1920x1080 -> 960x540 per cell', 24,
                          fill=(150, 142, 130))

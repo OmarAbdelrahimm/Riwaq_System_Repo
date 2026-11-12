@@ -231,6 +231,50 @@ class Snow:
         return Image.alpha_composite(dst, flake)
 
 
+class Ash:
+    """falling ash: Snow's motion, but a warm grey and the big particles tumble.
+
+    Chapter 2 is ash, not snow, and the difference has to read on screen: ash is greyer,
+    slower to settle, and it drifts with the wind rather than falling straight.
+    """
+
+    def __init__(self, n=420, speed=(40, 130), size=(1.2, 3.4), wind=-48.0, seed=7,
+                 alpha=(60, 160), color=(196, 186, 172)):
+        self.color = color
+        rng = np.random.default_rng(seed)
+        self.n = n
+        self.x0 = rng.uniform(-200, W + 200, n)
+        self.y0 = rng.uniform(0, H + 400, n)
+        self.vy = rng.uniform(*speed, n)
+        self.vx = rng.uniform(-30, 30, n) + wind
+        self.sz = rng.uniform(*size, n)
+        self.al = rng.uniform(*alpha, n)
+        self.ph = rng.uniform(0, 6.28, n)
+        self.fq = rng.uniform(0.3, 1.0, n)
+
+    def draw(self, dst, t, density=1.0, blur=0.0):
+        n = int(self.n * max(0.0, min(1.0, density)))
+        if n <= 0:
+            return dst
+        mask = Image.new('L', (W // 2, H // 2), 0)
+        d = ImageDraw.Draw(mask)
+        y = (self.y0[:n] + self.vy[:n] * t) % (H + 400) - 200
+        x = (self.x0[:n] + self.vx[:n] * t
+             + 26 * np.sin(self.fq[:n] * t + self.ph[:n])) % (W + 400) - 200
+        for i in range(n):
+            r = self.sz[i]
+            # slightly oval: a tumbling flake, not a snow dot
+            d.ellipse([x[i] / 2 - r * 0.7, y[i] / 2 - r * 1.15,
+                       x[i] / 2 + r * 0.7, y[i] / 2 + r * 1.15],
+                      fill=int(self.al[i]))
+        mask = mask.resize((W, H), Image.BICUBIC).filter(ImageFilter.GaussianBlur(1.1))
+        if blur:
+            mask = mask.filter(ImageFilter.GaussianBlur(blur))
+        f = Image.new('RGBA', (W, H), self.color + (0,))
+        f.putalpha(mask)
+        return Image.alpha_composite(dst, f)
+
+
 class Rain:
     def __init__(self, n=520, speed=(1500, 2300), length=(28, 74), slant=0.20, seed=11,
                  alpha=(40, 110)):

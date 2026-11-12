@@ -50,9 +50,22 @@ def main():
     music5.build = lambda t_end=30.0, **kw: score[:int(round(t_end * music5.SR))]
 
     evs = [dict(t=e['t'], sfx=e['sfx'], what=e['what']) for e in P.EVENTS if e.get('sfx')]
+    # every card gets its own paper: the queue knows when each one enters and leaves, and
+    # the picture is only half the card if it arrives in silence
+    for tg in P.QUEUE.tags:
+        evs.append(dict(t=tg.t_in, sfx='paper_in', what='card in: ' + tg.name))
+        evs.append(dict(t=tg.t_out, sfx='paper_out', what='card out: ' + tg.name))
+    evs.sort(key=lambda e: e['t'])
     A.OUT = OUT
     wav, stems, meta = A.build(T_END, evs, 'ch2')
     j = A.master(wav, os.path.join(OUT, 'ch2_master.wav'))
+    # loudnorm's first pass on a 3.7 minute programme lands a couple of LU hot (Chapter 1
+    # needed the same correction): measure the delivered file and correct once, linearly,
+    # never by normalising again with a limiter, which would flatten the paper hits.
+    j2 = A.master(os.path.join(OUT, 'ch2_master.wav'),
+                  os.path.join(OUT, 'ch2_master2.wav'))
+    print('loudnorm pass 2:', j2['input_i'], j2['input_tp'])
+    os.replace(os.path.join(OUT, 'ch2_master2.wav'), os.path.join(OUT, 'ch2_master.wav'))
     json.dump(meta, open(os.path.join(OUT, 'audio2_meta.json'), 'w'), indent=1,
               ensure_ascii=False)
     print('mix', wav)
