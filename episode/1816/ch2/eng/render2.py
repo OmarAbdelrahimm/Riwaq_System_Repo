@@ -15,7 +15,7 @@ import time
 sys.path.insert(0, '/home/user/work')
 
 FF = '/home/user/ffmpeg'
-OUT = '/home/user/work/out1'
+OUT = '/home/user/work/out2'
 W, H, FPS = 1920, 1080, 30
 
 
@@ -37,7 +37,8 @@ def render(i0, i1, tag='ch2', crf=17, log=True):
     prev = None
     layers = P.levels()
     for i in range(i0, i1):
-        t = i / FPS
+        # the frame index is relative to the chapter: Chapter 2 starts at film time 103.17
+        t = P.T0 + i / FPS
         im = P.frame_at(t)
         a = np.asarray(im.convert('RGB'), dtype=np.int16)
         diff = 0.0 if prev is None else float(np.abs(a - prev).mean())
@@ -77,5 +78,5 @@ if __name__ == '__main__':
         a, b = int(sys.argv[1]), int(sys.argv[2])
         render(a, b, tag=(sys.argv[3] if len(sys.argv) > 3 else 'ch2'))
     else:
-        n = int(round(225.42 * FPS))
+        n = int(round((225.42 - 103.17) * FPS))
         render(0, n)

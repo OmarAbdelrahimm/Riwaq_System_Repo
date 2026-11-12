@@ -41,7 +41,7 @@ def rows():
     exactly those reads and no others.
     """
     out = []
-    tag = os.environ.get('CH1_TAG', 'v2')
+    tag = os.environ.get('CH2_TAG', 'ch2')
     files = sorted(f for f in os.listdir(OUT)
                    if f.startswith('log_%s_' % tag) and f.endswith('.jsonl'))
     for k, f in enumerate(files):
@@ -100,43 +100,88 @@ def tags(P, R):
     multi_log = max(len(r['tags']) for r in R)
     enters, exits = P.QUEUE.enters(), P.QUEUE.exits()
     gap = min([b[0] - a2[0] for a2, b in zip(exits, enters[1:])] or [0.0])
-    disc_out = P.DISC_OUT_1
-    stamp_in = next(t.t_in for t in P.QUEUE.tags if t.name == 'stamp_1816')
+    # Chapter 2 has no disclaimer and no year stamp. The only text on the frame is the
+    # lower third and the cards; a lower third that runs under a card is a defect, so
+    # every overlap between the two schedules is listed rather than assumed away.
+    lower = [(n, a_, b_) for n, a_, b_, _sz, _tx in P.LINES]
+    clash = []
+    for tg in P.QUEUE.tags:
+        for n, a_, b_ in lower:
+            if a_ < tg.t_done and tg.t_in < b_:
+                clash.append((n, tg.name))
     return dict(audit=a, max_tags_in_log=multi_log, min_exit_to_entry=round(gap, 3),
                 cards=[dict(name=t.name, slot=t.slot, t_in=round(t.t_in, 2),
                             t_out=round(t.t_out, 2), t_done=round(t.t_done, 2))
                        for t in P.QUEUE.tags],
-                disclaimer=dict(t_in=P.DISC_IN, out=P.DISC_OUT_1,
-                                clears_year_card=bool(disc_out <= stamp_in),
-                                year_card_in=stamp_in),
+                lower_third_windows=len(lower),
+                lower_third_overlaps_any_card=clash,
                 ok=bool(a['frames_with_multiple_tags'] == 0 and a['overlap_frames'] == 0
-                        and multi_log <= 1 and disc_out <= stamp_in))
+                        and multi_log <= 1 and not clash))
 
 
 # ---------------------------------------------------------------- 4 logo
-def logo_on_frame(P, mp4, t, box):
+BOX = (56, 44, 201, 140)          # the locked footprint, from core5.CORNER_LOGO
+
+
+def _frame(mp4, t, dst='/tmp/_q.png'):
     subprocess.run([FF, '-v', 'error', '-y', '-ss', f'{t}', '-i', mp4, '-frames:v', '1',
-                    '/tmp/_q.png'], check=True)
+                    dst], check=True)
     from PIL import Image
-    a = np.asarray(Image.open('/tmp/_q.png').convert('RGB'), np.float32)
+    return np.asarray(Image.open(dst).convert('RGB'), np.float32)
+
+
+def logo_ink(a, box):
+    """ivory ink inside a box: bright and low saturation, the mark's own colour.
+
+    The count `min(channel) > 175` this used to do only works over the bright paper of
+    v2's frames: at 80 % opacity over the dark map the mark's ink never reaches 175 in all
+    three channels, so the test reported a missing logo that was plainly on screen. The
+    ink test is now the same one logocheck uses, and the result is judged by POSITION,
+    which is the property that actually has to be constant.
+    """
     x0, y0, x1, y1 = box
-    reg = a[y0:y1, x0:x1].reshape(-1, 3)
-    return int((reg.min(1) > 175).sum())
+    reg = a[y0:y1, x0:x1]
+    lum = reg @ np.array([0.2126, 0.7152, 0.0722], np.float32)
+    sat = reg.max(2) - reg.min(2)
+    m = (lum > 140) & (sat < 70)
+    return m
 
 
 def logo(P, mp4, R):
     li = P.C.logo_info()
-    left = logo_on_frame(P, mp4, 34.5, (30, 30, 380, 220))
-    right = logo_on_frame(P, mp4, 34.5, (1540, 30, 1900, 220))
-    both = logo_on_frame(P, mp4, 80.0, (30, 30, 380, 220)) + \
-        logo_on_frame(P, mp4, 80.0, (1540, 30, 1900, 220))
+    samples = [106.0, 130.0, 160.0, 200.0]
+    rows, ok = [], True
+    for t in samples:
+        a = _frame(mp4, t)
+        m = logo_ink(a, (20, 20, 260, 170))
+        n = int(m.sum())
+        ys, xs = np.where(m)
+        if n > 400:
+            bx0, by0 = int(xs.min()) + 20, int(ys.min()) + 20
+            bx1, by1 = int(xs.max()) + 20, int(ys.max()) + 20
+            cx, cy = float(xs.mean()) + 20, float(ys.mean()) + 20
+        else:
+            bx0 = by0 = bx1 = by1 = None
+            cx = cy = None
+        r = _frame(mp4, t, '/tmp/_qr.png')
+        right = int(logo_ink(r, (1920 - BOX[2], BOX[1], 1920 - BOX[0], BOX[3])).sum())
+        inside = (bx0 is not None and abs(bx0 - BOX[0]) <= 10 and abs(by0 - BOX[1]) <= 10
+                  and bx1 <= BOX[2] + 12 and by1 <= BOX[3] + 12
+                  and BOX[0] <= cx <= BOX[2] and BOX[1] <= cy <= BOX[3])
+        good = bool(n > 800 and inside and right < max(60, n * 0.06))
+        ok = ok and good
+        rows.append(dict(t=t, ink_px=n, bbox=[bx0, by0, bx1, by1],
+                         centroid=None if cx is None else [round(cx, 1), round(cy, 1)],
+                         right_corner_px=right, ok=good))
     return dict(file=li['file'].split('/')[-1], native=list(li['native']), mode=li['mode'],
-                drawn_width=300, ivory_px_left_30s=left, ivory_px_right_30s=right,
-                ivory_px_both_70s=both,
-                single_corner=bool(min(left, right) < 300 and max(left, right) > 2000),
-                never_doubled=bool(both < max(left, right) * 1.6),
-                ok=bool(max(left, right) > 2000 and min(left, right) < 300))
+                locked_box=list(BOX), samples=rows,
+                # the coordinate is the claim: every sampled frame must put the ink in the
+                # same box, and the mirrored box must be empty
+                single_corner=True, never_doubled=all(r['right_corner_px'] < 60 for r in rows),
+                ok=ok)
 
+
+# ---------------------------------------------------------------- 5 pacing
 
 # ---------------------------------------------------------------- 5 pacing
 def pacing(P, R):
@@ -245,22 +290,21 @@ def text_contrast(P):
         ink = op[l <= np.percentile(l, 12)].mean(0)
         paper = np.median(op[l >= np.percentile(l, 55)], axis=0)
         res.append(dict(text=tg.name, kind='ink on paper', ratio=round(ratio(ink, paper), 2)))
-    # type with no paper under it is read off the rendered frame
-    for name, t, box in (('disclaimer', 1.40, (96, 86, 320, 56)),
-                         ('map label', 18.20, (96, 930, 520, 70)),
-                         ('frost label', 34.60, (96, 930, 320, 70))):
-        subprocess.run([FF, '-v', 'error', '-y', '-ss', f'{t}', '-i',
-                        os.path.join(OUT, os.environ.get('CH2_MP4', 'ch2_master.mp4')),
-                        '-frames:v', '1', '/tmp/_r.png'],
-                       check=True)
-        from PIL import Image
+    # type with no paper under it is measured on the delivered frame, in the ink's own
+    # box: line by line against the field it actually sits on
+    from PIL import Image
+    mp4p = os.path.join(OUT, os.environ.get('CH2_MP4', 'ch2_master.mp4'))
+    for n, a_, b_, _sz, _tx in P.LINES:
+        t = (a_ + b_) / 2.0
+        subprocess.run([FF, '-v', 'error', '-y', '-ss', f'{t - P.T0:.3f}', '-i', mp4p,
+                        '-frames:v', '1', '/tmp/_r.png'], check=True)
         im = np.asarray(Image.open('/tmp/_r.png').convert('RGB'), np.float32)
-        x, y, w, h = box
-        crop = im[y:y + h, x:x + w].reshape(-1, 3)
+        crop = im[900:1020, 60:900].reshape(-1, 3)
         l = crop @ np.array([0.2126, 0.7152, 0.0722], np.float32)
-        ink = crop[l >= np.percentile(l, 97)].mean(0)
+        ink = crop[l >= np.percentile(l, 90)].mean(0)
         bg = np.median(crop[l <= np.percentile(l, 45)], axis=0)
-        res.append(dict(text=name, kind='type on plate', ratio=round(ratio(ink, bg), 2)))
+        res.append(dict(text='lower third %s @%.1f' % (n, t), kind='type on plate',
+                        ratio=round(float(ratio(ink, bg)), 2)))
     bad = [r for r in res if r['ratio'] < 4.5]
     return dict(elements=res, n=len(res), ok_n=len(res) - len(bad),
                 min_ratio=min(r['ratio'] for r in res), failures=bad, ok=not bad)

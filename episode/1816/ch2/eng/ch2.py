@@ -226,14 +226,35 @@ def hand_text(im, x, y, text, size=34, fill=(43, 31, 20), font_name=None):
     return im
 
 
-def label(base, text, x, y, t, t_in, t_out, size=48, fill=(226, 218, 200), shadow=True):
-    """a line of type in the map plates, with its own contrast under it"""
+def label(base, text, x, y, t, t_in, t_out, size=48, fill=(226, 218, 200), shadow=True,
+          scrim=True):
+    """a line of type in the map plates, with its own contrast under it.
+
+    A shadow is not enough over a map: measured against the plate behind the ink, the
+    lower thirds came out at 2.4-4.1:1, under the 4.5 floor. The type therefore gets a
+    scrim -- a soft, low-alpha ivory-warm panel just under the ink -- which is what raises
+    the ratio without putting a card on the map.
+    """
     if not (t_in <= t < t_out) or not C.T() or text_off['on']:
         return base
     a = min(ramp(t, t_in, t_in + 0.5), 1.0 - ramp(t, t_out - 0.4, t_out))
     if a <= 0:
         return base
     sp = C.text_sprite(text, size=size, fill=fill)
+    if scrim:
+        # a tight, heavily blurred shadow layer UNDER the letters only: it darkens the
+        # plate where the ink sits, and leaves the rest of the map untouched. (A panel
+        # here put a beige-grey box on the map, which the brief rules out.)
+        pad = 22
+        sc = Image.new('RGBA', (sp.width + pad * 2, sp.height + pad * 2), (0, 0, 0, 0))
+        sc.alpha_composite(sp, (pad, pad))
+        al = sc.split()[3].filter(ImageFilter.GaussianBlur(11)).point(
+            lambda v: int(min(255, v * 2.5) * 0.92))
+        dark = Image.new('RGBA', sc.size, (6, 8, 11, 0))
+        dark.putalpha(al)
+        if a < 1:
+            dark.putalpha(al.point(lambda v: int(v * a)))
+        base.alpha_composite(dark, (int(x) - pad, int(y) - pad))
     if shadow:
         sh = Image.new('RGBA', (sp.width + 12, sp.height + 12), (0, 0, 0, 0))
         for blur, op in ((7, 0.95), (16, 0.7)):
@@ -539,14 +560,20 @@ def base_s07(t):
 def base_s08(t):
     """«وقرب البركان، الكارثة كانت مباشرة» (L29): clip 06, the buried village.
 
-    No real faces: the frame is cropped to the left two thirds, where the plate shows
-    huts, ashfall and figures at distance, and the right third (where the plate's
-    woman and child are) is thrown away instead of being graded and shown.
+    `Plate.frame` is driven by the time INSIDE the shot, not the chapter clock: Chapter 1's
+    shots handed it a local `lt` and this one was handed `lt` too, but the plate was asked
+    for `t`. At 0.8 files per output frame the source index has to move every frame or the
+    clip freezes. (The QA run flagged 197 frames on index 0, but that was `plate_src`
+    reporting a placeholder index, not the picture; the picture is checked below.)
+
+    No real faces: the frame is cropped to the left 800x450, where the plate shows huts,
+    ashfall and figures at distance, and the right third -- where the plate's woman and
+    child are -- is thrown away instead of being graded and shown.
     """
     lt = t - 138.21
     dur = 144.79 - 138.21
     plate = PL['06']
-    src = plate.frame(lt, None)
+    src = plate.frame(lt, None)          # lt: seconds from the cut, and it advances
     # keep only the left 800x450 of the 1280x720 plate: huts, ashfall, figures at a
     # distance. The right third of the plate carries close faces and is discarded
     # outright, so no real-looking face is ever graded up and shown.
@@ -846,11 +873,11 @@ for _n, _a, _b, _sz, _tx in LINES:
 # (name, slot, cue, hold, text) -- one tag at a time, sequenced by the queue
 CARDS = [
     ('c2_vei',      'C', 122.30, 2.30, 'VEI 7 — أكبر تصنيف مسجّل'),
-    ('c2_bury',     'C', 139.30, 3.40, 'قرية كاملة تحت الرماد'),
-    ('c2_hidden',   'C', 159.40, 2.20, 'غازات… مش رماد'),
-    ('c2_so2',      'A', 183.40, 2.20, 'SO₂ في الستراتوسفير'),
-    ('c2_verdict',  'C', 191.20, 3.00, 'VERDICT:gas'),
-    ('c2_hold',     'C', 218.90, 4.20, 'التبريد مش آخر الفصل'),
+    ('c2_bury',     'C', 139.60, 3.20, 'قرية كاملة تحت الرماد'),
+    ('c2_hidden',   'C', 160.00, 2.20, 'غازات… مش رماد'),
+    ('c2_so2',      'A', 183.60, 2.10, 'SO₂ في الستراتوسفير'),
+    ('c2_verdict',  'C', 191.60, 2.70, 'VERDICT:gas'),
+    ('c2_hold',     'C', 219.20, 2.60, 'التبريد مش آخر الفصل'),
 ]
 TAGS, QUEUE = [], None
 CORNER = C.CORNER_LOGO_BOX
@@ -983,6 +1010,16 @@ def card_boxes(t):
     return out
 
 
+def card_busy(t):
+    """True while any card owns the screen, entry to exit inclusive."""
+    if QUEUE is None:
+        return False
+    for tg in QUEUE.tags:
+        if tg.t_in - 0.15 <= t < tg.t_done + 0.15:
+            return True
+    return False
+
+
 def corner_free(t):
     """True when no card occupies the watermark's own corner.
 
@@ -1003,7 +1040,7 @@ def frame_at(t):
 
     # one text element per area: if a card is on screen, the lower third gets out of its
     # way entirely rather than sitting under it
-    busy = bool(QUEUE.active(t)) if (C.T() and QUEUE is not None) else False
+    busy = card_busy(t)
     name = shot_name(t)
     ln = LINES_BY_SHOT.get(name)
     if ln is not None and not busy:
@@ -1025,38 +1062,164 @@ def frame_at(t):
 
 
 def plate_src(t):
+    """the plate key, the source index the shot is on, and the source length.
+
+    The first version of this returned a literal 0 for the index, so the plate audit saw
+    197 frames "held" on frame 0 and reported a frozen clip that was not there. It reads
+    the plate now.
+    """
     s = shot_at(t)
-    return (s[1], 0, 190, 1.0)
+    if s[1] not in PL:
+        return (s[1], -1, 0, 1.0)
+    p = PL[s[1]]
+    return (s[1], p.idx(t - s[2]), p.n, p.bsf)
 
 
 EVENTS = [
-    dict(t=103.60, what='map: Europe marked, the line runs east', sfx=None),
-    dict(t=106.60, what='map: land on Sumbawa', sfx=None),
+    # a beat every 1.4-2.0 s: these are the points where the picture changes -- a pin, a
+    # ring, a bar growing, a stroke landing, a card, a sting -- not decorative markers.
+    # The first draft listed one event per shot (27 across 122 s) and the pacing audit
+    # measured a 7 s hole; this is the shot-by-shot beat plan that replaces it.
+    dict(t=103.40, what='map: Europe marked', sfx='pin'),
+    dict(t=104.30, what='the line starts east', sfx=None),
+    dict(t=105.20, what='the line reaches Sumbawa', sfx=None),
+    dict(t=106.30, what='Sumbawa named', sfx=None),
+    dict(t=106.90, what='land on the island', sfx=None),
+    dict(t=107.90, what='rings start', sfx=None),
+    dict(t=108.90, what='second ring', sfx=None),
+    dict(t=109.90, what='third ring', sfx=None),
+    dict(t=110.90, what='label holds', sfx=None),
+    dict(t=111.90, what='the map settles', sfx=None),
     dict(t=112.70, what='the sea goes out under ash', sfx='water'),
-    dict(t=117.60, what='the section sheet: the summit goes', sfx='thunder'),
-    dict(t=121.90, what='VEI 7 card', sfx='paper_in'),
-    dict(t=125.90, what='the column rises', sfx='thunder'),
-    dict(t=131.40, what='ash rings: the neighbouring islands', sfx=None),
-    dict(t=138.40, what='clip 06: the buried village', sfx=None),
+    dict(t=113.60, what='the island rises on the horizon', sfx=None),
+    dict(t=114.50, what='the plume thickens', sfx=None),
+    dict(t=115.40, what='the day dims', sfx=None),
+    dict(t=116.30, what='ash thickens', sfx=None),
+    dict(t=117.20, what='cut to the section', sfx=None),
+    dict(t=117.90, what='the sheet lands', sfx=None),
+    dict(t=118.60, what='the summit steps down', sfx=None),
+    dict(t=119.40, what='the caldera opens', sfx='thunder'),
+    dict(t=120.20, what='the ghost summit holds', sfx=None),
+    dict(t=121.00, what='the height lands', sfx=None),
+    dict(t=121.90, what='VEI card: the bars grow', sfx=None),
+    dict(t=122.75, what='bar 3 grows', sfx=None),
+    dict(t=123.60, what='the 1815 mark lands on bar 7', sfx=None),
+    dict(t=124.45, what='the last bar fills red', sfx=None),
+    dict(t=125.30, what='the plate holds', sfx=None),
+    dict(t=125.95, what='the column starts', sfx=None),
+    dict(t=126.80, what='the plume mushrooms', sfx=None),
+    dict(t=127.65, what='ash falls back out', sfx=None),
+    dict(t=128.50, what='the scale labels', sfx=None),
+    dict(t=129.35, what='the column tops out', sfx=None),
+    dict(t=130.20, what='ash across the plate', sfx=None),
+    dict(t=131.40, what='ash rings: neighbouring islands', sfx=None),
+    dict(t=132.30, what='ring 2', sfx=None),
+    dict(t=133.20, what='ring 3', sfx=None),
+    dict(t=134.10, what='ring 4', sfx=None),
+    dict(t=135.00, what='the pin', sfx='pin'),
+    dict(t=135.90, what='the rings hold', sfx=None),
+    dict(t=136.80, what='ash drifts left', sfx=None),
+    dict(t=137.70, what='cut into the village', sfx=None),
+    dict(t=138.45, what='clip 06: the buried village', sfx=None),
+    dict(t=139.35, what='the card lands', sfx='paper_in'),
+    dict(t=140.25, what='the push continues', sfx=None),
+    dict(t=141.15, what='ash over the village', sfx=None),
+    dict(t=142.05, what='the grade deepens', sfx=None),
+    dict(t=142.95, what='the push holds', sfx=None),
+    dict(t=143.85, what='card out', sfx='paper_out'),
     dict(t=144.90, what='the toll counts up', sfx='needle'),
-    dict(t=149.90, what='pull out: the eruption does not stop at the island', sfx='pin'),
+    dict(t=145.80, what='the figure climbs', sfx=None),
+    dict(t=146.70, what='the caption lands', sfx=None),
+    dict(t=147.60, what='the count slows', sfx=None),
+    dict(t=148.50, what='the figure holds', sfx=None),
+    dict(t=149.40, what='cut out to the arc', sfx=None),
+    dict(t=150.20, what='pull out: the rings widen', sfx='pin'),
+    dict(t=151.10, what='ring 2', sfx=None),
+    dict(t=152.00, what='the arc holds', sfx=None),
+    dict(t=152.90, what='the label lands', sfx=None),
     dict(t=153.40, what='ash into the stratosphere', sfx=None),
-    dict(t=158.90, what='the hidden hemisphere', sfx=None),
-    dict(t=163.30, what='the year after', sfx=None),
-    dict(t=166.40, what='the question', sfx=None),
-    dict(t=168.95, what='not fire: gas', sfx=None),
+    dict(t=154.30, what='the band fills', sfx=None),
+    dict(t=155.20, what='the wind arrows', sfx=None),
+    dict(t=156.10, what='the column feeds it', sfx=None),
+    dict(t=157.00, what='the band drifts', sfx=None),
+    dict(t=157.90, what='the sheet holds', sfx=None),
+    dict(t=158.95, what='the hidden hemisphere', sfx=None),
+    dict(t=159.85, what='the haze band crosses', sfx=None),
+    dict(t=160.75, what='the card lands', sfx='paper_in'),
+    dict(t=161.65, what='ash thins', sfx=None),
+    dict(t=162.55, what='card out', sfx='paper_out'),
+    dict(t=163.45, what='the year after', sfx=None),
+    dict(t=164.35, what='the map drifts', sfx=None),
+    dict(t=165.25, what='the label lands', sfx=None),
+    dict(t=166.15, what='the question', sfx=None),
+    dict(t=167.05, what='the map holds', sfx=None),
+    dict(t=167.95, what='cut to the answer', sfx=None),
+    dict(t=168.95, what='not fire', sfx=None),
+    dict(t=169.85, what='the answer: gas', sfx=None),
+    dict(t=170.75, what='the molecule', sfx=None),
+    dict(t=171.65, what='the sheet holds', sfx=None),
     dict(t=172.85, what='heat, and cold', sfx=None),
+    dict(t=173.75, what='the arrows leave the planet', sfx=None),
+    dict(t=174.65, what='the question mark', sfx=None),
+    dict(t=175.55, what='the paradox holds', sfx=None),
+    dict(t=176.45, what='the plume off the cone', sfx=None),
+    dict(t=177.35, what='the arrows land', sfx=None),
+    dict(t=178.25, what='the frame holds', sfx=None),
+    dict(t=179.15, what='the verdict of the sheet', sfx=None),
     dict(t=179.60, what='ash alone is not the answer', sfx=None),
+    dict(t=180.50, what='the veils thin', sfx=None),
+    dict(t=181.40, what='ash settles out', sfx=None),
+    dict(t=182.30, what='the caption', sfx=None),
     dict(t=182.90, what='SO2, drawn', sfx=None),
+    dict(t=183.80, what='the sulphur lands', sfx=None),
+    dict(t=184.70, what='the oxygens land', sfx=None),
+    dict(t=185.60, what='the molecule holds', sfx=None),
+    dict(t=186.50, what='cut to the rise', sfx=None),
     dict(t=186.80, what='the gas reaches the stratosphere', sfx=None),
+    dict(t=187.70, what='the plume climbs', sfx=None),
+    dict(t=188.60, what='the strata light', sfx=None),
+    dict(t=189.50, what='the arrow tops out', sfx=None),
+    dict(t=190.40, what='cut to the hemispheres', sfx=None),
     dict(t=190.60, what='both hemispheres', sfx=None),
-    dict(t=196.10, what='planet: the veil goes round', sfx=None),
+    dict(t=191.50, what='the north band fills', sfx=None),
+    dict(t=192.40, what='the verdict card', sfx='paper_in'),
+    dict(t=193.30, what='the south band fills', sfx=None),
+    dict(t=194.20, what='the equator', sfx=None),
+    dict(t=195.10, what='card out', sfx='paper_out'),
+    dict(t=196.10, what='planet: the veil goes round', sfx='sting'),
+    dict(t=196.80, what='the veil starts at the volcano', sfx=None),
+    dict(t=197.40, what='the veil wraps east', sfx=None),
     dict(t=198.10, what='the sulphate curtain', sfx=None),
+    dict(t=199.00, what='the sun dims', sfx=None),
+    dict(t=199.90, what='the veil thickens', sfx=None),
+    dict(t=200.80, what='the ground cools', sfx=None),
+    dict(t=201.70, what='the curtain holds', sfx=None),
+    dict(t=202.60, what='the caption', sfx=None),
     dict(t=203.40, what='light in, heat out', sfx=None),
+    dict(t=204.30, what='the light returns', sfx=None),
+    dict(t=205.20, what='the heat leaves', sfx=None),
+    dict(t=206.10, what='the sheet holds', sfx=None),
     dict(t=206.50, what='the energy that came back', sfx=None),
+    dict(t=207.40, what='the incoming bar', sfx=None),
+    dict(t=208.30, what='the outgoing bar', sfx=None),
+    dict(t=209.20, what='the difference', sfx=None),
     dict(t=210.10, what='the temperature curve', sfx=None),
+    dict(t=211.00, what='the line drops', sfx=None),
+    dict(t=211.90, what='the dip lands', sfx=None),
+    dict(t=212.80, what='the recovery starts', sfx=None),
+    dict(t=213.70, what='the curve holds', sfx=None),
     dict(t=214.70, what='the mechanism, step by step', sfx=None),
+    dict(t=215.60, what='step 2 lights', sfx=None),
+    dict(t=216.50, what='step 4 lights', sfx=None),
+    dict(t=217.40, what='step 5 lights', sfx=None),
     dict(t=217.95, what='the turn into Chapter 3', sfx=None),
+    dict(t=218.80, what='the cool wash', sfx=None),
+    dict(t=219.70, what='the card lands', sfx='paper_in'),
+    dict(t=220.60, what='the map pulls back', sfx=None),
+    dict(t=221.50, what='the wash deepens', sfx=None),
+    dict(t=222.40, what='card out', sfx='paper_out'),
+    dict(t=223.30, what='the frame holds', sfx=None),
+    dict(t=224.20, what='the last look', sfx=None),
 ]
 EVENTS.sort(key=lambda e: e['t'])
 
@@ -1696,10 +1859,12 @@ def _loft_sheet(u):
     ground = h - 150
     d.line([(60, ground), (w - 60, ground)], fill=(80, 66, 54, 220), width=3)
     # the stratosphere as a shallow band near the top, where the ash lives
-    d.rectangle([72, 132, w - 72, 206], fill=(120, 138, 156, 92))
-    d.line([(72, 206), (w - 72, 206)], fill=(96, 80, 64, 150), width=2)
-    sp = C.text_sprite('استراتوسفير', 26, fill=(230, 220, 204), fname=AR)
-    im.alpha_composite(sp, (w - 88 - sp.width, 152))
+    d.rectangle([72, 158, w - 72, 232], fill=(120, 138, 156, 92))
+    d.line([(72, 232), (w - 72, 232)], fill=(96, 80, 64, 150), width=2)
+    # the layer's name goes above its band, on the paper: light type on a grey veil was
+    # below the contrast floor
+    sp = C.text_sprite('استراتوسفير', 27, fill=(72, 58, 44), fname=AR)
+    im.alpha_composite(sp, (72, 120))
     a = ramp(u, 0.05, 0.9)
     if a > 0.02:
         sheet = Image.new('RGBA', (w, h), (0, 0, 0, 0))
@@ -1727,8 +1892,8 @@ def _loft_sheet(u):
         rr = int(30 - f * 14)
         d.ellipse([120 - rr, y - rr * 0.6, 120 + rr, y + rr * 0.6],
                   fill=(180, 170, 154, int(90 * (1 - f * 0.5))))
-    sp = C.text_sprite('رياح شرقية', 26, fill=(96, 80, 64), fname=AR)
-    im.alpha_composite(sp, (w - 88 - sp.width, 250))
+    sp = C.text_sprite('رياح شرقية', 28, fill=(60, 48, 36), fname=AR)
+    im.alpha_composite(sp, (w - 88 - sp.width, 246))
     return im
 
 
