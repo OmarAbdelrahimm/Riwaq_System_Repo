@@ -65,6 +65,19 @@ def check(mp4, start, length, label=''):
     }
     res = {k: score(A, v) for k, v in cand.items()}
     own_key = f'chapter slice [{start:.2f}, {start + dur:.2f})'
+    # A chapter that starts at 0:00 IS the "episode from 0:00" candidate: there is no
+    # wrong slice to beat, so the margin test cannot apply to it. Demanding one made the
+    # gate cry wolf on chapter 1, and a gate that fails a correct file is a gate people
+    # learn to ignore -- which is how the chapter-2 bug got through in the first place.
+    if start <= 1e-6:
+        ok0 = res[own_key] >= 0.80 and abs(lag(A, cand[own_key]) * 240 / SR) <= 0.042
+        print(f'--- {label or mp4}')
+        print(f'    length {dur:.2f}s, expected {length:.2f}s'
+              f' {"OK" if abs(dur - length) < 0.10 else "MISMATCH"}')
+        print(f'    {res[own_key]:+.3f}  {own_key}  (this chapter starts at 0:00, so the')
+        print(f'    "episode from 0:00" candidate is the same slice: no margin to test)')
+        print(f'    SYNC {"PASS" if ok0 else "FAIL"}')
+        return ok0
     own = res[own_key]
     others = max(v for k, v in res.items() if k != own_key)
     l = lag(A, cand[own_key]) * 240 / SR
