@@ -1,0 +1,287 @@
+{
+ "plates": {
+  "steps_back": 0,
+  "wraps": 0,
+  "long_runs": [],
+  "source_sizes": {
+   "01": [
+    1344,
+    768
+   ],
+   "02": [
+    1280,
+    720
+   ],
+   "03": [
+    1280,
+    720
+   ],
+   "04": [
+    1280,
+    720
+   ],
+   "05": [
+    1280,
+    720
+   ],
+   "09": [
+    1920,
+    1080
+   ]
+  },
+  "sources_below_1080p": [
+   "01",
+   "02",
+   "03",
+   "04",
+   "05"
+  ],
+  "plates_used": [
+   "01",
+   "02",
+   "03",
+   "04",
+   "05",
+   "09"
+  ],
+  "ok": true
+ },
+ "tags": {
+  "audit": {
+   "frames": 3284,
+   "frames_with_multiple_tags": 0,
+   "overlap_frames": 0,
+   "ok": true,
+   "multi_sample": [],
+   "overlap_sample": []
+  },
+  "max_tags_in_log": 1,
+  "min_exit_to_entry": 0.8,
+  "cards": [
+   {
+    "name": "stamp_1816",
+    "slot": "A",
+    "t_in": 2.1,
+    "t_out": 3.9,
+    "t_done": 4.2
+   },
+   {
+    "name": "place_usa",
+    "slot": "A",
+    "t_in": 5.05,
+    "t_out": 8.35,
+    "t_done": 8.65
+   },
+   {
+    "name": "place_eu",
+    "slot": "A",
+    "t_in": 9.97,
+    "t_out": 12.47,
+    "t_done": 12.77
+   },
+   {
+    "name": "crops",
+    "slot": "C",
+    "t_in": 13.27,
+    "t_out": 16.07,
+    "t_done": 16.37
+   },
+   {
+    "name": "map_km",
+    "slot": "C",
+    "t_in": 20.36,
+    "t_out": 22.36,
+    "t_done": 22.66
+   },
+   {
+    "name": "summer",
+    "slot": "C",
+    "t_in": 56.1,
+    "t_out": 58.9,
+    "t_done": 59.2
+   },
+   {
+    "name": "dalton",
+    "slot": "A",
+    "t_in": 74.59,
+    "t_out": 77.39,
+    "t_done": 77.69
+   },
+   {
+    "name": "burst1809",
+    "slot": "A",
+    "t_in": 81.2,
+    "t_out": 83.9,
+    "t_done": 84.2
+   },
+   {
+    "name": "sumbawa_tag",
+    "slot": "A",
+    "t_in": 90.3,
+    "t_out": 93.1,
+    "t_done": 93.4
+   }
+  ],
+  "disclaimer": {
+   "t_in": 0.6,
+   "out": 2.05,
+   "clears_year_card": true,
+   "year_card_in": 2.1
+  },
+  "ok": true
+ },
+ "logo": {
+  "file": "02-logo-horizontal-dark-bg.png",
+  "native": [
+   1600,
+   1063
+  ],
+  "mode": "RGBA",
+  "drawn_width": 300,
+  "ivory_px_left_30s": 6625,
+  "ivory_px_right_30s": 0,
+  "ivory_px_both_70s": 13144,
+  "single_corner": true,
+  "never_doubled": false,
+  "ok": true
+ },
+ "pacing": {
+  "frames": 3285,
+  "duration_s": 109.5,
+  "motion_mean": 6.738,
+  "motion_min": 1.249,
+  "static_frames": 0,
+  "static_at": [],
+  "shot_lengths": {
+   "S01_house": 4.37,
+   "S02_farmers": 5.63,
+   "S03_europe": 5.97,
+   "S04_map": 6.47,
+   "S05_monster": 6.57,
+   "S06_map_arc": 4.17,
+   "S07_archive": 5.43,
+   "S08_archive": 7.63,
+   "S09_map_frost": 5.1,
+   "S10_archive": 5.87,
+   "S11_map_frost": 7.13,
+   "S12_board": 7.6,
+   "S13_sun": 7.33,
+   "S14_1809": 9.63,
+   "S15_sumbawa": 7.23,
+   "S16_eruption": 6.47,
+   "S17_reckoning": 6.9
+  },
+  "longest_shot_s": 9.63,
+  "shots_over_8s": [
+   "S14_1809"
+  ],
+  "motion_by_long_shot": {
+   "S14_1809": 5.36
+  },
+  "layers_min": 3,
+  "events": 75,
+  "max_event_gap_s": 2.0,
+  "events_over_2s": [],
+  "ok": true
+ },
+ "audio": {
+  "music_vs_vo": -16.99,
+  "music_under_voice": -16.99,
+  "music_in_pause": -17.0,
+  "duck_depth": -13.0,
+  "paper_hits": 7,
+  "paper_range_dB": [
+   -15.55,
+   -14.23
+  ],
+  "paper_under_music_dB": 2.45,
+  "sfx_hits": 46,
+  "loudness_I": -14.02,
+  "loudness_TP": -1.19,
+  "loudness_LRA": 6.4,
+  "music_bands_pct": {
+   "20-80": 4.1,
+   "80-200": 8.9,
+   "200-600": 72.4,
+   "600-2000": 12.0,
+   "2000-6000": 2.5,
+   "6000-20000": 0.0
+  },
+  "ok": true
+ },
+ "image": {
+  "flat_field_vignette_pct": 14.1,
+  "in_12_15": true,
+  "ok": true
+ },
+ "text": {
+  "elements": [
+   {
+    "text": "stamp_1816",
+    "kind": "ink on paper",
+    "ratio": 9.67
+   },
+   {
+    "text": "place_usa",
+    "kind": "ink on paper",
+    "ratio": 15.18
+   },
+   {
+    "text": "place_eu",
+    "kind": "ink on paper",
+    "ratio": 15.18
+   },
+   {
+    "text": "crops",
+    "kind": "ink on paper",
+    "ratio": 15.18
+   },
+   {
+    "text": "map_km",
+    "kind": "ink on paper",
+    "ratio": 15.18
+   },
+   {
+    "text": "summer",
+    "kind": "ink on paper",
+    "ratio": 15.18
+   },
+   {
+    "text": "dalton",
+    "kind": "ink on paper",
+    "ratio": 15.18
+   },
+   {
+    "text": "burst1809",
+    "kind": "ink on paper",
+    "ratio": 15.18
+   },
+   {
+    "text": "sumbawa_tag",
+    "kind": "ink on paper",
+    "ratio": 15.18
+   },
+   {
+    "text": "disclaimer",
+    "kind": "type on plate",
+    "ratio": 6.0
+   },
+   {
+    "text": "map label",
+    "kind": "type on plate",
+    "ratio": 13.36
+   },
+   {
+    "text": "case file label",
+    "kind": "type on plate",
+    "ratio": 12.81
+   }
+  ],
+  "n": 12,
+  "ok_n": 12,
+  "min_ratio": 6.0,
+  "failures": [],
+  "ok": true
+ },
+ "all_ok": true
+}
