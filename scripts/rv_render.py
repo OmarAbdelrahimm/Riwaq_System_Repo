@@ -44,7 +44,7 @@ def qa_metrics():
                       "card_h": ch, "font": size})
     rep["card_w_law_pass"] = True
     rep["card_w_spread"] = [min(widths), max(widths)]
-    rep["card_w_dynamic"] = (max(widths) - min(widths)) > 200
+    rep["card_w_dynamic"] = bool((max(widths) - min(widths)) > 200)
     rep["boxes"] = boxes
     # 2) ZERO empty rectangles when text_alpha == 0
     gap_times = [6.0, 16.5, 42.5, 113.5, 143.0, 170.0, 187.0, 216.65, 0.4]
@@ -52,7 +52,7 @@ def qa_metrics():
     for tg in gap_times:
         rows, acc, a, dx = E.card_state(tg)
         empties.append(a == 0.0 and rows is None)
-    rep["zero_empty_rectangles"] = all(empties)
+    rep["zero_empty_rectangles"] = bool(all(bool(x) for x in empties))
     # structural: draw_card returns before ANY drawing when alpha<=0.02
     rep["empty_guard_in_code"] = "return                      # ZERO empty rectangles" in \
         open(os.path.join(ROOT, "scripts/rv_engine.py"), encoding="utf-8").read()
@@ -64,8 +64,8 @@ def qa_metrics():
     rep["logo_width"] = E.LOGO_W
     rep["logo_pos"] = list(E.LOGO_POS)
     rep["logo_alpha"] = E.LOGO_ALPHA
-    rep["logo_pass"] = (E.LOGO_W == 145 and tuple(E.LOGO_POS) == (56, 44)
-                        and abs(E.LOGO_ALPHA - 0.80) < 1e-9 and n_logo_loads == 1)
+    rep["logo_pass"] = bool((E.LOGO_W == 145 and tuple(E.LOGO_POS) == (56, 44)
+                        and abs(E.LOGO_ALPHA - 0.80) < 1e-9 and n_logo_loads == 1))
     # 4) ZERO Latin letters inside on-screen Arabic strings
     latin = []
     for (st, t_in, t_out, acc, rows) in E.SEGMENTS:
@@ -81,11 +81,11 @@ def qa_metrics():
         if re.search(r"[A-Za-z]", m.group(1)):
             latin.append(m.group(1))
     rep["latin_in_arabic"] = latin
-    rep["zero_latin_pass"] = len(latin) == 0
+    rep["zero_latin_pass"] = bool(len(latin) == 0)
     # 5) contrast (worst case: ivory over 0.85 BG + 0.15 bright board)
     worst = tuple(int(round(0.85 * E.BG[i] + 0.15 * 200)) for i in range(3))
     rep["contrast_worst"] = round(wcag(E.IVORY, worst), 2)
-    rep["contrast_pass"] = rep["contrast_worst"] >= 4.5
+    rep["contrast_pass"] = bool(rep["contrast_worst"] >= 4.5)
     # 6) no static frames / no black frames
     diffs = []
     for t0 in (2.0, 40.0, 99.0, 160.0, 231.0):
@@ -94,8 +94,9 @@ def qa_metrics():
     rep["frame_delta_means"] = [round(x, 3) for x in diffs]
     rep["zero_static_pass"] = all(x > 0.05 for x in diffs)
     mins = [E.draw(n / E.FPS).mean() for n in range(0, E.N_FRAMES, 400)]
-    rep["min_frame_mean"] = round(min(mins), 1)
-    rep["no_black_pass"] = rep["min_frame_mean"] > 8
+    rep["min_frame_mean"] = float(round(min(mins), 1))
+    rep["no_black_pass"] = bool(rep["min_frame_mean"] > 8)
+    rep["zero_static_pass"] = bool(all(x > 0.05 for x in diffs))
     return rep
 
 def cmd_sheet():
