@@ -388,23 +388,44 @@ def base_s06(t):
     return grader(base)
 
 
+_DESK = {}
+_DESK_SHEET = {}
+
+
+def _desk(seed, rot, w=1300, h=880):
+    """the desk plate: background + aged sheet, built once per (seed, rotation)"""
+    key = (seed, rot)
+    if key not in _DESK:
+        base = archive_sheet(1920, 1080, seed=seed + 100, age=0.9).convert('RGBA')
+        base = C.grade5(base.convert('RGB'), warmth=0.55, sat=0.55).convert('RGBA')
+        s = _sheet(seed, rot, w, h)
+        a = np.asarray(s, np.float32)
+        a[..., :3] *= 0.86
+        s = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+        base.alpha_composite(s, ((1920 - s.width) // 2, (1080 - s.height) // 2))
+        _DESK[key] = base
+    return _DESK[key]
+
+
+def _sheet(seed, rot, w=1300, h=880):
+    key = (seed, rot, w, h)
+    if key not in _DESK_SHEET:
+        _DESK_SHEET[key] = archive_sheet(w, h, seed=seed).rotate(rot, expand=True,
+                                                                resample=Image.BICUBIC)
+    return _DESK_SHEET[key]
+
+
 def _archive_stage(lt, dur, cam_zoom=1.03, drift=(14, 6), rot=-0.9, seed=7):
     """the desk: a paper sheet in the frame, the camera drifting over it"""
     z = cam_zoom - 0.02 * ease(lt / dur)
-    w, h = 1300, 880
-    sheet = archive_sheet(w, h, seed=seed)
-    base = archive_sheet(1920, 1080, seed=seed + 100, age=0.9).convert('RGBA')
-    base = C.grade5(base.convert('RGB'), warmth=0.55, sat=0.55).convert('RGBA')
-    # the sheet sits at a slight angle: it is being looked at, not scanned
-    s = sheet.rotate(rot, expand=True, resample=Image.BICUBIC)
-    x = int((1920 - s.width) / 2 + drift[0] * (0.5 - lt / dur))
-    y = int((1080 - s.height) / 2 + drift[1] * (0.5 - lt / dur))
     # the sheet is the brightest thing in the frame; on a 0-255 scale it was landing at
-    # 240 and reading as a lightbox, so it is held back and let the grade sit on top
-    a = np.asarray(s, np.float32)
-    a[..., :3] *= 0.86
-    s = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
-    base.alpha_composite(s, (x, y))
+    # 240 and reading as a lightbox, so it is held back and let the grade sit on top.
+    # Both the paper and the stains are cached: they are identical every frame.
+    base = _desk(seed, rot)
+    ox = int(drift[0] * (0.5 - lt / dur))
+    oy = int(drift[1] * (0.5 - lt / dur))
+    if ox or oy:
+        base = Image.fromarray(np.roll(np.asarray(base), (oy, ox), axis=(0, 1)))
     base = base.resize((int(1920 * z), int(1080 * z)), Image.BICUBIC)
     ox, oy = int((base.width - 1920) * 0.5), int((base.height - 1080) * 0.5)
     out = base.crop((ox, oy, ox + 1920, oy + 1080)).convert('RGBA')
