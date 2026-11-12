@@ -77,9 +77,10 @@ SHOTS = [
     ('S09_table',     'gfx', 46.22,  51.31, 0.00, 1.0000),
     ('S10_strip',     'gfx', 51.31,  59.11, 0.00, 1.0000),
     ('S11_question',  'map', 59.11,  64.31, 0.00, 1.0000),
-    ('S12_board',     'gfx', 64.31,  91.50, 0.00, 1.0000),
-    ('S15_sumbawa',   '04',  91.50,  96.11, 2.40, 0.8800),
-    ('S16_eruption',  '05',  96.11, 102.60, 1.90, 0.8700),
+    # 1:29.85-1:41.80 is still the board: clips 04 and 05 play inside the pinned frame
+    # and the camera pushes into it. Fullscreen 04/05 is the head of chapter 2, so there
+    # is no fullscreen live plate anywhere in this chapter.
+    ('S12_board',     'gfx', 64.31, 102.60, 0.00, 1.0000),
     ('S17_reckoning', 'map', 102.60, 109.48, 0.00, 1.0000),
 ]
 T_END = 109.48
@@ -133,6 +134,14 @@ def plate_src(t):
     s = shot_at(t)
     name, key, t0, t1, ip, rate = s
     if key in ('map', 'gfx'):
+        if key == 'gfx' and FRAME['play'] and FRAME_IN <= t < FRAME_OUT:
+            # the board is a graphic, but its pinned frame is live footage: report the
+            # clip that is actually inside the frame, not a placeholder
+            if t < FRAME_05_IN:
+                p = PL['04']
+                return ('04', p.idx(0.00 + (t - FRAME_IN) * 0.88), p.n, p.bsf)
+            p = PL['05']
+            return ('05', p.idx(1.90 + (t - FRAME_05_IN) * 0.87), p.n, p.bsf)
         # graphics plates are generated per frame, so there is no clip frame to report
         return (key, int(round((t - t0) * 30)), 0, 0.0)
     p = PL[key]
@@ -809,7 +818,7 @@ def spring_drop(lt, t_drop, settle=0.55):
 
 def paper_card(w, h, kind, rng_seed=0, title=None, lines=(), tilt=0.0, fill=(246, 240, 228)):
     """a card on the board: its own paper, a pin, and real lettering"""
-    key = ('card', kind, w, h, title, tuple(lines), tilt, fill)
+    key = ('card', kind, w, h, title, tuple(lines), tilt, fill, FRAME['play'])
     if key in _DESK_SHEET:
         return _DESK_SHEET[key]
     card = archive_sheet(w, h, seed=rng_seed + 3)
@@ -847,6 +856,8 @@ def paper_card(w, h, kind, rng_seed=0, title=None, lines=(), tilt=0.0, fill=(246
         # a small ice core beside it
         d.rectangle([w - 74, ih * 0.58, w - 30, ih * 0.94], fill=(206, 220, 228, 235))
         d.rectangle([w - 74, ih * 0.58, w - 30, ih * 0.62], fill=(150, 176, 190, 235))
+    elif kind == 'island' and FRAME['play']:
+        pass                      # the live plate is composited after the card rotates
     elif kind == 'island':
         fr = _island_frame()
         sc = max(w / fr.width, ih / fr.height)
@@ -856,7 +867,7 @@ def paper_card(w, h, kind, rng_seed=0, title=None, lines=(), tilt=0.0, fill=(246
         fr = fr.crop((ox, oy, ox + w, oy + ih))
         if fr.mode != 'RGBA':
             fr = fr.convert('RGBA')
-        card.paste(fr.convert('RGB'), (0, 0))
+        card.paste(C.grade5(fr.convert('RGB'), warmth=0.80, sat=0.76), (0, 0))
     else:
         d.rectangle([0, 0, w, ih], fill=(44, 40, 36, 255))
 
@@ -874,10 +885,27 @@ def paper_card(w, h, kind, rng_seed=0, title=None, lines=(), tilt=0.0, fill=(246
         ty += sp.height + 4
     d = ImageDraw.Draw(card, 'RGBA')
     d.rectangle([0, 0, w - 1, h - 1], outline=(120, 104, 88, 160), width=2)
+    live = None
+    if kind == 'island' and FRAME['play']:
+        # the window the still would have occupied: the clip is laid in, rotated WITH the
+        # card, so the push later moves the picture and the paper as one object
+        live = Image.new('RGBA', (w, ih), (12, 12, 14, 255))
+        live.alpha_composite(_clip_in_frame(CUR_T[0]).convert('RGBA'), (0, 0))
+        # a hairline inside the window: without it a bright clip leaks into the paper edge
+        ImageDraw.Draw(live).rectangle([0, 0, w - 1, ih - 1],
+                                       outline=(24, 20, 18, 255), width=2)
     out = card.rotate(tilt, expand=True, resample=Image.BICUBIC)
     # the centre of the CARD inside the rotated (expanded) sprite: the pin goes here, and
     # the top edge of the card is card_c[1] - h/2 from it
     card_c = (out.width / 2.0, out.height / 2.0)
+    rect = None
+    if live is not None:
+        # the clip must NOT enter the memo cache: it changes every frame
+        lo = live.rotate(tilt, expand=True, resample=Image.BICUBIC)
+        out = out.copy()
+        out.alpha_composite(lo, (0, 0))
+        a = out.split()[3]
+        return out, card_c
     _DESK_SHEET[key] = (out, card_c)
     return out, card_c
 
@@ -887,11 +915,52 @@ _ISL = {}
 
 def _island_frame():
     """a frozen frame of clip 04: the subject of the third card, and the match cut's target"""
+    if FRAME['play']:
+        raise RuntimeError('the island card must not build its still while clips play')
     if 'f' not in _ISL:
-        p = PL['04']
-        im = p.frame(0.20 + 2.2, None).convert('RGB')
-        _ISL['f'] = im
+        # frame 0 of 04 -- exactly what _clip_in_frame() shows on its first frame, so the
+        # still becomes motion without a visible cut, pop or grade change
+        _ISL['f'] = PL['04'].frame(0.0, None).convert('RGB')
     return _ISL['f']
+
+
+# ---------------------------------------------------------------- the pinned frame
+# The brief: clips 04 and 05 belong INSIDE the photograph pinned on the case board, not
+# fullscreen. Fullscreen 04/05 is the head of chapter 2; the board shows the third suspect
+# framed, and the camera pushes into that frame. So the frame is a slot: whatever is
+# playing in it and whatever the camera is doing to it are decided by booleans and follow
+# the same card that carries the title, the pin and the tilt.
+FRAME = dict(play=False, push=False)
+FRAME_IN, FRAME_CUT = 89.85, 96.35       # 1:29.85 -> 1:36.35
+FRAME_05_IN = 96.35                      # 05 takes the frame 1:36.35 -> 1:41.80
+FRAME_OUT = 101.80
+# the clips are 1280x720; the card's window is 300x216, so this is a 0.30 scale-down of a
+# sharp plate, never an upscale of a photo
+_CARD_IH_ISLAND = int(360 * 0.60)
+
+
+def _clip_in_frame(t):
+    """the 04/05 plate, graded, cropped to the frame's aspect and camera-pushed."""
+    if t < FRAME_05_IN:
+        pl, ip, rate, lt = PL['04'], 0.00, 0.88, t - FRAME_IN
+    else:
+        pl, ip, rate, lt = PL['05'], 1.90, 0.87, t - FRAME_05_IN
+    src_w = int(round(_CARD_IH_ISLAND * 16 / 9))          # 384 x 216 window, 16:9
+    src_h = _CARD_IH_ISLAND
+    im = pl.frame(ip + max(0.0, lt) * rate, None).convert('RGB')
+    # cover-fit, then push in by up to 1.18x -- the motion is the point, not the zoom
+    z = 1.0 + (0.18 * ease(ramp(lt, 0.0, 5.4)) if t < FRAME_05_IN
+               else 0.14 * ease(ramp(lt, 0.0, 5.45)))
+    cw, ch = im.width / z, im.height / z
+    cx, cy = im.width / 2, im.height * 0.46
+    im = im.crop((int(cx - cw / 2), int(cy - ch / 2),
+                  int(cx + cw / 2), int(cy + ch / 2)))
+    scale = max(src_w / im.width, src_h / im.height)
+    im = im.resize((int(im.width * scale) + 1, int(im.height * scale) + 1), Image.LANCZOS)
+    ox = (im.width - src_w) // 2
+    oy = int((im.height - src_h) * 0.42)
+    im = im.crop((ox, oy, ox + src_w, oy + src_h))
+    return C.grade5(im, warmth=0.80, sat=0.76)
 
 
 def draw_pin(im, x, y, t, t_in, r=9, shadow=True):
@@ -942,8 +1011,16 @@ _CARD_POS = dict(c1=(420, 446), c2=(960, 432), c3=(1500, 446))
 CARD_W, CARD_H = 300, 360
 
 
+# the board renderer reads the wall clock, not the shot-local one: the card is keyed on
+# the second the clip is at, and a shot-local key would restart the clip on every rebuild
+CUR_T = [0.0]
+
+
 def base_s12(t):
     """the case board: a file drops, opens, and three suspects get pinned"""
+    CUR_T[0] = t
+    FRAME['play'] = FRAME_IN <= t < FRAME_OUT
+    FRAME['push'] = t >= FRAME_CUT
     lt = t - 64.31
     base = Image.fromarray(np.roll(np.asarray(cork_board()), (0, int(-3 * ease(lt / 7.61))),
                                    axis=1))
@@ -1033,8 +1110,15 @@ def base_s12(t):
         if lt < t_at:
             continue
         kk = spring_drop(lt, t_at, 0.5)
-        card, cc = paper_card(CARD_W, CARD_H, kind, rng_seed=hash(name) % 50,
-                              title=title, lines=lines, tilt=tilt)
+        if name == 'c3' and FRAME['play']:
+            # rebuilds every frame: the clip is in the window, so the card cannot be cached
+            card, cc = paper_card(CARD_W, CARD_H, kind, rng_seed=hash(name) % 50,
+                                  title=title, lines=lines, tilt=tilt)
+            _DESK_SHEET.pop(('card', kind, CARD_W, CARD_H, title, tuple(lines), tilt,
+                             (246, 240, 228), True), None)
+        else:
+            card, cc = paper_card(CARD_W, CARD_H, kind, rng_seed=hash(name) % 50,
+                                  title=title, lines=lines, tilt=tilt)
         x, y = _CARD_POS[name]
         hover = int(-90 * kk)
         dim = 1.0
@@ -1069,22 +1153,26 @@ def base_s12(t):
         t_at = {'c1': 10.19, 'c2': 15.99, 'c3': 25.39}[name]
         base = draw_pin(base, x, y, lt, t_at, r=9)
 
-    # 6) the match cut: push into card 3 until its frame is the whole screen
-    if lt >= 26.29:
-        # push in on card 3's photograph, then hand off to the live clip of the same
-        # subject on a hard cut. A 7.5x push simply enlarged a 330 px crop and every
-        # frame went to mush -- 2.4x keeps the push legible and lets the plate land sharp.
-        u = ramp(lt, 26.29, 27.19)
+    # 6) the camera pushes into the PINNED FRAME, not into a crop of a still
+    # The still was 330 px wide; pulling it to full screen was a 5.8x upscale and every
+    # frame was mush. The push now lands on the live plate in the frame at 1.9x, which is
+    # a 1080p plate being shown at 0.66 of its size on the board -- so the close-up is
+    # sharper than the wide, and the motion inside the frame is the real clip's motion.
+    if FRAME['push']:
+        u = ramp(t, FRAME_CUT, FRAME_CUT + 1.10)
+        e = ease(u)
         c3 = _CARD_POS['c3']
         cx, cy = c3[0], c3[1] - CARD_H // 2 + int(CARD_H * 0.30)
-        z = 1.0 + 1.42 * (u ** 2)
+        z = 1.0 + 0.90 * (e ** 2)
         nw, nh = int(W * z), int(H * z)
         big = base.resize((nw, nh), Image.BICUBIC)
         ox = int(np.clip(cx * z - W / 2, 0, nw - W))
         oy = int(np.clip(cy * z - H / 2, 0, nh - H))
         base = big.crop((ox, oy, ox + W, oy + H)).convert('RGBA')
-        if u > 0.55:
-            base = C.zoom_blur(base.convert('RGB'), (u - 0.62) * 1.9).convert('RGBA')
+        if u >= 1.0:
+            # the frame's own push is what carries the last two seconds; a blur on top of
+            # a 1080p plate only wastes the resolution the move was made to show
+            pass
 
     return C.grade5(base.convert('RGB'), warmth=0.82, sat=0.78).convert('RGBA')
 
