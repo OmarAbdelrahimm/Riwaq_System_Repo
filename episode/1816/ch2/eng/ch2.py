@@ -858,7 +858,7 @@ LINES = [
     ('S07_ashfall',  131.40, 138.15, 48, 'الرماد غطّى الجزر'),
     ('S08_village',  143.95, 144.70, 44, 'كارثة مباشرة'),
     ('S10_map_out',  149.90, 153.25, 46, 'الانفجار ما وقفش عند الجزيرة'),
-    ('S12_hidden',   159.10, 160.25, 46, 'حاجة شغّالة بعيد عن العيون'),
+    ('S12_hidden',   159.10, 159.95, 46, 'حاجة شغّالة بعيد عن العيون'),
     ('S13_change',   163.40, 166.25, 46, 'صيف السنة اللي بعدها'),
     ('S14_question', 166.60, 168.80, 46, 'إيه اللي حصل؟'),
     ('S21_planet',   196.20, 197.98, 44, 'الرياح لفته حوالي الكوكب'),
@@ -872,9 +872,9 @@ for _n, _a, _b, _sz, _tx in LINES:
 # ---------------------------------------------------------------- the card plan
 # (name, slot, cue, hold, text) -- one tag at a time, sequenced by the queue
 CARDS = [
-    ('c2_vei',      'C', 122.30, 2.30, 'VEI 7 — أكبر تصنيف مسجّل'),
+    ('c2_vei',      'B', 122.30, 2.30, 'VEI 7 — أكبر تصنيف مسجّل'),
     ('c2_bury',     'C', 139.90, 2.00, 'قرية كاملة تحت الرماد'),
-    ('c2_hidden',   'C', 160.40, 2.00, 'غازات… مش رماد'),
+    ('c2_hidden',   'C', 160.45, 1.95, 'غازات… مش رماد'),
     ('c2_so2',      'A', 183.60, 2.10, 'SO₂ في الستراتوسفير'),
     ('c2_verdict',  'C', 191.60, 2.70, 'VERDICT:gas'),
     ('c2_hold',     'C', 219.60, 2.20, 'التبريد مش آخر الفصل'),
@@ -1446,7 +1446,7 @@ def _vei_sheet(u):
     d = ImageDraw.Draw(im, 'RGBA')
     hand_text(im, 56, 40, 'Volcanic Explosivity Index', size=36, fill=(52, 38, 26))
     d.line([(56, 104), (w - 56, 104)], fill=(80, 64, 48, 130), width=3)
-    base_y = h - 150
+    base_y = h - 190
     x0, step, bw = 78, 132, 84
     # volume of tephra, in m3, as the log axis the index is actually defined on
     vol = [1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10, 1e11]
@@ -1467,16 +1467,18 @@ def _vei_sheet(u):
         im.alpha_composite(sp, (x + bw // 2 - sp.width // 2, base_y - int(hh) - 32))
     sp = C.text_sprite('حجم الرماد (م٣)', 24, fill=(96, 82, 66), fname=AR)
     im.alpha_composite(sp, (56, 148))
-    # the 1815 mark: on the VEI-7 bar, above it, on its own line
+    # the 1815 mark: a leader from the VEI-7 bar out to the right margin, where there is
+    # paper for the words. Over the bars it printed on top of the value labels.
     if u > 0.60:
         a = ramp(u, 0.60, 0.92)
         x = x0 + 7 * step + bw // 2
+        ly = base_y - int((base_y - top_y) * 0.62)
+        d.line([(x + 10, ly), (w - 210, ly)], fill=(150, 50, 36, int(190 * a)), width=3)
+        d.ellipse([x + 4, ly - 5, x + 14, ly + 5], fill=(150, 50, 36, int(230 * a)))
         sp = C.text_sprite('تامبورا ١٨١٥', 30, fill=(150, 50, 36), fname=AR)
         sp.putalpha(sp.split()[3].point(lambda v: int(v * a)))
-        im.alpha_composite(sp, (int(x - sp.width / 2), top_y - 62))
-        d.line([(x, top_y - 52), (x, base_y - int((base_y - top_y) * 1.0) - 8)],
-               fill=(150, 50, 36, int(200 * a)), width=3)
-    hand_text(im, 56, h - 74, 'أكبر ثوران مسجّل في التاريخ البشري', size=32,
+        im.alpha_composite(sp, (int(w - 202), int(ly - sp.height / 2)))
+    hand_text(im, 56, h - 134, 'أكبر ثوران مسجّل في التاريخ البشري', size=32,
               fill=(64, 48, 36), font_name=AR)
     return im
 
@@ -1537,7 +1539,7 @@ def _toll_sheet(u):
     grp = ''
     for k, ch in enumerate(reversed(digits)):
         if k and k % 3 == 0:
-            grp = '٬' + grp
+            grp = '،' + grp
         grp = arabic[int(ch)] + grp
     sp = C.text_sprite(grp, 150, fill=(150, 52, 38))
     im.alpha_composite(sp, ((w - sp.width) // 2, 120))
@@ -1850,50 +1852,60 @@ def _energy_sheet(u):
 
 
 def _loft_sheet(u):
-    """ash lifted into the stratosphere and carried round by the wind"""
-    w, h = 1140, 660
+    """ash lifted into the stratosphere and carried round by the wind."""
+    w, h = 1140, 560
     im = _card(w, h, (234, 226, 210), seed=421)
     d = ImageDraw.Draw(im, 'RGBA')
-    hand_text(im, 52, 36, 'الرماد على الرياح', size=38, fill=(52, 38, 26), font_name=AR)
-    d.line([(52, 102), (w - 52, 102)], fill=(120, 96, 74, 140), width=3)
-    ground = h - 150
-    d.line([(60, ground), (w - 60, ground)], fill=(80, 66, 54, 220), width=3)
-    # the stratosphere as a shallow band near the top, where the ash lives
-    d.rectangle([72, 158, w - 72, 232], fill=(120, 138, 156, 92))
-    d.line([(72, 232), (w - 72, 232)], fill=(96, 80, 64, 150), width=2)
-    # the layer's name goes above its band, on the paper: light type on a grey veil was
-    # below the contrast floor
-    sp = C.text_sprite('استراتوسفير', 27, fill=(72, 58, 44), fname=AR)
-    im.alpha_composite(sp, (72, 120))
-    a = ramp(u, 0.05, 0.9)
+    hand_text(im, 52, 34, 'الرماد على الرياح', size=38, fill=(52, 38, 26), font_name=AR)
+    d.line([(52, 100), (w - 52, 100)], fill=(120, 96, 74, 140), width=3)
+    ground = h - 86
+    d.line([(70, ground), (w - 70, ground)], fill=(96, 80, 64, 170), width=3)
+    sp = C.text_sprite('ستراتوسفير', 28, fill=(72, 58, 44), fname=AR)
+    im.alpha_composite(sp, (70, 116))
+    top = 152
+    # no flat fill anywhere on this sheet: a grey rectangle over the band read as a
+    # lozenge printing defect, so the layer is drawn as its own grain
+    a = ramp(u, 0.05, 0.85)
     if a > 0.02:
-        sheet = Image.new('RGBA', (w, h), (0, 0, 0, 0))
-        sd = ImageDraw.Draw(sheet, 'RGBA')
         rng = np.random.default_rng(8)
-        for k in range(240):
-            fx = rng.uniform(0, 1)
-            fy = rng.uniform(0, 1)
-            x = 80 + fx * (w - 160) + 60 * a * 0.35
-            y = 140 + fy * 130 + 16 * math.sin(fx * 7.0 + 1.4)
-            rr = rng.uniform(1.5, 5.0)
-            sd.ellipse([x - rr, y - rr, x + rr, y + rr],
-                       fill=(206, 196, 180, int(120 * a)))
-        sheet.putalpha(sheet.split()[3].point(lambda v: int(v * a)))
-        im.alpha_composite(sheet)
-    # the wind: three long arrows under the band
+        for _k in range(620):
+            fx = float(rng.uniform(0, 1))
+            fy = float(rng.uniform(0, 1))
+            x = 74 + fx * (w - 148) + 70 * a * 0.35
+            y = top + fy * 92 + 8 * math.sin(fx * 6.0 + 1.4)
+            rr = float(rng.uniform(0.8, 2.4))
+            if x > w - 74:
+                continue
+            d.ellipse([x - rr, y - rr * 0.62, x + rr, y + rr * 0.62],
+                      fill=(118 + int(rng.uniform(0, 26)), 108, 96,
+                            int(rng.uniform(60, 150) * a)))
+    d.line([(74, top + 96), (w - 74, top + 96)], fill=(120, 100, 78, 150), width=2)
+    # the column feeding it: a soft blurred cone rising from the ground into the band
+    cw_, chh = 200, ground - (top + 92)
+    ch_ = Image.new('RGBA', (cw_, chh), (0, 0, 0, 0))
+    cd = ImageDraw.Draw(ch_)
+    for k in range(30):
+        f = k / 29.0
+        y = chh - 6 - f * (chh - 10)
+        rr = 34 - f * 16
+        cd.ellipse([cw_ / 2 - rr, y - rr * 0.55, cw_ / 2 + rr, y + rr * 0.55],
+                   fill=(150, 138, 120, int(140 * (1 - f * 0.35) * ramp(u, 0.0, 0.5))))
+    ch_ = ch_.filter(ImageFilter.GaussianBlur(8))
+    im.alpha_composite(ch_, (30, top + 92))
+    # a mountain under the column, so the sheet says where the ash came from
+    d.polygon([(58, ground), (132, ground - 46), (168, ground - 96), (204, ground - 46),
+               (278, ground)], fill=(84, 72, 60, 235))
+    d.line([(58, ground), (278, ground)], fill=(70, 58, 48, 235), width=2)
+    # the wind, drawn as arrows that run with the band
     for k in range(3):
-        x0 = 150 + k * 300
-        _arrow(d, (x0, 236), (x0 + 170, 236),
-               (176, 148, 96, int(210 * ramp(u, 0.25 + k * 0.1, 0.8 + k * 0.1))), 4, 14)
-    # the column still feeding it, on the left
-    for k in range(10):
-        f = k / 9.0
-        y = ground - 20 - f * 330
-        rr = int(30 - f * 14)
-        d.ellipse([120 - rr, y - rr * 0.6, 120 + rr, y + rr * 0.6],
-                  fill=(180, 170, 154, int(90 * (1 - f * 0.5))))
+        x0 = 360 + k * 250
+        _arrow(d, (x0, top + 140), (x0 + 150, top + 140),
+               (150, 122, 82, int(225 * ramp(u, 0.20 + k * 0.10, 0.70 + k * 0.10))),
+               4, 14)
     sp = C.text_sprite('رياح شرقية', 28, fill=(60, 48, 36), fname=AR)
-    im.alpha_composite(sp, (w - 88 - sp.width, 246))
+    im.alpha_composite(sp, (w - 84 - sp.width, top + 160))
+    sp = C.text_sprite('الرماد بيتحرك مع الرياح لأسابيع', 27, fill=(64, 50, 38), fname=AR)
+    im.alpha_composite(sp, (w - 72 - sp.width, 122))
     return im
 
 

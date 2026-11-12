@@ -290,19 +290,36 @@ def text_contrast(P):
         ink = op[l <= np.percentile(l, 12)].mean(0)
         paper = np.median(op[l >= np.percentile(l, 55)], axis=0)
         res.append(dict(text=tg.name, kind='ink on paper', ratio=round(ratio(ink, paper), 2)))
-    # type with no paper under it is measured on the delivered frame, in the ink's own
-    # box: line by line against the field it actually sits on
+    # Type with no paper under it is measured on the DELIVERED frame, but inside the
+    # ink's own box -- located by rendering the same instant with the lettering switched
+    # off. A fixed crop with global percentiles measures whatever else is in the crop:
+    # the first version of this reported 2.8-4.1:1 for labels that measure 20+:1 when
+    # the box is the lettering.
     from PIL import Image
     mp4p = os.path.join(OUT, os.environ.get('CH2_MP4', 'ch2_master.mp4'))
     for n, a_, b_, _sz, _tx in P.LINES:
         t = (a_ + b_) / 2.0
+        on = np.asarray(P.frame_at(t).convert('RGB'), np.float32)
+        P.text_off['on'] = True
+        try:
+            off = np.asarray(P.frame_at(t).convert('RGB'), np.float32)
+        finally:
+            P.text_off['on'] = False
+        d = np.abs(on - off).max(axis=2) > 8
+        if not d.any():
+            res.append(dict(text='lower third %s @%.1f' % (n, t), kind='type on plate',
+                            ratio=0.0))
+            continue
+        ys, xs = np.where(d)
+        x0, y0 = max(0, xs.min() - 6), max(0, ys.min() - 6)
+        x1, y1 = min(1919, xs.max() + 6), min(1079, ys.max() + 6)
         subprocess.run([FF, '-v', 'error', '-y', '-ss', f'{t - P.T0:.3f}', '-i', mp4p,
                         '-frames:v', '1', '/tmp/_r.png'], check=True)
         im = np.asarray(Image.open('/tmp/_r.png').convert('RGB'), np.float32)
-        crop = im[880:1030, 40:960].reshape(-1, 3)
+        crop = im[y0:y1, x0:x1].reshape(-1, 3)
         l = crop @ np.array([0.2126, 0.7152, 0.0722], np.float32)
-        ink = crop[l >= np.percentile(l, 90)].mean(0)
-        bg = np.median(crop[l <= np.percentile(l, 45)], axis=0)
+        ink = crop[l >= np.percentile(l, 85)].mean(0)
+        bg = np.median(crop[l <= np.percentile(l, 30)], axis=0)
         res.append(dict(text='lower third %s @%.1f' % (n, t), kind='type on plate',
                         ratio=round(float(ratio(ink, bg)), 2)))
     bad = [r for r in res if r['ratio'] < 4.5]

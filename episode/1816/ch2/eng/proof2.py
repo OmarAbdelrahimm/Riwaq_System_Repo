@@ -33,8 +33,11 @@ def frame_from_master(t):
     """pull the graded, encoded frame out of the delivered master: the proof must show
     what was delivered, not what the engine produced before encoding."""
     import subprocess
-    subprocess.run(['/home/user/ffmpeg', '-v', 'error', '-y', '-ss', f'{t:.3f}', '-i',
-                    '/home/user/work/out2/RUWAQ_CH2_master_av.mp4', '-frames:v', '1',
+    # the chapter master is chapter-local: seeking film time would land past the end of
+    # the file and hold the last frame, which is how the first proof sheet showed the
+    # same map in all six cells
+    subprocess.run(['/home/user/ffmpeg', '-v', 'error', '-y', '-ss', f'{t - P.T0:.3f}',
+                    '-i', '/home/user/work/out2/RUWAQ_CH2_master_av.mp4', '-frames:v', '1',
                     '/tmp/_proof.png'], check=True)
     return Image.open('/tmp/_proof.png').convert('RGB')
 
