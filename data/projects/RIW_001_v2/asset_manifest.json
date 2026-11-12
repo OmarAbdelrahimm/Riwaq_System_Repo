@@ -1,0 +1,25 @@
+{
+  "project": "RIW_001_v2 — Bab Zuwayla 12-state stateless rebuild (visual-fix build)",
+  "engine": "scripts/rv_engine.py (pure draw(t), float32, np.clip)",
+  "srt": "google_drive/CAPTIONS_AR_RIW_001.srt (79 lines -> 00:03:57.820)",
+  "audio_source": "google_drive/MASTER_FINAL_RIW_001.mp4 (−14.0 LUFS / −1.4 dBTP bed)",
+  "logo": "google_drive/02-logo-horizontal-dark-bg.png (145px top-left, alpha 0.8)",
+  "state_assets": {
+    "S01": "Bab_Zuwayla_Cairo_12_0864.jpg (real photo, tilt-down minarets->towers)",
+    "S02": "door_front.png (blurred 25% self-fill + blueprint grid)",
+    "S03": "Cairo,_bab_zuweila_02.jpeg (dramatic gate photograph)",
+    "S04": "خريطة_القاهرة_الفاطمية_وباب_زويلة(1).png",
+    "S05": "bab_zuweila_architectural_transformation_board(1).png + sightlines",
+    "S06": "cutout_cairo_map.png (route sweep)",
+    "S07": "cutout_door.png (blurred fill) + engineering dims + bearing circles",
+    "S08": "bab_zuweila_architectural_transformation_board(1).png (smart zoom/pan halves)",
+    "S09": "Wellcome street scene + TIMEA 1906 inset",
+    "S10": "David_Roberts_minarets_Bab_Zuweyleh.jpg (somber 1517)",
+    "S11": "باب_زويلة_رحلة_ترميم_تاريخية(1).png + 1998-2003 timeline",
+    "S12": "ruwaq_paper_art.png + Qasr Masmak vector silhouette"
+  },
+  "banned_assets": ["media_1794277907948 (flat beige 3D render)", "media_1794277920804 (flat beige 3D render)"],
+  "visual_fixes_v2": ["real-photo S01", "dramatic-photo S03", "board S08", "door blur-fill S02/S07",
+    "compact pill card text_w+64 / text_h+36 bottom-right", "zero empty rects",
+    "clean HUD logo-only", "no Latin in Arabic cards"]
+}
