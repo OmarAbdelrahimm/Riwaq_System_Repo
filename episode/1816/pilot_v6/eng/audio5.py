@@ -98,11 +98,21 @@ def music_levels(vo, music):
     return (db(rms(music[m])), db(rms(music[~m])))
 
 
-def build(t_end=30.0, events=None, tag='pilot5', score_gain=None):
+def build(t_end=30.0, events=None, tag='pilot5', score_gain=None, vo_start=0.0):
+    """mix one chapter.
+
+    `vo_start` is the chapter's start ON THE EPISODE'S VO FILE, in seconds. It defaults to
+    0.0 because chapter 1 starts at 0:00, and that default is what shipped a chapter 2
+    whose pictures sat on chapter 1's voice: `build()` decoded the VO from 0 regardless of
+    where the chapter began, so every later chapter got the opening narration. A chapter
+    that does not begin at 0:00 MUST pass its start here, and audio2v5/mux2 both assert it.
+    """
     from eng5 import music5
     from eng5 import sfx5
 
-    vo = decode(os.path.join(GD, '1816_OMAR_VO_FULL_MIX_48k.flac'), 0, t_end)
+    # the VO slice for THIS chapter: [vo_start, vo_start + t_end) on the episode file,
+    # read as t = 0 at the chapter's first frame
+    vo = decode(os.path.join(GD, '1816_OMAR_VO_FULL_MIX_48k.flac'), vo_start, t_end)
     n = len(vo)
 
     if score_gain is None:
@@ -115,10 +125,26 @@ def build(t_end=30.0, events=None, tag='pilot5', score_gain=None):
         mus = decode(os.path.join(GD, '1816_ORIGINAL_MUSIC_BED_48k.flac'), 0, t_end)[:n]
         music_src = 'supplied bed'
 
+    # decode() and music5.build() round to different sample counts (32 samples out at
+    # chapter 2's length), and a 32-sample difference is a broadcast error, not a musical
+    # one. Trim or pad the score to the voice, exactly.
+    if len(mus) < n:
+        mus = np.pad(mus, ((0, n - len(mus)), (0, 0)))
+    elif len(mus) > n:
+        mus = mus[:n]
+
     vo_r, mus_r = rms(vo), rms(mus)
     mus_trim = (db(vo_r) + MUSIC_DUCKED_DB + DUCK_DB) - db(mus_r)
     music_bed = mus * (10 ** (mus_trim / 20.0))
     gain, deepest = duck_gain(vo, depth_db=-DUCK_DB)
+    # the duck curve is built from `vo` and the bed from the score; if the two decodes
+    # disagree by a few samples the multiply raises. Align the gain to the bed it rides,
+    # whatever either length turns out to be.
+    if len(gain) != len(music_bed):
+        if len(gain) < len(music_bed):
+            gain = np.pad(gain, (0, len(music_bed) - len(gain)), mode='edge')
+        else:
+            gain = gain[:len(music_bed)]
     mus_ducked = music_bed * gain[:, None]
 
     props = np.zeros_like(vo)

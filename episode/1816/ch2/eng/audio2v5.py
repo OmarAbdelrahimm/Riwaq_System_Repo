@@ -19,7 +19,13 @@ sys.path.insert(0, '/home/user/Riwaq_System_Repo/episode/1816')
 from eng5 import audio5 as A
 
 OUT = '/home/user/work/out2'
-T_END = 225.42
+# THE CHAPTER'S PLACE ON THE EPISODE'S VO FILE. Chapter 2 covers film time 1:49.47 to
+# 3:42.23, so its voice is the slice [103.17, 225.42) of the full episode VO -- NOT from
+# 0:00. The previous mix decoded from 0 and every picture of chapter 2 sat on chapter 1's
+# opening narration.
+CH2_START_SEC = 103.17
+CH2_END_SEC = 225.42
+T_END = CH2_END_SEC - CH2_START_SEC          # the chapter's own length, 122.25 s
 # the score's sections follow Chapter 2's own beats: the eruption, the toll, the turn
 MARKS = dict(b2=112.45, b3=121.58, b4=138.21, b5=172.78, out=222.40)
 STINGS = [117.24, 196.02]
@@ -47,22 +53,27 @@ def main():
     from eng5 import music5
 
     # the score, with the chapter's section map, written where audio5 expects to find it
-    score = music5.build(T_END, marks=MARKS, stings=STINGS)
+    # the score's marks are chapter-local too, or the cues land a minute and a half early
+    marks = {k: v - CH2_START_SEC for k, v in MARKS.items()}
+    stings = [t - CH2_START_SEC for t in STINGS]
+    score = music5.build(T_END, marks=marks, stings=stings)
     np.save(os.path.join(OUT, 'score_raw.npy'), score)
     # audio5 imports music5 inside build(); hand it the finished score instead of letting
     # it compose the pilot's 30 s cue again
     music5.build = lambda t_end=30.0, **kw: score[:int(round(t_end * music5.SR))]
 
-    evs = [dict(t=e['t'], sfx=e['sfx'], what=e['what']) for e in P.EVENTS if e.get('sfx')]
+    # events are written against film time; the mix is built on chapter-local time
+    evs = [dict(t=e['t'] - CH2_START_SEC, sfx=e['sfx'], what=e['what'])
+           for e in P.EVENTS if e.get('sfx')]
     # every card gets its own paper: the queue knows when each one enters and leaves, and
     # the picture is only half the card if it arrives in silence
     # v5 has no tag queue: the cards are built inside their shots. Their cues are the
     # same beats, so the paper hits are read from the shot table instead of a queue.
     for t_cue in CARD_CUES:
-        evs.append(dict(t=t_cue, sfx='paper_in', what='card in'))
+        evs.append(dict(t=t_cue - CH2_START_SEC, sfx='paper_in', what='card in'))
     evs.sort(key=lambda e: e['t'])
     A.OUT = OUT
-    wav, stems, meta = A.build(T_END, evs, 'ch2')
+    wav, stems, meta = A.build(T_END, evs, 'ch2', vo_start=CH2_START_SEC)
     j = A.master(wav, os.path.join(OUT, 'ch2_master.wav'))
     # loudnorm's first pass on a 3.7 minute programme lands a couple of LU hot (Chapter 1
     # needed the same correction): measure the delivered file and correct once, linearly,
@@ -71,6 +82,9 @@ def main():
                   os.path.join(OUT, 'ch2_master2.wav'))
     print('loudnorm pass 2:', j2['input_i'], j2['input_tp'])
     os.replace(os.path.join(OUT, 'ch2_master2.wav'), os.path.join(OUT, 'ch2_master.wav'))
+    meta['ch_start_sec'] = CH2_START_SEC
+    meta['ch_end_sec'] = CH2_END_SEC
+    meta['vo_slice'] = [CH2_START_SEC, CH2_END_SEC]
     json.dump(meta, open(os.path.join(OUT, 'audio2_meta.json'), 'w'), indent=1,
               ensure_ascii=False)
     print('mix', wav)
