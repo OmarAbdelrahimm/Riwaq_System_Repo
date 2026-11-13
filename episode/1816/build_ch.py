@@ -105,7 +105,12 @@ def audio(n):
     span = t_end
     marks = dict(b2=span * 0.10, b3=span * 0.30, b4=span * 0.56, b5=span * 0.78,
                  out=span - 3.2)
-    stings = [e['t'] - P.T0 for e in ev if e['sfx'] in ('sting', 'thunder')]
+    # a riser is 2.6 s long and ends ON its sting, so a chapter's first cut (local t=0)
+    # cannot carry one: music5 would try to write a negative-offset buffer and the slice
+    # comes back empty. Anything within the first riser length is dropped, not moved --
+    # a hit on frame one is inaudible anyway.
+    stings = [e['t'] - P.T0 for e in ev
+              if e['sfx'] in ('sting', 'thunder') and 3.0 <= e['t'] - P.T0 < span - 3.0]
     if not stings:
         stings = [span * 0.5]
     score = music5.build(t_end, marks=marks, stings=stings)
