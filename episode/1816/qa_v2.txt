@@ -1,0 +1,53 @@
+shots 190   span 0.07 → 626.25
+dur mean 2.79s median 2.66 min 1.02 max 7.21
+buckets {'3-5': 70, '2-3': 64, '1-2': 51, '5-8': 5}
+over 5s: 5  over 8s: 0
+max inter-shot gap 1.379s · overlaps 0
+
+SHOT TYPES (count / share):
+  WIDE         38   20.0%
+  DETAIL       32   16.8%
+  SILHOUETTE   21   11.1%
+  MEDIUM       21   11.1%
+  THREAD       14    7.4%
+  BOARD        14    7.4%
+  DATA         14    7.4%
+  DOC          10    5.3%
+  MAP           9    4.7%
+  HUMAN         9    4.7%
+  MACRO         7    3.7%
+  END           1    0.5%
+SCALE: {'graphic': '62 (32.6%)', 'human': '51 (26.8%)', 'wide': '38 (20.0%)', 'detail': '32 (16.8%)', 'macro': '7 (3.7%)'}
+
+ON-SCREEN TEXT 53/190 = 27.9%
+  kinds: {'honesty_label': 1, 'key_phrase': 43, 'lower_third': 4, 'stamp_motif': 3, 'quote_card': 2}
+  >6 words: [(109, 'We will each write a ghost story')]
+  numeric items: ['نيو إنجلاند · 8 يونيو', 'سومباوا · إبريل 1815', 'لندن · 1818'] -> 3
+
+DUPLICATES literal: 0 shots in 0 groups
+DUPLICATES thread-prefix-stripped: 0 shots in 0 groups
+  distinct visuals: 190 / 190
+
+max consecutive same type: 2
+max consecutive graphic: 4
+
+breathing shots >=5s: 5
+    (24, 6.55, 'قرص شمس مصغّر على ورق، إشعاعه يخفت')
+    (33, 6.31, 'خيط ذهبي واحد يخرج من الإطار نحو ا')
+    (56, 5.48, 'مقطع عرضي: جسيمات دقيقة تنتشر في ط')
+    (97, 7.21, 'واجهة فيلا حجرية ليلاً، نافذتان مض')
+    (190, 6.35, 'علامة رِواق الصغيرة في الزاوية الي')
+static-labelled: []
+
+QUOTES: [(99, 'it was a wet, ungenial summer'), (109, 'We will each write a ghost story')]
+LOWER THIRDS: [(14, 'نيو إنجلاند · 8 يونيو'), (34, 'سومباوا · إبريل 1815'), (97, 'كولوني · بحيرة جنيف'), (145, 'لندن · 1818')]
+HONESTY LABEL: [(4, 'مشاهد مُعاد تخيّلها')]
+THREAD shots: [6, 11, 30, 32, 33, 45, 50, 70, 88, 127, 136, 139, 151, 162]
+
+PER CHAPTER:
+  ch1:  33 shots    95.7s  mean 2.90s  text 30.3%  macro  6.1%
+  ch2:  30 shots    95.5s  mean 3.18s  text 30.0%  macro  0.0%
+  ch3:  34 shots    98.8s  mean 2.90s  text 29.4%  macro  5.9%
+  ch4:  46 shots   102.2s  mean 2.22s  text 19.6%  macro  4.3%
+  ch5:  30 shots    84.3s  mean 2.81s  text 36.7%  macro  3.3%
+  ch6:  17 shots    53.9s  mean 3.17s  text 23.5%  macro  0.0%

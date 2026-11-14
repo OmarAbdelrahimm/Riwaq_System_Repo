@@ -1,0 +1,148 @@
+[
+ {
+  "text": "disclaimer",
+  "ink": [
+   28,
+   24,
+   20
+  ],
+  "bg": [
+   243,
+   235,
+   219
+  ],
+  "ratio": 14.89,
+  "ok": true,
+  "kind": "ink on paper"
+ },
+ {
+  "text": "stamp 1816",
+  "ink": [
+   93,
+   34,
+   47
+  ],
+  "bg": [
+   237,
+   230,
+   214
+  ],
+  "ratio": 9.67,
+  "ok": true,
+  "kind": "ink on paper"
+ },
+ {
+  "text": "tag USA",
+  "ink": [
+   23,
+   19,
+   16
+  ],
+  "bg": [
+   243,
+   235,
+   219
+  ],
+  "ratio": 15.48,
+  "ok": true,
+  "kind": "ink on paper"
+ },
+ {
+  "text": "tag snow",
+  "ink": [
+   23,
+   19,
+   15
+  ],
+  "bg": [
+   243,
+   235,
+   219
+  ],
+  "ratio": 15.52,
+  "ok": true,
+  "kind": "ink on paper"
+ },
+ {
+  "text": "tag Europe",
+  "ink": [
+   23,
+   19,
+   16
+  ],
+  "bg": [
+   243,
+   235,
+   219
+  ],
+  "ratio": 15.47,
+  "ok": true,
+  "kind": "ink on paper"
+ },
+ {
+  "text": "tag crops",
+  "ink": [
+   23,
+   19,
+   15
+  ],
+  "bg": [
+   243,
+   235,
+   219
+  ],
+  "ratio": 15.55,
+  "ok": true,
+  "kind": "ink on paper"
+ },
+ {
+  "text": "tag monster",
+  "ink": [
+   23,
+   19,
+   16
+  ],
+  "bg": [
+   243,
+   235,
+   219
+  ],
+  "ratio": 15.47,
+  "ok": true,
+  "kind": "ink on paper"
+ },
+ {
+  "text": "map counter",
+  "t": 21.3,
+  "ink": [
+   240,
+   231,
+   211
+  ],
+  "bg": [
+   8,
+   11,
+   15
+  ],
+  "ratio": 16.12,
+  "ok": true,
+  "kind": "gold on dark"
+ },
+ {
+  "text": "map label",
+  "t": 18.0,
+  "ink": [
+   231,
+   222,
+   203
+  ],
+  "bg": [
+   10,
+   13,
+   16
+  ],
+  "ratio": 14.65,
+  "ok": true,
+  "kind": "gold on dark"
+ }
+]

@@ -1,0 +1,14 @@
+# staged Drive downloads (heavy assets stay out of git)
+google_drive/
+exports/
+outputs/
+_build/tmp/
+*.mp4
+*.flac
+*.wav
+!public/projects/*/audio/*.wav
+node_modules/
+.venv/
+
+__pycache__/
+*.pyc

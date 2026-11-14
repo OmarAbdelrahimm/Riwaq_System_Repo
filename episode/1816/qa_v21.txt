@@ -1,0 +1,36 @@
+shots 186   span 0.07 -> 626.25
+dur mean 2.83s median 2.67s min 1.02 max 8.94
+buckets {'3-5': 70, '2-3': 59, '1-2': 51, '5-8': 5, '>8': 1}
+over 5s: 6  over 8s: 1
+over 5s shots: [(34, 6.31), (58, 5.48), (99, 7.21), (124, 5.75), (125, 8.94), (126, 5.46)]
+max gap 1.379s · overlaps 0
+
+TYPES: {'WIDE': '39 (21.0%)', 'DETAIL': '28 (15.1%)', 'MEDIUM': '24 (12.9%)', 'SILHOUETTE': '20 (10.8%)', 'BOARD': '15 (8.1%)', 'DATA': '15 (8.1%)', 'THREAD': '13 (7.0%)', 'MAP': '9 (4.8%)', 'DOC': '9 (4.8%)', 'HUMAN': '9 (4.8%)', 'MACRO': '3 (1.6%)', 'END': '2 (1.1%)'}
+CLOSE-UP (MACRO+DETAIL): 31/186 = 16.7%
+SPACE: {'domestic_space': '86 (46.2%)', 'graphic_space': '63 (33.9%)', 'person_present': '37 (19.9%)'}
+PERSON_PRESENT: 37/186 = 19.9%
+
+TEXT 54/186 = 29.0%
+  kinds: {'honesty_label': 1, 'key_phrase': 44, 'lower_third': 4, 'stamp_motif': 3, 'quote_card': 2}
+  >6 words: [(111, 'We will each write a ghost story')]
+  numeric: ['نيو إنجلاند · 8 يونيو', 'سومباوا · إبريل 1815', 'لندن · 1818'] 3
+
+DUP literal: 0 shots in 0 groups
+DUP thread-stripped: 0 shots · distinct 186/186
+max consecutive type: 3
+max consecutive graphic: 5
+static-labelled: []
+THREAD shots: [(6, 'YES'), (11, 'YES'), (31, 'YES'), (33, 'YES'), (34, 'YES'), (46, 'YES'), (52, 'YES'), (72, 'YES'), (90, 'YES'), (100, 'OVERLAY'), (130, 'YES'), (133, 'YES'), (146, 'YES'), (157, 'YES'), (169, 'OVERLAY')]
+QUOTES: [(101, 'it proved a wet, ungenial summer'), (111, 'We will each write a ghost story')]
+
+PER CHAPTER:
+  ch1:  34 shots   94.7s mean 2.79s text  29.4%  WIDE:8 THREAD:5 SILHOUETTE:3 MAP:3 BOARD:3 MACRO:2 DETAIL:2 DOC:2 MEDIUM:2 HUMAN:2 DATA:2
+  ch2:  31 shots   93.9s mean 3.03s text  29.0%  DETAIL:9 WIDE:8 MEDIUM:5 DATA:4 THREAD:2 BOARD:1 SILHOUETTE:1 MAP:1
+  ch3:  34 shots   98.8s mean 2.90s text  29.4%  WIDE:9 MEDIUM:8 SILHOUETTE:5 DETAIL:3 THREAD:2 DOC:2 MAP:2 DATA:1 BOARD:1 HUMAN:1
+  ch4:  38 shots  103.2s mean 2.72s text  23.7%  DETAIL:8 SILHOUETTE:8 WIDE:5 MEDIUM:5 BOARD:4 DOC:4 THREAD:2 HUMAN:2
+  ch5:  31 shots   82.6s mean 2.66s text  35.5%  DATA:6 BOARD:5 DETAIL:4 WIDE:3 MEDIUM:3 MAP:3 SILHOUETTE:2 THREAD:2 HUMAN:2 MACRO:1
+  ch6:  18 shots   53.2s mean 2.96s text  27.8%  WIDE:6 DATA:2 DETAIL:2 HUMAN:2 END:2 SILHOUETTE:1 MEDIUM:1 DOC:1 BOARD:1
+
+SCENE 4.9 shots: [(100, 2.1, 'WIDE'), (101, 2.465, 'DETAIL'), (102, 2.405, 'DETAIL'), (103, 1.14, 'MEDIUM'), (104, 2.51, 'WIDE'), (105, 1.67, 'WIDE'), (106, 1.33, 'DETAIL'), (107, 1.22, 'SILHOUETTE'), (108, 3.16, 'WIDE'), (109, 3.17, 'MEDIUM'), (110, 2.75, 'SILHOUETTE')]
+SCENE 4.10 shots: [(111, 3.41, 'SILHOUETTE'), (112, 2.33, 'MEDIUM'), (113, 3.46, 'BOARD')]
+VISION 88-90: [(123, 88, 4.33, 'SILHOUETTE'), (124, 89, 5.75, 'SILHOUETTE'), (125, 90, 8.94, 'DETAIL')]
