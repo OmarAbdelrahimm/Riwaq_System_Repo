@@ -1,29 +1,38 @@
-#!/usr/bin/env python3
-"""يحوّل إطارات المراجعة إلى base64 داخل JSON صغير يمكن الالتزام به في المستودع.
+"""يبني صورة مراجعة واحدة (contact sheet) من إطارات الفيديو ويحقنها كـ base64
+داخل README الحلقة، فيراها المراجع من المستودع مباشرة بلا تحميل artifacts."""
+import base64, io, json, os
+from pathlib import Path
 
-السبب: تنزيل Artifacts من داخل بيئة معزولة يفشل أحيانًا (EOF من blob storage)،
-بينما دفع المستودع يعمل دائمًا. هذا الملف يجعل مراجعة الإطارات ممكنة بدون artifact.
-"""
-import base64
-import glob
-import json
-import pathlib
+ROOT = Path(".").resolve()
+REVIEW = ROOT / "_review"
+REPORT = Path(os.environ.get("SHEET_OUT", "reports/frames_sheet.json"))
 
-OUT_DIR = pathlib.Path("_review")
-OUT_DIR.mkdir(exist_ok=True)
+try:
+    from PIL import Image, ImageDraw
+except Exception as exc:  # noqa: BLE001
+    print(f"[sheet] PIL غير متاح: {exc}")
+    raise SystemExit(0)
 
-frames = {}
-for f in sorted(glob.glob(str(OUT_DIR / "*.png"))):
-    frames[pathlib.Path(f).stem] = base64.b64encode(pathlib.Path(f).read_bytes()).decode()
+frames = sorted(REVIEW.glob("f_*.png"), key=lambda p: int(p.stem.split("_")[1]))
+if not frames:
+    print("[sheet] لا إطارات")
+    raise SystemExit(0)
 
-probe = OUT_DIR / "probe.json"
-payload = {
-    "frames": frames,
-    "probe": probe.read_text(encoding="utf-8") if probe.exists() else None,
-}
+ims = [(p.stem.split("_")[1] + "s", Image.open(p).convert("RGB")) for p in frames]
+tw, th = ims[0][1].size
+cols, pad, lab = 5, 4, 14
+rows = (len(ims) + cols - 1) // cols
+sheet = Image.new("RGB", (cols * tw + (cols + 1) * pad, rows * (th + lab) + (rows + 1) * pad), (14, 13, 11))
+d = ImageDraw.Draw(sheet)
+for i, (lbl, im) in enumerate(ims):
+    c, r = i % cols, i // cols
+    x, y = pad + c * (tw + pad), pad + r * (th + lab + pad)
+    sheet.paste(im, (x, y + lab))
+    d.text((x + 2, y + 2), lbl, fill=(214, 176, 106))
 
-(OUT_DIR / "b64.json").write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
-(OUT_DIR / "b64.txt").write_text(
-    f"frames={len(frames)} bytes={len(json.dumps(payload))}\n", encoding="utf-8"
-)
-print(f"encoded {len(frames)} frames")
+buf = io.BytesIO()
+sheet.save(buf, format="JPEG", quality=86, optimize=True)
+b64 = base64.b64encode(buf.getvalue()).decode()
+REPORT.parent.mkdir(parents=True, exist_ok=True)
+REPORT.write_text(json.dumps({"frames": len(ims), "jpeg_b64": b64}, ensure_ascii=False))
+print(f"[sheet] {len(ims)} إطار → {REPORT} ({len(b64)//1024} KB base64)")

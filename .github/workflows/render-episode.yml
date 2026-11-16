@@ -98,6 +98,17 @@ jobs:
           python3 .github/scripts/make_review_b64.py
           ls -lh _review || true
 
+      - name: نشر صورة المراجعة في المستودع
+        if: always()
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          if [ -f reports/frames_sheet.json ]; then
+            git config user.name "ci-bot"; git config user.email "ci-bot@users.noreply.github.com"
+            git add -f reports/frames_sheet.json
+            git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: صورة مراجعة الإطارات" && git pull --rebase -q && git push -q) || echo "push skipped"
+          fi
+
       - name: رفع النتائج
         uses: actions/upload-artifact@v4
         with:
@@ -109,4 +120,5 @@ jobs:
             ci_failure.txt
             _review/*.png
             _review/probe.json
+            reports/frames_sheet.json
           retention-days: 14
