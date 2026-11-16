@@ -9,9 +9,9 @@ on:
         default: "TMB_001"
       draft:
       scale:
-        description: "مقياس الريندر (0.25–1.0)"
+        description: "مقياس الريندر (0.25–1.0) — 1.0 = 1080×1920"
         required: false
-        default: "0.5"
+        default: "1.0"
   push:
     paths:
       - "data/projects/**"
@@ -27,7 +27,7 @@ jobs:
     timeout-minutes: 120
     env:
       PROJECT_ID: ${{ inputs.project_id || 'TMB_001' }}
-      SCALE: ${{ inputs.scale || '0.5' }}
+      SCALE: ${{ inputs.scale || '1.0' }}
     steps:
       - uses: actions/checkout@v4
 
