@@ -81,6 +81,23 @@ jobs:
           python3 scripts/qc.py "data/projects/$PROJECT_ID/episode_meta.json" exports reports || true
           python3 scripts/make_srt.py "data/projects/$PROJECT_ID/episode_meta.json" outputs || true
 
+      - name: حفظ الإطارات للمراجعة البصرية
+        if: always()
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1 || true
+          mkdir -p _review
+          if ls exports/*.mp4 >/dev/null 2>&1; then
+            for t in 1 4 8 12 17 22 27 31 36 42; do
+              ffmpeg -hide_banner -loglevel error -ss $t -i exports/*.mp4 -frames:v 1 -vf scale=360:-1 -update 1 -y _review/f_$t.png 2>/dev/null || true
+            done
+            ffprobe -v error -show_entries format=duration,size:stream=codec_type,codec_name -of json exports/*.mp4 > _review/probe.json 2>/dev/null || true
+          fi
+          ls -lh _review || true
+          git config user.name "ci-bot"; git config user.email "ci-bot@users.noreply.github.com"
+          git add -f _review && git commit -m "ci: review frames" && git push || true
+
       - name: رفع النتائج
         uses: actions/upload-artifact@v4
         with:
