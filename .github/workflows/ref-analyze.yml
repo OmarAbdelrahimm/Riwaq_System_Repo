@@ -1,6 +1,9 @@
 name: ref-analyze
 
 on:
+  push:
+    paths:
+      - ".github/trigger/**"
   workflow_dispatch:
     inputs:
       file_id:
@@ -27,7 +30,7 @@ jobs:
       - name: Download reference video from Drive
         run: |
           mkdir -p _tmp/ref/out
-          gdown "https://drive.google.com/uc?id=${{ inputs.file_id }}" -O _tmp/ref/ref.mp4
+          gdown "https://drive.google.com/uc?id=1S7f90pW6yWrHIoh28HVFmxcQoGT33Iia" -O _tmp/ref/ref.mp4
           ls -l _tmp/ref/ref.mp4
 
       - name: Analyze
