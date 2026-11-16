@@ -111,6 +111,20 @@ jobs:
             git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: صورة مراجعة الإطارات" && git pull --rebase -q && git push -q) || echo "push skipped"
           fi
 
+      - name: نقل الفيديو إلى المستودع (قناة نقل للمراجعة)
+        if: always()
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          if ls exports/*.mp4 >/dev/null 2>&1; then
+            mkdir -p data/projects/${PROJECT_ID}/exports
+            cp exports/*.mp4 data/projects/${PROJECT_ID}/exports/
+            ls -lh data/projects/${PROJECT_ID}/exports/
+            git config user.name "ci-bot"; git config user.email "ci-bot@users.noreply.github.com"
+            git add -f data/projects/${PROJECT_ID}/exports
+            git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: فيديو ${PROJECT_ID} للمراجعة" && git pull --rebase -q && git push -q) || echo "push skipped"
+          fi
+
       - name: رفع النتائج
         uses: actions/upload-artifact@v4
         with:
