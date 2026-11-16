@@ -35,6 +35,7 @@ export const BrollFrame: React.FC<{
   );
 
   const src = plate ? staticFile(`projects/TMB_001/plates/${plate}`) : null;
+  const s = typeof scrim === "number" ? scrim : 0.34;
 
   return (
     <AbsoluteFill style={{ overflow: "hidden", backgroundColor: color("ink_deep") }}>
@@ -48,9 +49,9 @@ export const BrollFrame: React.FC<{
       <AbsoluteFill
         style={{
           background: `linear-gradient(180deg,
-            rgba(16,15,13,${scrim + 0.18}) 0%,
-            rgba(16,15,13,${scrim * 0.35}) 38%,
-            rgba(16,15,13,${scrim * 0.9}) 100%)`,
+            rgba(16,15,13,${Math.min(0.92, s + 0.30)}) 0%,
+            rgba(16,15,13,${s * 0.30}) 42%,
+            rgba(16,15,13,${s * 0.95}) 100%)`,
         }}
       />
 
@@ -64,7 +65,7 @@ export const BrollFrame: React.FC<{
         }}
       >
         <div style={{ opacity: t.opacity, transform: `translateY(${t.translateY}px)`, textAlign: "center" }}>
-          {kicker ? (
+          {kicker && kicker.trim() ? (
             <div
               style={{
                 fontFamily: bodyFont,
@@ -87,7 +88,9 @@ export const BrollFrame: React.FC<{
               lineHeight: 1.45,
               color: color("parchment"),
               whiteSpace: "pre-line",
-              textShadow: "0 3px 26px rgba(0,0,0,.9)",
+              textShadow: "0 2px 10px rgba(0,0,0,.98), 0 6px 40px rgba(0,0,0,.9)",
+              paintOrder: "stroke",
+              WebkitTextStroke: "0.6px rgba(0,0,0,.55)",
             }}
           >
             {title ?? ""}

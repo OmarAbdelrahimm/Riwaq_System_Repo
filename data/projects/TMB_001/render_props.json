@@ -50,10 +50,11 @@
           "type": "broll",
           "t_in": 2.0,
           "t_out": 6.5,
-          "kicker": "تمبكتو · مالي",
-          "title": "في قلب أفريقيا",
-          "label": "الكتب فيها أغلى من الأرض",
-          "plate": "tmb_map.jpg"
+          "kicker": "",
+          "title": "مدينة الكتب",
+          "label": "تمبكتو · مالي",
+          "plate": "tmb_map.jpg",
+          "scrim": 0.52
         },
         {
           "type": "quote",
