@@ -32,7 +32,7 @@ const CLAMP = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 /** مسافة بؤرة الكاميرا من المستوى z=0، ونطاق الوضوح */
 const FOCUS = 0;
 const SHARP_RANGE = 150;
-const BLUR_K = 62;
+const BLUR_K = 46;
 
 /* ── ريج الكاميرا: كل المشهد يتحرك داخلها ────────────────────────────────── */
 const cameraAt = (frame: number) => {
@@ -218,9 +218,21 @@ const StatCard: React.FC<{ w: number; h: number; frame: number; idx: number }> =
 }) => {
   const r = w * 0.055;
   const rise = spring({ frame: frame - 34, fps: FPS, config: { damping: 18, stiffness: 90 } });
+  const bars = [0.42, 0.68, 0.5, 0.92, 0.74];
   return (
     <>
       <Glass radius={r} frame={frame} idx={idx} />
+      {/* شبكة خلفية دقيقة تعطي الزجاج نسيجًا */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: r,
+          opacity: 0.5,
+          backgroundImage: `linear-gradient(${GOLD}1c 1px, transparent 1px), linear-gradient(90deg, ${GOLD}1c 1px, transparent 1px)`,
+          backgroundSize: `${w * 0.16}px ${w * 0.16}px`,
+        }}
+      />
       <div
         style={{
           position: "absolute",
@@ -228,7 +240,6 @@ const StatCard: React.FC<{ w: number; h: number; frame: number; idx: number }> =
           padding: w * 0.085,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
           direction: "rtl",
         }}
       >
@@ -236,56 +247,68 @@ const StatCard: React.FC<{ w: number; h: number; frame: number; idx: number }> =
           style={{
             fontFamily: "IBM Plex Sans Arabic",
             fontWeight: 500,
-            fontSize: w * 0.085,
-            color: `${PARCH}9e`,
-            letterSpacing: "0.06em",
+            fontSize: w * 0.082,
+            color: `${PARCH}a8`,
+            letterSpacing: "0.07em",
           }}
         >
           المخطوطات
         </div>
 
-        <div style={{ opacity: rise, transform: `translateY(${(1 - rise) * 16}px)` }}>
-          <div
-            style={{
-              fontFamily: "Amiri",
-              fontWeight: 700,
-              fontSize: w * 0.30,
-              color: GOLD,
-              lineHeight: 1,
-              textShadow: `0 0 44px ${GOLD_DEEP}88`,
-            }}
-          >
-            ٣٥٠
-          </div>
-          <div
-            style={{
-              fontFamily: "IBM Plex Sans Arabic",
-              fontWeight: 700,
-              fontSize: w * 0.115,
-              color: PARCH,
-              marginTop: -w * 0.01,
-            }}
-          >
-            ألف مخطوطة
-          </div>
-          <div
-            style={{
-              marginTop: w * 0.055,
-              width: w * 0.36,
-              height: 1.5,
-              background: `linear-gradient(90deg, ${GOLD}, ${GOLD_DEEP}00)`,
-            }}
-          />
-          <div
-            style={{
-              marginTop: w * 0.05,
-              fontFamily: "IBM Plex Sans Arabic",
-              fontSize: w * 0.075,
-              color: `${PARCH}80`,
-            }}
-          >
-            نُقلت خارج المدينة
-          </div>
+        <div
+          style={{
+            fontFamily: "Amiri",
+            fontWeight: 700,
+            fontSize: w * 0.34,
+            color: GOLD,
+            lineHeight: 0.92,
+            marginTop: h * 0.035,
+            textShadow: `0 0 50px ${GOLD_DEEP}99`,
+            opacity: rise,
+            transform: `translateY(${(1 - rise) * 18}px)`,
+          }}
+        >
+          ٣٥٠
+        </div>
+        <div
+          style={{
+            fontFamily: "IBM Plex Sans Arabic",
+            fontWeight: 700,
+            fontSize: w * 0.10,
+            color: PARCH,
+            marginTop: -h * 0.012,
+          }}
+        >
+          ألف مخطوطة
+        </div>
+
+        {/* رسم أعمدة صغير */}
+        <svg viewBox="0 0 100 34" style={{ width: "100%", marginTop: "auto" }}>
+          {bars.map((v, i) => {
+            const grow = interpolate(frame, [44 + i * 6, 78 + i * 6], [0, v], CLAMP);
+            return (
+              <rect
+                key={i}
+                x={6 + i * 19}
+                y={34 - grow * 32}
+                width={11}
+                height={grow * 32}
+                rx={2.5}
+                fill={i === 3 ? GOLD : `${GOLD}66`}
+              />
+            );
+          })}
+        </svg>
+
+        <div
+          style={{
+            marginTop: h * 0.038,
+            fontFamily: "IBM Plex Sans Arabic",
+            fontSize: w * 0.070,
+            color: `${PARCH}6e`,
+          }}
+        >
+          نُقلت خارج المدينة
         </div>
       </div>
     </>
@@ -309,58 +332,104 @@ const RouteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
       <div style={{ position: "absolute", inset: 0, padding: w * 0.075, direction: "rtl" }}>
         <div
           style={{
-            fontFamily: "IBM Plex Sans Arabic",
-            fontWeight: 500,
-            fontSize: w * 0.082,
-            color: `${PARCH}9e`,
-            letterSpacing: "0.06em",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          المسار
+          <span
+            style={{
+              fontFamily: "IBM Plex Sans Arabic",
+              fontWeight: 500,
+              fontSize: w * 0.080,
+              color: `${PARCH}a8`,
+              letterSpacing: "0.07em",
+            }}
+          >
+            المسار
+          </span>
+          <span
+            style={{
+              fontFamily: "IBM Plex Sans Arabic",
+              fontSize: w * 0.058,
+              color: `${PARCH}66`,
+              border: `1px solid ${PARCH}2e`,
+              borderRadius: 999,
+              padding: `${w * 0.012}px ${w * 0.038}px`,
+            }}
+          >
+            ٢٠١٣
+          </span>
         </div>
 
-        <svg viewBox="0 0 100 62" style={{ width: "100%", marginTop: h * 0.055 }}>
+        <svg viewBox="0 0 100 72" style={{ width: "100%", marginTop: h * 0.045 }}>
+          {/* نقاط شبكة = إحساس خريطة */}
+          {Array.from({ length: 24 }).map((_, i) => {
+            const cx = 8 + (i % 6) * 16.8;
+            const cy = 8 + Math.floor(i / 6) * 18;
+            return <circle key={i} cx={cx} cy={cy} r={0.55} fill={`${PARCH}30`} />;
+          })}
           <path
-            d="M10 48 C 30 46, 38 20, 56 18 S 82 30, 92 12"
+            d="M12 56 C 32 54, 40 24, 58 22 S 84 34, 92 12"
             fill="none"
-            stroke={`${GOLD}2e`}
-            strokeWidth={1.9}
+            stroke={`${GOLD}33`}
+            strokeWidth={2.1}
             strokeLinecap="round"
           />
           <path
-            d="M10 48 C 30 46, 38 20, 56 18 S 82 30, 92 12"
+            d="M12 56 C 32 54, 40 24, 58 22 S 84 34, 92 12"
             fill="none"
             stroke={GOLD}
-            strokeWidth={1.9}
+            strokeWidth={2.1}
             strokeLinecap="round"
             pathLength={1}
             strokeDasharray={1}
             strokeDashoffset={1 - draw}
-            style={{ filter: `drop-shadow(0 0 5px ${GOLD})` }}
+            style={{ filter: `drop-shadow(0 0 4px ${GOLD})` }}
           />
-          <circle cx={10} cy={48} r={2.6} fill={PARCH} opacity={0.9} />
+          <circle cx={12} cy={56} r={2.8} fill={PARCH} opacity={0.92} />
+          <circle cx={12} cy={56} r={5.6} fill="none" stroke={`${PARCH}44`} strokeWidth={0.7} />
           <circle
             cx={92}
             cy={12}
-            r={3.4}
+            r={3.6}
             fill={GOLD}
             opacity={dotOn}
-            style={{ filter: `drop-shadow(0 0 7px ${GOLD})` }}
+            style={{ filter: `drop-shadow(0 0 8px ${GOLD})` }}
+          />
+          <circle
+            cx={92}
+            cy={12}
+            r={(7 + Math.sin(frame / 12) * 1.6)}
+            fill="none"
+            stroke={GOLD}
+            strokeWidth={0.7}
+            opacity={dotOn * 0.6}
           />
         </svg>
 
         <div
           style={{
+            marginTop: "auto",
             display: "flex",
             justifyContent: "space-between",
-            marginTop: h * 0.035,
+            alignItems: "flex-end",
             fontFamily: "IBM Plex Sans Arabic",
-            fontSize: w * 0.068,
+            fontSize: w * 0.066,
             color: `${PARCH}72`,
           }}
         >
           <span>تمبكتو</span>
-          <span style={{ color: GOLD, fontWeight: 700 }}>٤٠٠ ميل</span>
+          <span
+            style={{
+              color: GOLD,
+              fontWeight: 700,
+              fontFamily: "Amiri",
+              fontSize: w * 0.115,
+            }}
+          >
+            ٤٠٠ ميل
+          </span>
         </div>
       </div>
     </>
@@ -376,53 +445,77 @@ const QuoteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
 }) => {
   const r = w * 0.055;
   const o = interpolate(frame, [58, 92], [0, 1], CLAMP);
+  const ruleH = interpolate(frame, [70, 108], [0, 1], CLAMP);
   return (
     <>
-      <Glass radius={r} frame={frame} idx={idx} tint="255,244,222" sheen={0.7} />
+      <Glass radius={r} frame={frame} idx={idx} tint="255,244,222" sheen={0.65} />
       <div
         style={{
           position: "absolute",
           inset: 0,
-          padding: w * 0.08,
+          padding: w * 0.085,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
           direction: "rtl",
           opacity: o,
         }}
       >
         <div
           style={{
+            fontFamily: "IBM Plex Sans Arabic",
+            fontWeight: 500,
+            fontSize: w * 0.075,
+            color: `${GOLD}cc`,
+            letterSpacing: "0.10em",
+          }}
+        >
+          ١٥٢٦
+        </div>
+
+        <div
+          style={{
             fontFamily: "Amiri",
             fontWeight: 700,
-            fontSize: w * 0.20,
-            color: `${GOLD}80`,
-            lineHeight: 0.7,
+            fontSize: w * 0.42,
+            color: `${GOLD}55`,
+            lineHeight: 0.62,
+            marginTop: h * 0.012,
           }}
         >
           ﴾
         </div>
+
         <div
           style={{
             fontFamily: "Amiri",
             fontWeight: 400,
-            fontSize: w * 0.115,
-            lineHeight: 1.62,
+            fontSize: w * 0.135,
+            lineHeight: 1.66,
             color: PARCH,
-            marginTop: h * 0.02,
+            marginTop: h * 0.018,
           }}
         >
           تجارة الكتب أربح من تجارة الذهب
         </div>
+
         <div
           style={{
-            marginTop: h * 0.045,
+            marginTop: "auto",
+            width: `${ruleH * 42}%`,
+            height: 1.2,
+            background: `linear-gradient(90deg, ${GOLD}, ${GOLD_DEEP}00)`,
+            marginBottom: h * 0.030,
+          }}
+        />
+
+        <div
+          style={{
             fontFamily: "IBM Plex Sans Arabic",
-            fontSize: w * 0.072,
-            color: `${GOLD}cc`,
+            fontSize: w * 0.070,
+            color: `${PARCH}a0`,
           }}
         >
-          ليو أفريكانوس · ١٥٢٦
+          ليو أفريكانوس
         </div>
       </div>
     </>
@@ -549,27 +642,27 @@ export const ProofStyle: React.FC = () => {
             transform: `translate3d(${cam.panX}px, ${cam.panY}px, ${cam.push}px) rotateY(${cam.yaw}deg) rotateX(${cam.pitch}deg)`,
           }}
         >
-          {/* الصف الخلفي — الأبعد */}
-          <DepthBox x={188} y={470} z={-430} rotY={43} w={168} h={300} delay={30} idx={0} camZ={cam.push}>
-            <QuoteCard w={168} h={300} frame={frame} idx={0} />
+          {/* الخلفي: اقتباس (يسار) + إحصائية (يمين) */}
+          <DepthBox x={392} y={452} z={-330} rotY={36} w={228} h={404} delay={34} idx={0} camZ={cam.push}>
+            <QuoteCard w={228} h={404} frame={frame} idx={0} />
           </DepthBox>
 
-          <DepthBox x={1712} y={470} z={-430} rotY={-43} w={168} h={300} delay={38} idx={1} camZ={cam.push}>
-            <StatCard w={168} h={300} frame={frame} idx={1} />
+          <DepthBox x={1528} y={452} z={-330} rotY={-36} w={228} h={404} delay={40} idx={1} camZ={cam.push}>
+            <StatCard w={228} h={404} frame={frame} idx={1} />
           </DepthBox>
 
-          {/* الصف الأوسط */}
-          <DepthBox x={497} y={512} z={-215} rotY={30} w={250} h={442} delay={20} idx={2} camZ={cam.push}>
-            <PhotoCard src="projects/TMB_001/plates/tmb_drums.jpg" w={250} h={442} frame={frame} />
+          {/* الأوسط: صورة (يسار) + مسار (يمين) */}
+          <DepthBox x={640} y={492} z={-150} rotY={27} w={272} h={482} delay={22} idx={2} camZ={cam.push}>
+            <PhotoCard src="projects/TMB_001/plates/tmb_drums.jpg" w={272} h={482} frame={frame} />
           </DepthBox>
 
-          <DepthBox x={1424} y={512} z={-215} rotY={-30} w={250} h={442} delay={26} idx={3} camZ={cam.push}>
-            <RouteCard w={250} h={442} frame={frame} idx={3} />
+          <DepthBox x={1282} y={492} z={-150} rotY={-27} w={272} h={482} delay={28} idx={3} camZ={cam.push}>
+            <RouteCard w={272} h={482} frame={frame} idx={3} />
           </DepthBox>
 
-          {/* البطل — الأقرب للبؤرة */}
-          <DepthBox x={960} y={470} z={-20} rotY={0} w={352} h={620} delay={8} idx={4} camZ={cam.push}>
-            <PhotoCard src="projects/TMB_001/plates/tmb_map.jpg" w={352} h={620} frame={frame} />
+          {/* البطل — في البؤرة */}
+          <DepthBox x={960} y={458} z={-15} rotY={0} w={374} h={664} delay={8} idx={4} camZ={cam.push}>
+            <PhotoCard src="projects/TMB_001/plates/tmb_map.jpg" w={374} h={664} frame={frame} />
           </DepthBox>
         </AbsoluteFill>
       </AbsoluteFill>
@@ -604,8 +697,8 @@ export const ProofStyle: React.FC = () => {
         style={{
           position: "absolute",
           right: 88,
-          bottom: 78,
-          width: 1120,
+          bottom: 56,
+          width: 1000,
           direction: "rtl",
           textAlign: "right",
           transform: `translateX(${cam.panX * -0.14}px)`,
@@ -620,7 +713,7 @@ export const ProofStyle: React.FC = () => {
           }}
         >
           {words.map((w, i) => (
-            <Word key={w} start={wordStart + i * 7} size={96}>
+            <Word key={w} start={wordStart + i * 7} size={88}>
               {w}
             </Word>
           ))}
