@@ -11,98 +11,201 @@ import {
 } from "remotion";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ProofStyle v2 — برهان الستايل (6ث · 1920×1080 · 60fps)
+   ProofStyle v4 — برهان الستايل (6ث · 1920×1080 · 60fps)
 
-   v1 فشل في 3 حاجات: الكروت كلها ضبابية (DOF غلط)، المشهد ساكن (مفيش كاميرا)،
-   والزجاج شفاف على خلفية سودا (مفيش glass look).
-   v2: ريج كاميرا حقيقي · DOF من مسافة بؤرية · كروت UI + صور · تقاطع في العمق.
+   v3 كان ناقص: إضاءة حواف · أشكال خلفية · motion blur.
+   v4:
+     · ريج كاميرا أسرع (يخلي الـmotion blur يبان فعلًا)
+     · rim light متدرّج على حواف كل كارت (ذهبي ← نبيذي)
+     · أشكال هندسية طايفة في العمق بـparallax
+     · ghosting حقيقي: العالم يُرسم 3 مرات عند tf, tf-1, tf-2
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const GOLD = "#C2A469";
 const GOLD_DEEP = "#A98A4B";
 const PARCH = "#F3EBDB";
 const BURGUNDY = "#5E2230";
+const OLIVE = "#6B6A3E";
 const INK = "#0E0D0C";
 
 const FPS = 60;
 const DUR = 360;
-
 const CLAMP = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
-/** مسافة بؤرة الكاميرا من المستوى z=0، ونطاق الوضوح */
 const FOCUS = 0;
 const SHARP_RANGE = 150;
 const BLUR_K = 46;
 
-/* ── ريج الكاميرا: كل المشهد يتحرك داخلها ────────────────────────────────── */
+/* ── ريج الكاميرا ────────────────────────────────────────────────────────── */
 const cameraAt = (frame: number) => {
-  const t = frame / DUR;
-  // دفع للأمام + انحراف جانبي + ميل بسيط (كاميرا سينمائية لا خطية)
-  const push = interpolate(t, [0, 1], [-210, 95]);
-  const panX = interpolate(t, [0, 1], [70, -95]);
-  const panY = interpolate(t, [0, 1], [34, -26]);
-  const yaw = interpolate(t, [0, 1], [7.4, -8.2]);
-  const pitch = interpolate(t, [0, 1], [-1.8, 2.4]);
+  const t = Math.max(0, Math.min(1, frame / DUR));
+  // easing هادئ في البداية وسريع في النص (كاميرا «تسحب»)
+  const e = t < 0.28 ? (t / 0.28) ** 2 * 0.28 : t;
+  const push = interpolate(e, [0, 1], [-300, 190]);
+  const panX = interpolate(e, [0, 1], [130, -210]);
+  const panY = interpolate(e, [0, 1], [48, -40]);
+  const yaw = interpolate(e, [0, 1], [10.5, -11.5]);
+  const pitch = interpolate(e, [0, 1], [-2.6, 3.2]);
   return { push, panX, panY, yaw, pitch };
 };
 
-/* ── الخلفية ─────────────────────────────────────────────────────────────── */
-const Backdrop: React.FC<{ camX: number }> = ({ camX }) => {
-  return (
-    <AbsoluteFill style={{ backgroundColor: INK, overflow: "hidden" }}>
-      <AbsoluteFill
-        style={{
-          background:
-            "radial-gradient(ellipse 62% 54% at 50% 44%, #332a1b 0%, #1b1814 46%, #0b0a09 100%)",
-        }}
-      />
-      {/* كتلة إضاءة ذهبية ضخمة خلف الكروت — الزجاج محتاج حاجة يضببها */}
+/* ═══ الخلفية + الأشكال الطايفة ════════════════════════════════════════════ */
+const Shape: React.FC<{
+  kind: "ring" | "dot" | "arc" | "blob";
+  x: number;
+  y: number;
+  size: number;
+  z: number;
+  color: string;
+  op: number;
+  speed: number;
+  seed: number;
+  tf: number;
+  camZ: number;
+}> = ({ kind, x, y, size, z, color, op, speed, seed, tf, camZ }) => {
+  const driftX = Math.sin(tf / (58 + seed * 9) + seed) * speed;
+  const driftY = Math.cos(tf / (72 + seed * 7) + seed * 1.4) * speed * 0.8;
+  const spin = Math.sin(tf / (90 + seed * 11) + seed) * 12;
+
+  const effZ = camZ + z;
+  const blur = Math.max(0, (Math.abs(effZ - FOCUS) - SHARP_RANGE) / 52);
+
+  const base: React.CSSProperties = {
+    position: "absolute",
+    left: x - size / 2 + driftX,
+    top: y - size / 2 + driftY,
+    width: size,
+    height: size,
+    opacity: op,
+    filter: blur > 0.05 ? `blur(${blur.toFixed(1)}px)` : undefined,
+    transform: `translateZ(${z}px) rotate(${spin}deg)`,
+    willChange: "transform, filter",
+  };
+
+  if (kind === "ring")
+    return <div style={{ ...base, borderRadius: "50%", border: `1.5px solid ${color}` }} />;
+
+  if (kind === "dot")
+    return (
       <div
         style={{
-          position: "absolute",
-          left: 430 + camX * 0.5,
-          top: 90,
-          width: 1150,
-          height: 780,
-          background: `radial-gradient(ellipse at 50% 50%, ${GOLD}5c 0%, ${GOLD_DEEP}2a 44%, ${GOLD_DEEP}00 76%)`,
-          filter: "blur(26px)",
-        }}
-      />
-      {/* لمسة نبيذية عمق */}
-      <div
-        style={{
-          position: "absolute",
-          right: -180 - camX * 0.35,
-          bottom: -260,
-          width: 900,
-          height: 900,
+          ...base,
           borderRadius: "50%",
-          background: `radial-gradient(circle, ${BURGUNDY}66 0%, ${BURGUNDY}00 70%)`,
-          filter: "blur(50px)",
+          background: color,
+          boxShadow: `0 0 ${size}px ${color}`,
         }}
       />
-      {/* شريط أرضي فاتح يعكس الضوء */}
+    );
+
+  if (kind === "arc")
+    return (
       <div
         style={{
-          position: "absolute",
-          left: 0,
-          bottom: 0,
-          width: "100%",
-          height: 210,
-          background: `linear-gradient(180deg, ${GOLD_DEEP}00, ${GOLD_DEEP}1f)`,
+          ...base,
+          borderRadius: "50%",
+          border: `1.5px solid transparent`,
+          borderTopColor: color,
+          borderRightColor: `${color}55`,
         }}
       />
-      <AbsoluteFill
-        style={{
-          background:
-            "radial-gradient(ellipse 74% 68% at 50% 46%, rgba(0,0,0,0) 34%, rgba(0,0,0,.82) 100%)",
-        }}
-      />
+    );
+
+  return (
+    <div
+      style={{
+        ...base,
+        borderRadius: "46% 54% 58% 42% / 52% 44% 56% 48%",
+        background: `radial-gradient(circle at 40% 35%, ${color}, ${color}00 72%)`,
+        filter: `blur(${(blur + 22).toFixed(1)}px)`,
+      }}
+    />
+  );
+};
+
+const Shapes: React.FC<{ tf: number; camZ: number }> = ({ tf, camZ }) => {
+  const defs: Array<{
+    kind: "ring" | "dot" | "arc" | "blob";
+    x: number;
+    y: number;
+    size: number;
+    z: number;
+    color: string;
+    op: number;
+    speed: number;
+    seed: number;
+  }> = [
+    { kind: "ring", x: 250, y: 210, size: 210, z: -520, color: `${GOLD}55`, op: 0.5, speed: 26, seed: 1 },
+    { kind: "blob", x: 1660, y: 860, size: 520, z: -700, color: `${BURGUNDY}66`, op: 0.42, speed: 34, seed: 2 },
+    { kind: "arc", x: 1520, y: 200, size: 300, z: -420, color: `${PARCH}30`, op: 0.55, speed: 22, seed: 3 },
+    { kind: "dot", x: 1680, y: 320, size: 9, z: -230, color: GOLD, op: 0.7, speed: 18, seed: 4 },
+    { kind: "dot", x: 322, y: 742, size: 7, z: -180, color: `${GOLD}cc`, op: 0.55, speed: 20, seed: 5 },
+    { kind: "ring", x: 880, y: 960, size: 130, z: -300, color: `${GOLD_DEEP}44`, op: 0.45, speed: 24, seed: 6 },
+    { kind: "blob", x: 380, y: 940, size: 420, z: -640, color: `${OLIVE}55`, op: 0.3, speed: 30, seed: 7 },
+    { kind: "arc", x: 1128, y: 140, size: 230, z: -500, color: `${GOLD}33`, op: 0.4, speed: 27, seed: 8 },
+    { kind: "dot", x: 1090, y: 900, size: 6, z: -120, color: `${PARCH}aa`, op: 0.5, speed: 16, seed: 9 },
+  ];
+
+  return (
+    <AbsoluteFill style={{ transformStyle: "preserve-3d" }}>
+      {defs.map((d, i) => (
+        <Shape key={i} {...d} tf={tf} camZ={camZ} />
+      ))}
     </AbsoluteFill>
   );
 };
 
-/* ── غلاف 3D: يحسب العمق والضبابية من الكاميرا ──────────────────────────── */
+/* ═══ الخلفية ═════════════════════════════════════════════════════════════ */
+const Backdrop: React.FC<{ camX: number }> = ({ camX }) => (
+  <AbsoluteFill style={{ backgroundColor: INK, overflow: "hidden" }}>
+    <AbsoluteFill
+      style={{
+        background:
+          "radial-gradient(ellipse 62% 54% at 50% 44%, #332a1b 0%, #1b1814 46%, #0b0a09 100%)",
+      }}
+    />
+    <div
+      style={{
+        position: "absolute",
+        left: 430 + camX * 0.5,
+        top: 90,
+        width: 1150,
+        height: 780,
+        background: `radial-gradient(ellipse at 50% 50%, ${GOLD}5c 0%, ${GOLD_DEEP}2a 44%, ${GOLD_DEEP}00 76%)`,
+        filter: "blur(26px)",
+      }}
+    />
+    <div
+      style={{
+        position: "absolute",
+        right: -180 - camX * 0.35,
+        bottom: -260,
+        width: 900,
+        height: 900,
+        borderRadius: "50%",
+        background: `radial-gradient(circle, ${BURGUNDY}66 0%, ${BURGUNDY}00 70%)`,
+        filter: "blur(50px)",
+      }}
+    />
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        bottom: 0,
+        width: "100%",
+        height: 210,
+        background: `linear-gradient(180deg, ${GOLD_DEEP}00, ${GOLD_DEEP}1f)`,
+      }}
+    />
+    <AbsoluteFill
+      style={{
+        background:
+          "radial-gradient(ellipse 74% 68% at 50% 46%, rgba(0,0,0,0) 34%, rgba(0,0,0,.82) 100%)",
+      }}
+    />
+  </AbsoluteFill>
+);
+
+/* ═══ غلاف العمق ══════════════════════════════════════════════════════════ */
 const DepthBox: React.FC<{
   x: number;
   y: number;
@@ -114,32 +217,29 @@ const DepthBox: React.FC<{
   delay: number;
   idx: number;
   camZ: number;
+  tf: number;
   children: React.ReactNode;
-}> = ({ x, y, z, rotY, rotX = 0, w, h, delay, idx, camZ, children }) => {
-  const frame = useCurrentFrame();
-
+}> = ({ x, y, z, rotY, rotX = 0, w, h, delay, idx, camZ, tf, children }) => {
   const s = spring({
-    frame: frame - delay,
+    frame: tf - delay,
     fps: FPS,
     config: { damping: 17, mass: 0.85, stiffness: 74 },
   });
   const enter = interpolate(s, [0, 1], [0, 1], CLAMP);
 
-  // انجراف حيّ
-  const bobY = Math.sin(frame / 52 + idx * 1.9) * 7;
-  const bobX = Math.cos(frame / 68 + idx * 1.3) * 5;
+  const bobY = Math.sin(tf / 52 + idx * 1.9) * 7;
+  const bobX = Math.cos(tf / 68 + idx * 1.3) * 5;
 
-  // ✅ DOF الصحيح: المسافة الفعلية من الكاميرا، لا |z|
   const effZ = camZ + z;
   const blur = Math.max(0, (Math.abs(effZ - FOCUS) - SHARP_RANGE) / BLUR_K);
-  const sharpen = Math.min(1, blur / 3.2); // أثناء الدخول يبدأ حادًا ثم يستقر
+  const sharpen = Math.min(1, blur / 3.2);
 
   return (
     <div
       style={{
         position: "absolute",
         left: x - w / 2,
-        top: y - h / 2 + (1 - enter) * 130 + bobY,
+        top: y - h / 2 + (1 - enter) * 160 + bobY,
         width: w,
         height: h,
         transformStyle: "preserve-3d",
@@ -154,15 +254,15 @@ const DepthBox: React.FC<{
   );
 };
 
-/* ── سطح زجاجي مشترك ─────────────────────────────────────────────────────── */
+/* ═══ الزجاج + rim light ══════════════════════════════════════════════════ */
 const Glass: React.FC<{
   radius: number;
   tint?: string;
   sheen?: number;
-  frame: number;
+  tf: number;
   idx: number;
   children?: React.ReactNode;
-}> = ({ radius, tint = "255,255,255", sheen = 1, frame, idx, children }) => (
+}> = ({ radius, tint = "255,255,255", sheen = 1, tf, idx, children }) => (
   <>
     <div
       style={{
@@ -175,16 +275,14 @@ const Glass: React.FC<{
         background: `linear-gradient(158deg, rgba(${tint},.20) 0%, rgba(${tint},.05) 40%, rgba(${tint},.02) 66%, rgba(${tint},.14) 100%)`,
         backdropFilter: "blur(18px) saturate(165%)",
         WebkitBackdropFilter: "blur(18px) saturate(165%)",
-        border: "1px solid rgba(255,255,255,.26)",
       }}
     >
       {children}
-      {/* لمعة متحركة */}
       <div
         style={{
           position: "absolute",
           top: "-40%",
-          left: `${-60 + ((frame * 0.85 + idx * 91) % 230)}%`,
+          left: `${-60 + ((tf * 0.85 + idx * 91) % 230)}%`,
           width: "46%",
           height: "180%",
           background:
@@ -195,7 +293,23 @@ const Glass: React.FC<{
         }}
       />
     </div>
-    {/* حرف مضيء */}
+
+    {/* rim light: حافة مضيئة متدرّجة — ذهبي أعلى-يسار ← نبيذي أسفل-يمين */}
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        borderRadius: radius,
+        padding: 1.6,
+        background: `linear-gradient(128deg, ${GOLD}f2 0%, ${GOLD}44 18%, rgba(255,255,255,.12) 46%, ${BURGUNDY}88 74%, ${GOLD}66 100%)`,
+        WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+        WebkitMaskComposite: "xor",
+        maskComposite: "exclude",
+        pointerEvents: "none",
+      }}
+    />
+
+    {/* حرف داخلي مضيء */}
     <div
       style={{
         position: "absolute",
@@ -209,26 +323,25 @@ const Glass: React.FC<{
   </>
 );
 
-/* ── كارت UI: رقم/إحصائية ───────────────────────────────────────────────── */
-const StatCard: React.FC<{ w: number; h: number; frame: number; idx: number }> = ({
+/* ═══ كارت إحصائية ════════════════════════════════════════════════════════ */
+const StatCard: React.FC<{ w: number; h: number; tf: number; idx: number }> = ({
   w,
   h,
-  frame,
+  tf,
   idx,
 }) => {
   const r = w * 0.055;
-  const rise = spring({ frame: frame - 34, fps: FPS, config: { damping: 18, stiffness: 90 } });
+  const rise = spring({ frame: tf - 34, fps: FPS, config: { damping: 18, stiffness: 90 } });
   const bars = [0.42, 0.68, 0.5, 0.92, 0.74];
   return (
     <>
-      <Glass radius={r} frame={frame} idx={idx} />
-      {/* شبكة خلفية دقيقة تعطي الزجاج نسيجًا */}
+      <Glass radius={r} tf={tf} idx={idx} />
       <div
         style={{
           position: "absolute",
           inset: 0,
           borderRadius: r,
-          opacity: 0.5,
+          opacity: 0.45,
           backgroundImage: `linear-gradient(${GOLD}1c 1px, transparent 1px), linear-gradient(90deg, ${GOLD}1c 1px, transparent 1px)`,
           backgroundSize: `${w * 0.16}px ${w * 0.16}px`,
         }}
@@ -254,7 +367,6 @@ const StatCard: React.FC<{ w: number; h: number; frame: number; idx: number }> =
         >
           المخطوطات
         </div>
-
         <div
           style={{
             fontFamily: "Amiri",
@@ -281,11 +393,9 @@ const StatCard: React.FC<{ w: number; h: number; frame: number; idx: number }> =
         >
           ألف مخطوطة
         </div>
-
-        {/* رسم أعمدة صغير */}
         <svg viewBox="0 0 100 34" style={{ width: "100%", marginTop: "auto" }}>
           {bars.map((v, i) => {
-            const grow = interpolate(frame, [44 + i * 6, 78 + i * 6], [0, v], CLAMP);
+            const grow = interpolate(tf, [44 + i * 6, 78 + i * 6], [0, v], CLAMP);
             return (
               <rect
                 key={i}
@@ -299,7 +409,6 @@ const StatCard: React.FC<{ w: number; h: number; frame: number; idx: number }> =
             );
           })}
         </svg>
-
         <div
           style={{
             marginTop: h * 0.038,
@@ -315,28 +424,21 @@ const StatCard: React.FC<{ w: number; h: number; frame: number; idx: number }> =
   );
 };
 
-/* ── كارت UI: مسار ──────────────────────────────────────────────────────── */
-const RouteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> = ({
+/* ═══ كارت مسار ═══════════════════════════════════════════════════════════ */
+const RouteCard: React.FC<{ w: number; h: number; tf: number; idx: number }> = ({
   w,
   h,
-  frame,
+  tf,
   idx,
 }) => {
   const r = w * 0.055;
-  const draw = interpolate(frame, [42, 116], [0, 1], CLAMP);
-  const dotOn = interpolate(frame, [108, 126], [0, 1], CLAMP);
-
+  const draw = interpolate(tf, [42, 116], [0, 1], CLAMP);
+  const dotOn = interpolate(tf, [108, 126], [0, 1], CLAMP);
   return (
     <>
-      <Glass radius={r} frame={frame} idx={idx} />
+      <Glass radius={r} tf={tf} idx={idx} />
       <div style={{ position: "absolute", inset: 0, padding: w * 0.075, direction: "rtl" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span
             style={{
               fontFamily: "IBM Plex Sans Arabic",
@@ -361,14 +463,16 @@ const RouteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
             ٢٠١٣
           </span>
         </div>
-
         <svg viewBox="0 0 100 72" style={{ width: "100%", marginTop: h * 0.045 }}>
-          {/* نقاط شبكة = إحساس خريطة */}
-          {Array.from({ length: 24 }).map((_, i) => {
-            const cx = 8 + (i % 6) * 16.8;
-            const cy = 8 + Math.floor(i / 6) * 18;
-            return <circle key={i} cx={cx} cy={cy} r={0.55} fill={`${PARCH}30`} />;
-          })}
+          {Array.from({ length: 24 }).map((_, i) => (
+            <circle
+              key={i}
+              cx={8 + (i % 6) * 16.8}
+              cy={8 + Math.floor(i / 6) * 18}
+              r={0.55}
+              fill={`${PARCH}30`}
+            />
+          ))}
           <path
             d="M12 56 C 32 54, 40 24, 58 22 S 84 34, 92 12"
             fill="none"
@@ -400,14 +504,13 @@ const RouteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
           <circle
             cx={92}
             cy={12}
-            r={(7 + Math.sin(frame / 12) * 1.6)}
+            r={7 + Math.sin(tf / 12) * 1.6}
             fill="none"
             stroke={GOLD}
             strokeWidth={0.7}
             opacity={dotOn * 0.6}
           />
         </svg>
-
         <div
           style={{
             marginTop: "auto",
@@ -420,14 +523,7 @@ const RouteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
           }}
         >
           <span>تمبكتو</span>
-          <span
-            style={{
-              color: GOLD,
-              fontWeight: 700,
-              fontFamily: "Amiri",
-              fontSize: w * 0.115,
-            }}
-          >
+          <span style={{ color: GOLD, fontWeight: 700, fontFamily: "Amiri", fontSize: w * 0.115 }}>
             ٤٠٠ ميل
           </span>
         </div>
@@ -436,19 +532,19 @@ const RouteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
   );
 };
 
-/* ── كارت UI: اقتباس ────────────────────────────────────────────────────── */
-const QuoteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> = ({
+/* ═══ كارت اقتباس ═════════════════════════════════════════════════════════ */
+const QuoteCardG: React.FC<{ w: number; h: number; tf: number; idx: number }> = ({
   w,
   h,
-  frame,
+  tf,
   idx,
 }) => {
   const r = w * 0.055;
-  const o = interpolate(frame, [58, 92], [0, 1], CLAMP);
-  const ruleH = interpolate(frame, [70, 108], [0, 1], CLAMP);
+  const o = interpolate(tf, [58, 92], [0, 1], CLAMP);
+  const ruleH = interpolate(tf, [70, 108], [0, 1], CLAMP);
   return (
     <>
-      <Glass radius={r} frame={frame} idx={idx} tint="255,244,222" sheen={0.65} />
+      <Glass radius={r} tf={tf} idx={idx} tint="255,244,222" sheen={0.65} />
       <div
         style={{
           position: "absolute",
@@ -471,7 +567,6 @@ const QuoteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
         >
           ١٥٢٦
         </div>
-
         <div
           style={{
             fontFamily: "Amiri",
@@ -484,7 +579,6 @@ const QuoteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
         >
           ﴾
         </div>
-
         <div
           style={{
             fontFamily: "Amiri",
@@ -497,7 +591,6 @@ const QuoteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
         >
           تجارة الكتب أربح من تجارة الذهب
         </div>
-
         <div
           style={{
             marginTop: "auto",
@@ -507,13 +600,8 @@ const QuoteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
             marginBottom: h * 0.030,
           }}
         />
-
         <div
-          style={{
-            fontFamily: "IBM Plex Sans Arabic",
-            fontSize: w * 0.070,
-            color: `${PARCH}a0`,
-          }}
+          style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: w * 0.070, color: `${PARCH}a0` }}
         >
           ليو أفريكانوس
         </div>
@@ -522,15 +610,15 @@ const QuoteCard: React.FC<{ w: number; h: number; frame: number; idx: number }> 
   );
 };
 
-/* ── كارت صورة ──────────────────────────────────────────────────────────── */
-const PhotoCard: React.FC<{ src: string; w: number; h: number; frame: number }> = ({
+/* ═══ كارت صورة ═══════════════════════════════════════════════════════════ */
+const PhotoCard: React.FC<{ src: string; w: number; h: number; tf: number }> = ({
   src,
   w,
   h,
-  frame,
+  tf,
 }) => {
   const r = w * 0.05;
-  const kb = interpolate(frame, [0, DUR], [1.0, 1.09], CLAMP);
+  const kb = interpolate(tf, [0, DUR], [1.0, 1.09], CLAMP);
   return (
     <>
       <div
@@ -543,15 +631,7 @@ const PhotoCard: React.FC<{ src: string; w: number; h: number; frame: number }> 
             "0 54px 120px rgba(0,0,0,.9), 0 0 0 1px rgba(243,235,219,.16), 0 0 110px rgba(194,164,105,.20)",
         }}
       >
-        <Img
-          src={staticFile(src)}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            transform: `scale(${kb})`,
-          }}
-        />
+        <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${kb})` }} />
         <div
           style={{
             position: "absolute",
@@ -561,15 +641,25 @@ const PhotoCard: React.FC<{ src: string; w: number; h: number; frame: number }> 
           }}
         />
       </div>
-      {/* زجاج خفيف فوق الصورة */}
+      {/* rim light على الصورة */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           borderRadius: r,
-          border: "1px solid rgba(255,255,255,.22)",
-          background:
-            "linear-gradient(158deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.03) 42%, rgba(255,255,255,.01) 70%, rgba(255,255,255,.10) 100%)",
+          padding: 1.6,
+          background: `linear-gradient(128deg, ${GOLD}e8 0%, ${GOLD}44 20%, rgba(255,255,255,.10) 48%, ${BURGUNDY}77 76%, ${GOLD}55 100%)`,
+          WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: r,
           boxShadow: "inset 0 1px 0 rgba(255,255,255,.44)",
           pointerEvents: "none",
         }}
@@ -578,7 +668,44 @@ const PhotoCard: React.FC<{ src: string; w: number; h: number; frame: number }> 
   );
 };
 
-/* ── كلمة حركية ─────────────────────────────────────────────────────────── */
+/* ═══ العالم 3D (يُرسم عند أي tf — ده اللي يخلي الـghosting ممكن) ══════════ */
+const World: React.FC<{ tf: number }> = ({ tf }) => {
+  const cam = cameraAt(tf);
+  return (
+    <AbsoluteFill style={{ perspective: 1500, perspectiveOrigin: "50% 46%", overflow: "hidden" }}>
+      <AbsoluteFill
+        style={{
+          transformStyle: "preserve-3d",
+          transform: `translate3d(${cam.panX}px, ${cam.panY}px, ${cam.push}px) rotateY(${cam.yaw}deg) rotateX(${cam.pitch}deg)`,
+        }}
+      >
+        <Shapes tf={tf} camZ={cam.push} />
+
+        <DepthBox x={392} y={452} z={-330} rotY={36} w={228} h={404} delay={34} idx={0} camZ={cam.push} tf={tf}>
+          <QuoteCardG w={228} h={404} tf={tf} idx={0} />
+        </DepthBox>
+
+        <DepthBox x={1528} y={452} z={-330} rotY={-36} w={228} h={404} delay={40} idx={1} camZ={cam.push} tf={tf}>
+          <StatCard w={228} h={404} tf={tf} idx={1} />
+        </DepthBox>
+
+        <DepthBox x={640} y={492} z={-150} rotY={27} w={272} h={482} delay={22} idx={2} camZ={cam.push} tf={tf}>
+          <PhotoCard src="projects/TMB_001/plates/tmb_drums.jpg" w={272} h={482} tf={tf} />
+        </DepthBox>
+
+        <DepthBox x={1282} y={492} z={-150} rotY={-27} w={272} h={482} delay={28} idx={3} camZ={cam.push} tf={tf}>
+          <RouteCard w={272} h={482} tf={tf} idx={3} />
+        </DepthBox>
+
+        <DepthBox x={960} y={458} z={-15} rotY={0} w={374} h={664} delay={8} idx={4} camZ={cam.push} tf={tf}>
+          <PhotoCard src="projects/TMB_001/plates/tmb_map.jpg" w={374} h={664} tf={tf} />
+        </DepthBox>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+/* ═══ كلمة حركية ══════════════════════════════════════════════════════════ */
 const Word: React.FC<{ children: React.ReactNode; start: number; size: number }> = ({
   children,
   start,
@@ -628,44 +755,14 @@ export const ProofStyle: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: INK }}>
       <Backdrop camX={cam.panX} />
 
-      {/* ═══ عالم 3D ═══ */}
-      <AbsoluteFill
-        style={{
-          perspective: 1500,
-          perspectiveOrigin: "50% 46%",
-          overflow: "hidden",
-        }}
-      >
-        <AbsoluteFill
-          style={{
-            transformStyle: "preserve-3d",
-            transform: `translate3d(${cam.panX}px, ${cam.panY}px, ${cam.push}px) rotateY(${cam.yaw}deg) rotateX(${cam.pitch}deg)`,
-          }}
-        >
-          {/* الخلفي: اقتباس (يسار) + إحصائية (يمين) */}
-          <DepthBox x={392} y={452} z={-330} rotY={36} w={228} h={404} delay={34} idx={0} camZ={cam.push}>
-            <QuoteCard w={228} h={404} frame={frame} idx={0} />
-          </DepthBox>
-
-          <DepthBox x={1528} y={452} z={-330} rotY={-36} w={228} h={404} delay={40} idx={1} camZ={cam.push}>
-            <StatCard w={228} h={404} frame={frame} idx={1} />
-          </DepthBox>
-
-          {/* الأوسط: صورة (يسار) + مسار (يمين) */}
-          <DepthBox x={640} y={492} z={-150} rotY={27} w={272} h={482} delay={22} idx={2} camZ={cam.push}>
-            <PhotoCard src="projects/TMB_001/plates/tmb_drums.jpg" w={272} h={482} frame={frame} />
-          </DepthBox>
-
-          <DepthBox x={1282} y={492} z={-150} rotY={-27} w={272} h={482} delay={28} idx={3} camZ={cam.push}>
-            <RouteCard w={272} h={482} frame={frame} idx={3} />
-          </DepthBox>
-
-          {/* البطل — في البؤرة */}
-          <DepthBox x={960} y={458} z={-15} rotY={0} w={374} h={664} delay={8} idx={4} camZ={cam.push}>
-            <PhotoCard src="projects/TMB_001/plates/tmb_map.jpg" w={374} h={664} frame={frame} />
-          </DepthBox>
-        </AbsoluteFill>
+      {/* ═══ ghosting = motion blur حقيقي: نفس العالم عند tf-2 و tf-1 ═══ */}
+      <AbsoluteFill style={{ opacity: 0.2 }}>
+        <World tf={frame - 2} />
       </AbsoluteFill>
+      <AbsoluteFill style={{ opacity: 0.42 }}>
+        <World tf={frame - 1} />
+      </AbsoluteFill>
+      <World tf={frame} />
 
       {/* ═══ شعار ═══ */}
       <div
@@ -680,15 +777,7 @@ export const ProofStyle: React.FC = () => {
           direction: "rtl",
         }}
       >
-        <div
-          style={{
-            width: 3,
-            height: 38,
-            borderRadius: 2,
-            background: GOLD,
-            boxShadow: `0 0 22px ${GOLD}`,
-          }}
-        />
+        <div style={{ width: 3, height: 38, borderRadius: 2, background: GOLD, boxShadow: `0 0 22px ${GOLD}` }} />
         <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 44, color: PARCH }}>رِواق</div>
       </div>
 
@@ -704,21 +793,13 @@ export const ProofStyle: React.FC = () => {
           transform: `translateX(${cam.panX * -0.14}px)`,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            flexWrap: "wrap",
-            gap: "0 0.25em",
-          }}
-        >
+        <div style={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", gap: "0 0.25em" }}>
           {words.map((w, i) => (
             <Word key={w} start={wordStart + i * 7} size={88}>
               {w}
             </Word>
           ))}
         </div>
-
         <div
           style={{
             marginTop: 24,
@@ -730,7 +811,6 @@ export const ProofStyle: React.FC = () => {
             boxShadow: `0 0 20px ${GOLD}99`,
           }}
         />
-
         <div
           style={{
             marginTop: 20,
