@@ -87,7 +87,7 @@ export interface Scene {
   // source
   value?: string;
   // broll
-  motif?: "map" | "fall" | "drums" | "route";
+  plate?: string;
 }
 
 export interface CaptionLine {

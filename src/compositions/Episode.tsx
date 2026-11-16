@@ -24,7 +24,7 @@ const SceneRenderer: React.FC<{ scene: Scene; durFrames: number }> = ({ scene, d
     case "chapter":
       return <ChapterCard kicker={scene.kicker} title={scene.title ?? ""} durFrames={durFrames} />;
     case "quote":
-      return <QuoteCard text={scene.text ?? ""} source={scene.source} durFrames={durFrames} />;
+      return <QuoteCard text={scene.text ?? ""} source={scene.source} plate={scene.plate} durFrames={durFrames} />;
     case "stat":
       return <StatCard number={scene.number ?? ""} label={scene.label ?? ""} durFrames={durFrames} />;
     case "lower_third":
@@ -37,7 +37,7 @@ const SceneRenderer: React.FC<{ scene: Scene; durFrames: number }> = ({ scene, d
           title={scene.title}
           label={scene.label}
           kicker={scene.kicker}
-          motif={scene.motif}
+          plate={scene.plate}
           durFrames={durFrames}
         />
       );

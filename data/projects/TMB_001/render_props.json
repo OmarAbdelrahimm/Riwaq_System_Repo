@@ -53,14 +53,15 @@
           "kicker": "تمبكتو · مالي",
           "title": "في قلب أفريقيا",
           "label": "الكتب فيها أغلى من الأرض",
-          "motif": "map"
+          "plate": "tmb_map.jpg"
         },
         {
           "type": "quote",
           "t_in": 6.5,
           "t_out": 11.0,
           "text": "«الكتب فيها أكسب من الذهب»",
-          "source": "ليو أفريكانوس — وصف أفريقيا، ١٥٢٦"
+          "source": "ليو أفريكانوس — وصف أفريقيا، ١٥٢٦",
+          "plate": "tmb_gold.jpg"
         },
         {
           "type": "broll",
@@ -68,7 +69,7 @@
           "t_out": 15.0,
           "kicker": "٢٠١٢",
           "title": "مجموعات مسلّحة دخلت المدينة",
-          "motif": "fall"
+          "plate": "tmb_fall.jpg"
         },
         {
           "type": "stat",
@@ -84,7 +85,7 @@
           "kicker": "الحل",
           "title": "خبّوها في صناديق زيت",
           "label": "وعربيات دفع",
-          "motif": "drums"
+          "plate": "tmb_drums.jpg"
         },
         {
           "type": "broll",
@@ -93,7 +94,7 @@
           "kicker": "الرحلة",
           "title": "٤٠٠ ميل جنوبًا",
           "label": "كل عربة بتحمل سرًّا",
-          "motif": "route"
+          "plate": "tmb_route.jpg"
         },
         {
           "type": "stat",

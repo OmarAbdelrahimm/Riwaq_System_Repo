@@ -1,23 +1,36 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { useTheme, scalePx } from "../engine/theme";
 import { textTiming } from "../engine/timing";
 
 /** C — كارت اقتباس: Amiri Regular بمسند ذهبي عمودي */
-export const QuoteCard: React.FC<{ text: string; source?: string; durFrames: number }> = ({
-  text,
-  source,
-  durFrames,
-}) => {
+export const QuoteCard: React.FC<{
+  text: string;
+  source?: string;
+  durFrames: number;
+  plate?: string;
+}> = ({ text, source, durFrames, plate }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const { color, headlineFont, bodyFont, width, safe } = useTheme();
   const t = textTiming(frame, fps, 12, durFrames - 10, width * 0.012);
 
   return (
-    <AbsoluteFill
-      style={{ alignItems: "center", justifyContent: "center", paddingLeft: safe.side, paddingRight: safe.side }}
-    >
+    <AbsoluteFill style={{ overflow: "hidden" }}>
+      {plate ? (
+        <>
+          <AbsoluteFill>
+            <Img
+              src={staticFile(`projects/TMB_001/plates/${plate}`)}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </AbsoluteFill>
+          <AbsoluteFill style={{ background: "rgba(16,15,13,.52)" }} />
+        </>
+      ) : null}
+      <AbsoluteFill
+        style={{ alignItems: "center", justifyContent: "center", paddingLeft: safe.side, paddingRight: safe.side }}
+      >
       <div
         style={{
           opacity: t.opacity,
@@ -51,6 +64,7 @@ export const QuoteCard: React.FC<{ text: string; source?: string; durFrames: num
           </div>
         ) : null}
       </div>
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };
