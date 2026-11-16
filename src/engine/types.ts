@@ -89,6 +89,7 @@ export interface Scene {
   // broll
   plate?: string;
   scrim?: number;
+  text_pos?: "top" | "bottom";
 }
 
 export interface CaptionLine {

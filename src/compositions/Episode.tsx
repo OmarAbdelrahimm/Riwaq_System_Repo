@@ -39,6 +39,7 @@ const SceneRenderer: React.FC<{ scene: Scene; durFrames: number }> = ({ scene, d
           kicker={scene.kicker}
           plate={scene.plate}
           scrim={scene.scrim}
+          textPos={scene.text_pos}
           durFrames={durFrames}
         />
       );

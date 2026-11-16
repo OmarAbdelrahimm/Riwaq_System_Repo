@@ -21,7 +21,8 @@ export const BrollFrame: React.FC<{
   kicker?: string;
   durFrames: number;
   scrim?: number;
-}> = ({ plate, title, label, kicker, durFrames, scrim = 0.34 }) => {
+  textPos?: "top" | "bottom";
+}> = ({ plate, title, label, kicker, durFrames, scrim = 0.34, textPos = "top" }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const { color, bodyFont, headlineFont, width, safe, brand } = useTheme();
@@ -57,9 +58,10 @@ export const BrollFrame: React.FC<{
 
       <AbsoluteFill
         style={{
-          justifyContent: "flex-start",
+          justifyContent: textPos === "bottom" ? "flex-end" : "flex-start",
           alignItems: "center",
           paddingTop: safe.top + width * 0.05,
+          paddingBottom: textPos === "bottom" ? safe.bottom + width * 0.30 : 0,
           paddingLeft: safe.side,
           paddingRight: safe.side,
         }}

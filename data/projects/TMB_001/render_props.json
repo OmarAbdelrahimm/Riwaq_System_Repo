@@ -54,7 +54,8 @@
           "title": "مدينة الكتب",
           "label": "تمبكتو · مالي",
           "plate": "tmb_map.jpg",
-          "scrim": 0.52
+          "scrim": 0.58,
+          "text_pos": "bottom"
         },
         {
           "type": "quote",
