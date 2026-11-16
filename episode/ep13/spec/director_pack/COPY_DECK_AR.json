@@ -1,0 +1,42 @@
+{
+  "S01": {
+    "on_screen": "إوعى تشرب لبن بعد السمك؟",
+    "classification": "popular claim / quote, not a medical fact"
+  },
+  "S02": {
+    "on_screen": "هيجيلك بهاق؟",
+    "classification": "popular claim / question, not fact"
+  },
+  "S03": {
+    "on_screen": "سمعتها قبل كده؟",
+    "classification": "visual emphasis only, not full caption"
+  },
+  "S04": {
+    "on_screen": "كلام بيتنقل من جيل لجيل",
+    "classification": "editorial summary - not transcript"
+  },
+  "S05": {
+    "on_screen": "متأكد جدًا!",
+    "classification": "editorial emphasis, verify cue"
+  },
+  "S06": {
+    "on_screen": "استنى...",
+    "classification": "editorial beat"
+  },
+  "S07": {
+    "on_screen": "مين قال أصلًا؟",
+    "classification": "question"
+  },
+  "S08": {
+    "on_screen": "السمك + اللبن = بهاق؟",
+    "classification": "false claim under investigation"
+  },
+  "S09": {
+    "on_screen": "وزارة الصحة السعودية: الادعاء غير صحيح",
+    "classification": "sourced Arabic paraphrase of Saudi Ministry of Health, not direct quote"
+  },
+  "S10": {
+    "on_screen": "NIAMS: البهاق مرتبط بمهاجمة خلايا الصبغة",
+    "classification": "sourced paraphrase, not direct quote"
+  }
+}

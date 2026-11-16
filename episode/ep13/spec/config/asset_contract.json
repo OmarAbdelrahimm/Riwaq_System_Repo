@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "note": "Statuses are truthful at the handoff. These may change only after physical asset verification.",
+  "assets": [
+    {
+      "id": "REF_VIDEO",
+      "path": "reference/PINTEREST_USER_REFERENCE.mp4",
+      "status": "PRESENT_REFERENCE_ONLY",
+      "role": "style study; never ship in finished RUWAQ video",
+      "licensed_for_reuse": false
+    },
+    {
+      "id": "A01_WARM_DINING",
+      "path": "assets/A01_DINING_ESTABLISHING_CLEAN.png",
+      "status": "PRESENT_FLATTENED",
+      "role": "B-roll/illustrative bridge; no 3D-object claim"
+    },
+    {
+      "id": "A06_DARK_CONCEPT",
+      "path": "assets/A06_CONCEPT_FISH_MILK_REFERENCE_ONLY.png",
+      "status": "PRESENT_FLATTENED_REFERENCE_ONLY",
+      "role": "visual look/color target; NOT 3D"
+    },
+    {
+      "id": "A02_QUOTE",
+      "path": "assets/A02_SPEECH_BUBBLE_LAYER.svg",
+      "status": "PRESENT_VECTOR",
+      "role": "repeated claim graphics"
+    },
+    {
+      "id": "A03_CAUSAL",
+      "path": "assets/A03_CAUSALITY_QUESTION_LAYER.svg",
+      "status": "PRESENT_VECTOR",
+      "role": "alleged arrow/question"
+    },
+    {
+      "id": "A04_EVIDENCE",
+      "path": "assets/A04_EVIDENCE_PANELS_BLANK.svg",
+      "status": "PRESENT_VECTOR_TEMPLATE",
+      "role": "source card visual chrome only, no fabricated source screenshots"
+    },
+    {
+      "id": "A05_QUESTION",
+      "path": "assets/A05_QUESTION_MARK_LAYER.svg",
+      "status": "PRESENT_VECTOR",
+      "role": "who said it? concept"
+    },
+    {
+      "id": "FISH_SEPARATE",
+      "path": null,
+      "status": "MISSING_TO_BUILD_OR_SOURCE",
+      "role": "fish 3D mesh or transparent passes and cast-shadow pass"
+    },
+    {
+      "id": "GLASS_SEPARATE",
+      "path": null,
+      "status": "MISSING_TO_BUILD_OR_SOURCE",
+      "role": "milk glass 3D mesh or layered passes with transparent highlights"
+    },
+    {
+      "id": "VOICE_S01",
+      "path": null,
+      "status": "MISSING_FROM_HANDOFF_LOOK_IN_AGENT_REPO",
+      "role": "selected original S01 narration; no alternative voice"
+    },
+    {
+      "id": "LOGO_RUWAQ",
+      "path": null,
+      "status": "MISSING_FROM_HANDOFF_LOOK_IN_01_BRAND",
+      "role": "official vector only"
+    },
+    {
+      "id": "MEDICAL_MODEL",
+      "path": null,
+      "status": "PENDING_NOT_FOR_0_6_PROOF",
+      "role": "later skin explanation with verified science"
+    }
+  ]
+}

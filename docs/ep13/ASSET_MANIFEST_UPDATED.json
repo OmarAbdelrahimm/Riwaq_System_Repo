@@ -1,0 +1,335 @@
+{
+  "project": "RUWAQ — episode 13, ‘fish and milk’ claim episode",
+  "stage": "G2 — 0–6 s motion-quality proof",
+  "generated_at": "2026-11-16T05:54:23Z",
+  "resolution_policy": "design 1920x1080; proof rendered 1280x720 @2x supersample; styleframes 1920x1080",
+  "declared_limitations": [
+    "No separate fish or glass 3-D asset exists and none was generated from the reference: both heroes are procedural 2.5-D vector sprites (tools/ep13/heroes.py). They are not a 3-D model and cannot be orbited.",
+    "Word-level Arabic/Arabic-English sync is not claimed: only phrase onsets are measured from the audio file; a native listen is still required.",
+    "The proof uses no footage from the Pinterest reference video; the video informed design grammar only."
+  ],
+  "assets": [
+    {
+      "path": "public/ep13/audio/chapter01.mp3",
+      "role": "audio",
+      "provenance": "Original S01 narration take, supplied by the client (Drive). Voice of truth for timing.",
+      "license": "Client-owned recording. Not for redistribution.",
+      "status": "PRESENT — VOICE_OF_TRUTH",
+      "present": true,
+      "bytes": 2653005,
+      "sha256": "83be0fd38793736fede1031067a9594145ece2a45bd92c70e52be4eaa97609e8"
+    },
+    {
+      "path": "public/ep13/brand/logo.svg",
+      "role": "brand",
+      "provenance": "Official RUWAQ emblem from 01-BRAND, copied unchanged.",
+      "license": "RUWAQ brand asset (client-owned).",
+      "status": "PRESENT — UNCHANGED",
+      "present": true,
+      "bytes": 3167,
+      "sha256": "267e5bd1d6676b4e1580840d50b2a4608f44fb7c03b9e5c6fd341f30abea204f"
+    },
+    {
+      "path": "public/fonts/Amiri-Bold.ttf",
+      "role": "font",
+      "provenance": "Amiri by Khaled Hosny (Google Fonts).",
+      "license": "SIL Open Font License 1.1.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 413480,
+      "sha256": "cfccb794268e7d573d857e6d6a67f89cf8a053e8ffd85dfa0c8ec1bb36fc4827"
+    },
+    {
+      "path": "public/fonts/Amiri-Regular.ttf",
+      "role": "font",
+      "provenance": "Amiri by Khaled Hosny (Google Fonts).",
+      "license": "SIL Open Font License 1.1.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 431116,
+      "sha256": "ab391c4147d054c48976e98322ad0eefe1427aa0e0502a12a4c75d80a70cfcd7"
+    },
+    {
+      "path": "public/fonts/IBMPlexSansArabic-Regular.ttf",
+      "role": "font",
+      "provenance": "IBM Plex Sans Arabic (IBM).",
+      "license": "SIL Open Font License 1.1.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 235924,
+      "sha256": "6f611412270a132bbac838da9259d4c68569b4175f3b3b8fa3fa36a30b56dab9"
+    },
+    {
+      "path": "public/fonts/IBMPlexSansArabic-Medium.ttf",
+      "role": "font",
+      "provenance": "IBM Plex Sans Arabic (IBM).",
+      "license": "SIL Open Font License 1.1.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 242100,
+      "sha256": "b8363ab9f733dfa4f8e96b8b2102c24b5cf4110fb96d1d3d9a9412f6fb49cf74"
+    },
+    {
+      "path": "public/fonts/IBMPlexSansArabic-Bold.ttf",
+      "role": "font",
+      "provenance": "IBM Plex Sans Arabic (IBM).",
+      "license": "SIL Open Font License 1.1.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 246992,
+      "sha256": "691e0c891a38637ae6bbdb69700f8042cb0724a137bee615068ffdb92244f61f"
+    },
+    {
+      "path": "public/ep13/assets/approved/A01_DINING_ESTABLISHING_CLEAN.png",
+      "role": "plate",
+      "provenance": "Handoff asset A01 (flattened still).",
+      "license": "Client-supplied; reference/plate use only.",
+      "status": "PRESENT — NOT USED IN 0–6 s PROOF",
+      "present": true,
+      "bytes": 2197096,
+      "sha256": "7af8af67517287f389cd0390a4aeebb15c849ff065ad645dcb96d6fbb44bb6a8"
+    },
+    {
+      "path": "public/ep13/assets/approved/A02_SPEECH_BUBBLE_LAYER.svg",
+      "role": "layer",
+      "provenance": "Handoff asset A02 (vector).",
+      "license": "Client-supplied.",
+      "status": "PRESENT — NOT USED IN 0–6 s PROOF",
+      "present": true,
+      "bytes": 307,
+      "sha256": "151af3858f05b40e88efeb8c0872e69c06d7a2309378783ce3b102318cc35986"
+    },
+    {
+      "path": "public/ep13/assets/approved/A03_CAUSALITY_QUESTION_LAYER.svg",
+      "role": "layer",
+      "provenance": "Handoff asset A03 (vector).",
+      "license": "Client-supplied.",
+      "status": "PRESENT — SHAPE LANGUAGE REFERENCE ONLY",
+      "present": true,
+      "bytes": 423,
+      "sha256": "cceef6500def4047ed547fe2e50de97b61c3cc9b034a5b79fe5168937dbab6e9"
+    },
+    {
+      "path": "public/ep13/assets/approved/A04_EVIDENCE_PANELS_BLANK.svg",
+      "role": "layer",
+      "provenance": "Handoff asset A04 (blank template).",
+      "license": "Client-supplied.",
+      "status": "PRESENT — SHAPE LANGUAGE REFERENCE ONLY",
+      "present": true,
+      "bytes": 435,
+      "sha256": "62d4aec1ac6ce97178abb623c703cb578e1a48690966bad816dc4b0ad958be22"
+    },
+    {
+      "path": "public/ep13/assets/approved/A05_QUESTION_MARK_LAYER.svg",
+      "role": "layer",
+      "provenance": "Handoff asset A05 (vector).",
+      "license": "Client-supplied.",
+      "status": "PRESENT — SHAPE LANGUAGE REFERENCE ONLY",
+      "present": true,
+      "bytes": 320,
+      "sha256": "b6d1de5663c9a911be339cf27b3208ca2e10eb04646c80263e3ddc86dc80c479"
+    },
+    {
+      "path": "public/ep13/assets/approved/A06_CONCEPT_FISH_MILK_REFERENCE_ONLY.png",
+      "role": "reference",
+      "provenance": "Handoff asset A06 concept frame.",
+      "license": "Client-supplied; reference only, never composited.",
+      "status": "PRESENT — REFERENCE_ONLY",
+      "present": true,
+      "bytes": 1819874,
+      "sha256": "b878c0a27edbfd6249456c305b8a21fde2bc8e478a4569cc8f7aae87d2987b66"
+    },
+    {
+      "path": "episode/ep13/measured_audio.json",
+      "role": "measurement",
+      "provenance": "Measured from chapter01.mp3 with tools/ep13/audio_analysis.py (speech-run detection).",
+      "license": "Generated.",
+      "status": "PRESENT — MEASURED",
+      "present": true,
+      "bytes": 7274,
+      "sha256": "0d154fe5acf653c411baf2b3acfca2595043572fcdc537d23d679d6f427d472d"
+    },
+    {
+      "path": "episode/ep13/spec/SHA256SUMS.txt",
+      "role": "spec",
+      "provenance": "Handoff checksum list; all 37 listed files verify against it.",
+      "license": "Handoff.",
+      "status": "PRESENT — 37/37 VERIFIED",
+      "present": true,
+      "bytes": 3645,
+      "sha256": "fa77b3579fdbbe17273be62296c2a99ead8682f118c9927aebe2667242e82314"
+    },
+    {
+      "path": "render/ep13/PROOF_0_6_v2.mp4",
+      "role": "deliverable",
+      "provenance": "Rendered by tools/ep13/render.py; video frames from tools/ep13/scene.py, audio = 0–6.00 s of chapter01.mp3.",
+      "license": "Derived from client assets.",
+      "status": "DELIVERED — PENDING VISUAL APPROVAL",
+      "present": true,
+      "bytes": 1420350,
+      "sha256": "c8c3907d815f6afdfe6e61901dafd5ae808ffd8490abb76a1ebd088a27e31dba"
+    },
+    {
+      "path": "render/ep13/PROOF_CONTACT.jpg",
+      "role": "deliverable",
+      "provenance": "Contact sheet, frames 0/20/40/60/90/120/150/179.",
+      "license": "Derived.",
+      "status": "DELIVERED",
+      "present": true,
+      "bytes": 201725,
+      "sha256": "617ec439f65af37f4d9eab7149c0a158ecc317a2a8400acbae35f5bf9a04f237"
+    },
+    {
+      "path": "render/ep13/STYLEFRAME_A_1920.png",
+      "role": "deliverable",
+      "provenance": "G1 styleframe A (hook), 1920x1080, frame 54 of the same renderer.",
+      "license": "Derived.",
+      "status": "DELIVERED",
+      "present": true,
+      "bytes": 2071552,
+      "sha256": "de7055d33588fad945d787dce0ed433a5c95a589b4a1c8829e8f87711879738b"
+    },
+    {
+      "path": "render/ep13/STYLEFRAME_B_1920.png",
+      "role": "deliverable",
+      "provenance": "G1 styleframe B (claim), 1920x1080, frame 150.",
+      "license": "Derived.",
+      "status": "DELIVERED",
+      "present": true,
+      "bytes": 2089963,
+      "sha256": "a638bdf15ae8281863c7b3dcb286ffc521bd7dc507998c3a638944732adf0aae"
+    },
+    {
+      "path": "render/ep13/QC_REPORT.json",
+      "role": "measurement",
+      "provenance": "Measured frame-difference QC (tools/ep13/qc.py), camera on vs camera off.",
+      "license": "Generated.",
+      "status": "DELIVERED",
+      "present": true,
+      "bytes": 6329,
+      "sha256": "0ac63224d3654842adcff819f7b1756e76fe8cec35583b8aeae0c4a24f11ce58"
+    },
+    {
+      "path": "docs/ep13/QC_REFERENCE_COMPARISON.jpg",
+      "role": "deliverable",
+      "provenance": "Side-by-side: our frames vs the supplied reference at matching moments.",
+      "license": "Derived.",
+      "status": "DELIVERED",
+      "present": true,
+      "bytes": 255244,
+      "sha256": "52e036fae02bce8866407b6ff32d1b4ea4424d0da153ed8560942284b49d3f2c"
+    }
+  ],
+  "code": [
+    {
+      "path": "tools/ep13/tokens.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 2946,
+      "sha256": "fab6fbc93a5af74fab97a7d49bcc944eacb82390c0580776b9cce937150e3e3c"
+    },
+    {
+      "path": "tools/ep13/text.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 9202,
+      "sha256": "33138d26d7ca9f4dc0adb83117638f47bbb6622c3001345e25930bcd7332a7ab"
+    },
+    {
+      "path": "tools/ep13/gfx.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 14393,
+      "sha256": "2d592f7ac1a4cd6a7a64359303205a4158b152c9e657942793f59e233dd081e2"
+    },
+    {
+      "path": "tools/ep13/heroes.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 22020,
+      "sha256": "5ba20fc161f6b7180b5313a3d0b4117e1511559e09338f64642d2ece3452262b"
+    },
+    {
+      "path": "tools/ep13/stage.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 5776,
+      "sha256": "9d033a2dad11e8e757bd773330fa40fd0db4e87f1050ffc8457d9bc045db5d30"
+    },
+    {
+      "path": "tools/ep13/scene.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 26598,
+      "sha256": "6a90758f8de973f345c50b998f4a84da4956798b7276ee832a42442782f2d0ad"
+    },
+    {
+      "path": "tools/ep13/timeline.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 2632,
+      "sha256": "1a02c56846aafc27df39fbb531abe8326ad76784572c4473746641d166c755f7"
+    },
+    {
+      "path": "tools/ep13/audio_analysis.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 3410,
+      "sha256": "72587a60c0fe4d7defe0a4398389514ec4e89ef54afc6590899bb843f6b1cfd2"
+    },
+    {
+      "path": "tools/ep13/render.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 4656,
+      "sha256": "11ba919faf2eb5be343add50a918e6972dbf64ae9371007c31057eb032593e26"
+    },
+    {
+      "path": "tools/ep13/qc.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 6689,
+      "sha256": "dd70ff99f2b976006d5379108b4bd93ed21157fd4df67e5414759f38aad6ea44"
+    },
+    {
+      "path": "tools/ep13/manifest.py",
+      "role": "code",
+      "provenance": "Authored in this repository for this render.",
+      "license": "Client project code.",
+      "status": "PRESENT",
+      "present": true,
+      "bytes": 6625,
+      "sha256": "4c758f32002254fac772798ccb4fecd4b90ef78b6c9a33f59324e586dd4f6bfa"
+    }
+  ]
+}

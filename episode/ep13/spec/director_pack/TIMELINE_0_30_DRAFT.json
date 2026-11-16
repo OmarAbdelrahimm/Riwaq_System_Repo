@@ -1,0 +1,132 @@
+{
+  "project": "RUWAQ EP13",
+  "version": "Director Plan v1",
+  "fps": 30,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "purpose": "editorial timing guide only; verify with original narration audio",
+  "scenes": [
+    {
+      "id": "S01",
+      "start_sec": 0,
+      "end_sec": 1.8,
+      "start_frame": 0,
+      "end_frame_exclusive": 54,
+      "voice_cue": "إوعى تشرب لبن بعد السمك",
+      "asset": "A01_DINING_ESTABLISHING_CLEAN.png",
+      "visual_action": "Start on milk in foreground; 105%→108% tight reveal; claim labelled as reported speech, not fact.",
+      "guardrail": "no character; one key text line",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S02",
+      "start_sec": 1.8,
+      "end_sec": 3.04,
+      "start_frame": 54,
+      "end_frame_exclusive": 91,
+      "voice_cue": "هيجيلك بهاق؟",
+      "asset": "A01_DINING_ESTABLISHING_CLEAN.png + A02_SPEECH_BUBBLE_LAYER.svg",
+      "visual_action": "Retain shot continuity; abrupt AUDIO-led typography pop on the alleged claim; no disease transformation.",
+      "guardrail": "question mark required",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S03",
+      "start_sec": 3.04,
+      "end_sec": 5.42,
+      "start_frame": 91,
+      "end_frame_exclusive": 163,
+      "voice_cue": "الجملة دي غالبًا سمعتها قبل كده",
+      "asset": "A01_DINING_ESTABLISHING_CLEAN.png",
+      "visual_action": "Widen to quiet family-table establishing, modest 2.5D foreground vs arch parallax; no speaking puppet.",
+      "guardrail": "text short, animated off audio",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S04",
+      "start_sec": 5.42,
+      "end_sec": 9.0,
+      "start_frame": 163,
+      "end_frame_exclusive": 270,
+      "voice_cue": "ويمكن تكون اتقالت لك وإنت لسه قاعد على سفرة",
+      "asset": "A01_DINING_ESTABLISHING_CLEAN.png",
+      "visual_action": "Flashback punctuation: two handwritten-quote strips with natural wiping, subtly moving lantern light.",
+      "guardrail": "do not invent identifiable family members",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S05",
+      "start_sec": 9.0,
+      "end_sec": 12.1,
+      "start_frame": 270,
+      "end_frame_exclusive": 363,
+      "voice_cue": "واللي قاله كان متأكد جدًا من كلامه (VERIFY AUDIO)",
+      "asset": "A02_SPEECH_BUBBLE_LAYER.svg",
+      "visual_action": "Three confident-voice speech scraps stack to show repetition then collapse; NO presenter talking-head.",
+      "guardrail": "precise words pending native listen",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S06",
+      "start_sec": 12.1,
+      "end_sec": 14.0,
+      "start_frame": 363,
+      "end_frame_exclusive": 420,
+      "voice_cue": "بس استنى كده (VERIFY AUDIO)",
+      "asset": "A05_QUESTION_MARK_LAYER.svg",
+      "visual_action": "Graphic freezes then rewinds 8 frames; pause before investigation.",
+      "guardrail": "use phrase boundary not guessed frame",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S07",
+      "start_sec": 14.0,
+      "end_sec": 17.5,
+      "start_frame": 420,
+      "end_frame_exclusive": 525,
+      "voice_cue": "هو مين قال أصلًا؟ (VERIFY AUDIO)",
+      "asset": "A05_QUESTION_MARK_LAYER.svg",
+      "visual_action": "Trace an empty attribution trail with 3 origin nodes turning to ?; no fake historical source.",
+      "guardrail": "do not claim origin known",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S08",
+      "start_sec": 17.5,
+      "end_sec": 22.1,
+      "start_frame": 525,
+      "end_frame_exclusive": 663,
+      "voice_cue": "مين قال إن السمك واللبن مع بعض يسببوا البهاق؟ (PARAPHRASE)",
+      "asset": "A01_DINING_ESTABLISHING_CLEAN.png + A03_CAUSALITY_QUESTION_LAYER.svg",
+      "visual_action": "Split focus on food objects, dashed CLAIM arrow interrupts and dissolves; do NOT simulate a reaction in stomach.",
+      "guardrail": "verify exact phrase against S01",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S09",
+      "start_sec": 22.1,
+      "end_sec": 26.6,
+      "start_frame": 663,
+      "end_frame_exclusive": 798,
+      "voice_cue": "الحقيقة: مفيش دليل علمي موثوق (VERIFY AUDIO)",
+      "asset": "A04_EVIDENCE_PANELS_BLANK.svg",
+      "visual_action": "Source 1 panel slides in with real grounded Saudi MoH fact summary; URL in accompanying sources.",
+      "guardrail": "never fabricate document screenshot",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    },
+    {
+      "id": "S10",
+      "start_sec": 26.6,
+      "end_sec": 30.0,
+      "start_frame": 798,
+      "end_frame_exclusive": 900,
+      "voice_cue": "المصدر يوضح عدم وجود رابط (VERIFY AUDIO)",
+      "asset": "A04_EVIDENCE_PANELS_BLANK.svg",
+      "visual_action": "NIAMS supporting panel appears; finish with warm light reveal toward upcoming medical mechanism.",
+      "guardrail": "next chapter continues at 30s; no false sign-off",
+      "status": "CUT_GUIDE_NOT_WORD_VERIFIED"
+    }
+  ]
+}

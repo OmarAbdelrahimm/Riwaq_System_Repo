@@ -1,0 +1,11 @@
+﻿file,type,production_status,purpose,notes
+assets/A01_DINING_ESTABLISHING_CLEAN.png,illustrated plate,NEW_USABLE,"0–9s family table, 9–22s visual cut-ins",AI-generated original image; single flattened layer; use subtle crop/overlays only
+reference/SF2_APPROVED_REFERENCE_NOT_CLEAN_PLATE.png,prior style reference,REFERENCE_ONLY,approved fish+milk look,has baked-in title and logo; do NOT use as clean editable plate
+assets/A02_SPEECH_BUBBLE_LAYER.svg,transparent SVG,NEW_USABLE,familiar warning quotation,Arabic copy lives in COPY_DECK_AR.json
+assets/A03_CAUSALITY_QUESTION_LAYER.svg,transparent SVG,NEW_USABLE,"question, rejected causal connection",not a biochemical mechanism
+assets/A04_EVIDENCE_PANELS_BLANK.svg,transparent SVG,NEW_USABLE,verified medical source cards,source summaries and URLs separate in FACTCHECK.md
+assets/A05_QUESTION_MARK_LAYER.svg,transparent SVG,NEW_USABLE,who said the myth,graphic only
+original_S01_chapter01.mp3,voice,MISSING_FROM_THIS_PACK,production voice of record,"recover agent-original S01 via portable selected-takes manifest, SHA256 compare"
+official_logo.svg,brand,MISSING_FROM_THIS_PACK,brand overlay,use original 01-BRAND/logo.svg; never redraw
+reference/REFERENCE_MIX_0_30_NOT_ORIGINAL_S01.m4a,derived mix,REFERENCE_ONLY,audio timing inspection,"extracted from delivered 0–30 render, NOT the original production narration"
+medical_cutaway_30_45,scientific diagram,PENDING,next sequence,not designed as verified final anatomy until scientific storyboard approved

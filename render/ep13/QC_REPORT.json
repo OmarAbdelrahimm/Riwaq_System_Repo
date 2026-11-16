@@ -1,0 +1,298 @@
+{
+  "frames": 180,
+  "fps": 30,
+  "duration_s": 6.0,
+  "resolution": "1280x720",
+  "camera_on": {
+    "fish_body": {
+      "mean_delta": 1.922,
+      "max_delta": 10.455,
+      "max_at_frame": 1,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 3.563,
+        "S1b_settle": 1.614,
+        "S2_break": 2.094,
+        "S3_claim": 1.574
+      }
+    },
+    "fish_tail": {
+      "mean_delta": 1.622,
+      "max_delta": 4.859,
+      "max_at_frame": 1,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 2.038,
+        "S1b_settle": 1.557,
+        "S2_break": 1.898,
+        "S3_claim": 1.433
+      }
+    },
+    "glass_milk": {
+      "mean_delta": 5.214,
+      "max_delta": 37.047,
+      "max_at_frame": 8,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 7.767,
+        "S1b_settle": 1.617,
+        "S2_break": 3.072,
+        "S3_claim": 6.795
+      }
+    },
+    "claim_card": {
+      "mean_delta": 3.205,
+      "max_delta": 14.431,
+      "max_at_frame": 67,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 3.376,
+        "S1b_settle": 1.39,
+        "S2_break": 3.311,
+        "S3_claim": 3.773
+      }
+    },
+    "headline": {
+      "mean_delta": 1.86,
+      "max_delta": 6.145,
+      "max_at_frame": 101,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 2.34,
+        "S1b_settle": 2.014,
+        "S2_break": 1.844,
+        "S3_claim": 1.698
+      }
+    },
+    "bg_dust_control": {
+      "mean_delta": 1.15,
+      "max_delta": 1.197,
+      "max_at_frame": 119,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 1.129,
+        "S1b_settle": 1.155,
+        "S2_break": 1.135,
+        "S3_claim": 1.159
+      }
+    },
+    "_frame_luminance": {
+      "min": 14.08,
+      "max": 21.89
+    }
+  },
+  "camera_off": {
+    "fish_body": {
+      "mean_delta": 1.861,
+      "max_delta": 10.454,
+      "max_at_frame": 1,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 3.529,
+        "S1b_settle": 1.49,
+        "S2_break": 1.925,
+        "S3_claim": 1.575
+      }
+    },
+    "fish_tail": {
+      "mean_delta": 1.556,
+      "max_delta": 4.86,
+      "max_at_frame": 1,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 2.035,
+        "S1b_settle": 1.395,
+        "S2_break": 1.704,
+        "S3_claim": 1.438
+      }
+    },
+    "glass_milk": {
+      "mean_delta": 5.058,
+      "max_delta": 37.047,
+      "max_at_frame": 8,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 7.778,
+        "S1b_settle": 1.375,
+        "S2_break": 3.137,
+        "S3_claim": 6.539
+      }
+    },
+    "claim_card": {
+      "mean_delta": 3.136,
+      "max_delta": 14.166,
+      "max_at_frame": 67,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 3.377,
+        "S1b_settle": 1.301,
+        "S2_break": 3.413,
+        "S3_claim": 3.624
+      }
+    },
+    "headline": {
+      "mean_delta": 1.855,
+      "max_delta": 6.05,
+      "max_at_frame": 101,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 2.34,
+        "S1b_settle": 2.013,
+        "S2_break": 1.843,
+        "S3_claim": 1.688
+      }
+    },
+    "bg_dust_control": {
+      "mean_delta": 1.149,
+      "max_delta": 1.197,
+      "max_at_frame": 120,
+      "moving_frames": 179,
+      "phase_mean_delta": {
+        "S1a_fish": 1.128,
+        "S1b_settle": 1.153,
+        "S2_break": 1.134,
+        "S3_claim": 1.159
+      }
+    },
+    "_frame_luminance": {
+      "min": 14.08,
+      "max": 21.9
+    }
+  },
+  "frozen_pairs_camera_on": [],
+  "frozen_pairs_camera_off": [],
+  "legibility": {
+    "0": {
+      "headline": {
+        "full_spread": 6.0,
+        "at_25pct_scale_spread": 5.3
+      },
+      "kicker": {
+        "full_spread": 5.0,
+        "at_25pct_scale_spread": 2.0
+      },
+      "gold_word": {
+        "full_spread": 5.0,
+        "at_25pct_scale_spread": 3.0
+      }
+    },
+    "20": {
+      "headline": {
+        "full_spread": 206.0,
+        "at_25pct_scale_spread": 143.0
+      },
+      "kicker": {
+        "full_spread": 168.0,
+        "at_25pct_scale_spread": 85.2
+      },
+      "gold_word": {
+        "full_spread": 30.0,
+        "at_25pct_scale_spread": 22.0
+      }
+    },
+    "54": {
+      "headline": {
+        "full_spread": 217.0,
+        "at_25pct_scale_spread": 206.0
+      },
+      "kicker": {
+        "full_spread": 168.0,
+        "at_25pct_scale_spread": 85.2
+      },
+      "gold_word": {
+        "full_spread": 214.0,
+        "at_25pct_scale_spread": 172.8
+      }
+    },
+    "70": {
+      "headline": {
+        "full_spread": 63.0,
+        "at_25pct_scale_spread": 59.0
+      },
+      "kicker": {
+        "full_spread": 4.0,
+        "at_25pct_scale_spread": 2.0
+      },
+      "gold_word": {
+        "full_spread": 62.0,
+        "at_25pct_scale_spread": 49.0
+      }
+    },
+    "120": {
+      "headline": {
+        "full_spread": 148.0,
+        "at_25pct_scale_spread": 120.0
+      },
+      "kicker": {
+        "full_spread": 4.0,
+        "at_25pct_scale_spread": 3.0
+      },
+      "gold_word": {
+        "full_spread": 151.0,
+        "at_25pct_scale_spread": 153.0
+      }
+    },
+    "179": {
+      "headline": {
+        "full_spread": 18.0,
+        "at_25pct_scale_spread": 16.0
+      },
+      "kicker": {
+        "full_spread": 5.0,
+        "at_25pct_scale_spread": 3.0
+      },
+      "gold_word": {
+        "full_spread": 5.0,
+        "at_25pct_scale_spread": 3.0
+      }
+    }
+  },
+  "borders": {
+    "0": {
+      "top": 3.5,
+      "bottom": 3.1,
+      "left": 11.6,
+      "right": 11.4
+    },
+    "54": {
+      "top": 2.5,
+      "bottom": 3.5,
+      "left": 2.5,
+      "right": 2.4
+    },
+    "90": {
+      "top": 2.5,
+      "bottom": 3.6,
+      "left": 2.5,
+      "right": 2.5
+    },
+    "179": {
+      "top": 3.6,
+      "bottom": 7.3,
+      "left": 14.0,
+      "right": 9.2
+    }
+  },
+  "palette_share": {
+    "20": {
+      "gold_pct": 1.54,
+      "cyan_pct": 30.01,
+      "coral_pct": 0.36
+    },
+    "54": {
+      "gold_pct": 1.78,
+      "cyan_pct": 28.73,
+      "coral_pct": 0.44
+    },
+    "120": {
+      "gold_pct": 2.03,
+      "cyan_pct": 24.04,
+      "coral_pct": 0.34
+    },
+    "179": {
+      "gold_pct": 0.27,
+      "cyan_pct": 34.2,
+      "coral_pct": 0.02
+    }
+  }
+}

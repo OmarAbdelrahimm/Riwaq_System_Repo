@@ -12,3 +12,7 @@ node_modules/
 
 __pycache__/
 *.pyc
+
+# EP13 proof: frame folders are reproducible, deliverables are committed with -f
+render/ep13/frames_*/
+render/ep13/*_silent.mp4
