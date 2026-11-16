@@ -61,7 +61,7 @@ export const BrollFrame: React.FC<{
           justifyContent: textPos === "bottom" ? "flex-end" : "flex-start",
           alignItems: "center",
           paddingTop: safe.top + width * 0.05,
-          paddingBottom: textPos === "bottom" ? safe.bottom + width * 0.30 : 0,
+          paddingBottom: textPos === "bottom" ? safe.bottom + width * 0.06 : 0,
           paddingLeft: safe.side,
           paddingRight: safe.side,
         }}
