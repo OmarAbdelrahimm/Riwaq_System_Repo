@@ -1,0 +1,25 @@
+{
+  "error": "TypeError: open() got an unexpected keyword argument 'metadata_errors'",
+  "ocr": [
+    {
+      "frame": "hero_00_0.20s.png",
+      "text": "al wy TIOLCAAIGN tor we Pb alent"
+    },
+    {
+      "frame": "hero_01_0.68s.png",
+      "text": "Studio by ReLabel"
+    },
+    {
+      "frame": "hero_03_11.30s.png",
+      "text": "Our core reflects our craft"
+    },
+    {
+      "frame": "hero_05_14.71s.png",
+      "text": "make them say 6, 33 woww!"
+    },
+    {
+      "frame": "hero_06_16.73s.png",
+      "text": "tarot ee eee sewn ny . é ans"
+    }
+  ]
+}
