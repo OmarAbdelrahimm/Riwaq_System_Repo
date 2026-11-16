@@ -151,15 +151,20 @@
   },
   "audio": {
     "vo": [],
-    "music": null,
+    "music": {
+      "src": "projects/TMB_001/audio/music.wav",
+      "t_in": 0,
+      "t_out": 44,
+      "volume_db": -24
+    },
     "stingers": [
       {
-        "src": "stinger_in.wav",
+        "src": "projects/TMB_001/audio/stinger_in.wav",
         "t_in": 0.0,
         "volume_db": -18
       },
       {
-        "src": "stinger_out.wav",
+        "src": "projects/TMB_001/audio/stinger_out.wav",
         "t_in": 41.9,
         "volume_db": -16
       }
