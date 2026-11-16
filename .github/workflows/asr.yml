@@ -1,0 +1,32 @@
+name: asr-ocr
+
+on:
+  push:
+    paths:
+      - ".github/trigger/asr.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: deps
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg tesseract-ocr tesseract-ocr-eng
+          pip install --quiet "faster-whisper==1.0.3" "huggingface_hub==0.24.6" pillow numpy
+      - name: transcribe + ocr
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: python .github/scripts/asr_ocr.py
+      - name: commit
+        run: |
+          git config user.name "ref-bot"
+          git config user.email "ref-bot@users.noreply.github.com"
+          git add -f _tmp/ref/out
+          git commit -m "ref: asr + ocr" || echo none
+          git push
