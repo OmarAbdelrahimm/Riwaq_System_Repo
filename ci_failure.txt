@@ -1,8 +1,9 @@
-remotion_exit=1
+remotion_exit=0
 --- exports ---
-total 8
-drwxr-xr-x  2 runner runner 4096 Nov 16 01:27 .
-drwxr-xr-x 16 runner runner 4096 Nov 16 01:27 ..
+total 2152
+drwxr-xr-x  2 runner runner    4096 Nov 16 01:30 .
+drwxr-xr-x 16 runner runner    4096 Nov 16 01:30 ..
+-rw-r--r--  1 runner runner 2195346 Nov 16 01:30 RIWAQ_GOLDEN_001.mp4
 --- node/npm ---
 v20.20.2
 10.8.2
@@ -28,84 +29,209 @@ On version: 4.0.533
 - @remotion/studio-shared
 - @remotion/studio
 === log tail ===
-[90mDownloading Chrome Headless Shell https://www.remotion.dev/chrome-headless-shell[39m
-Downloading from: https://remotion.media/chromium-headless-shell-linux-x64-149.0.7790.0.zip?clear
-Getting Headless Shell - 9.5 Mb/91.9 Mb
-Getting Headless Shell - 19.1 Mb/91.9 Mb
-Getting Headless Shell - 28.6 Mb/91.9 Mb
-Getting Headless Shell - 38.2 Mb/91.9 Mb
-Getting Headless Shell - 47.7 Mb/91.9 Mb
-Getting Headless Shell - 57.3 Mb/91.9 Mb
-Getting Headless Shell - 66.8 Mb/91.9 Mb
-Getting Headless Shell - 76.4 Mb/91.9 Mb
-Getting Headless Shell - 85.9 Mb/91.9 Mb
-Got Headless Shell
-Bundling 6%
-Bundling 21%
-Bundling 32%
-Bundling 43%
-Bundling 54%
-Bundling 65%
-Bundling 71%
-Bundling 76%
-Bundling 81%
-Bundling 87%
-Bundling 92%
-Bundling 98%
-Bundling 100%
-Getting composition
-⚡️ Cached bundle. Subsequent renders will be faster.
-[90mComposition          Episode[39m
-[90mCodec                h264[39m
-[90mOutput               exports/RIWAQ_GOLDEN_001.mp4[39m
-[90mConcurrency          1x[39m
-Rendered 0/1260
-[40m Tab 0, node_modules/react-dom/cjs/react-dom.production.min.js:187 [49m [31m[0mError: inputRange must be strictly monotonically increasing but got [125,0][0m[39m
-[31m[0m    at checkValidInputRange (http://localhost:3000/bundle.js:6682:13)[0m[39m
-[31m[0m    at interpolate (http://localhost:3000/bundle.js:6750:3)[0m[39m
-[31m[0m    at textTiming (http://localhost:3000/bundle.js:193:36)[0m[39m
-[31m[0m    at HookFrame (http://localhost:3000/bundle.js:440:35)[0m[39m
-[31m[0m    at Nh (http://localhost:3000/bundle.js:1376:137)[0m[39m
-[31m[0m    at Vk (http://localhost:3000/bundle.js:1505:337)[0m[39m
-[31m[0m    at Uk (http://localhost:3000/bundle.js:1495:389)[0m[39m
-[31m[0m    at Tk (http://localhost:3000/bundle.js:1495:320)[0m[39m
-[31m[0m    at Ik (http://localhost:3000/bundle.js:1495:180)[0m[39m
-[31m[0m    at Nk (http://localhost:3000/bundle.js:1486:88)[0m[39m
-
-[31mAn error occurred while rendering frame 0:[39m
-[31m[41m[37m Error [39m[31m[49m[39m [31minputRange must be strictly monotonically increasing but got [125,0][39m
-
-at [4mnode_modules/remotion/dist/esm/index.mjs:4079[24m
-[90m4077[39m │ [90mfunction checkValidInputRange(arr) {[39m
-[90m4078[39m │ [90m  for (let i = 1;i < arr.length; ++i) {[39m
-4079 │     if (!(arr[i] > arr[i - 1])) {
-[90m4080[39m │ [90m      throw new Error(`inputRange must be strictly monotonically increasing but got [${arr.join(",")}]`);[39m
-[90m4081[39m │ [90m    }[39m
-[90m4082[39m │ [90m  }[39m
-
-[90mat interpolate [94m(node_modules/remotion/dist/esm/index.mjs:4147)[39m[90m[39m
-
-at [4msrc/engine/timing.ts:16[24m
-[90m14[39m │ [90m  extrapolateLeft: "clamp",[39m
-[90m15[39m │ [90m  extrapolateRight: "clamp",[39m
-16 │   easing: Easing.bezier(0.2, 0.8, 0.2, 1),
-[90m17[39m │ [90m});[39m
-[90m18[39m │ [90mconst exitT = interpolate(frame, [outFrames, 0], [0, 1], {[39m
-[90m19[39m │ [90m  extrapolateLeft: "clamp",[39m
-
-at [4msrc/components/HookFrame.tsx:14[24m
-[90m12[39m │ [90m  const frame = useCurrentFrame();[39m
-[90m13[39m │ [90m  const { fps } = useVideoConfig();[39m
-14 │   const { color, headlineFont, bodyFont, width, safe } = useTheme();
-[90m15[39m │ [90m  const { opacity, translateY } = textTiming(frame, fps, 12, durFrames - 10, width * 0.014);[39m
-[90m16[39m │ 
-[90m17[39m │ [90m  return ([39m
-[90mat Nh [94m(node_modules/react-dom/cjs/react-dom.production.min.js:159)[39m[90m[39m
-[90mat Vk [94m(node_modules/react-dom/cjs/react-dom.production.min.js:288)[39m[90m[39m
-[90mat Uk [94m(node_modules/react-dom/cjs/react-dom.production.min.js:278)[39m[90m[39m
-[90mat Tk [94m(node_modules/react-dom/cjs/react-dom.production.min.js:278)[39m[90m[39m
-[90mat Ik [94m(node_modules/react-dom/cjs/react-dom.production.min.js:278)[39m[90m[39m
-[90mat Nk [94m(node_modules/react-dom/cjs/react-dom.production.min.js:269)[39m[90m[39m
-[90mat Gk [94m(node_modules/react-dom/cjs/react-dom.production.min.js:266)[39m[90m[39m
-[90mat J [94m(node_modules/scheduler/cjs/scheduler.production.min.js:12)[39m[90m[39m
-[90mat R [94m(node_modules/scheduler/cjs/scheduler.production.min.js:13)[39m[90m[39m
+ 1076/1260, time remaining: 9s
+Rendered 1077/1260, time remaining: 9s
+Rendered 1078/1260, time remaining: 9s
+Rendered 1079/1260, time remaining: 9s
+Rendered 1080/1260, time remaining: 9s
+Rendered 1081/1260, time remaining: 9s
+Rendered 1082/1260, time remaining: 8s
+Rendered 1083/1260, time remaining: 8s
+Rendered 1083/1260, time remaining: 8s
+Rendered 1084/1260, time remaining: 8s
+Rendered 1085/1260, time remaining: 8s
+Rendered 1086/1260, time remaining: 8s
+Rendered 1087/1260, time remaining: 8s
+Rendered 1088/1260, time remaining: 8s
+Rendered 1089/1260, time remaining: 8s
+Rendered 1090/1260, time remaining: 8s
+Rendered 1091/1260, time remaining: 8s
+Rendered 1092/1260, time remaining: 8s
+Rendered 1093/1260, time remaining: 8s
+Rendered 1093/1260, time remaining: 8s
+Rendered 1094/1260, time remaining: 8s
+Rendered 1095/1260, time remaining: 8s
+Rendered 1096/1260, time remaining: 8s
+Rendered 1097/1260, time remaining: 8s
+Rendered 1098/1260, time remaining: 8s
+Rendered 1099/1260, time remaining: 8s
+Rendered 1100/1260, time remaining: 8s
+Rendered 1101/1260, time remaining: 8s
+Rendered 1102/1260, time remaining: 7s
+Rendered 1103/1260, time remaining: 7s
+Rendered 1103/1260, time remaining: 7s
+Rendered 1104/1260, time remaining: 7s
+Rendered 1105/1260, time remaining: 7s
+Rendered 1106/1260, time remaining: 7s
+Rendered 1107/1260, time remaining: 7s
+Rendered 1108/1260, time remaining: 7s
+Rendered 1109/1260, time remaining: 7s
+Rendered 1110/1260, time remaining: 7s
+Rendered 1111/1260, time remaining: 7s
+Rendered 1112/1260, time remaining: 7s
+Rendered 1113/1260, time remaining: 7s
+Rendered 1113/1260, time remaining: 7s
+Rendered 1114/1260, time remaining: 7s
+Rendered 1115/1260, time remaining: 7s
+Rendered 1116/1260, time remaining: 7s
+Rendered 1117/1260, time remaining: 7s
+Rendered 1118/1260, time remaining: 7s
+Rendered 1119/1260, time remaining: 7s
+Rendered 1120/1260, time remaining: 7s
+Rendered 1121/1260, time remaining: 6s
+Rendered 1122/1260, time remaining: 6s
+Rendered 1123/1260, time remaining: 6s
+Rendered 1123/1260, time remaining: 6s
+Rendered 1124/1260, time remaining: 6s
+Rendered 1125/1260, time remaining: 6s
+Rendered 1126/1260, time remaining: 6s
+Rendered 1127/1260, time remaining: 6s
+Rendered 1128/1260, time remaining: 6s
+Rendered 1129/1260, time remaining: 6s
+Rendered 1130/1260, time remaining: 6s
+Rendered 1131/1260, time remaining: 6s
+Rendered 1132/1260, time remaining: 6s
+Rendered 1133/1260, time remaining: 6s
+Rendered 1133/1260, time remaining: 6s
+Rendered 1134/1260, time remaining: 6s
+Rendered 1135/1260, time remaining: 6s
+Rendered 1136/1260, time remaining: 6s
+Rendered 1137/1260, time remaining: 6s
+Rendered 1138/1260, time remaining: 6s
+Rendered 1139/1260, time remaining: 6s
+Rendered 1140/1260, time remaining: 6s
+Rendered 1141/1260, time remaining: 5s
+Rendered 1142/1260, time remaining: 5s
+Rendered 1143/1260, time remaining: 5s
+Rendered 1143/1260, time remaining: 5s
+Rendered 1144/1260, time remaining: 5s
+Rendered 1145/1260, time remaining: 5s
+Rendered 1146/1260, time remaining: 5s
+Rendered 1147/1260, time remaining: 5s
+Rendered 1148/1260, time remaining: 5s
+Rendered 1149/1260, time remaining: 5s
+Rendered 1150/1260, time remaining: 5s
+Rendered 1151/1260, time remaining: 5s
+Rendered 1152/1260, time remaining: 5s
+Rendered 1153/1260, time remaining: 5s
+Rendered 1153/1260, time remaining: 5s
+Rendered 1154/1260, time remaining: 5s
+Rendered 1155/1260, time remaining: 5s
+Rendered 1156/1260, time remaining: 5s
+Rendered 1157/1260, time remaining: 5s
+Rendered 1158/1260, time remaining: 5s
+Rendered 1159/1260, time remaining: 5s
+Rendered 1160/1260, time remaining: 5s
+Rendered 1161/1260, time remaining: 4s
+Rendered 1162/1260, time remaining: 4s
+Rendered 1163/1260, time remaining: 4s
+Rendered 1163/1260, time remaining: 4s
+Rendered 1164/1260, time remaining: 4s
+Rendered 1165/1260, time remaining: 4s
+Rendered 1166/1260, time remaining: 4s
+Rendered 1167/1260, time remaining: 4s
+Rendered 1168/1260, time remaining: 4s
+Rendered 1169/1260, time remaining: 4s
+Rendered 1170/1260, time remaining: 4s
+Rendered 1171/1260, time remaining: 4s
+Rendered 1172/1260, time remaining: 4s
+Rendered 1173/1260, time remaining: 4s
+Rendered 1173/1260, time remaining: 4s
+Rendered 1174/1260, time remaining: 4s
+Rendered 1175/1260, time remaining: 4s
+Rendered 1176/1260, time remaining: 4s
+Rendered 1177/1260, time remaining: 4s
+Rendered 1178/1260, time remaining: 4s
+Rendered 1179/1260, time remaining: 4s
+Rendered 1180/1260, time remaining: 4s
+Rendered 1181/1260, time remaining: 3s
+Rendered 1182/1260, time remaining: 3s
+Rendered 1183/1260, time remaining: 3s
+Rendered 1183/1260, time remaining: 3s
+Rendered 1184/1260, time remaining: 3s
+Rendered 1185/1260, time remaining: 3s
+Rendered 1186/1260, time remaining: 3s
+Rendered 1187/1260, time remaining: 3s
+Rendered 1188/1260, time remaining: 3s
+Rendered 1189/1260, time remaining: 3s
+Rendered 1190/1260, time remaining: 3s
+Rendered 1191/1260, time remaining: 3s
+Rendered 1192/1260, time remaining: 3s
+Rendered 1193/1260, time remaining: 3s
+Rendered 1193/1260, time remaining: 3s
+Rendered 1194/1260, time remaining: 3s
+Rendered 1195/1260, time remaining: 3s
+Rendered 1196/1260, time remaining: 3s
+Rendered 1197/1260, time remaining: 3s
+Rendered 1198/1260, time remaining: 3s
+Rendered 1199/1260, time remaining: 3s
+Rendered 1200/1260, time remaining: 3s
+Rendered 1201/1260, time remaining: 2s
+Rendered 1202/1260, time remaining: 2s
+Rendered 1203/1260, time remaining: 2s
+Rendered 1203/1260, time remaining: 2s
+Rendered 1204/1260, time remaining: 2s
+Rendered 1205/1260, time remaining: 2s
+Rendered 1206/1260, time remaining: 2s
+Rendered 1207/1260, time remaining: 2s
+Rendered 1208/1260, time remaining: 2s
+Rendered 1209/1260, time remaining: 2s
+Rendered 1210/1260, time remaining: 2s
+Rendered 1211/1260, time remaining: 2s
+Rendered 1212/1260, time remaining: 2s
+Rendered 1213/1260, time remaining: 2s
+Rendered 1213/1260, time remaining: 2s
+Rendered 1214/1260, time remaining: 2s
+Rendered 1215/1260, time remaining: 2s
+Rendered 1216/1260, time remaining: 2s
+Rendered 1217/1260, time remaining: 2s
+Rendered 1218/1260, time remaining: 2s
+Rendered 1219/1260, time remaining: 2s
+Rendered 1220/1260, time remaining: 2s
+Rendered 1221/1260, time remaining: 1s
+Rendered 1222/1260, time remaining: 1s
+Rendered 1223/1260, time remaining: 1s
+Rendered 1223/1260, time remaining: 1s
+Rendered 1224/1260, time remaining: 1s
+Rendered 1225/1260, time remaining: 1s
+Rendered 1226/1260, time remaining: 1s
+Rendered 1227/1260, time remaining: 1s
+Rendered 1228/1260, time remaining: 1s
+Rendered 1229/1260, time remaining: 1s
+Rendered 1230/1260, time remaining: 1s
+Rendered 1231/1260, time remaining: 1s
+Rendered 1232/1260, time remaining: 1s
+Rendered 1233/1260, time remaining: 1s
+Rendered 1233/1260, time remaining: 1s
+Rendered 1234/1260, time remaining: 1s
+Rendered 1235/1260, time remaining: 1s
+Rendered 1236/1260, time remaining: 1s
+Rendered 1237/1260, time remaining: 1s
+Rendered 1238/1260, time remaining: 1s
+Rendered 1239/1260, time remaining: 1s
+Rendered 1240/1260, time remaining: 1s
+Rendered 1241/1260, time remaining: 0s
+Rendered 1242/1260, time remaining: 0s
+Rendered 1243/1260, time remaining: 0s
+Rendered 1243/1260, time remaining: 0s
+Rendered 1244/1260, time remaining: 0s
+Rendered 1245/1260, time remaining: 0s
+Rendered 1246/1260, time remaining: 0s
+Rendered 1247/1260, time remaining: 0s
+Rendered 1248/1260, time remaining: 0s
+Rendered 1249/1260, time remaining: 0s
+Rendered 1250/1260, time remaining: 0s
+Rendered 1251/1260, time remaining: 0s
+Rendered 1252/1260, time remaining: 0s
+Rendered 1253/1260, time remaining: 0s
+Rendered 1253/1260, time remaining: 0s
+Rendered 1254/1260, time remaining: 0s
+Rendered 1255/1260, time remaining: 0s
+Rendered 1256/1260, time remaining: 0s
+Rendered 1257/1260, time remaining: 0s
+Rendered 1258/1260, time remaining: 0s
+Rendered 1259/1260, time remaining: 0s
+Encoded 962/1260
+Encoded 1008/1260
+Encoded 1260/1260
+[34m+                    exports/RIWAQ_GOLDEN_001.mp4[39m [90m2.2 MB[39m
