@@ -1,1 +1,1 @@
-frames=10 bytes=1430421
+frames=10 bytes=1500041
