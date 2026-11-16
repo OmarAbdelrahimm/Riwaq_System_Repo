@@ -46,12 +46,28 @@ jobs:
       - name: بناء props من بيانات الحلقة
         run: python3 scripts/make_props.py "data/projects/$PROJECT_ID"
 
+      - name: فحص الأنواع
+        continue-on-error: true
+        run: npx tsc --noEmit 2>&1 | tee -a ci_log.txt
+
       - name: ريندر
         run: |
+          set +e
           npx remotion render src/index.ts Episode \
             "exports/RIWAQ_${PROJECT_ID}.mp4" \
             --props="data/projects/$PROJECT_ID/render_props.json" \
-            --concurrency=1 --crf=20 --scale="$SCALE" --gl=swiftshader
+            --concurrency=1 --crf=20 --scale="$SCALE" --gl=swiftshader \
+            2>&1 | tee -a ci_log.txt
+          echo "remotion_exit=${PIPESTATUS[0]}" | tee -a ci_log.txt
+          exit ${PIPESTATUS[0]}
+
+      - name: حفظ سجل البناء عند الفشل
+        if: failure()
+        run: |
+          tail -c 6000 ci_log.txt > ci_failure.txt || true
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git add -f ci_failure.txt && git commit -m "ci: render failure log" && git push || true
 
       - name: بوابة الجودة + الكابشنز
         continue-on-error: true
