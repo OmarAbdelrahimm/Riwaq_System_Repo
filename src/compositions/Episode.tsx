@@ -76,6 +76,14 @@ const Timeline: React.FC<{ meta: EpisodeMeta }> = ({ meta }) => {
       {(meta.captions?.data ?? []).map((line, i) => {
         const from = secToFrames(line.t_in, fps);
         const dur = secToFrames(line.t_out - line.t_in, fps);
+        // كابشنز broll: اللوح نفسه يحمل النص (العنوان + الحاشية) — لا نكرّره
+        const inBroll = scenes.some(
+          (sc) =>
+            sc.type === "broll" &&
+            line.t_in >= sc.t_in - 0.01 &&
+            line.t_out <= sc.t_out + 0.01
+        );
+        if (inBroll) return null;
         return (
           <Sequence key={`c${i}`} from={from} durationInFrames={dur} name={`caption ${i + 1}`}>
             <Captions line={line} style={(meta.captions?.styles?.[0] as any) ?? "keyword_highlight"} />
