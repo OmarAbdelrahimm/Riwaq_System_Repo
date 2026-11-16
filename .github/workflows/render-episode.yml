@@ -1,0 +1,70 @@
+name: render-episode
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: "معرّف المشروع (مثال GOLDEN_001)"
+        required: true
+        default: "GOLDEN_001"
+      draft:
+        description: "مسوّدة نصف دقة؟ (نعم/لا)"
+        required: false
+        default: "نعم"
+      scale:
+        description: "مقياس الريندر (0.25–1.0)"
+        required: false
+        default: "0.5"
+  push:
+    paths:
+      - "data/projects/**"
+      - "src/**"
+      - ".github/trigger/render.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PROJECT_ID: ${{ inputs.project_id || 'GOLDEN_001' }}
+      DRAFT: ${{ inputs.draft || 'نعم' }}
+      SCALE: ${{ inputs.scale || '0.5' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: تثبيت الحزم
+        run: npm ci || npm install
+
+      - name: بناء props من بيانات الحلقة
+        run: python3 scripts/make_props.py "data/projects/$PROJECT_ID"
+
+      - name: ريندر
+        run: |
+          npx remotion render src/index.ts Episode \
+            "exports/RIWAQ_${PROJECT_ID}.mp4" \
+            --props="data/projects/$PROJECT_ID/render_props.json" \
+            --concurrency=1 --crf=20 --scale="$SCALE" --gl=swangle
+
+      - name: بوابة الجودة + الكابشنز
+        continue-on-error: true
+        run: |
+          python3 scripts/qc.py "data/projects/$PROJECT_ID/episode_meta.json" exports reports || true
+          python3 scripts/make_srt.py "data/projects/$PROJECT_ID/episode_meta.json" outputs || true
+
+      - name: رفع النتائج
+        uses: actions/upload-artifact@v4
+        with:
+          name: riwaq-${{ env.PROJECT_ID }}
+          path: |
+            exports/*.mp4
+            outputs/*.srt
+            reports/*.md
+          retention-days: 14
