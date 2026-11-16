@@ -8,9 +8,6 @@ on:
         required: true
         default: "GOLDEN_001"
       draft:
-        description: "مسوّدة نصف دقة؟ (نعم/لا)"
-        required: false
-        default: "نعم"
       scale:
         description: "مقياس الريندر (0.25–1.0)"
         required: false
@@ -22,7 +19,7 @@ on:
       - ".github/trigger/render.txt"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   render:
@@ -30,7 +27,6 @@ jobs:
     timeout-minutes: 120
     env:
       PROJECT_ID: ${{ inputs.project_id || 'GOLDEN_001' }}
-      DRAFT: ${{ inputs.draft || 'نعم' }}
       SCALE: ${{ inputs.scale || '0.5' }}
     steps:
       - uses: actions/checkout@v4
@@ -74,31 +70,16 @@ jobs:
           } > ci_diag.txt
           exit 0
 
-      - name: حفظ سجل البناء عند الفشل
+      - name: حفظ سجل البناء
         if: always()
         run: |
           { cat ci_diag.txt 2>/dev/null; echo "=== log tail ==="; tail -c 8000 ci_log.txt 2>/dev/null; } > ci_failure.txt
-          git config user.name "ci-bot"
-          git config user.email "ci-bot@users.noreply.github.com"
-          git add -f ci_failure.txt && git commit -m "ci: render failure log" && git push || true
 
       - name: بوابة الجودة + الكابشنز
         continue-on-error: true
         run: |
           python3 scripts/qc.py "data/projects/$PROJECT_ID/episode_meta.json" exports reports || true
           python3 scripts/make_srt.py "data/projects/$PROJECT_ID/episode_meta.json" outputs || true
-
-      - name: حفظ نسخة للمعاينة في المستودع
-        if: always()
-        run: |
-          mkdir -p ci_preview
-          cp exports/*.mp4 ci_preview/ 2>/dev/null || true
-          cp reports/*.md ci_preview/ 2>/dev/null || true
-          cp outputs/*.srt ci_preview/ 2>/dev/null || true
-          ls -lh ci_preview || true
-          git config user.name "ci-bot"
-          git config user.email "ci-bot@users.noreply.github.com"
-          git add -f ci_preview && git commit -m "ci: golden render preview" && git push || true
 
       - name: رفع النتائج
         uses: actions/upload-artifact@v4
@@ -108,4 +89,5 @@ jobs:
             exports/*.mp4
             outputs/*.srt
             reports/*.md
+            ci_failure.txt
           retention-days: 14
