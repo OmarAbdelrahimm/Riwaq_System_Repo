@@ -6,7 +6,7 @@ on:
       project_id:
         description: "معرّف المشروع (مثال GOLDEN_001)"
         required: true
-        default: "GOLDEN_001"
+        default: "TMB_001"
       draft:
       scale:
         description: "مقياس الريندر (0.25–1.0)"
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      PROJECT_ID: ${{ inputs.project_id || 'GOLDEN_001' }}
+      PROJECT_ID: ${{ inputs.project_id || 'TMB_001' }}
       SCALE: ${{ inputs.scale || '0.5' }}
     steps:
       - uses: actions/checkout@v4
