@@ -62,21 +62,21 @@ export const BrollFrame: React.FC<{
                     key={`${r}-${c}`}
                     cx={safe.side + c * ((width - safe.side * 2) / 8)}
                     cy={artTop + r * (artH / 13)}
-                    r={1.6}
+                    r={2.4}
                     fill={stone}
-                    opacity={0.16}
+                    opacity={0.22}
                   />
                 ))
               )}
               {/* دبوس ذهبي + حلقة تتنفّس (لا وميض) */}
               <g>
                 <circle cx={width / 2} cy={artTop + artH * 0.42} r={width * 0.055}
-                  fill="none" stroke={gold} strokeWidth={1.5}
-                  opacity={0.12 + 0.22 * Math.min(1, progress * 1.6)} />
-                <circle cx={width / 2} cy={artTop + artH * 0.42} r={width * 0.012} fill={goldLight} />
+                  fill="none" stroke={gold} strokeWidth={2.5}
+                  opacity={0.18 + 0.3 * Math.min(1, progress * 1.6)} />
+                <circle cx={width / 2} cy={artTop + artH * 0.42} r={width * 0.016} fill={goldLight} />
                 <line x1={width / 2 - width * 0.18} y1={artTop + artH * 0.42}
                   x2={width / 2 + width * 0.18} y2={artTop + artH * 0.42}
-                  stroke={gold} strokeWidth={1} opacity={0.5} />
+                  stroke={gold} strokeWidth={2} opacity={0.62} />
               </g>
             </>
           )}
@@ -85,8 +85,8 @@ export const BrollFrame: React.FC<{
             <>
               {/* أشرطة عمودية = ظلّ سقوط، وخيط ذهبي ينحدر بلا دوران */}
               {[0.22, 0.42, 0.62, 0.8].map((p, i) => (
-                <rect key={i} x={width * p - 1} y={artTop} width={2}
-                  height={artH} fill={stone} opacity={0.08} />
+                <rect key={i} x={width * p - 1} y={artTop} width={3}
+                  height={artH} fill={stone} opacity={0.14} />
               ))}
               <line
                 x1={width * 0.3}
@@ -94,28 +94,28 @@ export const BrollFrame: React.FC<{
                 x2={width * 0.7}
                 y2={artTop + artH * (0.06 + 0.55 * Math.min(1, progress * 1.4))}
                 stroke={gold}
-                strokeWidth={2}
-                opacity={0.75}
+                strokeWidth={3.5}
+                opacity={0.9}
               />
               <circle cx={width * 0.7} cy={artTop + artH * (0.06 + 0.55 * Math.min(1, progress * 1.4))}
-                r={4} fill={goldLight} />
+                r={6} fill={goldLight} />
             </>
           )}
 
           {motif === "drums" && (
             <>
               {[0, 1, 2].map((i) => {
-                const w = width * 0.2;
-                const h = width * 0.085;
-                const x = width / 2 - w * 1.55 + i * (w + width * 0.05);
+                const w = width * 0.235;
+                const h = width * 0.115;
+                const x = width / 2 - w * 1.5 + i * (w + width * 0.045);
                 const rise = (1 - Math.min(1, Math.max(0, progress * 1.8 - i * 0.18))) * 26;
                 return (
                   <g key={i} transform={`translate(0, ${rise})`} opacity={1 - i * 0.08}>
                     <rect x={x} y={artTop + artH * 0.5} width={w} height={h} rx={w * 0.06}
-                      fill="none" stroke={gold} strokeWidth={1.5} opacity={0.85} />
+                      fill="none" stroke={gold} strokeWidth={3} opacity={0.95} />
                     <line x1={x + w * 0.12} y1={artTop + artH * 0.5 + h * 0.34}
                       x2={x + w * 0.88} y2={artTop + artH * 0.5 + h * 0.34}
-                      stroke={stone} strokeWidth={1} opacity={0.4} />
+                      stroke={stone} strokeWidth={2} opacity={0.55} />
                   </g>
                 );
               })}
@@ -136,20 +136,20 @@ export const BrollFrame: React.FC<{
                   .join(" ")}
                 fill="none"
                 stroke={gold}
-                strokeWidth={2}
-                opacity={0.55}
+                strokeWidth={3.5}
+                opacity={0.75}
               />
               {[
                 [0.26, 0.22],
                 [0.66, 0.76],
               ].map(([px, py], i) => (
-                <circle key={i} cx={width * px} cy={artTop + artH * py} r={5}
+                <circle key={i} cx={width * px} cy={artTop + artH * py} r={8}
                   fill={i === 0 ? stone : goldLight} />
               ))}
               <circle
                 cx={width * (0.26 + 0.4 * Math.min(1, progress * 1.15))}
                 cy={artTop + artH * (0.22 + 0.54 * Math.min(1, progress * 1.15))}
-                r={6}
+                r={9}
                 fill={goldLight}
               />
             </>
