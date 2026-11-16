@@ -95,9 +95,9 @@ interface BrollFrameProps {
 |---|---|---|---|
 | **P0** | إصلاح انهيار `textTiming` | `src/engine/timing.ts` | ✅ **مُنجَز ومُثبَت** |
 | **P0** | سير عمل ريندر يعمل على CI | `.github/workflows/render-episode.yml` | ✅ مُنجَز (نجح 1260/1260) |
-| **P1** | تنفيذ `BrollFrame` + ربطه في `SceneRenderer` | `src/components/`, `src/compositions/Episode.tsx` | ⬜ جاهز للتنفيذ |
+| **P1** | تنفيذ `BrollFrame` + ربطه في `SceneRenderer` | `src/components/BrollFrame.tsx` | ✅ **مُنجَز ومُثبَت** (4 مشاهد كانت `null`) |
 | **P1** | قاعدة صمت CTA (1.5s) في `brand.json` + فحصها في `qc.py` | `data/brand.json`, `scripts/qc.py` | ⬜ |
-| **P2** | تثبيت `draft/uploads` خارج git + فحص حجم الأصول قبل الريندر | `.gitignore`, `scripts/qc.py` | ⬜ |
+| **P2** | تنظيف مخرجات CI من المستودع + تجاهل `_review/` | `.gitignore` | ✅ |
 | **P2** | إضافة `sheet` للقطات تلقائيًا لكل حلقة (مراجعة بصرية سريعة) | `scripts/qc.py` | ⬜ |
 
 > **ملاحظة أمان:** أي صوت أو أصل مرفوع يجب أن يُعلن حقوقه قبل الاستخدام — سياسة `ASSETS_LICENSE.md` قائمة.
