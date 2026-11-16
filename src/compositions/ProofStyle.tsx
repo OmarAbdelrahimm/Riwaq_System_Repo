@@ -751,15 +751,29 @@ export const ProofStyle: React.FC = () => {
   const ruleW = interpolate(frame, [222, 258], [0, 300], CLAMP);
   const logoOp = interpolate(frame, [30, 62], [0, 1], CLAMP);
 
+  // سرعة الكاميرا px/frame — تُقاس على محورين
+  const v = (f: number) => {
+    const a = cameraAt(f);
+    const b = cameraAt(f - 1);
+    return Math.hypot(a.push - b.push, a.panX - b.panX, a.panY - b.panY);
+  };
+  const vel = v(frame);
+  // 0 → لا blur · 6px/frame → blur كامل (0.30)
+  const ghostAmt = Math.min(0.30, Math.max(0, (vel - 0.9) * 0.058));
+  const ghost1 = ghostAmt * 0.66;
+  const ghost2 = ghostAmt * 0.34;
+
   return (
     <AbsoluteFill style={{ backgroundColor: INK }}>
       <Backdrop camX={cam.panX} />
 
-      {/* ═══ ghosting = motion blur حقيقي: نفس العالم عند tf-2 و tf-1 ═══ */}
-      <AbsoluteFill style={{ opacity: 0.2 }}>
+      {/* ═══ ghosting = motion blur: شدته تتناسب مع سرعة الكاميرا فقط ═══
+          كاميرا ساكنة → صفر ghosting. كاميرا بتتسارع → blur حقيقي.
+          القيم مقاسة بـpx/frame على محور الضغط. */}
+      <AbsoluteFill style={{ opacity: ghost2 }}>
         <World tf={frame - 2} />
       </AbsoluteFill>
-      <AbsoluteFill style={{ opacity: 0.42 }}>
+      <AbsoluteFill style={{ opacity: ghost1 }}>
         <World tf={frame - 1} />
       </AbsoluteFill>
       <World tf={frame} />
