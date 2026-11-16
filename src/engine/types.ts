@@ -86,6 +86,8 @@ export interface Scene {
   role?: string;
   // source
   value?: string;
+  // broll
+  motif?: "map" | "fall" | "drums" | "route";
 }
 
 export interface CaptionLine {

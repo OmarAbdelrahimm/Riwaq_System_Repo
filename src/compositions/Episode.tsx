@@ -13,6 +13,7 @@ import { StatCard } from "../components/StatCard";
 import { LowerThird } from "../components/LowerThird";
 import { SourceCard } from "../components/SourceCard";
 import { EndScreen } from "../components/EndScreen";
+import { BrollFrame } from "../components/BrollFrame";
 
 const dbToVol = (db = 0) => Math.pow(10, db / 20);
 
@@ -30,6 +31,16 @@ const SceneRenderer: React.FC<{ scene: Scene; durFrames: number }> = ({ scene, d
       return <LowerThird name={scene.name ?? ""} role={scene.role} durFrames={durFrames} />;
     case "source":
       return <SourceCard label={scene.value ? scene.label : undefined} value={scene.value ?? ""} durFrames={durFrames} />;
+    case "broll":
+      return (
+        <BrollFrame
+          title={scene.title}
+          label={scene.label}
+          kicker={scene.kicker}
+          motif={scene.motif}
+          durFrames={durFrames}
+        />
+      );
     case "end":
       return <EndScreen durFrames={durFrames} />;
     default:
