@@ -18,7 +18,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg tesseract-ocr tesseract-ocr-eng
-          pip install --quiet "faster-whisper==1.0.3" "huggingface_hub==0.24.6" pillow numpy
+          pip install --quiet faster-whisper pillow numpy || pip install --quiet faster-whisper
       - name: transcribe + ocr
         env:
           PYTHONUNBUFFERED: "1"
