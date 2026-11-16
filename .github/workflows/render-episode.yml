@@ -75,6 +75,18 @@ jobs:
           python3 scripts/qc.py "data/projects/$PROJECT_ID/episode_meta.json" exports reports || true
           python3 scripts/make_srt.py "data/projects/$PROJECT_ID/episode_meta.json" outputs || true
 
+      - name: حفظ نسخة للمعاينة في المستودع
+        if: always()
+        run: |
+          mkdir -p ci_preview
+          cp exports/*.mp4 ci_preview/ 2>/dev/null || true
+          cp reports/*.md ci_preview/ 2>/dev/null || true
+          cp outputs/*.srt ci_preview/ 2>/dev/null || true
+          ls -lh ci_preview || true
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git add -f ci_preview && git commit -m "ci: golden render preview" && git push || true
+
       - name: رفع النتائج
         uses: actions/upload-artifact@v4
         with:
