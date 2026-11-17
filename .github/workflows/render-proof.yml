@@ -29,8 +29,11 @@ jobs:
       - name: ريندر الحلقة الطويلة
         run: |
           mkdir -p exports _review
+          set +e
           npx remotion render src/index.ts Longform exports/LONGFORM_TMB_001.mp4 \
-            --concurrency=2 --crf=21 --scale=0.5 --gl=swiftshader 2>&1 | tee /tmp/render.log; echo "EXIT=$?"; tail -30 /tmp/render.log
+            --concurrency=2 --crf=21 --scale=0.5 --gl=swiftshader > _review/render.log 2>&1
+          echo "EXIT=$?"
+          tail -40 _review/render.log || true
       - name: إطارات المراجعة
         if: always()
         run: |
@@ -46,6 +49,7 @@ jobs:
         if: always()
         run: |
           python3 -m pip install --quiet --disable-pip-version-check pillow || true
+          if [ -f _review/render.log ]; then cp _review/render.log reports/render.log; fi
           python3 .github/scripts/make_proof_sheet.py
           if ls exports/LONGFORM_TMB_001.mp4 >/dev/null 2>&1; then
             mkdir -p data/projects/${PROJECT_ID}/exports
@@ -53,5 +57,5 @@ jobs:
           fi
           git config user.name "ci-bot"
           git config user.email "ci-bot@users.noreply.github.com"
-          git add -f data/projects/${PROJECT_ID}/exports reports/proof_sheet.json 2>/dev/null || true
+          git add -f data/projects/${PROJECT_ID}/exports reports/proof_sheet.json reports/render.log 2>/dev/null || true
           git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: الحلقة الطويلة" && git pull --rebase -q && git push -q) || echo "push skipped"
