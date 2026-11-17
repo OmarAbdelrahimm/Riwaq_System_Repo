@@ -57,6 +57,17 @@ npm run render:golden:draft    # مسوّدة سريعة بنصف الدقة (ل
 - للريندر الطويل: قسّم لمقاطع ≤10 دقائق ثم ادمج بـ ffmpeg (أوامر جاهزة في `docs/RUNBOOK.md`).
 - البديل السحابي: GitHub Actions (سير العمل مُوثَّق في RUNBOOK).
 
+## تحليل المراجع (Reference Analysis)
+عند وصول فيديو مرجعي (رابط Drive أو ملَف محلي) تُحلَّل بالأداة القياسية لا بالانطباع:
+
+```bash
+python scripts/analyze_reference.py "<path>.mp4" docs/reference/out
+```
+
+تخرج `REPORT.md` + `report.json` + لقطات تواصل (contact sheets) + إطارات كاملة الدقة.
+القياسات: القطعات · طاقة الحركة · لوحة ألوان كل لقطة · لودنس/باس/طابع مقطعي · الصمت.
+تفكيك المرجع المعتمد: `docs/reference/00_REFERENCE_BREAKDOWN.md` · قرارات الملاءمة: `docs/reference/01_RIWAQ_VS_REFERENCE.md`.
+
 ## الأصول والتراخيص
 الخطوط المضمّنة بترخيص **OFL** (Amiri: aliftype · IBM Plex Sans Arabic: IBM) — استخدام تجاري مسموح.
 أصول البراند (شعار/أيقونات/أنماط) مملوكة للمشروع وتُسحب من `riwaq-brand/`.

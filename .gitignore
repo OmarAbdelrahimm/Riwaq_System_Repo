@@ -12,3 +12,9 @@ node_modules/
 
 __pycache__/
 *.pyc
+
+# إطارات مراجعة CI (تبقى كـ artifact، لا تدخل المستودع)
+_review/
+
+# فيديو المراجعة (قناة نقل مؤقتة — يُحذف بعد الرفع)
+data/projects/*/exports/

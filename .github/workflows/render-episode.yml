@@ -1,0 +1,140 @@
+name: render-episode
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: "معرّف المشروع (مثال GOLDEN_001)"
+        required: true
+        default: "TMB_001"
+      draft:
+      scale:
+        description: "مقياس الريندر (0.25–1.0) — 1.0 = 1080×1920"
+        required: false
+        default: "1.0"
+  push:
+    paths:
+      - "data/projects/**"
+      - "src/**"
+      - ".github/trigger/render.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PROJECT_ID: ${{ inputs.project_id || 'TMB_001' }}
+      SCALE: ${{ inputs.scale || '1.0' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: تثبيت الحزم
+        run: npm ci || npm install
+
+      - name: بناء props من بيانات الحلقة
+        run: python3 scripts/make_props.py "data/projects/$PROJECT_ID"
+
+      - name: فحص الأنواع
+        continue-on-error: true
+        run: npx tsc --noEmit 2>&1 | tee -a ci_log.txt
+
+      - name: ريندر
+        id: render
+        run: |
+          set +e
+          mkdir -p exports
+          npx remotion render src/index.ts Episode \
+            "exports/RIWAQ_${PROJECT_ID}.mp4" \
+            --props="data/projects/$PROJECT_ID/render_props.json" \
+            --concurrency=1 --crf=20 --scale="$SCALE" --gl=swiftshader \
+            > ci_log.txt 2>&1
+          RC=$?
+          echo "remotion_exit=$RC"
+          tail -n 60 ci_log.txt || true
+          {
+            echo "remotion_exit=$RC"
+            echo "--- exports ---"
+            ls -la exports 2>&1
+            echo "--- node/npm ---"
+            node -v; npm -v
+            echo "--- remotion version ---"
+            npx remotion versions 2>&1 | head -20
+          } > ci_diag.txt
+          exit 0
+
+      - name: حفظ سجل البناء
+        if: always()
+        run: |
+          { cat ci_diag.txt 2>/dev/null; echo "=== log tail ==="; tail -c 8000 ci_log.txt 2>/dev/null; } > ci_failure.txt
+
+      - name: بوابة الجودة + الكابشنز
+        continue-on-error: true
+        run: |
+          python3 scripts/qc.py "data/projects/$PROJECT_ID/episode_meta.json" exports reports || true
+          python3 scripts/make_srt.py "data/projects/$PROJECT_ID/episode_meta.json" outputs || true
+
+      - name: حفظ الإطارات للمراجعة البصرية
+        if: always()
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1 || true
+          mkdir -p _review
+          if ls exports/*.mp4 >/dev/null 2>&1; then
+            for t in 1 4 8 12 17 22 27 31 36 42; do
+              ffmpeg -hide_banner -loglevel error -ss $t -i exports/*.mp4 -frames:v 1 -vf scale=360:-1 -update 1 -y _review/f_$t.png 2>/dev/null || true
+            done
+            ffprobe -v error -show_entries format=duration,size:stream=codec_type,codec_name -of json exports/*.mp4 > _review/probe.json 2>/dev/null || true
+          fi
+          ls _review || true
+          python3 -m pip install --quiet --disable-pip-version-check pillow || true
+          python3 .github/scripts/make_review_b64.py
+          ls -lh _review || true
+
+      - name: نشر صورة المراجعة في المستودع
+        if: always()
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          echo "sheet exists? $(test -f reports/frames_sheet.json && echo yes || echo no)"
+          if [ -f reports/frames_sheet.json ]; then
+            git config user.name "ci-bot"; git config user.email "ci-bot@users.noreply.github.com"
+            git add -f reports/frames_sheet.json
+            git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: صورة مراجعة الإطارات" && git pull --rebase -q && git push -q) || echo "push skipped"
+          fi
+
+      - name: نقل الفيديو إلى المستودع (قناة نقل للمراجعة)
+        if: always()
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          if ls exports/*.mp4 >/dev/null 2>&1; then
+            mkdir -p data/projects/${PROJECT_ID}/exports
+            cp exports/*.mp4 data/projects/${PROJECT_ID}/exports/
+            ls -lh data/projects/${PROJECT_ID}/exports/
+            git config user.name "ci-bot"; git config user.email "ci-bot@users.noreply.github.com"
+            git add -f data/projects/${PROJECT_ID}/exports
+            git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: فيديو ${PROJECT_ID} للمراجعة" && git pull --rebase -q && git push -q) || echo "push skipped"
+          fi
+
+      - name: رفع النتائج
+        uses: actions/upload-artifact@v4
+        with:
+          name: riwaq-${{ env.PROJECT_ID }}
+          path: |
+            exports/*.mp4
+            outputs/*.srt
+            reports/*.md
+            ci_failure.txt
+            _review/*.png
+            _review/probe.json
+            reports/frames_sheet.json
+          retention-days: 14

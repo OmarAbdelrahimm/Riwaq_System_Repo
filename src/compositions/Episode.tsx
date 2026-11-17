@@ -13,6 +13,7 @@ import { StatCard } from "../components/StatCard";
 import { LowerThird } from "../components/LowerThird";
 import { SourceCard } from "../components/SourceCard";
 import { EndScreen } from "../components/EndScreen";
+import { BrollFrame } from "../components/BrollFrame";
 
 const dbToVol = (db = 0) => Math.pow(10, db / 20);
 
@@ -23,13 +24,25 @@ const SceneRenderer: React.FC<{ scene: Scene; durFrames: number }> = ({ scene, d
     case "chapter":
       return <ChapterCard kicker={scene.kicker} title={scene.title ?? ""} durFrames={durFrames} />;
     case "quote":
-      return <QuoteCard text={scene.text ?? ""} source={scene.source} durFrames={durFrames} />;
+      return <QuoteCard text={scene.text ?? ""} source={scene.source} plate={scene.plate} durFrames={durFrames} />;
     case "stat":
       return <StatCard number={scene.number ?? ""} label={scene.label ?? ""} durFrames={durFrames} />;
     case "lower_third":
       return <LowerThird name={scene.name ?? ""} role={scene.role} durFrames={durFrames} />;
     case "source":
       return <SourceCard label={scene.value ? scene.label : undefined} value={scene.value ?? ""} durFrames={durFrames} />;
+    case "broll":
+      return (
+        <BrollFrame
+          title={scene.title}
+          label={scene.label}
+          kicker={scene.kicker}
+          plate={scene.plate}
+          scrim={scene.scrim}
+          textPos={scene.text_pos}
+          durFrames={durFrames}
+        />
+      );
     case "end":
       return <EndScreen durFrames={durFrames} />;
     default:
@@ -63,6 +76,25 @@ const Timeline: React.FC<{ meta: EpisodeMeta }> = ({ meta }) => {
       {(meta.captions?.data ?? []).map((line, i) => {
         const from = secToFrames(line.t_in, fps);
         const dur = secToFrames(line.t_out - line.t_in, fps);
+        // قاعدة الكابشن: الكارت الذي يحمل النص بنفسه (hook/chapter/quote/stat/end)
+        // لا يحتاج كابشن مكرّر. الكابشن يظهر فقط حيث لا يوجد نص كبير على الشاشة
+        // (broll بلوح بلا نص، أو مساحة فارغة). وإلا صار النص مكتوبًا مرتين.
+        const covering = scenes.find(
+          (sc) =>
+            sc.type !== "broll" &&
+            sc.type !== "lower_third" &&
+            sc.type !== "source" &&
+            line.t_in >= sc.t_in - 0.01 &&
+            line.t_out <= sc.t_out + 0.01
+        );
+        const inBrollWithText = scenes.some(
+          (sc) =>
+            sc.type === "broll" &&
+            (sc.title ?? "").trim().length > 0 &&
+            line.t_in >= sc.t_in - 0.01 &&
+            line.t_out <= sc.t_out + 0.01
+        );
+        if (covering || inBrollWithText) return null;
         return (
           <Sequence key={`c${i}`} from={from} durationInFrames={dur} name={`caption ${i + 1}`}>
             <Captions line={line} style={(meta.captions?.styles?.[0] as any) ?? "keyword_highlight"} />

@@ -86,6 +86,10 @@ export interface Scene {
   role?: string;
   // source
   value?: string;
+  // broll
+  plate?: string;
+  scrim?: number;
+  text_pos?: "top" | "bottom";
 }
 
 export interface CaptionLine {
