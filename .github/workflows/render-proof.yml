@@ -30,7 +30,7 @@ jobs:
         run: |
           mkdir -p exports _review
           npx remotion render src/index.ts Longform exports/LONGFORM_TMB_001.mp4 \
-            --concurrency=2 --crf=21 --scale=0.5 --gl=swiftshader || echo "RENDER_FAILED"
+            --concurrency=2 --crf=21 --scale=0.5 --gl=swiftshader 2>&1 | tee /tmp/render.log; echo "EXIT=$?"; tail -30 /tmp/render.log
       - name: إطارات المراجعة
         if: always()
         run: |
