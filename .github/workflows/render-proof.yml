@@ -7,6 +7,10 @@ on:
       - ".github/trigger/longform.txt"
       - ".github/workflows/render-proof.yml"
 
+concurrency:
+  group: riwaq-longform
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -34,6 +38,17 @@ jobs:
             --concurrency=2 --crf=21 --scale=0.5 --gl=swiftshader > _review/render.log 2>&1
           echo "EXIT=$?"
           tail -40 _review/render.log || true
+      - name: ستيلات 1080p
+        if: always()
+        run: |
+          mkdir -p reports/stills
+          set +e
+          for f in 200 700 1000 1300 2900 4400 5500 7300 8100; do
+            npx remotion still src/index.ts Longform reports/stills/f${f}.png \
+              --frame=$f --scale=1 --gl=swiftshader --log=error >/dev/null 2>&1 || true
+          done
+          ls reports/stills || true
+
       - name: إطارات المراجعة
         if: always()
         run: |
@@ -57,5 +72,5 @@ jobs:
           fi
           git config user.name "ci-bot"
           git config user.email "ci-bot@users.noreply.github.com"
-          git add -f data/projects/${PROJECT_ID}/exports reports/proof_sheet.json reports/render.log 2>/dev/null || true
+          git add -f data/projects/${PROJECT_ID}/exports reports/proof_sheet.json reports/render.log reports/stills 2>/dev/null || true
           git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: الحلقة الطويلة" && git pull --rebase -q && git push -q) || echo "push skipped"
