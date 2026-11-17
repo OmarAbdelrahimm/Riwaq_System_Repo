@@ -1,0 +1,43 @@
+[90mDownloading Chrome Headless Shell https://www.remotion.dev/chrome-headless-shell[39m
+Downloading from: https://remotion.media/chromium-headless-shell-linux-x64-149.0.7790.0.zip?clear
+Getting Headless Shell - 9.6 Mb/91.9 Mb
+Getting Headless Shell - 19.1 Mb/91.9 Mb
+Getting Headless Shell - 28.6 Mb/91.9 Mb
+Getting Headless Shell - 38.2 Mb/91.9 Mb
+Getting Headless Shell - 47.7 Mb/91.9 Mb
+Getting Headless Shell - 57.3 Mb/91.9 Mb
+Getting Headless Shell - 66.8 Mb/91.9 Mb
+Getting Headless Shell - 76.4 Mb/91.9 Mb
+Getting Headless Shell - 85.9 Mb/91.9 Mb
+Got Headless Shell
+Bundling 6%
+Bundling 21%
+Bundling 32%
+Bundling 43%
+Bundling 54%
+Bundling 65%
+Bundling 70%
+Bundling 75%
+Bundling 80%
+Bundling 85%
+Bundling 91%
+Bundling 98%
+Bundling 100%
+Getting composition
+⚡️ Cached bundle. Subsequent renders will be faster.
+[90mComposition          Longform[39m
+[90mCodec                h264[39m
+[90mOutput               exports/LONGFORM_TMB_001.mp4[39m
+[90mConcurrency          2x[39m
+Rendered 0/10353
+Rendered 1/10353, time remaining: 1h 5m 23s
+
+[31mError: Error while downloading http://localhost:3000/public/projects/TMB_001/vo/V3_full.wav: Error: Received a status code of 404 while downloading file http://localhost:3000/public/projects/TMB_001/vo/V3_full.wav.[39m
+[31mThe response body was:[39m
+[31m---[39m
+[31m{"statusCode":404,"message":"The requested path (/tmp/remotion-webpack-bundle-SBguFs/public/projects/TMB_001/vo/V3_full.wav) could not be found"}[39m
+[31m---[39m
+[31m    at readFile (/home/runner/work/Riwaq_System_Repo/Riwaq_System_Repo/node_modules/@remotion/renderer/dist/assets/read-file.js:59:15)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at /home/runner/work/Riwaq_System_Repo/Riwaq_System_Repo/node_modules/@remotion/renderer/dist/render-frame-with-option-to-reject.js:138:21[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
