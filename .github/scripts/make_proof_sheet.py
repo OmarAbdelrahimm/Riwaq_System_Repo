@@ -19,7 +19,7 @@ if not fr:
 
 ims = [(p.stem.split("_")[1] + "s", Image.open(p).convert("RGB")) for p in fr]
 tw, th = ims[0][1].size
-cols, pad, lab = 4, 5, 18
+cols, pad, lab = 5, 4, 16
 rows = (len(ims) + cols - 1) // cols
 sheet = Image.new("RGB", (cols * tw + (cols + 1) * pad, rows * (th + lab) + (rows + 1) * pad), (14, 13, 12))
 d = ImageDraw.Draw(sheet)

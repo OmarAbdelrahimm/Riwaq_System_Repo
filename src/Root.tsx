@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { Episode } from "./compositions/Episode";
 import { ProofStyle } from "./compositions/ProofStyle";
+import { Longform, TOTAL_FRAMES } from "./compositions/longform/Longform";
 import type { Brand, EpisodeMeta } from "./engine/types";
 import brandJson from "../data/brand.json";
 import goldenJson from "../data/projects/GOLDEN_001/episode_meta.json";
@@ -24,6 +25,14 @@ export const RemotionRoot: React.FC = () => {
       component={ProofStyle}
       durationInFrames={360}
       fps={60}
+      width={1920}
+      height={1080}
+    />
+    <Composition
+      id="Longform"
+      component={Longform}
+      durationInFrames={TOTAL_FRAMES}
+      fps={30}
       width={1920}
       height={1080}
     />

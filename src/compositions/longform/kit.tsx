@@ -400,10 +400,11 @@ export const SceneShell: React.FC<{
   kind?: CamKind;
   tint?: "warm" | "cold" | "deep";
   perspective?: number;
+  children?: React.ReactNode;
   world?: React.ReactNode;
   overlay?: React.ReactNode;
   camStart?: number;
-}> = ({ dur, kind = "push", tint, perspective = 1500, world, overlay, camStart = 0 }) => {
+}> = ({ dur, kind = "push", tint, perspective = 1500, children, world, overlay, camStart = 0 }) => {
   const f = useCurrentFrame();
   const p = Math.max(0, Math.min(1, (f - camStart) / Math.max(1, dur - camStart)));
 
@@ -438,7 +439,7 @@ export const SceneShell: React.FC<{
             transform: `translate3d(${ease(tx)}px, ${ty}px, ${tz}px) rotateY(${ry}deg) rotateX(${rx}deg)`,
           }}
         >
-          {world}
+          {children ?? world}
         </AbsoluteFill>
       </AbsoluteFill>
       {overlay}

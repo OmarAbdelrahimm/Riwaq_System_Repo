@@ -1,10 +1,10 @@
-name: render-proof
+name: render-longform
 
 on:
   push:
     paths:
       - "src/**"
-      - ".github/trigger/proof.txt"
+      - ".github/trigger/longform.txt"
       - ".github/workflows/render-proof.yml"
 
 permissions:
@@ -13,7 +13,7 @@ permissions:
 jobs:
   proof:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 180
     env:
       PROJECT_ID: TMB_001
     steps:
@@ -26,18 +26,18 @@ jobs:
         run: npm ci || npm install
       - name: فحص الأنواع
         run: npx tsc --noEmit || true
-      - name: ريندر البرهان
+      - name: ريندر الحلقة الطويلة
         run: |
           mkdir -p exports _review
-          npx remotion render src/index.ts ProofStyle exports/PROOF_STYLE.mp4 \
-            --concurrency=1 --crf=19 --gl=swiftshader || echo "RENDER_FAILED"
+          npx remotion render src/index.ts Longform exports/LONGFORM_TMB_001.mp4 \
+            --concurrency=2 --crf=21 --scale=0.5 --gl=swiftshader || echo "RENDER_FAILED"
       - name: إطارات المراجعة
         if: always()
         run: |
           sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1 || true
-          if ls exports/PROOF_STYLE.mp4 >/dev/null 2>&1; then
-            for t in 0.4 1.2 2.0 2.8 3.6 4.4 5.2 5.8; do
-              ffmpeg -hide_banner -loglevel error -ss $t -i exports/PROOF_STYLE.mp4 \
+          if ls exports/LONGFORM_TMB_001.mp4 >/dev/null 2>&1; then
+            for t in 2 12 26 40 55 68 78 95 112 128 145 160 178 196 210 228 245 260 275; do
+              ffmpeg -hide_banner -loglevel error -ss $t -i exports/LONGFORM_TMB_001.mp4 \
                 -frames:v 1 -vf scale=480:-1 -update 1 -y _review/p_$t.png 2>/dev/null || true
             done
           fi
@@ -47,11 +47,11 @@ jobs:
         run: |
           python3 -m pip install --quiet --disable-pip-version-check pillow || true
           python3 .github/scripts/make_proof_sheet.py
-          if ls exports/PROOF_STYLE.mp4 >/dev/null 2>&1; then
+          if ls exports/LONGFORM_TMB_001.mp4 >/dev/null 2>&1; then
             mkdir -p data/projects/${PROJECT_ID}/exports
-            cp exports/PROOF_STYLE.mp4 data/projects/${PROJECT_ID}/exports/
+            cp exports/LONGFORM_TMB_001.mp4 data/projects/${PROJECT_ID}/exports/
           fi
           git config user.name "ci-bot"
           git config user.email "ci-bot@users.noreply.github.com"
           git add -f data/projects/${PROJECT_ID}/exports reports/proof_sheet.json 2>/dev/null || true
-          git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: برهان الستايل" && git pull --rebase -q && git push -q) || echo "push skipped"
+          git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: الحلقة الطويلة" && git pull --rebase -q && git push -q) || echo "push skipped"
