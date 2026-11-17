@@ -54,7 +54,7 @@ export const S01Hook: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: C.ink }}>
       {/* الغرفة المحروقة تظهر في الخلفية */}
-      <AbsoluteFill style={{ opacity: roomIn * 0.85 }}>
+      <AbsoluteFill style={{ opacity: roomIn * 0.62 }}>
         <SceneShell dur={600} kind="push" tint="deep">
           <DepthBox x={660} y={540} z={0} w={1100} h={780} keepSharp>
             <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1100} h={780} grad={0.55} kb={[1.02, 1.14]} />
@@ -74,13 +74,24 @@ export const S01Hook: React.FC = () => {
       >
         <div
           style={{
+            position: "absolute",
+            width: 900,
+            height: 620,
+            borderRadius: "50%",
+            background: `radial-gradient(ellipse, ${C.ink}f2 0%, ${C.ink}cc 45%, transparent 72%)`,
+            opacity: numIn,
+          }}
+        />
+        <div
+          style={{
+            position: "relative",
             fontFamily: "Amiri",
             fontWeight: 700,
             fontSize: 330,
             lineHeight: 1,
             color: C.gold,
             opacity: numIn,
-            textShadow: `0 0 120px ${C.goldDeep}aa, 0 10px 60px rgba(0,0,0,.95)`,
+            textShadow: `0 0 140px ${C.goldDeep}dd, 0 0 60px rgba(0,0,0,1), 0 14px 70px rgba(0,0,0,1), 0 2px 4px rgba(0,0,0,.9)`,
           }}
         >
           ٤٢٠٣
@@ -176,7 +187,7 @@ export const S03City: React.FC = () => {
       <DepthBox x={660} y={540} z={-30} w={940} h={720} ry={6} keepSharp>
         <PhotoCard src="projects/TMB_001/plates/tmb_night.jpg" w={940} h={720} kb={[1.0, 1.1]} grad={0.62} />
       </DepthBox>
-      <DepthBox x={560} y={870} z={-160} w={380} h={280} ry={12} delay={40} idx={2}>
+      <DepthBox x={980} y={890} z={-160} w={320} h={190} ry={-12} delay={40} idx={2}>
         <PhotoCard src="projects/TMB_001/plates/tmb_library.jpg" w={400} h={300} kb={[1.0, 1.12]} grad={0.6} />
       </DepthBox>
       <ShapeField seed={9} camZ={0} amt={0.8} />
@@ -434,7 +445,9 @@ export const S07Fire: React.FC = () => {
             fontWeight: 700,
             fontSize: 150,
             color: C.parch,
-            textShadow: `0 0 90px ${C.burgundy}cc, 0 8px 50px rgba(0,0,0,.95)`,
+            background: `radial-gradient(ellipse at center, ${C.ink}ee 0%, ${C.ink}aa 42%, transparent 74%)`,
+            padding: "48px 90px",
+            textShadow: `0 0 90px ${C.burgundy}cc, 0 8px 50px rgba(0,0,0,1)`,
           }}
         >
           كانت فرن.

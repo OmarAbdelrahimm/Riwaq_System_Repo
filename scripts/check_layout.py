@@ -62,4 +62,20 @@ for k in range(1, len(parts), 2):
 if problems:
     print("\n".join("❌ " + p for p in problems))
     sys.exit(1)
-print("✅ التخطيط سليم — مفيش تراكب نص/صورة")
+# 3) نصوص فوق الصور (title cards) لازم يكون معاها طبقة تعتيم أو ظل قوي
+for k in range(1, len(parts), 2):
+    i, body = parts[k], parts[k + 1]
+    for m in re.finditer(r'<AbsoluteFill[^>]*alignItems: "center"[^>]*>(.*?)</AbsoluteFill>', body, re.S):
+        blk = m.group(1)
+        if "fontFamily" not in blk: continue
+        # لو المشهد كله مفيهوش PhotoCard، يبقى النص على خلفية مجردة — آمن
+        if "PhotoCard" not in body:
+            continue
+        if ("radial-gradient" in blk or "rgba(0,0,0,1)" in blk
+                or "background:" in blk or "backdropFilter" in blk):
+            continue
+        problems.append(f"S{i}: نص mid-screen فوق صورة بدون طبقة تعتيم — مش هيبان")
+
+if problems:
+    print("\n".join("❌ " + p for p in problems)); sys.exit(1)
+print("✅ التخطيط سليم — مفيش تراكب نص/صورة، والنصوص فوق الصور مقروءة")
