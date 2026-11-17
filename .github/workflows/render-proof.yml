@@ -32,25 +32,26 @@ jobs:
         run: npx tsc --noEmit || true
       - name: بوابة التخطيط
         run: python3 scripts/check_layout.py
+      - name: ستيلات 1080p
+        run: |
+          mkdir -p reports/stills
+          for f in 200 700 1000 1300 2900 4400 5500 7300 8100; do
+            npx remotion still src/index.ts Longform reports/stills/f${f}.png \
+              --frame=$f --scale=1 --gl=swiftshader --log=error >/dev/null 2>&1 || true
+          done
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git add -f reports/stills
+          git diff --cached --quiet || (git commit -q -m "ci: ستيلات 1080p" && git pull --rebase -q && git push -q) || true
+
       - name: ريندر الحلقة الطويلة
         run: |
           mkdir -p exports _review
           set +e
           npx remotion render src/index.ts Longform exports/LONGFORM_TMB_001.mp4 \
-            --concurrency=2 --crf=21 --scale=0.5 --gl=swiftshader > _review/render.log 2>&1
+            --concurrency=4 --crf=21 --scale=0.5 --gl=swiftshader > _review/render.log 2>&1
           echo "EXIT=$?"
           tail -40 _review/render.log || true
-      - name: ستيلات 1080p
-        if: always()
-        run: |
-          mkdir -p reports/stills
-          set +e
-          for f in 200 700 1000 1300 2900 4400 5500 7300 8100; do
-            npx remotion still src/index.ts Longform reports/stills/f${f}.png \
-              --frame=$f --scale=1 --gl=swiftshader --log=error >/dev/null 2>&1 || true
-          done
-          ls reports/stills || true
-
       - name: إطارات المراجعة
         if: always()
         run: |
