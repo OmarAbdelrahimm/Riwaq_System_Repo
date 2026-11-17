@@ -360,7 +360,7 @@ export const S06Drought: React.FC = () => {
       </DepthBox>
       <ShapeField seed={21} camZ={0} amt={0.7} />
 
-      <div style={{ position: "absolute", right: 96, top: 84, width: 1060, direction: "rtl", textAlign: "right" }}>
+      <div style={{ position: "absolute", right: 64, top: 96, width: 700, direction: "rtl", textAlign: "right" }}>
         <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 64, color: C.parch, lineHeight: 1.5 }}>
           <div style={{ opacity: ip(f, 6, 40, 0, 1) }}>وهنا حاجة غريبة، ولها معنى.</div>
           <div style={{ opacity: ip(f, 60, 100, 0, 1), color: `${C.parch}cc` }}>اللي بيقتل أي أثر تاني… الرطوبة.</div>
@@ -414,7 +414,7 @@ export const S07Fire: React.FC = () => {
       <ShapeField seed={25} camZ={0} amt={0.5} />
 
       {/* سرد */}
-      <div style={{ position: "absolute", left: 100, bottom: 90, width: 1000, direction: "rtl" }}>
+      <div style={{ position: "absolute", left: 72, bottom: 64, width: 560, direction: "rtl" }}>
         <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 34, color: `${C.gold}dd`, letterSpacing: "0.1em" }}>
           ٢٥ يناير ٢٠١٣ · مكتبة أحمد بابا
         </div>
@@ -440,7 +440,7 @@ export const S07Fire: React.FC = () => {
       </AbsoluteFill>
 
       {/* ٤٢٠٣ راحت + «مش رقم» */}
-      <div style={{ position: "absolute", right: 110, bottom: 100, width: 1000, direction: "rtl", textAlign: "right" }}>
+      <div style={{ position: "absolute", right: 64, bottom: 84, width: 620, direction: "rtl", textAlign: "right" }}>
         <div style={{ opacity: ip(f, 700, 740, 0, 1) }}>
           <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 170, color: C.gold, lineHeight: 1 }}>
             ٤٢٠٣
@@ -674,7 +674,7 @@ export const S12Opinion: React.FC = () => {
       </DepthBox>
       <ShapeField seed={41} camZ={0} amt={0.7} />
 
-      <div style={{ position: "absolute", right: 110, top: 150, width: 1120, direction: "rtl", textAlign: "right" }}>
+      <div style={{ position: "absolute", left: 80, top: 150, width: 640, direction: "rtl" }}>
         {lines.map((l) => (
           <div
             key={l.t}
@@ -728,7 +728,7 @@ export const S13Signoff: React.FC = () => {
         <ShapeField seed={45} camZ={0} amt={0.8} />
       </SceneShell>
 
-      <div style={{ position: "absolute", right: 110, top: 120, width: 1080, direction: "rtl", textAlign: "right" }}>
+      <div style={{ position: "absolute", left: 80, top: 120, width: 620, direction: "rtl" }}>
         <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 72, color: C.parch, lineHeight: 1.5 }}>
           <div style={{ opacity: ip(f, 10, 50, 0, 1) }}>بس السؤال اللي بيفضل:</div>
           <div style={{ opacity: ip(f, 120, 160, 0, 1), color: `${C.parch}c0`, fontSize: 54 }}>
