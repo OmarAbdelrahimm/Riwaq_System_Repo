@@ -23,18 +23,18 @@ import {
 
 export const SCENE_DUR: Record<number, number> = {
   1: 20.2,
-  2: 18.5,
+  2: 18.4,
   3: 24.5,
   4: 26.0,
-  5: 19.5,
-  6: 36.8,
+  5: 19.3,
+  6: 36.9,
   7: 39.5,
   8: 30.2,
-  9: 28.2,
-  10: 27.7,
-  11: 12.0,
-  12: 25.0,
-  13: 37.0,
+  9: 27.7,
+  10: 9.3,
+  11: 10.0,
+  12: 13.0,
+  13: 13.3,
 };
 
 /* ═══ 1 · الخطاف — همس مشدود ═══════════════════════════════════════════════
@@ -399,24 +399,19 @@ export const S06Drought: React.FC = () => {
 export const S07Fire: React.FC = () => {
   const f = useCurrentFrame();
   return (
-    <AbsoluteFill style={{ backgroundColor: C.ink }}>
-      <AbsoluteFill style={{ opacity: ip(f, 0, 40, 0, 1) }}>
-        <SceneShell dur={1185} kind="static" tint="deep">
-          <DepthBox x={960} y={500} z={-10} w={1300} h={860} keepSharp>
-            <PhotoCard src="projects/TMB_001/plates/tmb_smoke.jpg" w={1300} h={860} kb={[1.0, 1.06]} grad={0.66} />
-          </DepthBox>
-          <ShapeField seed={25} camZ={0} amt={0.5} />
-        </SceneShell>
-      </AbsoluteFill>
+    <SceneShell dur={1185} kind="static" tint="deep">
+      <DepthBox x={960} y={500} z={-10} w={1300} h={860} keepSharp>
+        <PhotoCard src="projects/TMB_001/plates/tmb_smoke.jpg" w={1300} h={860} kb={[1.0, 1.06]} grad={0.66} />
+      </DepthBox>
 
       {/* الغرفة الفارغة — الدليل */}
-      <AbsoluteFill style={{ opacity: ip(f, 250, 300, 0, 1) * ip(f, 520, 560, 1, 0) }}>
-        <SceneShell dur={120} kind="static" tint="deep">
-          <DepthBox x={960} y={540} z={0} w={1240} h={800} keepSharp>
-            <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1240} h={800} kb={[1.02, 1.08]} grad={0.5} />
-          </DepthBox>
-        </SceneShell>
-      </AbsoluteFill>
+      <div style={{ position: "absolute", inset: 0, opacity: ip(f, 250, 300, 0, 1) * ip(f, 520, 560, 1, 0) }}>
+        <DepthBox x={960} y={540} z={0} w={1240} h={800} keepSharp>
+          <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1240} h={800} kb={[1.02, 1.08]} grad={0.5} />
+        </DepthBox>
+      </div>
+
+      <ShapeField seed={25} camZ={0} amt={0.5} />
 
       {/* سرد */}
       <div style={{ position: "absolute", left: 100, bottom: 90, width: 1000, direction: "rtl" }}>
@@ -459,7 +454,7 @@ export const S07Fire: React.FC = () => {
           </div>
         </div>
       </div>
-    </AbsoluteFill>
+    </SceneShell>
   );
 };
 
@@ -586,19 +581,10 @@ export const S09Journey: React.FC = () => {
 export const S10Arrival: React.FC = () => {
   const f = useCurrentFrame();
   return (
-    <AbsoluteFill style={{ backgroundColor: C.ink }}>
-      {/* سواد 800ms */}
-      <AbsoluteFill style={{ opacity: ip(f, 40, 80, 1, 0) }}>
-        <Backdrop tint="deep" />
-      </AbsoluteFill>
-
-      <AbsoluteFill style={{ opacity: ip(f, 60, 110, 0, 1) }}>
-        <SceneShell dur={120} kind="static" tint="warm">
-          <DepthBox x={960} y={520} z={0} w={1220} h={800} keepSharp>
-            <PhotoCard src="projects/TMB_001/plates/tmb_door.jpg" w={1220} h={800} kb={[1.0, 1.05]} grad={0.55} />
-          </DepthBox>
-        </SceneShell>
-      </AbsoluteFill>
+    <SceneShell dur={300} kind="static" tint="warm">
+      <DepthBox x={960} y={520} z={0} w={1220} h={800} keepSharp>
+        <PhotoCard src="projects/TMB_001/plates/tmb_door.jpg" w={1220} h={800} kb={[1.0, 1.05]} grad={0.55} />
+      </DepthBox>
 
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
         <div
@@ -615,7 +601,7 @@ export const S10Arrival: React.FC = () => {
           ووصلت.
         </div>
       </AbsoluteFill>
-    </AbsoluteFill>
+    </SceneShell>
   );
 };
 
