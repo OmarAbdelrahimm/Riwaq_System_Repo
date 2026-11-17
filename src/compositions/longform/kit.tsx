@@ -467,8 +467,11 @@ export const TextRail: React.FC<{
         width,
         direction: "rtl",
         textAlign: "right",
-        maxHeight: 1080 - top - 80,
+        maxHeight: 1080 - 90,
         overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
       }}
     >
       {children}
