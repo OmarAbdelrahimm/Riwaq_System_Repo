@@ -319,8 +319,8 @@ export const S05Inside: React.FC = () => {
       </DepthBox>
       <ShapeField seed={17} camZ={0} amt={0.6} />
 
-      <TextRail side="left" top={140} width={620}>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 80, color: C.parch, opacity: ip(f, 6, 40, 0, 1) }}>
+      <TextRail side="left" top={140} width={760}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 72, color: C.parch, opacity: ip(f, 6, 40, 0, 1), whiteSpace: "nowrap" }}>
           الكتب دي مكانتش ديكور.
         </div>
 

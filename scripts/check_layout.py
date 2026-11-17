@@ -62,6 +62,34 @@ for k in range(1, len(parts), 2):
 if problems:
     print("\n".join("❌ " + p for p in problems))
     sys.exit(1)
+# 2.5) نص عريض في عمود ضيق → هيلف ويكسر الكلمة
+AR_W = 0.52  # متوسط عرض الحرف العربي في Amiri Bold ≈ 0.52em
+for k in range(1, len(parts), 2):
+    i, body = parts[k], parts[k + 1]
+    # اجمع الأحجام الكبيرة في هذا المشهد
+    big = [int(x) for x in re.findall(r'fontSize: (\d+)', body) if int(x) >= 60]
+    widths = [int(w) for w in re.findall(r'width=\{(\d+)\}', body)]
+    widths += [int(w) for w in re.findall(r'width: (\d+)', body)]
+    if not big or not widths: continue
+    avail = max(widths)
+    for fs in big:
+        # ابحث عن أطول سطر عربي في المشهد
+        pass
+    # فحص بسيط: أطول كلمة عربية × حجم الخط
+    for m in re.finditer(r'>([^<>{}]*[\u0600-\u06FF][^<>{}]*)<', body):
+        txt = m.group(1).strip()
+        if not txt or "&" in txt: continue
+        words = txt.split()
+        if len(words) < 4: continue          # عناوين حقيقية بس
+        word = max(words, key=len)
+        if len(word) < 6: continue
+        for fs in big:
+            need = len(word) * fs * AR_W
+            if need > avail * 0.95:
+                problems.append(
+                    f"S{i}: «{word[:18]}» بحجم {fs}px محتاج {int(need)}px والعمود {avail}px — هيكسر السطر")
+                break
+
 # 3) نصوص فوق الصور (title cards) لازم يكون معاها طبقة تعتيم أو ظل قوي
 for k in range(1, len(parts), 2):
     i, body = parts[k], parts[k + 1]
