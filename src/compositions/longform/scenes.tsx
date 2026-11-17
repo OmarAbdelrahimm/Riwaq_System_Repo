@@ -438,15 +438,16 @@ export const S07Fire: React.FC = () => {
       </TextRail>
 
       {/* «كانت فرن» */}
-      <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: ip(f, 560, 600, 0, 1) }}>
+      <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: ip(f, 560, 600, 0, 1) * ip(f, 660, 700, 1, 0) }}>
         <div
           style={{
             fontFamily: "Amiri",
             fontWeight: 700,
-            fontSize: 150,
+            fontSize: 96,
             color: C.parch,
-            background: `radial-gradient(ellipse at center, ${C.ink}ee 0%, ${C.ink}aa 42%, transparent 74%)`,
-            padding: "48px 90px",
+            background: `radial-gradient(ellipse at center, ${C.ink}f2 0%, ${C.ink}b8 48%, transparent 78%)`,
+            padding: "22px 56px",
+            borderRadius: 999,
             textShadow: `0 0 90px ${C.burgundy}cc, 0 8px 50px rgba(0,0,0,1)`,
           }}
         >
