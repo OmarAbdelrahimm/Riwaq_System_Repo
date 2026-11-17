@@ -31,7 +31,21 @@ for i, (lbl, im) in enumerate(ims):
 
 buf = io.BytesIO()
 sheet.save(buf, format="JPEG", quality=88, optimize=True)
-(out / "proof_sheet.json").write_text(
-    json.dumps({"frames": len(ims), "jpeg_b64": base64.b64encode(buf.getvalue()).decode()})
-)
+# إطار كامل الحجم للمراجعة الدقيقة
+full = None
+for want in ("60", "90", "9", "26"):
+    for p2 in rv.glob(f"p_{want}.png"):
+        full = p2
+        break
+    if full: break
+if full is None and fr:
+    full = fr[len(fr)//2][0] if isinstance(fr[0], tuple) else fr[0]
+
+payload = {"frames": len(ims), "jpeg_b64": base64.b64encode(buf.getvalue()).decode()}
+if full is not None:
+    fi = Image.open(full).convert("RGB")
+    fb = io.BytesIO(); fi.save(fb, format="JPEG", quality=92, optimize=True)
+    payload["full_b64"] = base64.b64encode(fb.getvalue()).decode()
+    payload["full_at"] = full.stem
+(out / "proof_sheet.json").write_text(json.dumps(payload))
 print("sheet ok", len(ims), sheet.size)
