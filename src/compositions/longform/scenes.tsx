@@ -8,8 +8,10 @@ import {
   KWord,
   Logo,
   PhotoCard,
+  PlateSlot,
   Rule,
   SceneShell,
+  TextRail,
   ShapeField,
   WordRow,
   ip,
@@ -54,8 +56,8 @@ export const S01Hook: React.FC = () => {
       {/* الغرفة المحروقة تظهر في الخلفية */}
       <AbsoluteFill style={{ opacity: roomIn * 0.85 }}>
         <SceneShell dur={600} kind="push" tint="deep">
-          <DepthBox x={960} y={540} z={0} w={1360} h={820} keepSharp>
-            <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1360} h={820} grad={0.55} kb={[1.02, 1.14]} />
+          <DepthBox x={660} y={540} z={0} w={1100} h={780} keepSharp>
+            <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1100} h={780} grad={0.55} kb={[1.02, 1.14]} />
           </DepthBox>
           <ShapeField seed={2} camZ={0} amt={0.6} />
         </SceneShell>
@@ -89,9 +91,9 @@ export const S01Hook: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          right: 110,
-          bottom: 96,
-          width: 1180,
+          right: 72,
+          top: 96,
+          width: 620,
           direction: "rtl",
           textAlign: "right",
           opacity: ip(f, 300, 350, 0, 1),
@@ -171,20 +173,20 @@ export const S03City: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <SceneShell dur={735} kind="push" tint="warm">
-      <DepthBox x={760} y={520} z={-30} w={980} h={760} ry={6} keepSharp>
-        <PhotoCard src="projects/TMB_001/plates/tmb_night.jpg" w={980} h={760} kb={[1.0, 1.1]} grad={0.62} />
+      <DepthBox x={660} y={540} z={-30} w={940} h={720} ry={6} keepSharp>
+        <PhotoCard src="projects/TMB_001/plates/tmb_night.jpg" w={940} h={720} kb={[1.0, 1.1]} grad={0.62} />
       </DepthBox>
-      <DepthBox x={1500} y={430} z={-160} w={500} h={600} ry={-22} delay={40} idx={2}>
-        <PhotoCard src="projects/TMB_001/plates/tmb_library.jpg" w={500} h={600} kb={[1.0, 1.12]} grad={0.6} />
+      <DepthBox x={560} y={870} z={-160} w={380} h={280} ry={12} delay={40} idx={2}>
+        <PhotoCard src="projects/TMB_001/plates/tmb_library.jpg" w={400} h={300} kb={[1.0, 1.12]} grad={0.6} />
       </DepthBox>
       <ShapeField seed={9} camZ={0} amt={0.8} />
 
       <div
         style={{
           position: "absolute",
-          right: 100,
-          top: 90,
-          width: 1080,
+          right: 60,
+          top: 84,
+          width: 620,
           direction: "rtl",
           textAlign: "right",
         }}
@@ -306,23 +308,23 @@ export const S05Inside: React.FC = () => {
       </DepthBox>
       <ShapeField seed={17} camZ={0} amt={0.6} />
 
-      <div style={{ position: "absolute", left: 90, top: 170, width: 780, textAlign: "left", direction: "rtl" }}>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 66, color: C.parch, opacity: ip(f, 6, 40, 0, 1) }}>
+      <TextRail side="left" top={140} width={620}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 62, color: C.parch, opacity: ip(f, 6, 40, 0, 1) }}>
           الكتب دي مكانتش ديكور.
         </div>
 
-        <div style={{ marginTop: 44, display: "flex", flexWrap: "wrap", gap: "16px 18px" }}>
+        <div style={{ marginTop: 40, display: "flex", flexWrap: "wrap", gap: "14px 14px" }}>
           {kinds.map((k, i) => (
             <div
               key={k}
               style={{
-                padding: "14px 34px",
-                borderRadius: 14,
+                padding: "11px 26px",
+                borderRadius: 13,
                 border: `1px solid ${C.gold}44`,
                 background: `linear-gradient(140deg, ${C.gold}16, ${C.gold}05)`,
                 fontFamily: "Amiri",
                 fontWeight: 700,
-                fontSize: 44,
+                fontSize: 38,
                 color: i === 5 ? C.gold : C.parch,
                 opacity: ip(f, 110 + i * 26, 140 + i * 26, 0, 1),
                 transform: `translateY(${ip(f, 110 + i * 26, 140 + i * 26, 24, 0)}px)`,
@@ -341,7 +343,7 @@ export const S05Inside: React.FC = () => {
             زي ما انت بتكتب بقلمين ألوان.
           </div>
         </div>
-      </div>
+      </TextRail>
     </SceneShell>
   );
 };
@@ -352,15 +354,15 @@ export const S06Drought: React.FC = () => {
   const shift = ip(f, 560, 640, 1, 0); // تبديل المزاج
   return (
     <SceneShell dur={1104} kind="push" tint={shift > 0.5 ? "warm" : "cold"}>
-      <DepthBox x={820} y={540} z={-20} w={1080} h={780} keepSharp>
-        <PhotoCard src="projects/TMB_001/plates/tmb_map.jpg" w={1080} h={780} kb={[1.0, 1.1]} grad={0.6} />
+      <DepthBox x={760} y={540} z={-20} w={960} h={760} keepSharp>
+        <PhotoCard src="projects/TMB_001/plates/tmb_map.jpg" w={960} h={760} kb={[1.0, 1.1]} grad={0.6} />
       </DepthBox>
-      <DepthBox x={1590} y={560} z={-140} w={420} h={640} ry={-26} delay={560} idx={3}>
-        <PhotoCard src="projects/TMB_001/plates/tmb_fall.jpg" w={420} h={640} kb={[1.0, 1.1]} grad={0.66} />
+      <DepthBox x={620} y={880} z={-140} w={380} h={300} ry={10} delay={560} idx={3}>
+        <PhotoCard src="projects/TMB_001/plates/tmb_fall.jpg" w={380} h={300} kb={[1.0, 1.1]} grad={0.66} />
       </DepthBox>
       <ShapeField seed={21} camZ={0} amt={0.7} />
 
-      <div style={{ position: "absolute", right: 64, top: 96, width: 700, direction: "rtl", textAlign: "right" }}>
+      <div style={{ position: "absolute", right: 60, top: 76, width: 620, direction: "rtl", textAlign: "right" }}>
         <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 64, color: C.parch, lineHeight: 1.5 }}>
           <div style={{ opacity: ip(f, 6, 40, 0, 1) }}>وهنا حاجة غريبة، ولها معنى.</div>
           <div style={{ opacity: ip(f, 60, 100, 0, 1), color: `${C.parch}cc` }}>اللي بيقتل أي أثر تاني… الرطوبة.</div>
@@ -400,21 +402,21 @@ export const S07Fire: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <SceneShell dur={1185} kind="static" tint="deep">
-      <DepthBox x={960} y={500} z={-10} w={1300} h={860} keepSharp>
-        <PhotoCard src="projects/TMB_001/plates/tmb_smoke.jpg" w={1300} h={860} kb={[1.0, 1.06]} grad={0.66} />
+      <DepthBox x={1390} y={540} z={-10} w={920} h={740} keepSharp>
+        <PhotoCard src="projects/TMB_001/plates/tmb_smoke.jpg" w={920} h={740} kb={[1.0, 1.06]} grad={0.66} />
       </DepthBox>
 
       {/* الغرفة الفارغة — الدليل */}
       <div style={{ position: "absolute", inset: 0, opacity: ip(f, 250, 300, 0, 1) * ip(f, 520, 560, 1, 0) }}>
-        <DepthBox x={960} y={540} z={0} w={1240} h={800} keepSharp>
-          <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1240} h={800} kb={[1.02, 1.08]} grad={0.5} />
+        <DepthBox x={1380} y={540} z={0} w={960} h={760} keepSharp>
+          <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={960} h={760} kb={[1.02, 1.08]} grad={0.5} />
         </DepthBox>
       </div>
 
       <ShapeField seed={25} camZ={0} amt={0.5} />
 
       {/* سرد */}
-      <div style={{ position: "absolute", left: 72, bottom: 64, width: 560, textAlign: "left", direction: "rtl" }}>
+      <TextRail side="left" top={150} width={600}>
         <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 34, color: `${C.gold}dd`, letterSpacing: "0.1em" }}>
           ٢٥ يناير ٢٠١٣ · مكتبة أحمد بابا
         </div>
@@ -422,7 +424,7 @@ export const S07Fire: React.FC = () => {
           <div style={{ opacity: ip(f, 30, 66, 0, 1) }}>كبّوا بنزين.</div>
           <div style={{ opacity: ip(f, 150, 190, 0, 1) }}>وولّعوا.</div>
         </div>
-      </div>
+      </TextRail>
 
       {/* «كانت فرن» */}
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: ip(f, 560, 600, 0, 1) }}>
@@ -440,7 +442,7 @@ export const S07Fire: React.FC = () => {
       </AbsoluteFill>
 
       {/* ٤٢٠٣ راحت + «مش رقم» */}
-      <div style={{ position: "absolute", right: 64, bottom: 84, width: 620, direction: "rtl", textAlign: "right" }}>
+      <TextRail side="left" top={440} width={600}>
         <div style={{ opacity: ip(f, 700, 740, 0, 1) }}>
           <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 170, color: C.gold, lineHeight: 1 }}>
             ٤٢٠٣
@@ -453,7 +455,7 @@ export const S07Fire: React.FC = () => {
             ٤٢٠٣ مرة، حد فقد حاجة عمرها ٥٠٠ سنة.
           </div>
         </div>
-      </div>
+      </TextRail>
     </SceneShell>
   );
 };
@@ -466,12 +468,12 @@ export const S08Plan: React.FC = () => {
       <DepthBox x={1400} y={530} z={-30} w={900} h={840} ry={-10} keepSharp>
         <PhotoCard src="projects/TMB_001/plates/tmb_drums.jpg" w={900} h={840} kb={[1.0, 1.1]} grad={0.6} />
       </DepthBox>
-      <DepthBox x={430} y={620} z={-220} w={420} h={520} ry={26} delay={60} idx={1}>
+      <DepthBox x={1290} y={870} z={-220} w={380} h={280} ry={20} delay={60} idx={1}>
         <PhotoCard src="projects/TMB_001/plates/tmb_hands.jpg" w={420} h={520} kb={[1.0, 1.1]} grad={0.6} />
       </DepthBox>
       <ShapeField seed={29} camZ={0} amt={0.7} />
 
-      <div style={{ position: "absolute", left: 90, top: 90, width: 940, textAlign: "left", direction: "rtl" }}>
+      <TextRail side="left" top={90} width={620}>
         <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 62, color: C.parch, lineHeight: 1.5 }}>
           <div style={{ opacity: ip(f, 6, 40, 0, 1) }}>بس الحريق ده،</div>
           <div style={{ opacity: ip(f, 44, 80, 0, 1), color: `${C.parch}c8` }}>حصل بعد ما المدينة كانت خدت قرار.</div>
@@ -512,7 +514,7 @@ export const S08Plan: React.FC = () => {
             <span style={{ color: C.gold }}>بقى هو اللي شيّل الكتب.</span>
           </div>
         </div>
-      </div>
+      </TextRail>
     </SceneShell>
   );
 };
@@ -527,8 +529,8 @@ export const S09Journey: React.FC = () => {
   ];
   return (
     <SceneShell dur={846} kind="pan" tint="cold">
-      <DepthBox x={900} y={540} z={-20} w={1150} h={800} keepSharp>
-        <PhotoCard src="projects/TMB_001/plates/tmb_route.jpg" w={1150} h={800} kb={[1.0, 1.14]} grad={0.6} />
+      <DepthBox x={1120} y={540} z={-20} w={980} h={760} keepSharp>
+        <PhotoCard src="projects/TMB_001/plates/tmb_route.jpg" w={980} h={760} kb={[1.0, 1.14]} grad={0.6} />
       </DepthBox>
       <DepthBox x={1610} y={430} z={-200} w={380} h={540} ry={-30} delay={240} idx={1}>
         <PhotoCard src="projects/TMB_001/plates/tmb_boat.jpg" w={380} h={540} kb={[1.0, 1.1]} grad={0.6} />
@@ -538,7 +540,7 @@ export const S09Journey: React.FC = () => {
       </DepthBox>
       <ShapeField seed={33} camZ={0} amt={0.6} />
 
-      <div style={{ position: "absolute", left: 96, top: 96, width: 760, textAlign: "left", direction: "rtl" }}>
+      <TextRail side="left" top={96} width={580}>
         <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 34, color: `${C.gold}dd`, letterSpacing: "0.1em" }}>
           المسار
         </div>
@@ -572,7 +574,7 @@ export const S09Journey: React.FC = () => {
             خلاص.
           </div>
         </div>
-      </div>
+      </TextRail>
     </SceneShell>
   );
 };
@@ -582,25 +584,26 @@ export const S10Arrival: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <SceneShell dur={300} kind="static" tint="warm">
-      <DepthBox x={960} y={520} z={0} w={1220} h={800} keepSharp>
-        <PhotoCard src="projects/TMB_001/plates/tmb_door.jpg" w={1220} h={800} kb={[1.0, 1.05]} grad={0.55} />
+      <DepthBox x={1400} y={540} z={-10} w={900} h={720} keepSharp>
+        <PhotoCard src="projects/TMB_001/plates/tmb_door.jpg" w={900} h={720} kb={[1.0, 1.05]} grad={0.5} />
       </DepthBox>
 
-      <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
+      <TextRail side="left" top={300} width={620}>
         <div
           style={{
             fontFamily: "Amiri",
             fontWeight: 700,
-            fontSize: 190,
+            fontSize: 168,
             color: C.parch,
-            opacity: ip(f, 15, 45, 0, 1) * ip(f, 200, 240, 1, 0.9),
-            transform: `scale(${ip(f, 15, 55, 0.92, 1)}`,
-            textShadow: `0 0 100px ${C.goldDeep}99, 0 10px 60px rgba(0,0,0,.95)`,
+            opacity: ip(f, 15, 45, 0, 1),
+            transform: `scale(${ip(f, 15, 55, 0.94, 1)})`,
+            transformOrigin: "right center",
+            textShadow: `0 0 90px ${C.goldDeep}77`,
           }}
         >
           ووصلت.
         </div>
-      </AbsoluteFill>
+      </TextRail>
     </SceneShell>
   );
 };
@@ -722,8 +725,8 @@ export const S13Signoff: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: C.ink }}>
       <SceneShell dur={1110} kind="push" tint="warm">
-        <DepthBox x={960} y={520} z={-10} w={1300} h={850} keepSharp>
-          <PhotoCard src="projects/TMB_001/plates/tmb_outside.jpg" w={1300} h={850} kb={[1.04, 1.0]} grad={0.72} />
+        <DepthBox x={1430} y={520} z={-10} w={860} h={800} keepSharp>
+          <PhotoCard src="projects/TMB_001/plates/tmb_outside.jpg" w={860} h={800} kb={[1.04, 1.0]} grad={0.72} />
         </DepthBox>
         <ShapeField seed={45} camZ={0} amt={0.8} />
       </SceneShell>

@@ -30,6 +30,8 @@ jobs:
         run: npm ci || npm install
       - name: فحص الأنواع
         run: npx tsc --noEmit || true
+      - name: بوابة التخطيط
+        run: python3 scripts/check_layout.py
       - name: ريندر الحلقة الطويلة
         run: |
           mkdir -p exports _review

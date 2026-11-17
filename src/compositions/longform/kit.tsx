@@ -447,6 +447,55 @@ export const SceneShell: React.FC<{
   );
 };
 
+/* ── حزام النص — عمود واحد ثابت على جنب، الصورة عمرها ما تدخله ──────────────
+   side="right" → الكارت على الشمال والنص يمين (القراءة العربية تبدأ يمين)
+   side="left"  → الكارت على اليمين والنص شمال
+   ──────────────────────────────────────────────────────────────────────── */
+export const TextRail: React.FC<{
+  side: "left" | "right";
+  top?: number;
+  width?: number;
+  children: React.ReactNode;
+}> = ({ side, top = 110, width = 620, children }) => {
+  const inset = 76;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        ...(side === "right" ? { right: inset } : { left: inset }),
+        top,
+        width,
+        direction: "rtl",
+        textAlign: "right",
+        maxHeight: 1080 - top - 80,
+        overflow: "hidden",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+/* كارت الصورة — والجهة المقابلة للحزام، مقصوص جوه الكادر */
+export const PlateSlot: React.FC<{
+  side: "left" | "right";
+  src: string;
+  w?: number;
+  h?: number;
+  y?: number;
+  kb?: [number, number];
+  z?: number;
+  delay?: number;
+}> = ({ side, src, w = 980, h = 740, y = 540, kb = [1.0, 1.1], z = -10, delay = 0 }) => {
+  const RAIL = 76 + 620 + 40; // 736
+  const cx = side === "right" ? RAIL + w / 2 - 20 : 1920 - RAIL - w / 2 + 20;
+  return (
+    <DepthBox x={cx} y={y} z={z} w={w} h={h} keepSharp delay={delay}>
+      <PhotoCard src={src} w={w} h={h} kb={kb} grad={0.6} />
+    </DepthBox>
+  );
+};
+
 /* ── شعار رِواق ─────────────────────────────────────────────────────────── */
 export const Logo: React.FC<{ delay?: number }> = ({ delay = 10 }) => {
   const f = useCurrentFrame();
