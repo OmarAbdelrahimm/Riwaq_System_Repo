@@ -3,13 +3,13 @@ name: render-longform
 on:
   push:
     paths:
-      - "src/**"
       - ".github/trigger/longform.txt"
       - ".github/workflows/render-proof.yml"
+  workflow_dispatch:
 
 concurrency:
   group: riwaq-longform
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
