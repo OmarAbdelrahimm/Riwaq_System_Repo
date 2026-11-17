@@ -46,7 +46,7 @@ export const Longform: React.FC = () => {
       })}
 
       {/* الصوت: ملف واحد — التوقيت هو المرجع */}
-      <Audio src={staticFile("projects/TMB_001/vo/V3_full.wav")} volume={1} />
+      <Audio src={staticFile("projects/TMB_001/vo/V3_8k.wav")} volume={1} />
 
       {/* موسيقى خفيفة تحت الكلام */}
       <Audio src={staticFile("projects/TMB_001/audio/music.wav")} volume={0.055} loop />
