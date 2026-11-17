@@ -49,7 +49,7 @@ export const S01Hook: React.FC = () => {
     extrapolateRight: "clamp",
   });
   const roomIn = ip(f, 90, 150, 0, 1);
-  const numOut = ip(f, 96, 150, 1, 0.14);
+  const numOut = ip(f, 96, 145, 1, 0);
 
   return (
     <AbsoluteFill style={{ backgroundColor: C.ink }}>
