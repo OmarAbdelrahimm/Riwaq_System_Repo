@@ -245,7 +245,7 @@ export const S04Leo: React.FC = () => {
       <ShapeField seed={13} camZ={0} amt={0.7} />
 
       {/* كارت الاقتباس */}
-      <div style={{ position: "absolute", left: 96, top: 200, width: 860, direction: "rtl" }}>
+      <div style={{ position: "absolute", left: 96, top: 200, width: 860, textAlign: "left", direction: "rtl" }}>
         <div style={{ fontFamily: "IBM Plex Sans Arabic", fontWeight: 500, fontSize: 36, color: `${C.gold}dd`, letterSpacing: "0.12em" }}>
           ١٥٢٦
         </div>
@@ -306,7 +306,7 @@ export const S05Inside: React.FC = () => {
       </DepthBox>
       <ShapeField seed={17} camZ={0} amt={0.6} />
 
-      <div style={{ position: "absolute", left: 90, top: 170, width: 780, direction: "rtl" }}>
+      <div style={{ position: "absolute", left: 90, top: 170, width: 780, textAlign: "left", direction: "rtl" }}>
         <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 66, color: C.parch, opacity: ip(f, 6, 40, 0, 1) }}>
           الكتب دي مكانتش ديكور.
         </div>
@@ -414,7 +414,7 @@ export const S07Fire: React.FC = () => {
       <ShapeField seed={25} camZ={0} amt={0.5} />
 
       {/* سرد */}
-      <div style={{ position: "absolute", left: 72, bottom: 64, width: 560, direction: "rtl" }}>
+      <div style={{ position: "absolute", left: 72, bottom: 64, width: 560, textAlign: "left", direction: "rtl" }}>
         <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 34, color: `${C.gold}dd`, letterSpacing: "0.1em" }}>
           ٢٥ يناير ٢٠١٣ · مكتبة أحمد بابا
         </div>
@@ -471,7 +471,7 @@ export const S08Plan: React.FC = () => {
       </DepthBox>
       <ShapeField seed={29} camZ={0} amt={0.7} />
 
-      <div style={{ position: "absolute", left: 90, top: 90, width: 940, direction: "rtl" }}>
+      <div style={{ position: "absolute", left: 90, top: 90, width: 940, textAlign: "left", direction: "rtl" }}>
         <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 62, color: C.parch, lineHeight: 1.5 }}>
           <div style={{ opacity: ip(f, 6, 40, 0, 1) }}>بس الحريق ده،</div>
           <div style={{ opacity: ip(f, 44, 80, 0, 1), color: `${C.parch}c8` }}>حصل بعد ما المدينة كانت خدت قرار.</div>
@@ -538,7 +538,7 @@ export const S09Journey: React.FC = () => {
       </DepthBox>
       <ShapeField seed={33} camZ={0} amt={0.6} />
 
-      <div style={{ position: "absolute", left: 96, top: 96, width: 760, direction: "rtl" }}>
+      <div style={{ position: "absolute", left: 96, top: 96, width: 760, textAlign: "left", direction: "rtl" }}>
         <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 34, color: `${C.gold}dd`, letterSpacing: "0.1em" }}>
           المسار
         </div>
@@ -674,7 +674,7 @@ export const S12Opinion: React.FC = () => {
       </DepthBox>
       <ShapeField seed={41} camZ={0} amt={0.7} />
 
-      <div style={{ position: "absolute", left: 80, top: 150, width: 640, direction: "rtl" }}>
+      <div style={{ position: "absolute", left: 76, top: 120, width: 660, textAlign: "right", direction: "rtl" }}>
         {lines.map((l) => (
           <div
             key={l.t}
@@ -728,7 +728,7 @@ export const S13Signoff: React.FC = () => {
         <ShapeField seed={45} camZ={0} amt={0.8} />
       </SceneShell>
 
-      <div style={{ position: "absolute", left: 80, top: 120, width: 620, direction: "rtl" }}>
+      <div style={{ position: "absolute", left: 80, top: 120, width: 620, textAlign: "left", direction: "rtl" }}>
         <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 72, color: C.parch, lineHeight: 1.5 }}>
           <div style={{ opacity: ip(f, 10, 50, 0, 1) }}>بس السؤال اللي بيفضل:</div>
           <div style={{ opacity: ip(f, 120, 160, 0, 1), color: `${C.parch}c0`, fontSize: 54 }}>
@@ -773,7 +773,7 @@ export const S13Signoff: React.FC = () => {
               alignItems: "center",
               justifyContent: "center",
               gap: 16,
-              direction: "rtl",
+              textAlign: "left", direction: "rtl",
             }}
           >
             <div style={{ width: 3, height: 44, background: C.gold, boxShadow: `0 0 24px ${C.gold}` }} />
