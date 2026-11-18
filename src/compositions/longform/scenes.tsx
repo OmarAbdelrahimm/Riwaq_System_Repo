@@ -143,7 +143,7 @@ export const S02Promise: React.FC = () => {
           textAlign: "right",
         }}
       >
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 96, color: C.parch, lineHeight: 1.42 }}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 96, color: C.parch, lineHeight: 1.42}}>
           <div style={{ opacity: ip(f, 8, 40, 0, 1) }}>أكبر عملية إنقاذ للتراث</div>
           <div style={{ opacity: ip(f, 34, 70, 0, 1), color: `${C.parch}d0` }}>في أفريقيا كلها…</div>
         </div>
@@ -167,7 +167,7 @@ export const S02Promise: React.FC = () => {
         </div>
 
         <div style={{ marginTop: 40, opacity: ip(f, 420, 460, 0, 1) }}>
-          <div style={{ fontFamily: "Amiri", fontSize: 62, color: C.parch, lineHeight: 1.5 }}>
+          <div style={{ fontFamily: "Amiri", fontSize: 62, color: C.parch, lineHeight: 1.5, whiteSpace: "nowrap"}}>
             حصلت في مدينة في نص الصحرا…
           </div>
           <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 40, color: `${C.stone}`, marginTop: 10 }}>
@@ -202,14 +202,14 @@ export const S03City: React.FC = () => {
           textAlign: "right",
         }}
       >
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 92, color: C.parch, lineHeight: 1.4 }}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 92, color: C.parch, lineHeight: 1.4}}>
           <div style={{ opacity: ip(f, 6, 38, 0, 1) }}>تمبكتو مكانتش واحة</div>
           <div style={{ opacity: ip(f, 30, 64, 0, 1), color: `${C.parch}b0` }}>عشان القوافل تعدّي.</div>
         </div>
 
         <div style={{ marginTop: 30, opacity: ip(f, 118, 150, 0, 1) }}>
-          <div style={{ fontFamily: "Amiri", fontSize: 130, color: C.gold }}>لأ.</div>
-          <div style={{ fontFamily: "Amiri", fontSize: 74, color: C.parch, marginTop: 6 }}>
+          <div style={{ fontFamily: "Amiri", fontSize: 130, color: C.gold}}>لأ.</div>
+          <div style={{ fontFamily: "Amiri", fontSize: 74, color: C.parch, marginTop: 6, whiteSpace: "nowrap"}}>
             كانت محطة. مقصد.
           </div>
         </div>
@@ -262,7 +262,7 @@ export const S04Leo: React.FC = () => {
         <div style={{ fontFamily: "IBM Plex Sans Arabic", fontWeight: 500, fontSize: 36, color: `${C.gold}dd`, letterSpacing: "0.12em" }}>
           ١٥٢٦
         </div>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 60, color: C.parch, lineHeight: 1.45, marginTop: 12 }}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 60, color: C.parch, lineHeight: 1.45, marginTop: 12}}>
           <div style={{ opacity: ip(f, 10, 44, 0, 1) }}>ليو أفريكانوس</div>
           <div style={{ opacity: ip(f, 40, 76, 0, 1), color: `${C.parch}a8`, fontSize: 40 }}>
             قعد فيها. شاف. وكتب.
@@ -286,7 +286,7 @@ export const S04Leo: React.FC = () => {
           </div>
           <div style={{ position: "relative" }}>
             <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 76, color: `${C.gold}66`, lineHeight: 0.6 }}>﴾</div>
-            <div style={{ fontFamily: "Amiri", fontSize: 76, color: C.parch, lineHeight: 1.48, marginTop: 14 }}>
+            <div style={{ fontFamily: "Amiri", fontSize: 76, color: C.parch, lineHeight: 1.48, marginTop: 14}}>
               تجارة الكتب
               <br />
               أربح من الدهب
@@ -298,7 +298,7 @@ export const S04Leo: React.FC = () => {
         </div>
 
         <div style={{ marginTop: 40, opacity: ip(f, 600, 650, 0, 1) }}>
-          <div style={{ fontFamily: "Amiri", fontSize: 68, color: C.parch }}>تخيل.</div>
+          <div style={{ fontFamily: "Amiri", fontSize: 68, color: C.parch}}>تخيل.</div>
           <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 50, color: `${C.stone}` }}>
             الدهب كان أرخص من الورق.
           </div>
@@ -314,13 +314,13 @@ export const S05Inside: React.FC = () => {
   const kinds = ["فلك", "طب", "شعر", "فقه", "عقود", "رسايل"];
   return (
     <SceneShell dur={585} kind="pan" tint="warm">
-      <DepthBox x={1350} y={540} z={-10} w={1000} h={720} keepSharp>
-        <PhotoCard src="projects/TMB_001/plates/tmb_close.jpg" w={1000} h={720} kb={[1.0, 1.14]} grad={0.62} />
+      <DepthBox x={1430} y={540} z={-10} w={940} h={700} keepSharp>
+        <PhotoCard src="projects/TMB_001/plates/tmb_close.jpg" w={940} h={700} kb={[1.0, 1.14]} grad={0.62} />
       </DepthBox>
       <ShapeField seed={17} camZ={0} amt={0.6} />
 
-      <TextRail side="left" top={140} width={760}>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 72, color: C.parch, opacity: ip(f, 6, 40, 0, 1), whiteSpace: "nowrap" }}>
+      <TextRail side="left" top={140} width={840}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 66, color: C.parch, opacity: ip(f, 6, 40, 0, 1), whiteSpace: "nowrap" }}>
           الكتب دي مكانتش ديكور.
         </div>
 
@@ -374,7 +374,7 @@ export const S06Drought: React.FC = () => {
       <ShapeField seed={21} camZ={0} amt={0.7} />
 
       <div style={{ position: "absolute", right: 60, top: 76, width: 620, direction: "rtl", textAlign: "right" }}>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 64, color: C.parch, lineHeight: 1.5 }}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 64, color: C.parch, lineHeight: 1.5}}>
           <div style={{ opacity: ip(f, 6, 40, 0, 1) }}>وهنا حاجة غريبة، ولها معنى.</div>
           <div style={{ opacity: ip(f, 60, 100, 0, 1), color: `${C.parch}cc` }}>اللي بيقتل أي أثر تاني… الرطوبة.</div>
           <div style={{ opacity: ip(f, 210, 250, 0, 1), color: C.gold }}>كان بعيد عنهم.</div>
@@ -431,7 +431,7 @@ export const S07Fire: React.FC = () => {
         <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 44, color: `${C.gold}dd`, letterSpacing: "0.08em" }}>
           ٢٥ يناير ٢٠١٣ · مكتبة أحمد بابا
         </div>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 84, color: C.parch, lineHeight: 1.36, marginTop: 18 }}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 84, color: C.parch, lineHeight: 1.36, marginTop: 18}}>
           <div style={{ opacity: ip(f, 30, 66, 0, 1) }}>كبّوا بنزين.</div>
           <div style={{ opacity: ip(f, 150, 190, 0, 1) }}>وولّعوا.</div>
         </div>
@@ -458,7 +458,7 @@ export const S07Fire: React.FC = () => {
       {/* ٤٢٠٣ راحت + «مش رقم» */}
       <TextRail side="left" top={440} width={600}>
         <div style={{ opacity: ip(f, 700, 740, 0, 1) }}>
-          <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 170, color: C.gold, lineHeight: 1 }}>
+          <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 170, color: C.gold, lineHeight: 1}}>
             ٤٢٠٣
           </div>
           <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 46, color: C.parch, marginTop: 6 }}>مخطوطة. راحت.</div>
@@ -488,13 +488,13 @@ export const S08Plan: React.FC = () => {
       <ShapeField seed={29} camZ={0} amt={0.7} />
 
       <TextRail side="left" top={90} width={620}>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 62, color: C.parch, lineHeight: 1.5 }}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 62, color: C.parch, lineHeight: 1.5}}>
           <div style={{ opacity: ip(f, 6, 40, 0, 1) }}>بس الحريق ده،</div>
           <div style={{ opacity: ip(f, 44, 80, 0, 1), color: `${C.parch}c8` }}>حصل بعد ما المدينة كانت خدت قرار.</div>
         </div>
 
         <div style={{ marginTop: 36, opacity: ip(f, 120, 160, 0, 1) }}>
-          <div style={{ fontFamily: "Amiri", fontSize: 76, color: C.gold }}>١٤٠ ألف</div>
+          <div style={{ fontFamily: "Amiri", fontSize: 76, color: C.gold}}>١٤٠ ألف</div>
           <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 38, color: `${C.parch}d0` }}>مخطوطة. سرًا.</div>
         </div>
 
@@ -583,7 +583,7 @@ export const S09Journey: React.FC = () => {
         </div>
 
         <div style={{ marginTop: 36, opacity: ip(f, 660, 700, 0, 1) }}>
-          <div style={{ fontFamily: "Amiri", fontSize: 60, color: C.parch }}>ولو واحدة اتكشفت…</div>
+          <div style={{ fontFamily: "Amiri", fontSize: 60, color: C.parch}}>ولو واحدة اتكشفت…</div>
           <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 46, color: C.burgundy, letterSpacing: "0.06em" }}>
             خلاص.
           </div>
@@ -646,7 +646,7 @@ export const S11Numbers: React.FC = () => {
           >
             ٣٥٠
           </div>
-          <div style={{ fontFamily: "Amiri", fontSize: 90, color: C.parch, marginTop: -20 }}>ألف مخطوطة</div>
+          <div style={{ fontFamily: "Amiri", fontSize: 90, color: C.parch, marginTop: -20}}>ألف مخطوطة</div>
           <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 44, color: `${C.parch}a8`, marginTop: 16 }}>
             نجت.
           </div>
@@ -746,7 +746,7 @@ export const S13Signoff: React.FC = () => {
       </SceneShell>
 
       <div style={{ position: "absolute", left: 80, top: 120, width: 620, textAlign: "left", direction: "rtl" }}>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 72, color: C.parch, lineHeight: 1.5 }}>
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 72, color: C.parch, lineHeight: 1.5}}>
           <div style={{ opacity: ip(f, 10, 50, 0, 1) }}>بس السؤال اللي بيفضل:</div>
           <div style={{ opacity: ip(f, 120, 160, 0, 1), color: `${C.parch}c0`, fontSize: 54 }}>
             فيه كتب محتاجة نفس القرار.
@@ -780,7 +780,7 @@ export const S13Signoff: React.FC = () => {
           }}
         />
         <div style={{ textAlign: "center", position: "relative" }}>
-          <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 130, color: C.parch, lineHeight: 1.2 }}>
+          <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 130, color: C.parch, lineHeight: 1.2, whiteSpace: "nowrap"}}>
             و دي رِواق .. سلاام
           </div>
           <div
