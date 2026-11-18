@@ -466,7 +466,7 @@ export const S07Fire: React.FC = () => {
         <div style={{ marginTop: 26, opacity: ip(f, 850, 890, 0, 1) }}>
           <div style={{ fontFamily: "Amiri", fontSize: 56, color: C.parch }}>مش رقم.</div>
           <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 44, color: `${C.stone}` }}>
-            ٤٢٠٣ مرة، حد فقد حاجة عمرها ٥٠٠ سنة.
+            ٤٢٠٣ مرة فقد حاجة عمرها ٥٠٠ سنة.
           </div>
         </div>
       </TextRail>
