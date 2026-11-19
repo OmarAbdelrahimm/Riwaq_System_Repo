@@ -1,0 +1,75 @@
+name: render-shorts
+
+on:
+  push:
+    paths:
+      - ".github/trigger/shorts.txt"
+      - ".github/workflows/render-shorts.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: riwaq-shorts
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  shorts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PROJECT_ID: TMB_001
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: تثبيت الحزم
+        run: npm ci || npm install
+      - name: بوابة الشورتات
+        run: python3 scripts/check_shorts.py
+      - name: ستيلات الشورتات
+        run: |
+          mkdir -p reports/shorts
+          set +e
+          for pair in "ShortA:30 130 300 600 780" "ShortB:28 120 300 520 880"; do
+            id="${pair%%:*}"
+            frames="${pair#*:}"
+            for f in $frames; do
+              timeout 240 npx remotion still src/index.ts $id reports/shorts/${id}_f${f}.png \
+                --frame=$f --scale=0.7 --gl=swiftshader --log=error >/dev/null 2>&1 || true
+            done
+          done
+          ls -lh reports/shorts || true
+      - name: ريندر Short A
+        run: |
+          set +e
+          npx remotion render src/index.ts ShortA exports/SHORT_A_TMB_001.mp4 \
+            --concurrency=3 --crf=21 --scale=0.6 --gl=swiftshader > _a.log 2>&1
+          echo "A_EXIT=$?"
+          tail -6 _a.log
+      - name: ريندر Short B
+        run: |
+          set +e
+          npx remotion render src/index.ts ShortB exports/SHORT_B_TMB_001.mp4 \
+            --concurrency=3 --crf=21 --scale=0.6 --gl=swiftshader > _b.log 2>&1
+          echo "B_EXIT=$?"
+          tail -6 _b.log
+      - name: نقل للمستودع
+        if: always()
+        run: |
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          mkdir -p data/projects/${PROJECT_ID}/exports reports
+          cp _a.log reports/render_short_a.log 2>/dev/null || true
+          cp _b.log reports/render_short_b.log 2>/dev/null || true
+          if ls exports/SHORT_A_TMB_001.mp4 >/dev/null 2>&1; then
+            cp exports/SHORT_A_TMB_001.mp4 data/projects/${PROJECT_ID}/exports/
+          fi
+          if ls exports/SHORT_B_TMB_001.mp4 >/dev/null 2>&1; then
+            cp exports/SHORT_B_TMB_001.mp4 data/projects/${PROJECT_ID}/exports/
+          fi
+          git add -f data/projects/${PROJECT_ID}/exports reports/shorts reports/render_short_*.log 2>/dev/null || true
+          git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: الشورتات" && git pull --rebase -q && git push -q) || echo "push skipped"

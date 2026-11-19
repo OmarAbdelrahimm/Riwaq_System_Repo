@@ -3,6 +3,8 @@ import { Composition } from "remotion";
 import { Episode } from "./compositions/Episode";
 import { ProofStyle } from "./compositions/ProofStyle";
 import { Longform, TOTAL_FRAMES } from "./compositions/longform/Longform";
+import { ShortA, SHORT_A_FRAMES } from "./compositions/shorts/ShortA";
+import { ShortB, SHORT_B_FRAMES } from "./compositions/shorts/ShortB";
 import type { Brand, EpisodeMeta } from "./engine/types";
 import brandJson from "../data/brand.json";
 import goldenJson from "../data/projects/GOLDEN_001/episode_meta.json";
@@ -35,6 +37,22 @@ export const RemotionRoot: React.FC = () => {
       fps={30}
       width={1920}
       height={1080}
+    />
+    <Composition
+      id="ShortA"
+      component={ShortA}
+      durationInFrames={SHORT_A_FRAMES}
+      fps={30}
+      width={1080}
+      height={1920}
+    />
+    <Composition
+      id="ShortB"
+      component={ShortB}
+      durationInFrames={SHORT_B_FRAMES}
+      fps={30}
+      width={1080}
+      height={1920}
     />
     <Composition
       id="Episode"
