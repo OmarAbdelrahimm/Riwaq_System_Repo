@@ -54,7 +54,7 @@ const S03: React.FC = () => {
   return (
     <AbsoluteFill>
       <Backdrop tint="deep" />
-      <Plate src="projects/TMB_001/plates/tmb_smoke.jpg" from={0} w={960} h={760} y={1420} kb={[1.14, 1.02]} grad={0.6} />
+      <Plate src="projects/TMB_001/plates/tmb_smoke.jpg" from={0} kb={[1.14, 1.02]} grad={0.6} />
       <Grain />
       <Vignette />
       <BigNumber value="٤٢٠٣" from={4} size={330} y={520} />
@@ -69,7 +69,7 @@ const S04: React.FC = () => {
   return (
     <AbsoluteFill>
       <Backdrop tint="warm" />
-      <Plate src="projects/TMB_001/plates/tmb_drums.jpg" from={0} w={W - 80} h={1120} y={900} kb={[1.02, 1.12]} grad={0.55} />
+      <Plate src="projects/TMB_001/plates/tmb_drums.jpg" from={0} kb={[1.02, 1.12]} grad={0.55} />
       <Grain />
       <Vignette />
       <BigTitle text="لكن المدينة" from={4} size={88} color={C.parch} y={360} />
@@ -85,7 +85,7 @@ const S05: React.FC = () => {
   return (
     <AbsoluteFill>
       <Backdrop tint="cold" />
-      <Plate src="projects/TMB_001/plates/tmb_route.jpg" from={0} w={W} h={980} y={760} kb={[1.0, 1.14]} grad={0.6} />
+      <Plate src="projects/TMB_001/plates/tmb_route.jpg" from={0} kb={[1.0, 1.14]} grad={0.6} />
       <Grain />
       <Vignette />
       <BigNumber value="٤٠٠" from={6} size={290} y={380} label="ميل جنوبًا" labelColor={C.parch} />
@@ -113,7 +113,7 @@ const S07: React.FC = () => {
   return (
     <AbsoluteFill>
       <Backdrop tint="deep" />
-      <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} w={880} h={860} y={1440} kb={[1.0, 1.10]} grad={0.6} />
+      <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} kb={[1.0, 1.10]} grad={0.6} />
       <Grain />
       <Vignette />
       <KeyLine text="الخسارة؟" from={4} size={76} color={`${C.parch}c8`} y={430} />
@@ -127,7 +127,7 @@ const S07: React.FC = () => {
 const S08: React.FC = () => (
   <AbsoluteFill>
     <Backdrop tint="warm" />
-    <Plate src="projects/TMB_001/plates/tmb_boat.jpg" from={0} w={900} h={720} y={960} kb={[1.04, 1.14]} grad={0.62} />
+    <Plate src="projects/TMB_001/plates/tmb_boat.jpg" from={0} kb={[1.04, 1.14]} grad={0.62} />
     <Grain />
     <Vignette />
     <BigNumber value="٣٥٠" from={4} size={270} y={380} label="ألف مخطوطة نجت" labelColor={C.parch} />
@@ -138,7 +138,7 @@ const S08: React.FC = () => (
 const S09: React.FC = () => (
   <AbsoluteFill>
     <Backdrop tint="deep" />
-    <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} w={860} h={700} y={920} kb={[1.06, 1.0]} grad={0.66} />
+    <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} kb={[1.06, 1.0]} grad={0.66} />
     <Grain />
     <Vignette />
     <BigTitle text="الحكاية كلها" from={4} size={86} color={C.parch} y={340} />

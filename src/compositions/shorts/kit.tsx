@@ -188,7 +188,7 @@ export const Plate: React.FC<{
   rot?: number;
   radius?: number;
   grad?: number;
-}> = ({ src, from, w = 940, h = 1080, x, y = 660, kb = [1.02, 1.10], rot = 0, radius = 30, grad = 0.5 }) => {
+}> = ({ src, from, w = W, h = H, x, y, kb = [1.02, 1.10], rot = 0, radius = 0, grad = 0.5 }) => {
   const f = useCurrentFrame();
   const t = Math.max(0, f - from);
   const inO = ip(f, from, from + 14, 0, 1);
@@ -198,12 +198,13 @@ export const Plate: React.FC<{
   const live = Math.min(1, t / 90);
   const scale = kb[0] + (kb[1] - kb[0]) * live;
   const cx = x ?? W / 2;
+  const cy = y ?? H / 2;
   return (
     <div
       style={{
         position: "absolute",
         left: cx - w / 2,
-        top: y - h / 2,
+        top: cy - h / 2,
         width: w,
         height: h,
         borderRadius: radius,
