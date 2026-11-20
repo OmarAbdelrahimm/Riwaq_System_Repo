@@ -74,6 +74,12 @@ for name, cfg in SHORTS.items():
             if len(line) > MAX_CHARS_AR:
                 problems.append(f"{name}: سطر «{line[:24]}» فيه {len(line)} حرف > {MAX_CHARS_AR}")
 
+# ── 6. الصوت لازم يكون مركّب ──
+for name, cfg in SHORTS.items():
+    src = Path(cfg["file"]).read_text()
+    if "vo/short" not in src:
+        problems.append(f"{name}: مفيش VO مركّب — شورت من غير صوت مش جاهز للنشر")
+
 print()
 if problems:
     print("\n".join("❌ " + p for p in problems))

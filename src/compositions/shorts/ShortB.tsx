@@ -199,7 +199,8 @@ export const ShortB: React.FC = () => {
         </Sequence>
       ))}
       <TimeBar total={TOTAL} />
-      <Audio src={staticFile("projects/TMB_001/audio/music.wav")} volume={0.09} loop />
+      <Audio src={staticFile("projects/TMB_001/vo/shortB_vo.mp3")} volume={1} />
+      <Audio src={staticFile("projects/TMB_001/audio/music.wav")} volume={0.05} loop />
     </AbsoluteFill>
   );
 };

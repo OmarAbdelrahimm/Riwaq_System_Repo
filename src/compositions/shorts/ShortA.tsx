@@ -20,8 +20,9 @@ const S01: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_smoke.jpg" from={0} w={W} h={H} y={H / 2} radius={0} kb={[1.06, 1.16]} grad={0.78} />
       <Grain />
       <Vignette />
-      <BigTitle text="٢٥ يناير ٢٠١٣" from={4} size={96} color={C.parch} y={420} glow />
-      <BigTitle text="مكتبة أحمد بابا" from={16} size={64} color={`${C.parch}d0`} y={560} />
+      <BigTitle text="٢٥ يناير ٢٠١٣" from={4} size={96} color={C.parch} y={400} glow />
+      <BigTitle text="مكتبة أحمد بابا" from={14} size={68} color={`${C.parch}d0`} y={540} />
+      <BigTitle text="تمبكتو · مالي" from={24} size={46} color={`${C.stone}e0`} y={630} />
     </AbsoluteFill>
   );
 };
@@ -33,7 +34,8 @@ const S02: React.FC = () => (
     <Plate src="projects/TMB_001/plates/tmb_empty.jpg" from={0} w={W} h={H} y={H / 2} radius={0} kb={[1.10, 1.02]} grad={0.72} />
     <Grain />
     <Vignette />
-    <BigTitle text="كبّوا بنزين." from={4} size={118} color={C.parch} y={700} glow />
+    <BigTitle text="مسلحين دخلوا." from={3} size={92} color={`${C.parch}d8`} y={600} />
+    <BigTitle text="كبّوا بنزين." from={14} size={112} color={C.parch} y={740} glow />
   </AbsoluteFill>
 );
 
@@ -57,8 +59,9 @@ const S03: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_smoke.jpg" from={0} kb={[1.14, 1.02]} grad={0.6} />
       <Grain />
       <Vignette />
-      <BigNumber value="٤٢٠٣" from={4} size={330} y={520} />
-      <KeyLine text="مخطوطة. راحت." from={34} size={68} color={C.parch} y={1000} />
+      <BigNumber value="٤٢٠٣" from={4} size={300} y={470} />
+      <KeyLine text="مخطوطة اتحرقت" from={30} size={74} color={C.parch} y={920} />
+      <KeyLine text="في ليلة واحدة" from={54} size={52} color={`${C.stone}f0`} y={1010} />
       <Seam at={86} />
     </AbsoluteFill>
   );
@@ -72,10 +75,10 @@ const S04: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_drums.jpg" from={0} kb={[1.02, 1.12]} grad={0.55} />
       <Grain />
       <Vignette />
-      <BigTitle text="لكن المدينة" from={4} size={88} color={C.parch} y={360} />
-      <BigTitle text="خبّت الكتب." from={22} size={112} color={C.goldLight} y={470} glow />
-      <KeyLine text="في صناديق زيت" from={70} size={58} color={`${C.parch}cc`} y={1330} />
-      <KeyLine text="وعربيات دفع" from={92} size={58} color={`${C.parch}cc`} y={1390} />
+      <BigTitle text="لكن أهل المدينة" from={4} size={78} color={C.parch} y={330} />
+      <BigTitle text="خبّوا الكتب." from={20} size={112} color={C.goldLight} y={444} glow />
+      <KeyLine text="في صناديق بنزين فاضية" from={64} size={54} color={`${C.parch}cc`} y={1300} />
+      <KeyLine text="وعربيات دفع" from={88} size={54} color={`${C.parch}cc`} y={1374} />
     </AbsoluteFill>
   );
 };
@@ -88,8 +91,8 @@ const S05: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_route.jpg" from={0} kb={[1.0, 1.14]} grad={0.6} />
       <Grain />
       <Vignette />
-      <BigNumber value="٤٠٠" from={6} size={290} y={380} label="ميل جنوبًا" labelColor={C.parch} />
-      <KeyLine text="عربيات · مراكب · قوافل" from={80} size={54} color={`${C.parch}cc`} y={1330} />
+      <BigNumber value="٤٠٠" from={6} size={286} y={360} label="ميل جنوبًا · باماكو" labelColor={C.parch} />
+      <KeyLine text="عربيات ومراكب وقوافل" from={72} size={48} color={`${C.parch}cc`} y={1320} />
       <Dot from={112} />
     </AbsoluteFill>
   );
@@ -103,7 +106,8 @@ const S06: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_door.jpg" from={0} w={W} h={H} y={H / 2} radius={0} kb={[1.04, 1.12]} grad={0.66} />
       <Grain />
       <Vignette />
-      <BigTitle text="وصلت." from={6} size={188} color={C.parch} y={760} glow />
+      <BigTitle text="الكتب وصلت." from={6} size={128} color={C.parch} y={380} glow />
+    <BigTitle text="سليمة." from={30} size={168} color={C.goldLight} y={700} />
     </AbsoluteFill>
   );
 };
@@ -116,9 +120,10 @@ const S07: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} kb={[1.0, 1.10]} grad={0.6} />
       <Grain />
       <Vignette />
-      <KeyLine text="الخسارة؟" from={4} size={76} color={`${C.parch}c8`} y={430} />
-      <BigNumber value="١٪" from={22} size={340} color={C.goldLight} y={700} />
-      <KeyLine text="واحد في المية." from={70} size={66} color={C.parch} y={1120} />
+      <KeyLine text="اللي ضاع من التراث" from={4} size={62} color={`${C.parch}c8`} y={400} />
+      <BigNumber value="١٪" from={22} size={330} color={C.goldLight} y={660} />
+      <KeyLine text="واحد في المية." from={66} size={74} color={C.parch} y={1080} />
+      <KeyLine text="يعني ٩٩٪ نجوا" from={88} size={54} color={`${C.goldLight}d8`} y={1180} />
     </AbsoluteFill>
   );
 };
@@ -130,7 +135,8 @@ const S08: React.FC = () => (
     <Plate src="projects/TMB_001/plates/tmb_boat.jpg" from={0} kb={[1.04, 1.14]} grad={0.62} />
     <Grain />
     <Vignette />
-    <BigNumber value="٣٥٠" from={4} size={270} y={380} label="ألف مخطوطة نجت" labelColor={C.parch} />
+    <BigNumber value="٣٥٠" from={4} size={262} y={350} label="ألف مخطوطة" labelColor={C.parch} />
+    <KeyLine text="اتنقلوا في سرية" from={52} size={56} color={`${C.goldLight}d8`} y={1000} />
   </AbsoluteFill>
 );
 
@@ -141,8 +147,9 @@ const S09: React.FC = () => (
     <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} kb={[1.06, 1.0]} grad={0.66} />
     <Grain />
     <Vignette />
-    <BigTitle text="الحكاية كلها" from={4} size={86} color={C.parch} y={340} />
-    <CTA from={22} />
+    <BigTitle text="الحكاية كلها" from={4} size={88} color={C.parch} y={330} />
+    <BigTitle text="في الحلقة الكاملة" from={18} size={58} color={`${C.goldLight}d8`} y={460} />
+    <CTA from={34} />
   </AbsoluteFill>
 );
 
@@ -173,8 +180,8 @@ export const ShortA: React.FC = () => {
         </Sequence>
       ))}
       <TimeBar total={TOTAL} />
-      <Audio src={staticFile("projects/TMB_001/audio/music.wav")} volume={0.10} loop />
-      <Audio src={staticFile("projects/TMB_001/audio/stinger_in.wav")} volume={0.5} />
+      <Audio src={staticFile("projects/TMB_001/vo/shortA_vo.mp3")} volume={1} />
+      <Audio src={staticFile("projects/TMB_001/audio/music.wav")} volume={0.055} loop />
     </AbsoluteFill>
   );
 };
