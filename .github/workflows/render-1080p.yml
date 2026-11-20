@@ -1,0 +1,66 @@
+name: render-1080p
+
+on:
+  push:
+    paths:
+      - ".github/trigger/master.txt"
+      - ".github/workflows/render-1080p.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: riwaq-master
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  master:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      PROJECT_ID: TMB_001
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: تثبيت الحزم
+        run: npm ci || npm install
+      - name: البوابات
+        run: |
+          python3 scripts/check_shorts.py
+      - name: Short A — 1080×1920
+        run: |
+          set +e
+          npx remotion render src/index.ts ShortA exports/SHORT_A_1080p.mp4 \
+            --concurrency=4 --crf=19 --scale=1 --gl=swiftshader > _ma.log 2>&1
+          echo "EXIT=$?"; tail -4 _ma.log
+      - name: Short B — 1080×1920
+        run: |
+          set +e
+          npx remotion render src/index.ts ShortB exports/SHORT_B_1080p.mp4 \
+            --concurrency=4 --crf=19 --scale=1 --gl=swiftshader > _mb.log 2>&1
+          echo "EXIT=$?"; tail -4 _mb.log
+      - name: الحلقة الطويلة — 1920×1080
+        run: |
+          set +e
+          npx remotion render src/index.ts Longform exports/LONGFORM_1080p.mp4 \
+            --concurrency=4 --crf=19 --scale=1 --gl=swiftshader > _ml.log 2>&1
+          echo "EXIT=$?"; tail -4 _ml.log
+      - name: نقل للمستودع
+        if: always()
+        run: |
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          mkdir -p data/projects/${PROJECT_ID}/exports reports
+          for f in _ma _mb _ml; do cp $f.log reports/render${f}.log 2>/dev/null || true; done
+          for f in SHORT_A_1080p SHORT_B_1080p LONGFORM_1080p; do
+            if ls exports/$f.mp4 >/dev/null 2>&1; then
+              cp exports/$f.mp4 data/projects/${PROJECT_ID}/exports/ || true
+            fi
+          done
+          ls -lh data/projects/${PROJECT_ID}/exports/ || true
+          git add -f data/projects/${PROJECT_ID}/exports reports/render_m*.log 2>/dev/null || true
+          git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: نسخ 1080p" && git pull --rebase -q && git push -q) || echo "push skipped"
