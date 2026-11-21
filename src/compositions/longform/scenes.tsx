@@ -43,24 +43,50 @@ export const SCENE_DUR: Record<number, number> = {
    سواد → ٤٢٠٣ يظهر بضربة → كاميرا تبعد تكشف الغرفة المحروقة.        */
 export const S01Hook: React.FC = () => {
   const f = useCurrentFrame();
-  const numIn = ip(f, 22, 52, 0, 1);
-  const numScale = interpolate(f, [22, 60], [1.35, 1.0], {
+  /* ── الخطاف V2: صورة من الإطار 0 — مفيش سواد خالص ──────────────────
+     الإطار 0–20   : الغرفة المحروقة بتبان + «بصّ في الرقم ده.»
+     الإطار 20–55  : الرقم ٤٢٠٣ بيضرب
+     الإطار 55–120 : «اتحرقت في يوم واحد» + الكاميرا تتقدم
+     الإطار 300+   : «الأغرب؟ المدينة كانت لسه مليانة كتب»               */
+  const roomIn = ip(f, 0, 26, 0, 1);
+  const numIn = ip(f, 18, 46, 0, 1);
+  const numScale = interpolate(f, [18, 70], [1.42, 1.0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const roomIn = ip(f, 90, 150, 0, 1);
-  const numOut = ip(f, 96, 145, 1, 0);
+  const numOut = ip(f, 118, 160, 1, 0.42);
+  const subIn = ip(f, 58, 96, 0, 1);
+  const subOut = ip(f, 150, 190, 1, 0);
 
   return (
     <AbsoluteFill style={{ backgroundColor: C.ink }}>
-      {/* الغرفة المحروقة تظهر في الخلفية */}
-      <AbsoluteFill style={{ opacity: roomIn * 0.62 }}>
+      {/* الغرفة المحروقة — من الإطار صفر */}
+      <AbsoluteFill style={{ opacity: roomIn > 0 ? 0.38 + roomIn * 0.5 : 0 }}>
         <SceneShell dur={600} kind="push" tint="deep">
-          <DepthBox x={660} y={540} z={0} w={1100} h={780} keepSharp>
-            <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1100} h={780} grad={0.55} kb={[1.02, 1.14]} />
+          <DepthBox x={960} y={540} z={0} w={1920} h={1080} keepSharp>
+            <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1920} h={1080} grad={0.62} kb={[1.0, 1.16]} />
           </DepthBox>
           <ShapeField seed={2} camZ={0} amt={0.6} />
         </SceneShell>
+      </AbsoluteFill>
+
+      {/* هالة دافئة خلف الرقم — تفصله عن الخلفية */}
+      <AbsoluteFill
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: Math.max(numIn, subIn) * numOut,
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            width: 1150,
+            height: 760,
+            borderRadius: "50%",
+            background: `radial-gradient(ellipse, ${C.ink}e8 0%, ${C.ink}b8 48%, transparent 74%)`,
+          }}
+        />
       </AbsoluteFill>
 
       {/* الرقم */}
@@ -68,37 +94,46 @@ export const S01Hook: React.FC = () => {
         style={{
           alignItems: "center",
           justifyContent: "center",
-          opacity: numOut,
+          opacity: numIn * numOut,
           transform: `scale(${numScale})`,
         }}
       >
         <div
           style={{
-            position: "absolute",
-            width: 900,
-            height: 620,
-            borderRadius: "50%",
-            background: `radial-gradient(ellipse, ${C.ink}f2 0%, ${C.ink}cc 45%, transparent 72%)`,
-            opacity: numIn,
-          }}
-        />
-        <div
-          style={{
             position: "relative",
             fontFamily: "Amiri",
             fontWeight: 700,
-            fontSize: 330,
+            fontSize: 320,
             lineHeight: 1,
             color: C.gold,
-            opacity: numIn,
-            textShadow: `0 0 140px ${C.goldDeep}dd, 0 0 60px rgba(0,0,0,1), 0 14px 70px rgba(0,0,0,1), 0 2px 4px rgba(0,0,0,.9)`,
+            textShadow: `0 0 160px ${C.goldDeep}f0, 0 0 70px rgba(0,0,0,1), 0 16px 80px rgba(0,0,0,1), 0 2px 5px rgba(0,0,0,.95)`,
           }}
         >
           ٤٢٠٣
         </div>
       </AbsoluteFill>
 
-      {/* النص المتأخر */}
+      {/* «مخطوطة. اتحرقت في يوم واحد.» — من الإطار 58 (1.9s) */}
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: 800,
+          direction: "rtl",
+          textAlign: "center",
+          opacity: subIn * subOut,
+        }}
+      >
+        <div style={{ fontFamily: "Amiri", fontSize: 92, fontWeight: 700, color: C.parch, lineHeight: 1.25 }}>
+          مخطوطة. اتحرقت
+        </div>
+        <div style={{ fontFamily: "Amiri", fontSize: 68, color: C.parch2, marginTop: 8, lineHeight: 1.3 }}>
+          في يوم واحد.
+        </div>
+      </div>
+
+      {/* «الأغرب؟ المدينة دي كانت لسه مليانة كتب» — من 10s */}
       <div
         style={{
           position: "absolute",
@@ -121,8 +156,8 @@ export const S01Hook: React.FC = () => {
   );
 };
 
-/* ═══ 2 · الوعد — فضول دافئ ═════════════════════════════════════════════════
-   باب المكتبة في الغروب، ثم التلات «ولا».                              */
+/* ═══ 2 · الوعد — فضول دافئ ════════════════════════════════════════════════
+   «أكبر عملية إنقاذ… ماحصلتش في متحف ولا عاصمة ولا مكتبة عالمية.»      */
 export const S02Promise: React.FC = () => {
   const f = useCurrentFrame();
   const words = ["متحف", "عاصمة", "مكتبة عالمية"];
@@ -132,6 +167,19 @@ export const S02Promise: React.FC = () => {
         <PhotoCard src="projects/TMB_001/plates/tmb_outside.jpg" w={780} h={890} kb={[1.0, 1.12]} grad={0.7} />
       </DepthBox>
       <ShapeField seed={5} camZ={0} />
+
+      {/* scrim: عمود النص لازم يبقى مقروء فوق الصورة اليمين */}
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          width: 1120,
+          height: 1080,
+          background: `linear-gradient(90deg, ${C.ink}f2 0%, ${C.ink}d8 52%, ${C.ink}00 100%)`,
+          pointerEvents: "none",
+        }}
+      />
 
       <div
         style={{

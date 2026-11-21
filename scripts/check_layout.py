@@ -9,6 +9,11 @@ src = Path("src/compositions/longform/scenes.tsx").read_text()
 parts = re.split(r"/\* ═══ (\d+) ·", src)
 problems = []
 
+# 0) لازم الـ13 مشهد كلهم موجودين — التقسيم بيعتمد على التعليقات
+_sec = [int(parts[k]) for k in range(1, len(parts), 2)]
+if _sec != list(range(1, 14)):
+    problems.append(f"تعليقات المشاهد ناقصة/مكررة: {_sec} (المتوقع 1..13)")
+
 def num(pat, seg, default=None):
     m = re.search(pat, seg)
     return int(m.group(1)) if m else default
@@ -17,8 +22,18 @@ for k in range(1, len(parts), 2):
     i, body = parts[k], parts[k + 1]
 
     plates = []
+    # scrims أفقية: بتغطي منطقة وتخلي النص مقروء فوق الصورة
+    scrims = []
+    for m in re.finditer(r'width:\s*(\d+),\s*height:\s*(\d+),\s*background:\s*`linear-gradient\((\d+)deg', body):
+        sw, sh, ang = map(int, m.groups())
+        if ang in (90, 270):
+            scrims.append((0, sw))
+
     for m in re.finditer(r'<DepthBox x=\{(-?\d+)\} y=\{(-?\d+)\} z=\{[^}]*\} w=\{(\d+)\} h=\{(\d+)\}', body):
         cx, cy, w, h = map(int, m.groups())
+        # الصورة اللي بتغطي الكادر كله مش "عائق" — النص لازم يقع عليها
+        if w >= W and h >= H - 20:
+            continue
         plates.append((cx - w // 2, cy - h // 2, cx + w // 2, cy + h // 2))
 
     # كل <div ... style={{ ... }}> فيه direction: rtl
@@ -28,8 +43,17 @@ for k in range(1, len(parts), 2):
             continue
         if 'position: "absolute"' not in st:
             continue  # عمود نسبي — يورث من الأب
+        # الـscrims مش نصوص — دي طبقات تعتيم خلف النص
+        if 'pointerEvents: "none"' in st or 'gradient(' in st:
+            continue
+        # لازم يكون نص فعلاً: textAlign أو fontFamily أو fontSize
+        if not any(k in st for k in ('textAlign:', 'fontFamily:', 'fontSize:')):
+            continue
         w = num(r'width:\s*(\d+)', st)
         if not w:
+            continue
+        # لازم يكون له موضع صريح (top/right/left) — وإلا ده container مش نص
+        if 'top:' not in st and 'bottom:' not in st:
             continue
         right, left, sid = num(r'right:\s*(\d+)', st), num(r'left:\s*(\d+)', st), None
         if right is not None:
@@ -41,11 +65,13 @@ for k in range(1, len(parts), 2):
         b = a + w
         if a < MARGIN or b > W - MARGIN:
             problems.append(f"S{i}: عمود نص {a}..{b} خارج الكادر")
+        # لو النص جوه منطقة scrim → مقروء، مش مشكلة
+        covered = any(a >= s0 - 10 and b <= s1 + 10 for s0, s1 in scrims)
         for pl, pt, pr, pb in plates:
-            if a < pr and b > pl:
+            if a < pr and b > pl and not covered:
                 ov = min(b, pr) - max(a, pl)
                 if ov > 60:
-                    problems.append(f"S{i}: نص {a}..{b} يركب على صورة {pl}..{pr} — تداخل {ov}px")
+                    problems.append(f"S{i}: نص {a}..{b} يركب على صورة {pl}..{pr} — تداخل {ov}px (مفيش scrim)")
 
     for m in re.finditer(r'<TextRail side="(left|right)" top=\{(\d+)\} width=\{(\d+)\}', body):
         side, top, w = m.group(1), int(m.group(2)), int(m.group(3))

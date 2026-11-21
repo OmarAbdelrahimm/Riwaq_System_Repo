@@ -6,6 +6,11 @@ on:
       - ".github/trigger/master.txt"
       - ".github/workflows/render-1080p.yml"
   workflow_dispatch:
+    inputs:
+      stills_only:
+        description: "ستيلات بس (بدون رندر فيديو)"
+        type: boolean
+        default: false
 
 concurrency:
   group: riwaq-master
@@ -34,19 +39,31 @@ jobs:
           python3 scripts/check_layout.py
       - name: بوابة الصوت V2
         run: python3 scripts/check_audio_v2.py
+      - name: ستيلات الفيلم الطويل
+        run: |
+          mkdir -p reports/longform
+          set +e
+          for f in 6 30 90 160 300 460 640 760 900 1200 1500 1800 2100 2400 2700 2900 3200 3500 3800 4100 4400 4700 5000 5300 5700 6100 6500 6900 7300 7700 8100 8500; do
+            timeout 240 npx remotion still src/index.ts Longform reports/longform/L_f${f}.png \
+              --frame=$f --scale=0.45 --gl=swiftshader --log=error >/dev/null 2>&1 || true
+          done
+          ls reports/longform | wc -l
       - name: Short A — 1080×1920
+        if: ${{ !inputs.stills_only }}
         run: |
           set +e
           npx remotion render src/index.ts ShortA exports/SHORT_A_1080p.mp4 \
             --concurrency=4 --crf=19 --scale=1 --gl=swiftshader > _ma.log 2>&1
           echo "EXIT=$?"; tail -4 _ma.log
       - name: Short B — 1080×1920
+        if: ${{ !inputs.stills_only }}
         run: |
           set +e
           npx remotion render src/index.ts ShortB exports/SHORT_B_1080p.mp4 \
             --concurrency=4 --crf=19 --scale=1 --gl=swiftshader > _mb.log 2>&1
           echo "EXIT=$?"; tail -4 _mb.log
       - name: الحلقة الطويلة — 1920×1080
+        if: ${{ !inputs.stills_only }}
         run: |
           set +e
           npx remotion render src/index.ts Longform exports/LONGFORM_1080p.mp4 \
@@ -65,5 +82,5 @@ jobs:
             fi
           done
           ls -lh data/projects/${PROJECT_ID}/exports/ || true
-          git add -f data/projects/${PROJECT_ID}/exports reports/render_m*.log 2>/dev/null || true
+          git add -f data/projects/${PROJECT_ID}/exports reports/longform reports/render_m*.log 2>/dev/null || true
           git diff --cached --quiet && echo "لا تغيير" || (git commit -q -m "ci: نسخ 1080p" && git pull --rebase -q && git push -q) || echo "push skipped"
