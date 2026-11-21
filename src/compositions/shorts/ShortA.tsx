@@ -83,7 +83,7 @@ const S04: React.FC = () => {
   );
 };
 
-/* ── 11.5–16.0 · ٤٠٠ ميل ─────────────────────────────────────────────────── */
+/* ── 11.5–16.0 · جنوبًا نحو باماكو ─────────────────────────────────────────────────── */
 const S05: React.FC = () => {
   return (
     <AbsoluteFill>
@@ -91,7 +91,8 @@ const S05: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_route.jpg" from={0} kb={[1.0, 1.14]} grad={0.6} />
       <Grain />
       <Vignette />
-      <BigNumber value="٤٠٠" from={6} size={286} y={360} label="ميل جنوبًا · باماكو" labelColor={C.parch} />
+      <BigTitle text="جنوبًا" from={6} size={150} color={C.parch} y={360} glow />
+      <KeyLine text="نحو باماكو" from={30} size={76} color={C.goldLight} y={520} />
       <KeyLine text="عربيات ومراكب وقوافل" from={72} size={48} color={`${C.parch}cc`} y={1320} />
       <Dot from={112} />
     </AbsoluteFill>
@@ -120,10 +121,10 @@ const S07: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} kb={[1.0, 1.10]} grad={0.6} />
       <Grain />
       <Vignette />
-      <KeyLine text="اللي ضاع من التراث" from={4} size={62} color={`${C.parch}c8`} y={400} />
-      <BigNumber value="١٪" from={22} size={330} color={C.goldLight} y={660} />
-      <KeyLine text="واحد في المية." from={66} size={74} color={C.parch} y={1080} />
-      <KeyLine text="يعني ٩٩٪ نجوا" from={88} size={54} color={`${C.goldLight}d8`} y={1180} />
+      <KeyLine text="والتلاتماية والخمسين ألف" from={4} size={54} color={`${C.parch}c8`} y={380} />
+      <BigNumber value="٣٥٠" from={22} size={300} color={C.goldLight} y={640} label="ألف مخطوطة" labelColor={C.parch} />
+      <KeyLine text="وصلوا باماكو." from={66} size={70} color={C.parch} y={1060} />
+      <KeyLine text="واحدة واحدة." from={90} size={54} color={`${C.goldLight}d8`} y={1160} />
     </AbsoluteFill>
   );
 };
@@ -140,7 +141,20 @@ const S08: React.FC = () => (
   </AbsoluteFill>
 );
 
-/* ── ٢٥.٠–٣٠.٠ · CTA ───────────────────────────────────────────────────── */
+/* ── ٢٢.٦–٢٦.٠ · خرائط الحفظ — يكمل بعد ما الصوت يسكت ─────────────────── */
+const S08b: React.FC = () => (
+  <AbsoluteFill>
+    <Backdrop tint="warm" />
+    <Plate src="projects/TMB_001/plates/tmb_route.jpg" from={0} kb={[1.0, 1.10]} grad={0.6} />
+    <Grain />
+    <Vignette />
+    <BigTitle text="من تمبكتو" from={4} size={72} color={`${C.parch}c8`} y={420} />
+    <BigTitle text="لباماكو." from={22} size={110} color={C.goldLight} y={540} glow />
+    <KeyLine text="مسار النيجر" from={52} size={52} color={`${C.stone}e0`} y={1240} />
+  </AbsoluteFill>
+);
+
+/* ── ٢٦.٠–٣٠.٠ · CTA ─────────────────────────────────────────────────── */
 const S09: React.FC = () => (
   <AbsoluteFill>
     <Backdrop tint="deep" />
@@ -159,16 +173,18 @@ const S09: React.FC = () => (
 type Beat = { at: number; dur: number; Comp: React.FC };
 
 const BEATS: Beat[] = [
-  { at: 0, dur: 48, Comp: S01 }, //   0.0–1.6
-  { at: 48, dur: 39, Comp: S02 }, //  1.6–2.9
-  { at: 87, dur: 33, Comp: S02b }, // 2.9–4.0
-  { at: 120, dur: 90, Comp: S03 }, //  4.0–7.0
-  { at: 210, dur: 108, Comp: S04 }, //  7.0–10.6
-  { at: 318, dur: 108, Comp: S05 }, // 10.6–14.2
-  { at: 426, dur: 84, Comp: S06 }, // 14.2–17.0
-  { at: 510, dur: 114, Comp: S07 }, // 17.0–20.8
-  { at: 624, dur: 126, Comp: S08 }, // 20.8–25.0
-  { at: 750, dur: 150, Comp: S09 }, // 25.0–30.0
+  // التوقيت مقاس من silencedetect على shortA_vo.mp3 (9 جمل)
+  { at: 0, dur: 70, Comp: S01 }, // 0.00–2.33
+  { at: 70, dur: 110, Comp: S02 }, // 2.33–6.00
+  { at: 180, dur: 90, Comp: S02b }, // 6.00–9.00
+  { at: 270, dur: 145, Comp: S03 }, // 9.00–13.83
+  { at: 415, dur: 108, Comp: S04 }, // 13.83–17.43
+  { at: 523, dur: 32, Comp: S05 }, // 17.43–18.50
+  { at: 555, dur: 28, Comp: S06 }, // 18.50–19.43
+  { at: 583, dur: 36, Comp: S07 }, // 19.43–20.63
+  { at: 619, dur: 59, Comp: S08 }, // 20.63–22.60 (آخر جملة)
+  { at: 678, dur: 102, Comp: S08b }, // 22.60–26.00 (الصوت ساكت — موسيقى بس)
+  { at: 780, dur: 120, Comp: S09 }, // 26.00–30.00 CTA
 ];
 
 export const ShortA: React.FC = () => {
@@ -180,8 +196,8 @@ export const ShortA: React.FC = () => {
         </Sequence>
       ))}
       <TimeBar total={TOTAL} />
-      <Audio src={staticFile("projects/TMB_001/vo/shortA_vo.mp3")} volume={1} />
-      <Audio src={staticFile("projects/TMB_001/audio/music.wav")} volume={0.055} loop />
+      {/* مكس V2: سرد معالج + موسيقى بـducking + −14 LUFS · −1.5 dBTP */}
+      <Audio src={staticFile("projects/TMB_001/audio/SHORT_A_MIX_V2.mp4")} volume={1} />
     </AbsoluteFill>
   );
 };

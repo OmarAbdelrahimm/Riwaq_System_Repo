@@ -8,6 +8,8 @@ _build/tmp/
 *.wav
 !public/projects/*/audio/*.wav
 !public/projects/*/vo/V3_8k.wav
+# مكسات الصوت V2 (AAC داخل mp4 — تحتاج تكون في المستودع للرندر)
+!public/projects/*/audio/*MIX*.mp4
 node_modules/
 .venv/
 
@@ -19,3 +21,4 @@ _review/
 
 # فيديو المراجعة (قناة نقل مؤقتة — يُحذف بعد الرفع)
 data/projects/*/exports/
+!reports/audio_qc/*.wav

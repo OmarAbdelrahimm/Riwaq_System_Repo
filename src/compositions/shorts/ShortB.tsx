@@ -117,7 +117,7 @@ const S05: React.FC = () => {
       <Vignette />
       <BigTitle text="الكتب فضلت." from={8} size={132} color={C.goldLight} y={340} glow />
       <KeyLine text="صناديق زيت · عربيات دفع" from={80} size={52} color={`${C.parch}c8`} y={1330} />
-      <KeyLine text="٤٠٠ ميل على النيجر" from={104} size={52} color={`${C.parch}c8`} y={1390} />
+      <KeyLine text="قوارب على النيجر" from={104} size={52} color={`${C.parch}c8`} y={1390} />
     </AbsoluteFill>
   );
 };
@@ -130,9 +130,10 @@ const S06: React.FC = () => {
       <Plate src="projects/TMB_001/plates/tmb_empty.jpg" from={0} kb={[1.06, 1.0]} grad={0.66} />
       <Grain />
       <Vignette />
-      <KeyLine text="اللي راح؟" from={4} size={68} color={`${C.parch}c0`} y={380} />
-      <BigNumber value="١٪" from={20} size={330} color={C.goldLight} y={660} />
-      <KeyLine text="بس." from={76} size={80} color={C.parch} y={1140} />
+      <KeyLine text="واللي راح؟" from={4} size={68} color={`${C.parch}c0`} y={380} />
+      <BigNumber value="٤٢٠٣" from={20} size={230} color={`${C.burgundy}`} y={660} />
+      <KeyLine text="مخطوطة." from={58} size={76} color={C.parch} y={1000} />
+      <KeyLine text="مش أكتر." from={80} size={64} color={`${C.goldLight}d8`} y={1120} />
     </AbsoluteFill>
   );
 };
@@ -163,31 +164,57 @@ const S08: React.FC = () => (
   </AbsoluteFill>
 );
 
-/* ── ٢٧.٥–٣٢.٠ · CTA ──────────────────────────────────────────────────── */
+/* ── ٢٢.٧٧–٢٥.٥ · الرقم ──────────────────────────────────────────────── */
 const S09: React.FC = () => (
   <AbsoluteFill>
     <Backdrop tint="warm" />
-    <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} kb={[1.04, 1.0]} grad={0.64} />
+    <Plate src="projects/TMB_001/plates/tmb_hands.jpg" from={0} kb={[1.04, 1.06]} grad={0.64} />
     <Grain />
     <Vignette />
-    <BigTitle text="٣٥٠ ألف" from={4} size={150} color={C.goldLight} y={330} glow />
-    <BigTitle text="مخطوطة نجت" from={16} size={76} color={C.parch} y={520} />
-    <CTA from={24} />
+    <BigNumber value="٣٥٠" from={2} size={250} color={C.goldLight} y={400} label="ألف مخطوطة" labelColor={C.parch} />
+  </AbsoluteFill>
+);
+
+/* ── ٢٥.٥–٢٨.٥ · المعنى ──────────────────────────────────────────────── */
+const S09b: React.FC = () => (
+  <AbsoluteFill>
+    <Backdrop tint="deep" />
+    <Plate src="projects/TMB_001/plates/tmb_route.jpg" from={0} kb={[1.0, 1.10]} grad={0.64} />
+    <Grain />
+    <Vignette />
+    <BigTitle text="نجت." from={2} size={190} color={C.goldLight} y={520} glow />
+    <KeyLine text="والتاريخ فضل." from={26} size={64} color={`${C.parch}d8`} y={800} />
+  </AbsoluteFill>
+);
+
+/* ── ٢٨.٥–٣٢.٠ · CTA ─────────────────────────────────────────────────── */
+const S09c: React.FC = () => (
+  <AbsoluteFill>
+    <Backdrop tint="deep" />
+    <Plate src="projects/TMB_001/plates/tmb_empty.jpg" from={0} kb={[1.06, 1.0]} grad={0.68} />
+    <Grain />
+    <Vignette />
+    <BigTitle text="الحكاية كلها" from={2} size={86} color={C.parch} y={340} />
+    <BigTitle text="في الحلقة الكاملة" from={14} size={56} color={`${C.goldLight}d8`} y={470} />
+    <CTA from={26} />
   </AbsoluteFill>
 );
 
 const BEATS: { at: number; dur: number; Comp: React.FC }[] = [
-  { at: 0, dur: 54, Comp: S01 }, //    0.0–1.8
-  { at: 54, dur: 66, Comp: S02 }, //   1.8–4.0
-  { at: 120, dur: 54, Comp: S02b }, //  4.0–5.8
-  { at: 174, dur: 54, Comp: S03 }, //   5.8–7.6
-  { at: 228, dur: 54, Comp: S03b }, //  7.6–9.4
-  { at: 282, dur: 96, Comp: S04 }, //  9.4–12.6
-  { at: 378, dur: 102, Comp: S05 }, // 12.6–16.0
-  { at: 480, dur: 108, Comp: S06 }, // 16.0–19.6
-  { at: 588, dur: 102, Comp: S07 }, // 19.6–23.0
-  { at: 690, dur: 135, Comp: S08 }, // 23.0–27.5
-  { at: 825, dur: 135, Comp: S09 }, // 27.5–32.0
+  // التوقيت مقاس من silencedetect على shortB_vo.mp3
+  { at: 0, dur: 82, Comp: S01 }, // 0.00–2.73
+  { at: 82, dur: 66, Comp: S02 }, // 2.73–4.93
+  { at: 148, dur: 72, Comp: S02b }, // 4.93–7.33
+  { at: 220, dur: 65, Comp: S03 }, // 7.33–9.50
+  { at: 285, dur: 80, Comp: S03b }, // 9.50–12.17
+  { at: 365, dur: 172, Comp: S04 }, // 12.17–17.90
+  { at: 537, dur: 30, Comp: S05 }, // 17.90–18.90
+  { at: 567, dur: 30, Comp: S06 }, // 18.90–19.90
+  { at: 597, dur: 46, Comp: S07 }, // 19.90–21.43
+  { at: 643, dur: 40, Comp: S08 }, // 21.43–22.77
+  { at: 683, dur: 82, Comp: S09 }, // 22.77–25.50 (الصوت ساكت — موسيقى)
+  { at: 765, dur: 90, Comp: S09b }, // 25.50–28.50
+  { at: 855, dur: 105, Comp: S09c }, // 28.50–32.00 CTA
 ];
 
 export const ShortB: React.FC = () => {
@@ -199,8 +226,8 @@ export const ShortB: React.FC = () => {
         </Sequence>
       ))}
       <TimeBar total={TOTAL} />
-      <Audio src={staticFile("projects/TMB_001/vo/shortB_vo.mp3")} volume={1} />
-      <Audio src={staticFile("projects/TMB_001/audio/music.wav")} volume={0.05} loop />
+      {/* مكس V2: سرد معالج + موسيقى بـducking + −14 LUFS · −1.5 dBTP */}
+      <Audio src={staticFile("projects/TMB_001/audio/SHORT_B_MIX_V2.mp4")} volume={1} />
     </AbsoluteFill>
   );
 };

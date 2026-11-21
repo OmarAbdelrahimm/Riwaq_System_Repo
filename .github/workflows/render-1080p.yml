@@ -31,6 +31,9 @@ jobs:
       - name: البوابات
         run: |
           python3 scripts/check_shorts.py
+          python3 scripts/check_layout.py
+      - name: بوابة الصوت V2
+        run: python3 scripts/check_audio_v2.py
       - name: Short A — 1080×1920
         run: |
           set +e

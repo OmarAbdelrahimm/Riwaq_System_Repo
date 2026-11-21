@@ -45,11 +45,11 @@ export const Longform: React.FC = () => {
         );
       })}
 
-      {/* الصوت: ملف واحد — التوقيت هو المرجع */}
-      <Audio src={staticFile("projects/TMB_001/vo/V3_8k.wav")} volume={1} />
-
-      {/* موسيقى خفيفة تحت الكلام */}
-      <Audio src={staticFile("projects/TMB_001/audio/music.wav")} volume={0.055} loop />
+      {/* ═══ الصوت V2 — ماستر ستيريو واحد ═══════════════════════════════════
+          السرد (24 kHz) + موسيقى بـducking + SFX + ليمتر −1.5 dBTP
+          اتخلط مسبقًا في scripts/audio_mix.py → −14 LUFS مدمج.
+          ممنوع نضيف music.wav هنا تاني — هي مخلوطة جوه الملف.        */}
+      <Audio src={staticFile("projects/TMB_001/audio/MIX_V2_full.mp4")} volume={1} />
     </AbsoluteFill>
   );
 };

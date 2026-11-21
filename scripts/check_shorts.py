@@ -74,11 +74,29 @@ for name, cfg in SHORTS.items():
             if len(line) > MAX_CHARS_AR:
                 problems.append(f"{name}: سطر «{line[:24]}» فيه {len(line)} حرف > {MAX_CHARS_AR}")
 
-# ── 6. الصوت لازم يكون مركّب ──
+# ── 6. الصوت لازم يكون مركّب — مكس V2 كامل ──
 for name, cfg in SHORTS.items():
     src = Path(cfg["file"]).read_text()
-    if "vo/short" not in src:
-        problems.append(f"{name}: مفيش VO مركّب — شورت من غير صوت مش جاهز للنشر")
+    if "SHORT_A_MIX_V2" not in src and "SHORT_B_MIX_V2" not in src:
+        problems.append(f"{name}: مفيش مكس صوت V2 مركّب — شورت من غير صوت مش جاهز للنشر")
+    # ممنوع يرجع يضيف music.wav منفصل — الموسيقى جوه المكس
+    if re.search(r'<Audio[^>]+music\.wav', src):
+        problems.append(f"{name}: بيضيف music.wav تاني — الموسيقى مخلوطة جوه مكس V2")
+
+# ── 7. كل صورة مستخدمة لازم تكون موجودة ──
+import re as _re
+_missing = set()
+for f in list(SHORTS.values())[0]["file"], list(SHORTS.values())[1]["file"],          "src/compositions/longform/Longform.tsx", "src/compositions/longform/scenes.tsx":
+    if not Path(f).exists():
+        continue
+    src = Path(f).read_text()
+    for m in _re.finditer(r'plates/([a-z_0-9]+\.jpg)', src):
+        rel = f"public/projects/TMB_001/plates/{m.group(1)}"
+        if not Path(rel).exists():
+            _missing.add(f"{f} → {rel}")
+if _missing:
+    for x in sorted(_missing):
+        problems.append(f"صورة مش موجودة: {x}")
 
 print()
 if problems:
