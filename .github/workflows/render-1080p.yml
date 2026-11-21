@@ -22,7 +22,7 @@ permissions:
 jobs:
   master:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
+    timeout-minutes: 420
     env:
       PROJECT_ID: TMB_001
     steps:
@@ -39,12 +39,12 @@ jobs:
           python3 scripts/check_layout.py
       - name: بوابة الصوت V2
         run: python3 scripts/check_audio_v2.py
-      - name: ستيلات الفيلم الطويل
+      - name: ستيلات الفيلم الطويل (8 نقاط مفتاحية)
         run: |
           mkdir -p reports/longform
           set +e
-          for f in 6 30 90 160 300 460 640 760 900 1200 1500 1800 2100 2400 2700 2900 3200 3500 3800 4100 4400 4700 5000 5300 5700 6100 6500 6900 7300 7700 8100 8500; do
-            timeout 240 npx remotion still src/index.ts Longform reports/longform/L_f${f}.png \
+          for f in 10 60 300 640 1200 2100 3500 8100; do
+            timeout 180 npx remotion still src/index.ts Longform reports/longform/L_f${f}.png \
               --frame=$f --scale=0.45 --gl=swiftshader --log=error >/dev/null 2>&1 || true
           done
           ls reports/longform | wc -l
@@ -69,6 +69,7 @@ jobs:
           npx remotion render src/index.ts Longform exports/LONGFORM_1080p.mp4 \
             --concurrency=4 --crf=19 --scale=1 --gl=swiftshader > _ml.log 2>&1
           echo "EXIT=$?"; tail -4 _ml.log
+          ls -lh exports/*.mp4 || echo "⚠️ مفيش ملفات"
       - name: نقل للمستودع
         if: always()
         run: |
