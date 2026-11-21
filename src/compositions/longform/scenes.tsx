@@ -48,7 +48,8 @@ export const S01Hook: React.FC = () => {
      الإطار 20–55  : الرقم ٤٢٠٣ بيضرب
      الإطار 55–120 : «اتحرقت في يوم واحد» + الكاميرا تتقدم
      الإطار 300+   : «الأغرب؟ المدينة كانت لسه مليانة كتب»               */
-  const roomIn = ip(f, 0, 26, 0, 1);
+  /* الغرفة بتبان **فورًا** — من 0.30 مش من صفر — عشان مفيش إطار أسود */
+  const roomIn = ip(f, 0, 20, 0.34, 1);
   const numIn = ip(f, 18, 46, 0, 1);
   const numScale = interpolate(f, [18, 70], [1.42, 1.0], {
     extrapolateLeft: "clamp",
@@ -61,7 +62,7 @@ export const S01Hook: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: C.ink }}>
       {/* الغرفة المحروقة — من الإطار صفر */}
-      <AbsoluteFill style={{ opacity: roomIn > 0 ? 0.38 + roomIn * 0.5 : 0 }}>
+      <AbsoluteFill style={{ opacity: 0.34 + roomIn * 0.54 }}>
         <SceneShell dur={600} kind="push" tint="deep">
           <DepthBox x={960} y={540} z={0} w={1920} h={1080} keepSharp>
             <PhotoCard src="projects/TMB_001/plates/tmb_empty.jpg" w={1920} h={1080} grad={0.62} kb={[1.0, 1.16]} />
