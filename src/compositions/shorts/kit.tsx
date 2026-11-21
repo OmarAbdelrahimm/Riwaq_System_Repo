@@ -226,6 +226,15 @@ export const Plate: React.FC<{
           background: `linear-gradient(180deg, rgba(0,0,0,${grad * 0.32}) 0%, transparent 38%, rgba(0,0,0,${grad}) 100%)`,
         }}
       />
+      {/* scrim مركزي — لازم النص يبقى مقروء على أي صورة (فاتحة أو غامقة) */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: `radial-gradient(ellipse 78% 34% at 50% 42%, rgba(0,0,0,${(grad * 0.72).toFixed(3)}) 0%, rgba(0,0,0,${(grad * 0.40).toFixed(3)}) 55%, transparent 78%)`,
+          pointerEvents: "none",
+        }}
+      />
     </div>
   );
 };

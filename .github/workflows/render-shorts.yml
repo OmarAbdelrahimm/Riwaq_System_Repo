@@ -6,6 +6,11 @@ on:
       - ".github/trigger/shorts.txt"
       - ".github/workflows/render-shorts.yml"
   workflow_dispatch:
+    inputs:
+      stills_only:
+        description: "ستيلات بس (بدون رندر فيديو)"
+        type: boolean
+        default: false
 
 concurrency:
   group: riwaq-shorts
@@ -36,7 +41,7 @@ jobs:
         run: |
           mkdir -p reports/shorts
           set +e
-          for pair in "ShortA:30 200 400 640 800" "ShortB:30 240 400 700 880"; do
+          for pair in "ShortA:30 200 400 640 700 800 860" "ShortB:30 240 400 700 720 880 920"; do
             id="${pair%%:*}"
             frames="${pair#*:}"
             for f in $frames; do
@@ -46,6 +51,7 @@ jobs:
           done
           ls -lh reports/shorts || true
       - name: ريندر Short A
+        if: ${{ !inputs.stills_only }}
         run: |
           set +e
           npx remotion render src/index.ts ShortA exports/SHORT_A_TMB_001.mp4 \
@@ -53,6 +59,7 @@ jobs:
           echo "A_EXIT=$?"
           tail -6 _a.log
       - name: ريندر Short B
+        if: ${{ !inputs.stills_only }}
         run: |
           set +e
           npx remotion render src/index.ts ShortB exports/SHORT_B_TMB_001.mp4 \

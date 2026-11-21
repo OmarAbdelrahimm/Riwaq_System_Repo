@@ -162,7 +162,7 @@ const S09: React.FC = () => (
     <Grain />
     <Vignette />
     <BigTitle text="الحكاية كلها" from={4} size={88} color={C.parch} y={330} />
-    <BigTitle text="في الحلقة الكاملة" from={18} size={58} color={`${C.goldLight}d8`} y={460} />
+    <BigTitle text="في الحلقة الكاملة" from={18} size={62} color={C.goldLight} y={460} />
     <CTA from={34} />
   </AbsoluteFill>
 );
