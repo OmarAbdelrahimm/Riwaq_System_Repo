@@ -29,12 +29,14 @@ jobs:
       - name: تثبيت الحزم
         run: npm ci || npm install
       - name: بوابة الشورتات
-        run: python3 scripts/check_shorts.py
+        run: |
+          python3 scripts/check_shorts.py
+          python3 scripts/check_audio_v2.py
       - name: ستيلات الشورتات
         run: |
           mkdir -p reports/shorts
           set +e
-          for pair in "ShortA:30 130 300 600 780" "ShortB:28 120 300 520 880"; do
+          for pair in "ShortA:30 200 400 640 800" "ShortB:30 240 400 700 880"; do
             id="${pair%%:*}"
             frames="${pair#*:}"
             for f in $frames; do
