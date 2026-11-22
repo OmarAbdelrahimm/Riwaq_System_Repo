@@ -603,14 +603,14 @@ export const S09Journey: React.FC = () => {
       </DepthBox>
       <ShapeField seed={33} camZ={0} amt={0.6} />
 
-      <TextRail side="left" top={96} width={580}>
-        <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 34, color: `${C.gold}dd`, letterSpacing: "0.1em" }}>
+      <TextRail side="left" top={96} width={520}>
+        <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 32, color: `${C.gold}dd`, letterSpacing: "0.1em" }}>
           المسار
         </div>
-        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 112, color: C.gold, lineHeight: 1.1, marginTop: 8, textShadow: `0 0 60px ${C.goldDeep}88` }}>
-          ٤٠٠ ميل
+        <div style={{ fontFamily: "Amiri", fontWeight: 700, fontSize: 92, color: C.gold, lineHeight: 1.12, marginTop: 8, textShadow: `0 0 60px ${C.goldDeep}88` }}>
+          نحو الجنوب
         </div>
-        <div style={{ fontFamily: "Amiri", fontSize: 54, color: C.parch }}>جنوبًا.</div>
+        <div style={{ fontFamily: "Amiri", fontSize: 54, color: C.parch }}>ومسافة طويلة.</div>
 
         <div style={{ marginTop: 40, display: "flex", flexDirection: "column", gap: 14 }}>
           {legs.map((l, i) => (
@@ -632,8 +632,8 @@ export const S09Journey: React.FC = () => {
         </div>
 
         <div style={{ marginTop: 36, opacity: ip(f, 660, 700, 0, 1) }}>
-          <div style={{ fontFamily: "Amiri", fontSize: 60, color: C.parch}}>ولو واحدة اتكشفت…</div>
-          <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 46, color: C.burgundy, letterSpacing: "0.06em" }}>
+          <div style={{ fontFamily: "Amiri", fontSize: 52, color: C.parch}}>ولو واحدة اتكشفت…</div>
+          <div style={{ fontFamily: "IBM Plex Sans Arabic", fontSize: 42, color: C.burgundy, letterSpacing: "0.06em" }}>
             خلاص.
           </div>
         </div>
