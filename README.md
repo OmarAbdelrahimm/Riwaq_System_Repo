@@ -16,6 +16,9 @@
 | بوابة الجودة (`scripts/qc.py`) | ✅ فحوص بنيوية؛ فحوص الإطار بعد الريندر |
 
 ## التشغيل السريع
+
+[الدستور التحريري لرِواق وبوابات الموافقة G0–G6](docs/RUWAQ_EDITORIAL_STANDARD.md)
+
 ```bash
 npm install
 npm run studio                 # معاينة تفاعلية (Remotion Studio)
