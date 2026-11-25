@@ -1,0 +1,437 @@
+{
+  "exportDate": "2026-11-10T02:31:13.536Z",
+  "glbFilename": "RUWAQ_BAB_ZUWAYLA_V04_MASTER.glb",
+  "fileSizeBytes": 742168,
+  "fileSizeKB": 725,
+  "totalNamedNodes": 300,
+  "requiredComponentsChecked": 21,
+  "missingComponents": [],
+  "allRequiredComponentsPresent": true,
+  "hierarchySummary": {
+    "AuxScene": [
+      "bab_zuwayla_monument_root"
+    ],
+    "bab_zuwayla_monument_root": [
+      "left_semicircular_tower",
+      "right_semicircular_tower",
+      "central_entrance_arch",
+      "fortified_gate_doors_assembly",
+      "left_minaret",
+      "right_minaret"
+    ],
+    "left_semicircular_tower": [
+      "left_tower_lower_structure",
+      "left_tower_upper_structure"
+    ],
+    "left_tower_lower_structure": [
+      "left_tower_foundation_plinth",
+      "mesh_1",
+      "left_tower_curved_wall_lower",
+      "left_tower_outer_flank_lower",
+      "left_tower_rear_wall_lower",
+      "left_tower_passage_flank_lower",
+      "mesh_6",
+      "left_arrow_slit_L1_0",
+      "left_arrow_slit_L1_1",
+      "left_arrow_slit_L1_2",
+      "left_arrow_slit_L1_3",
+      "left_arrow_slit_L1_4",
+      "left_tower_contact_shadow"
+    ],
+    "left_tower_upper_structure": [
+      "left_tower_curved_wall_upper",
+      "mesh_14",
+      "mesh_15",
+      "mesh_16",
+      "mesh_17",
+      "left_arrow_slit_L2_0",
+      "left_arrow_slit_L2_1",
+      "left_arrow_slit_L2_2",
+      "left_arrow_slit_L2_3",
+      "left_arrow_slit_L2_4",
+      "left_tower_stringcourse",
+      "left_tower_corbelled_cornice",
+      "left_tower_terrace",
+      "mesh_26",
+      "left_tower_crenellations"
+    ],
+    "left_tower_crenellations": [
+      "left_merlon_0",
+      "left_merlon_1",
+      "left_merlon_2",
+      "left_merlon_3",
+      "left_merlon_4",
+      "left_merlon_5",
+      "left_merlon_6",
+      "left_merlon_7",
+      "left_merlon_8",
+      "left_merlon_9",
+      "left_merlon_10"
+    ],
+    "left_merlon_0": [
+      "mesh_27",
+      "mesh_28"
+    ],
+    "left_merlon_1": [
+      "mesh_29",
+      "mesh_30"
+    ],
+    "left_merlon_2": [
+      "mesh_31",
+      "mesh_32"
+    ],
+    "left_merlon_3": [
+      "mesh_33",
+      "mesh_34"
+    ],
+    "left_merlon_4": [
+      "mesh_35",
+      "mesh_36"
+    ],
+    "left_merlon_5": [
+      "mesh_37",
+      "mesh_38"
+    ],
+    "left_merlon_6": [
+      "mesh_39",
+      "mesh_40"
+    ],
+    "left_merlon_7": [
+      "mesh_41",
+      "mesh_42"
+    ],
+    "left_merlon_8": [
+      "mesh_43",
+      "mesh_44"
+    ],
+    "left_merlon_9": [
+      "mesh_45",
+      "mesh_46"
+    ],
+    "left_merlon_10": [
+      "mesh_47",
+      "mesh_48"
+    ],
+    "right_semicircular_tower": [
+      "right_tower_lower_structure",
+      "right_tower_upper_structure"
+    ],
+    "right_tower_lower_structure": [
+      "right_tower_foundation_plinth",
+      "mesh_50",
+      "right_tower_curved_wall_lower",
+      "right_tower_outer_flank_lower",
+      "right_tower_rear_wall_lower",
+      "right_tower_passage_flank_lower",
+      "mesh_55",
+      "right_arrow_slit_L1_0",
+      "right_arrow_slit_L1_1",
+      "right_arrow_slit_L1_2",
+      "right_arrow_slit_L1_3",
+      "right_arrow_slit_L1_4",
+      "right_tower_contact_shadow"
+    ],
+    "right_tower_upper_structure": [
+      "right_tower_curved_wall_upper",
+      "mesh_63",
+      "mesh_64",
+      "mesh_65",
+      "mesh_66",
+      "right_arrow_slit_L2_0",
+      "right_arrow_slit_L2_1",
+      "right_arrow_slit_L2_2",
+      "right_arrow_slit_L2_3",
+      "right_arrow_slit_L2_4",
+      "right_tower_stringcourse",
+      "right_tower_corbelled_cornice",
+      "right_tower_terrace",
+      "mesh_75",
+      "right_tower_crenellations"
+    ],
+    "right_tower_crenellations": [
+      "right_merlon_0",
+      "right_merlon_1",
+      "right_merlon_2",
+      "right_merlon_3",
+      "right_merlon_4",
+      "right_merlon_5",
+      "right_merlon_6",
+      "right_merlon_7",
+      "right_merlon_8",
+      "right_merlon_9",
+      "right_merlon_10"
+    ],
+    "right_merlon_0": [
+      "mesh_76",
+      "mesh_77"
+    ],
+    "right_merlon_1": [
+      "mesh_78",
+      "mesh_79"
+    ],
+    "right_merlon_2": [
+      "mesh_80",
+      "mesh_81"
+    ],
+    "right_merlon_3": [
+      "mesh_82",
+      "mesh_83"
+    ],
+    "right_merlon_4": [
+      "mesh_84",
+      "mesh_85"
+    ],
+    "right_merlon_5": [
+      "mesh_86",
+      "mesh_87"
+    ],
+    "right_merlon_6": [
+      "mesh_88",
+      "mesh_89"
+    ],
+    "right_merlon_7": [
+      "mesh_90",
+      "mesh_91"
+    ],
+    "right_merlon_8": [
+      "mesh_92",
+      "mesh_93"
+    ],
+    "right_merlon_9": [
+      "mesh_94",
+      "mesh_95"
+    ],
+    "right_merlon_10": [
+      "mesh_96",
+      "mesh_97"
+    ],
+    "central_entrance_arch": [
+      "portal_lower_structure",
+      "portal_upper_structure"
+    ],
+    "portal_lower_structure": [
+      "left_arch_jamb_pier",
+      "right_arch_jamb_pier",
+      "gate_passage_floor_paving",
+      "gate_passage_wall_left_lower",
+      "gate_passage_wall_right_lower"
+    ],
+    "portal_upper_structure": [
+      "mesh_103_instance_0",
+      "mesh_103_instance_1",
+      "pointed_arch_cushion_voussoirs",
+      "arch_spandrel_masonry",
+      "machicolation_slits_row",
+      "upper_machicolation_gallery_arch",
+      "central_curtain_parapet",
+      "central_merlon_0",
+      "central_merlon_1",
+      "central_merlon_2",
+      "central_merlon_3",
+      "central_merlon_4",
+      "central_merlon_5",
+      "central_merlon_6",
+      "gate_passage_vault"
+    ],
+    "pointed_arch_cushion_voussoirs": [
+      "voussoir_0",
+      "voussoir_1",
+      "voussoir_2",
+      "voussoir_3",
+      "voussoir_4",
+      "voussoir_5",
+      "voussoir_6",
+      "voussoir_7",
+      "voussoir_8",
+      "voussoir_9",
+      "voussoir_10",
+      "voussoir_11",
+      "voussoir_12",
+      "voussoir_13",
+      "voussoir_14",
+      "voussoir_15",
+      "voussoir_16"
+    ],
+    "machicolation_slits_row": [
+      "mesh_122",
+      "mesh_123",
+      "mesh_124",
+      "mesh_125",
+      "mesh_126"
+    ],
+    "upper_machicolation_gallery_arch": [
+      "mesh_127_instance_0",
+      "mesh_127_instance_1",
+      "mesh_128"
+    ],
+    "central_merlon_0": [
+      "mesh_130",
+      "mesh_131"
+    ],
+    "central_merlon_1": [
+      "mesh_132",
+      "mesh_133"
+    ],
+    "central_merlon_2": [
+      "mesh_134",
+      "mesh_135"
+    ],
+    "central_merlon_3": [
+      "mesh_136",
+      "mesh_137"
+    ],
+    "central_merlon_4": [
+      "mesh_138",
+      "mesh_139"
+    ],
+    "central_merlon_5": [
+      "mesh_140",
+      "mesh_141"
+    ],
+    "central_merlon_6": [
+      "mesh_142",
+      "mesh_143"
+    ],
+    "gate_passage_vault": [
+      "mesh_144",
+      "mesh_145",
+      "mesh_146"
+    ],
+    "fortified_gate_doors_assembly": [
+      "left_door_pivot",
+      "right_door_pivot"
+    ],
+    "left_door_pivot": [
+      "left_door_leaf",
+      "mesh_148_instance_0",
+      "mesh_148_instance_1"
+    ],
+    "right_door_pivot": [
+      "right_door_leaf",
+      "mesh_148_instance_2",
+      "mesh_148_instance_3"
+    ],
+    "left_minaret": [
+      "left_minaret_tier1_octagonal_shaft",
+      "left_minaret_tier2_first_balcony",
+      "left_minaret_tier3_chevron_shaft",
+      "left_minaret_tier4_second_balcony",
+      "left_minaret_tier5_colonnaded_pavilion",
+      "left_minaret_tier6_bulb_finial"
+    ],
+    "left_minaret_tier1_octagonal_shaft": [
+      "mesh_150",
+      "mesh_151",
+      "mesh_152",
+      "mesh_153",
+      "mesh_154",
+      "mesh_155",
+      "mesh_156",
+      "mesh_157",
+      "mesh_158",
+      "mesh_159",
+      "mesh_160",
+      "mesh_161"
+    ],
+    "left_minaret_tier2_first_balcony": [
+      "mesh_162",
+      "mesh_163",
+      "mesh_164",
+      "mesh_165"
+    ],
+    "left_minaret_tier3_chevron_shaft": [
+      "mesh_166",
+      "mesh_167",
+      "mesh_168",
+      "mesh_169",
+      "mesh_170"
+    ],
+    "left_minaret_tier4_second_balcony": [
+      "mesh_171",
+      "mesh_172",
+      "mesh_173"
+    ],
+    "left_minaret_tier5_colonnaded_pavilion": [
+      "mesh_174",
+      "left_pavilion_column_0",
+      "left_pavilion_column_1",
+      "left_pavilion_column_2",
+      "left_pavilion_column_3",
+      "left_pavilion_column_4",
+      "left_pavilion_column_5",
+      "left_pavilion_column_6",
+      "left_pavilion_column_7",
+      "mesh_176"
+    ],
+    "left_minaret_tier6_bulb_finial": [
+      "mesh_177",
+      "mesh_178",
+      "mesh_179",
+      "mesh_180",
+      "mesh_181",
+      "mesh_182",
+      "mesh_183"
+    ],
+    "right_minaret": [
+      "right_minaret_tier1_octagonal_shaft",
+      "right_minaret_tier2_first_balcony",
+      "right_minaret_tier3_chevron_shaft",
+      "right_minaret_tier4_second_balcony",
+      "right_minaret_tier5_colonnaded_pavilion",
+      "right_minaret_tier6_bulb_finial"
+    ],
+    "right_minaret_tier1_octagonal_shaft": [
+      "mesh_184",
+      "mesh_185",
+      "mesh_186",
+      "mesh_187",
+      "mesh_188",
+      "mesh_189",
+      "mesh_190",
+      "mesh_191",
+      "mesh_192",
+      "mesh_193",
+      "mesh_194",
+      "mesh_195"
+    ],
+    "right_minaret_tier2_first_balcony": [
+      "mesh_196",
+      "mesh_197",
+      "mesh_198",
+      "mesh_199"
+    ],
+    "right_minaret_tier3_chevron_shaft": [
+      "mesh_200",
+      "mesh_201",
+      "mesh_202",
+      "mesh_203",
+      "mesh_204"
+    ],
+    "right_minaret_tier4_second_balcony": [
+      "mesh_205",
+      "mesh_206",
+      "mesh_207"
+    ],
+    "right_minaret_tier5_colonnaded_pavilion": [
+      "mesh_208",
+      "right_pavilion_column_0",
+      "right_pavilion_column_1",
+      "right_pavilion_column_2",
+      "right_pavilion_column_3",
+      "right_pavilion_column_4",
+      "right_pavilion_column_5",
+      "right_pavilion_column_6",
+      "right_pavilion_column_7",
+      "mesh_210"
+    ],
+    "right_minaret_tier6_bulb_finial": [
+      "mesh_211",
+      "mesh_212",
+      "mesh_213",
+      "mesh_214",
+      "mesh_215",
+      "mesh_216",
+      "mesh_217"
+    ]
+  }
+}

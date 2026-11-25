@@ -1,0 +1,60 @@
+{
+  "project": "RUWAQ: Bab Zuwayla Historical Geography Documentary Visualization",
+  "version": "1.0.0",
+  "datum": "WGS-84 (EPSG:4326)",
+  "cartographicPalette": {
+    "ruwaqCream": "#F3EBDB",
+    "ruwaqDeepInk": "#1C1B19",
+    "ruwaqGold": "#A98A4B",
+    "ruwaqStone": "#D8CEBC",
+    "ruwaqRust": "#8C4729"
+  },
+  "focalCoordinate": {
+    "name": "Bab Zuwayla",
+    "latitude": 30.04278,
+    "longitude": 31.25895,
+    "elevationMeters": 28.5
+  },
+  "sources": [
+    {
+      "layer": "Modern Hydrography & Streets",
+      "provider": "OpenStreetMap Contributors",
+      "license": "Open Database License (ODbL) 1.0",
+      "url": "https://www.openstreetmap.org/copyright",
+      "provenance": "VERIFIED_CONTEMPORARY_SURVEY"
+    },
+    {
+      "layer": "Historic Cairo World Heritage Boundary",
+      "provider": "UNESCO World Heritage Centre / Ministry of Tourism and Antiquities (Egypt)",
+      "reference": "UNESCO Ref 89 (Inscribed 1979)",
+      "url": "https://whc.unesco.org/en/list/89",
+      "provenance": "OFFICIAL_LEGAL_BOUNDARY"
+    },
+    {
+      "layer": "Fatimid Standing Gates & Masonry Fortifications",
+      "sources": [
+        "Creswell, K.A.C. (1952). The Muslim Architecture of Egypt, Vol. I (Oxford University Press)",
+        "Williams, Caroline (2018). Islamic Monuments in Cairo: The Practical Guide (American University in Cairo Press)"
+      ],
+      "provenance": "IN_SITU_ARCHAEOLOGICAL_EVIDENCE"
+    },
+    {
+      "layer": "Al-Mu‘izz li-Din Allah Ceremonial Axis",
+      "sources": [
+        "Al-Maqrizi, Taqi al-Din. Al-Mawa‘iz wa-l-I‘tibar bi-Dhikr al-Khitat wa-l-Athar",
+        "Survey of Egypt 1:5,000 Cadastral Survey (1922)"
+      ],
+      "provenance": "VERIFIED_CONTEMPORARY_ALIGNMENT_AND_HISTORICAL_RECORD"
+    },
+    {
+      "layer": "Approximate Fatimid Cairo Enclosure (1092 CE)",
+      "sources": [
+        "Creswell (1952), Vol. I, Pl. 116",
+        "AKTC Historic Cities Programme (2004)"
+      ],
+      "provenance": "HYPOTHETICAL_RECONSTRUCTION_APPROX",
+      "uncertaintyToleranceMeters": 50,
+      "disclaimer": "Western (Al-Khalij canal) and southern wall segments are estimated hypotheses based on medieval chronicles and modern cadastral grain. Fully editable via Researcher GeoJSON editor."
+    }
+  ]
+}

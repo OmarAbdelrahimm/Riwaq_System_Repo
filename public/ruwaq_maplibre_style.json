@@ -1,0 +1,98 @@
+{
+  "version": 8,
+  "name": "RUWAQ Historical Cartography",
+  "metadata": {
+    "ruwaq:version": "1.0.0",
+    "ruwaq:offline_capable": true,
+    "ruwaq:palette": "Cream (#F3EBDB), Gold (#A98A4B), Deep Ink (#1C1B19), Rust (#8C4729)"
+  },
+  "sources": {
+    "cairo-master-geojson": {
+      "type": "geojson",
+      "data": "./cairo_historical_geography.geojson"
+    }
+  },
+  "layers": [
+    {
+      "id": "background-cream",
+      "type": "background",
+      "paint": {
+        "background-color": "#F3EBDB"
+      }
+    },
+    {
+      "id": "nile-river-polygon",
+      "type": "fill",
+      "source": "cairo-master-geojson",
+      "filter": ["==", ["get", "type"], "water"],
+      "paint": {
+        "fill-color": "#2C3E42",
+        "fill-opacity": 0.88
+      }
+    },
+    {
+      "id": "unesco-zone-fill",
+      "type": "fill",
+      "source": "cairo-master-geojson",
+      "filter": ["==", ["get", "id"], "unesco_historic_cairo_zone"],
+      "paint": {
+        "fill-color": "#E4D5BE",
+        "fill-opacity": 0.45
+      }
+    },
+    {
+      "id": "unesco-zone-line",
+      "type": "line",
+      "source": "cairo-master-geojson",
+      "filter": ["==", ["get", "id"], "unesco_historic_cairo_zone"],
+      "paint": {
+        "line-color": "#A98A4B",
+        "line-width": 2,
+        "line-dasharray": [4, 2]
+      }
+    },
+    {
+      "id": "fatimid-enclosure-approximate",
+      "type": "fill",
+      "source": "cairo-master-geojson",
+      "filter": ["==", ["get", "id"], "fatimid_enclosure_approximate_1092"],
+      "paint": {
+        "fill-color": "#8C4729",
+        "fill-opacity": 0.22
+      }
+    },
+    {
+      "id": "fatimid-enclosure-outline",
+      "type": "line",
+      "source": "cairo-master-geojson",
+      "filter": ["==", ["get", "id"], "fatimid_enclosure_approximate_1092"],
+      "paint": {
+        "line-color": "#8C4729",
+        "line-width": 2.8
+      }
+    },
+    {
+      "id": "al-muizz-axis-line",
+      "type": "line",
+      "source": "cairo-master-geojson",
+      "filter": ["==", ["get", "id"], "al_muizz_axis_line"],
+      "paint": {
+        "line-color": "#A98A4B",
+        "line-width": 4.5,
+        "line-opacity": 0.95
+      }
+    },
+    {
+      "id": "gates-point-marker",
+      "type": "circle",
+      "source": "cairo-master-geojson",
+      "filter": ["has", "roleInStory"],
+      "paint": {
+        "circle-radius": 8,
+        "circle-color": "#1C1B19",
+        "circle-stroke-width": 2.5,
+        "circle-stroke-color": "#A98A4B"
+      }
+    }
+  ]
+}

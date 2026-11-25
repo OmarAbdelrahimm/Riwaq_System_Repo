@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix RUWAQ: Bab Zuwayla 3D Architectural Reconstruction",
+  "description": "Interactive 3D architectural visualization and documentary analysis of Bab Zuwayla (Cairo, 1092 CE \u0026 1415–1421 CE additions) with camera choreography, component exploded views, and Remotion-ready animation controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
