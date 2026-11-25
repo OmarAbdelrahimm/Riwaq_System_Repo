@@ -1,65 +1,83 @@
-# رِواق — نظام إنتاج الفيديو (Riwaq Production System)
+# RUWAQ — Bab Zuwayla 3D + Motion System
 
-> **محرّك واحد، هويات متعددة.** القالب لا يعرف أي براند بالاسم — يقرأ كل شيء من الإعدادات.
-> فيديو جديد = مجلد + `episode_meta.json`. صفر تعديل في الكود.
+Remotion + React Three Fiber reconstruction of Bab Zuwayla, Cairo
+(1092 CE Fatimid + 1415–1421 Mamluk minarets), plus the Ruwaq motion system
+(brand, springs, hand-drawn / watercolour / physics, BPM-synced audio).
 
-## الحالة الحالية
-| المرحلة | الحالة |
-|---|---|
-| نظام التصميم والهوية (`brand.json`) | ✅ جاهز |
-| طبقات الصوت (`voice_profiles.json`) | ✅ جاهز (رسمي + بديل تشغيلي + مؤقت) |
-| سلسلة استوديو الصوت (`scripts/voice_finish.py`) | ✅ LUFS −16 · TP −1 · مطابقة تكيفية |
-| **مطابقة البصمة (`scripts/pitch_match.py`)** | ❌ مرفوضة سمعيًا — أُلغيت من خط الإنتاج · الصوت التشغيلي = voice-01 + سلسلة الاستوديو |
-| السونيك لوجو v2 | ✅ ثلاث نسخ (محرابي / نبض / قصيرة) |
-| مكوّنات الفيديو (A–G) | ✅ سبعة + كابشنز + علامة مائية |
-| الاختبار الذهبي `GOLDEN_001` | ✅ البيانات جاهزة — الريندر على جهازك |
-| بوابة الجودة (`scripts/qc.py`) | ✅ فحوص بنيوية؛ فحوص الإطار بعد الريندر |
-
-## التشغيل السريع
-
-[الدستور التحريري لرِواق وبوابات الموافقة G0–G6](docs/RUWAQ_EDITORIAL_STANDARD.md)
+## Quick start
 
 ```bash
-npm install
-npm run studio                 # معاينة تفاعلية (Remotion Studio)
-npm run render:golden:draft    # مسوّدة سريعة بنصف الدقة (للمراجعة)
+npm install          # clean install now works (esbuild conflict fixed, see below)
+npm run dev          # Vite web app (interactive 3D viewer + map)
+npm run build        # Vite production build
+npm run typecheck    # tsc --noEmit
+npm run compositions # list Remotion compositions
+npm run render:demo  # render the 10s motion-system demo (1920x1080)
+npm run smoke        # build + typecheck + short renders (gates, safe)
 ```
 
-## ☁️ الريندر السحابي (المعتمد — جهازك لا يعمل)
-1. ارفع المستودع على GitHub مرة واحدة → `docs/GITHUB_SETUP.md` (دليل بالعربي خطوة بخطوة)
-2. Actions → **render-episode** → Run workflow → اكتب معرّف المشروع
-3. نزّل النتائج من **Artifacts**: MP4 + كابشنز AR/EN + تقرير QC
+## Compositions (`src/remotion-index.ts`)
 
-> الحصة المجانية تكفي ~30 شورتس أو ~6 فيديوهات طويلة شهريًا (مستودع خاص).
+| ID | What | Size / length |
+|---|---|---|
+| `RuwaqMotionDemo` | Motion-system demo (spring title on beat 8, Rough.js arch, watercolour, Matter.js chips) | 1920×1080, 300f, 10s |
+| `RuwaqMotionDemoShorts` | Same demo, vertical | 1080×1920, 270f, 9s |
+| `RuwaqBabZuwayla` | 3D reconstruction, 6 chapters | 1920×1080, 300f, 10s |
+| `RuwaqHistoricalMap` | Cairo historical geography (MapLibre) | 1920×1080, 600f, 20s |
 
-## البنية
+## Structure
+
 ```
-10_System/
-├── data/
-│   ├── .. (انسخ brand.json + voice_profiles.json من 05_Template_Kit إلى data/)
-│   └── projects/GOLDEN_001/episode_meta.json     ← مصدر الحقيقة الوحيد
-├── src/
-│   ├── engine/      types · theme(الألوان والخطوط) · safezones · timing
-│   ├── components/  HookFrame · ChapterCard · QuoteCard · StatCard · LowerThird
-│   │                SourceCard · EndScreen · Captions · Watermark · Paper(Look)
-│   └── compositions/Episode.tsx                  ← يبني الخط الزمني من البيانات
-├── public/           fonts (OFL) · projects/GOLDEN_001/audio
-├── scripts/          voice_finish.py · make_srt.py · qc.py
-└── docs/RUNBOOK.md
+src/
+  brand/tokens.ts        # colours/fonts — mirrors BRAND.md (A primary, C secondary)
+  motion/presets.ts      # spring configs only for hero motion
+  motion/rough.ts        # Rough.js hand-drawn paths (fixed seed, deterministic)
+  motion/watercolor.tsx  # watercolour wash (SVG turbulence, fixed seed)
+  motion/physics.ts      # Matter.js deterministic physics stepper
+  audio/beatgrid.ts      # BPM -> frame map (title on beat #8 @128 BPM = frame 98)
+  audio/sfx.ts           # SFX cues on frames (placeholders, no files bundled)
+  compositions/RuwaqMotionDemo.tsx
+  BabZuwaylaRemotion.tsx # canonical 3D composition (523 lines)
+  geo/                   # Cairo historical geography (MapLibre/GeoJSON)
+  three/                 # procedural Bab Zuwayla geometry
+  components/            # web viewer UI
+public/
+  RUWAQ_BAB_ZUWAYLA_MASTER.glb   # master model (728 KB, 300 nodes, validated)
+  cairo_historical_geography.geojson
+  provenance_manifest.json
+docs/
+  PRODUCTION.md          # how to make a new episode/scene
+  legacy/                # root re-export + V04 files, moved not deleted
+BRAND.md                 # single source of truth for brand
 ```
 
-## قواعد إلزامية (من دستور الهوية)
-- الألوان: `#1C1B19 #242218 #F3EBDB #EDE6D6 #A98A4B #C2A469 #EFE6D2 #5E2230 #8A7F6B #B9AE94` فقط.
-- الخطوط: **Amiri** للعناوين · **IBM Plex Sans Arabic** للكابشنز والمعلومات.
-- الحركة: منحنى واحد — تقطع مباشر + تلاشٍ 200ms · بلا وميض أو دوران.
-- الكابشنز: سطران أقصى · ≤28 حرفًا عربيًا · الكلمات المؤثرة والأرقام ذهبية · لا تغطية للوجه.
-- الصوت: الطبقة الرسمية للنشر فقط · وسم `DRAFT_VO` لأي مسوّدة · LUFS −16 ±0.5 · ذروة −1 dBTP.
+## What was fixed (2026-11-23, branch `ruwaq/repo-fix-motion-system`)
 
-## الريندر على جهازك (i7 · 8GB)
-- `--concurrency=1` + `--gl=swiftshader` للمعاينة والمسودات.
-- للريندر الطويل: قسّم لمقاطع ≤10 دقائق ثم ادمج بـ ffmpeg (أوامر جاهزة في `docs/RUNBOOK.md`).
-- البديل السحابي: GitHub Actions (سير العمل مُوثَّق في RUNBOOK).
+- `npm install` failed with ERESOLVE (vite 8.3.8 needs esbuild
+  ^0.27/0.28, repo pinned ^0.25.0) — fixed by pinning esbuild ^0.28.0.
+  Clean `npm ci` now works.
+- Package was `react-example` 0.0.0 — now `ruwaq-3d-shape` 0.1.0.
+- No README, no `remotion.config.ts`, no render scripts — all added.
+- Wrong import in `src/components/RemotionModal.tsx`
+  (`./three/BabZuwaylaScene` → `../three/BabZuwaylaScene`).
+- Duplicate GLB removed (`RUWAQ_BAB_ZUWAYLA_V04_MASTER.glb` was a
+  byte-identical copy of the master, md5 aff350ff). Master preserved.
+- Root 5-state PNGs were byte-identical to `public/` copies — moved to
+  `docs/legacy/`, public copies kept.
+- Three competing `BabZuwaylaRemotion` files (root, `src/`, V04) — root
+  re-export + V04 moved to `docs/legacy/`; `src/BabZuwaylaRemotion.tsx`
+  is the single canonical file.
 
-## الأصول والتراخيص
-الخطوط المضمّنة بترخيص **OFL** (Amiri: aliftype · IBM Plex Sans Arabic: IBM) — استخدام تجاري مسموح.
-أصول البراند (شعار/أيقونات/أنماط) مملوكة للمشروع وتُسحب من `riwaq-brand/`.
+## Known limits (honest)
+
+- `RuwaqHistoricalMap` uses MapLibre GL (live map tiles / WebGL). It
+  registers as a composition, but a headless render depends on network
+  tiles — see `docs/PRODUCTION.md` "gates" section. The smoke script
+  renders the demo + Bab Zuwayla, not the map, for this reason.
+- `test.mp4` (29 KB) and `RUWAQ_ARCHITECTURAL_300_FRAMES.mp4` (80 KB) at
+  the repo root / in `public/` are suspiciously small for 300 frames —
+  kept, not trusted as deliverables.
+- `scripts/export_and_validate_glb.ts` needs a browser `FileReader`
+  polyfill and is not wired into any npm script — it is a manual tool.
+- No tests yet beyond the smoke render. No CI had existed — added
+  `.github/workflows/ci.yml` (install + typecheck + build + smoke).

@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --ruwaq-cream: #F3EBDB;
+    --ruwaq-ink: #1C1B19;
+    --ruwaq-gold: #A98A4B;
+    --ruwaq-stone: #D8CEBC;
+    --ruwaq-rust: #8C4729;
+    --ruwaq-dark-stone: #2A2824;
+  }
+
+  body {
+    background-color: var(--ruwaq-cream);
+    color: var(--ruwaq-ink);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+.font-serif-doc {
+  font-family: 'Cinzel', 'Amiri', Georgia, serif;
+}
+
+.font-arabic {
+  font-family: 'Amiri', serif;
+}
+
+.font-mono-doc {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Custom scrollbars for dock panels */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(28, 27, 25, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(169, 138, 75, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(169, 138, 75, 0.7);
+}
+

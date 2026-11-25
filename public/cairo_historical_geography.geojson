@@ -1,0 +1,221 @@
+{
+  "type": "FeatureCollection",
+  "name": "RUWAQ_Cairo_Historical_Geography_Master",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gate_bab_zuwayla",
+        "nameEn": "Bab Zuwayla (Bab al-Mutawalli)",
+        "nameAr": "باب زويلة (باب المتولي)",
+        "era": "Fatimid (1092 CE) & Mamluk (1415–1421 CE)",
+        "patron": "Badr al-Jamali / Sultan al-Mu‘ayyad Shaykh",
+        "architectMaster": "Master stonecutters from Urfa / Muhammad Ibn al-Qazzaz",
+        "provenance": "IN_SITU_ARCHAEOLOGICAL_EVIDENCE",
+        "osmReference": "OSM Node 293370334",
+        "archaeologicalCertainty": "Absolute (Standing)",
+        "citation": "K.A.C. Creswell (1952), The Muslim Architecture of Egypt, Vol. I, pp. 196–205",
+        "roleInStory": "PRIMARY_FOCUS",
+        "latitude": 30.04278,
+        "longitude": 31.25895
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.25895, 30.04278]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gate_bab_al_futuh",
+        "nameEn": "Bab al-Futuh (Gate of Conquests)",
+        "nameAr": "باب الفتوح",
+        "era": "Fatimid",
+        "dateAttested": "1087 CE (480 AH)",
+        "patron": "Badr al-Jamali",
+        "provenance": "IN_SITU_ARCHAEOLOGICAL_EVIDENCE",
+        "osmReference": "OSM Node 482591653",
+        "archaeologicalCertainty": "Absolute (Standing)",
+        "citation": "Creswell (1952), Vol. I, pp. 161–178",
+        "roleInStory": "NORTHERN_DEFENSIVE_ANCHOR",
+        "latitude": 30.05435,
+        "longitude": 31.26348
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.26348, 30.05435]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gate_bab_al_nasr",
+        "nameEn": "Bab al-Nasr (Gate of Victory)",
+        "nameAr": "باب النصر",
+        "era": "Fatimid",
+        "dateAttested": "1087 CE (480 AH)",
+        "patron": "Badr al-Jamali",
+        "provenance": "IN_SITU_ARCHAEOLOGICAL_EVIDENCE",
+        "osmReference": "OSM Node 293370335",
+        "archaeologicalCertainty": "Absolute (Standing)",
+        "citation": "Creswell (1952), Vol. I, pp. 179–195",
+        "roleInStory": "NORTHERN_DEFENSIVE_ANCHOR",
+        "latitude": 30.05417,
+        "longitude": 31.26555
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.26555, 30.05417]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "al_muizz_axis_line",
+        "nameEn": "Al-Mu‘izz li-Din Allah al-Fatimi Axis (The Qasaba)",
+        "nameAr": "شارع المعز لدين الله الفاطمي (قصبة القاهرة)",
+        "era": "Fatimid / Mamluk / Ottoman",
+        "dateAttested": "Founded 969 CE",
+        "lengthMeters": 1210,
+        "provenance": "VERIFIED_CONTEMPORARY_SURVEY & HISTORICAL_RECORD",
+        "osmReference": "OSM Way 24905187, 24905189",
+        "citation": "Caroline Williams (2018), Islamic Monuments in Cairo, pp. 152–220"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [31.26348, 30.05435],
+          [31.26315, 30.05380],
+          [31.26240, 30.05260],
+          [31.26180, 30.05190],
+          [31.26135, 30.05060],
+          [31.26085, 30.04930],
+          [31.26050, 30.04820],
+          [31.26010, 30.04720],
+          [31.25975, 30.04600],
+          [31.25940, 30.04480],
+          [31.25915, 30.04370],
+          [31.25895, 30.04278],
+          [31.25885, 30.04160]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "northern_standing_wall",
+        "nameEn": "Northern Fortified Stone Curtain Wall (In-Situ 1087 CE)",
+        "nameAr": "السور الشمالي الحجري القائم",
+        "provenance": "IN_SITU_ARCHAEOLOGICAL_EVIDENCE",
+        "archaeologicalCertainty": "Absolute (Standing)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [31.26348, 30.05435],
+          [31.26450, 30.05428],
+          [31.26555, 30.05417]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "unesco_historic_cairo_zone",
+        "nameEn": "Historic Cairo (UNESCO World Heritage Site Ref 89)",
+        "nameAr": "القاهرة التاريخية (موقع التراث العالمي)",
+        "inscribedYear": 1979,
+        "provenance": "VERIFIED_CONTEMPORARY_SURVEY",
+        "source": "UNESCO World Heritage Centre"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [31.2520, 30.0585],
+            [31.2680, 30.0580],
+            [31.2740, 30.0500],
+            [31.2720, 30.0380],
+            [31.2660, 30.0250],
+            [31.2580, 30.0230],
+            [31.2510, 30.0320],
+            [31.2530, 30.0450],
+            [31.2520, 30.0585]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fatimid_enclosure_approximate_1092",
+        "nameEn": "Fatimid Cairo Enclosure (Approximate Extent c. 1092 CE)",
+        "nameAr": "حرم القاهرة الفاطمية (حدود تقريبية سنة ١٠٩٢ م)",
+        "era": "Fatimid (Expansion by Badr al-Jamali 1087–1092 CE)",
+        "provenance": "HYPOTHETICAL_RECONSTRUCTION_APPROX",
+        "archaeologicalCertainty": "Approximate (Hypothetical ±50m)",
+        "citation": "K.A.C. Creswell (1952), Vol. I, Pl. 116",
+        "academicCaution": "Archaeological caution: Only northern wall and Bab Zuwayla survive in stone. Western and southern sectors are interpolated hypotheses along historic streets."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [31.26348, 30.05435],
+            [31.26555, 30.05417],
+            [31.26620, 30.05400],
+            [31.26680, 30.05000],
+            [31.26650, 30.04700],
+            [31.26600, 30.04350],
+            [31.26250, 30.04300],
+            [31.25895, 30.04278],
+            [31.25650, 30.04200],
+            [31.25550, 30.04500],
+            [31.25600, 30.04950],
+            [31.25750, 30.05400],
+            [31.26050, 30.05440],
+            [31.26348, 30.05435]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nile_main_river",
+        "nameEn": "River Nile (Nahr an-Nil)",
+        "nameAr": "نهر النيل",
+        "type": "water",
+        "provenance": "VERIFIED_CONTEMPORARY_SURVEY"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [31.2140, 30.0100],
+            [31.2160, 30.0250],
+            [31.2180, 30.0400],
+            [31.2210, 30.0550],
+            [31.2260, 30.0700],
+            [31.2320, 30.0850],
+            [31.2400, 30.1000],
+            [31.2520, 30.1000],
+            [31.2450, 30.0850],
+            [31.2380, 30.0700],
+            [31.2340, 30.0550],
+            [31.2300, 30.0400],
+            [31.2280, 30.0250],
+            [31.2270, 30.0100],
+            [31.2140, 30.0100]
+          ]
+        ]
+      }
+    }
+  ]
+}
