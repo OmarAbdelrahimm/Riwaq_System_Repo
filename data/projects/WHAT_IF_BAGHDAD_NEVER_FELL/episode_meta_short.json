@@ -1,0 +1,465 @@
+{
+ "schema_version": "2.0",
+ "brand_ref": {
+  "theme_path": "data/brand.json",
+  "watermark": "on"
+ },
+ "project": {
+  "id": "WHAT_IF_BAGHDAD_NEVER_FELL_SHORT",
+  "series_id": "riwaq_what_if",
+  "title": "ماذا لو لم تسقط بغداد؟ (Short)",
+  "episode_number": null,
+  "video_type": "short",
+  "platforms": [
+   "youtube_shorts"
+  ],
+  "aspect_ratios": [
+   "9x16"
+  ],
+  "language_primary": "ar",
+  "language_secondary": "en",
+  "priority": "quality"
+ },
+ "source": {
+  "type": "none",
+  "rights": "owned",
+  "provenance_note": "صور: ويكيميديا كومنز (ملكية عامة) + إعادة تصوّر بالذكاء الاصطناعي — انظر credits.csv"
+ },
+ "narration": {
+  "mode": "provided",
+  "profile_id": "arena_tts_voice01",
+  "replacement_policy": "drafts_allowed",
+  "note": "DRAFT_VO — صوت منصة غير رسمي (موافقة المالك في البوابة 1)"
+ },
+ "edit": {
+  "fps": 30,
+  "cut_style": "medium",
+  "duration_s": 53.555,
+  "music_mood": "hijaz-original",
+  "stingers": {
+   "in": false,
+   "out": true
+  }
+ },
+ "render": {
+  "resolution": [
+   1080,
+   1920
+  ],
+  "preset": "social_vertical",
+  "per_platform_export": false
+ },
+ "deliverables": {},
+ "qc_rules": {
+  "must_pass": [
+   "loudness",
+   "true_peak",
+   "captions_sync",
+   "caption_line_length",
+   "safe_zones",
+   "no_flash",
+   "logo_present",
+   "palette_lock",
+   "font_lock",
+   "source_logged"
+  ],
+  "tolerance_lu": 0.5
+ },
+ "status": "READY_FOR_REVIEW",
+ "notes": "DRAFT_VO · الخيال التاريخي موسوم دائمًا (ConceptFrame) · صور الذكاء الاصطناعي موسومة «إعادة تصوّر»",
+ "story": {
+  "scenes": []
+ },
+ "audio": {
+  "vo": [
+   {
+    "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/mix/mix_master_short.wav",
+    "t_in": 0,
+    "volume_db": 0
+   }
+  ],
+  "music": null,
+  "stingers": []
+ },
+ "captions": {
+  "styles": [
+   "keyword_highlight"
+  ],
+  "languages": [
+   "ar",
+   "en"
+  ],
+  "sync_source": "timeline_short.json words",
+  "burn_in": true,
+  "data": [
+   {
+    "t_in": 0.22,
+    "t_out": 3.94,
+    "ar": "العاشر من فبراير، ألفٍ\nومئتين وثمانٍ وخمسين.",
+    "en": "",
+    "keywords": []
+   },
+   {
+    "t_in": 4.37,
+    "t_out": 7.66,
+    "ar": "آخر خلفاء بغداد يخرج ليُسلّم\nمدينته لهُولَاكُو.",
+    "en": "",
+    "keywords": [
+     "بغداد"
+    ]
+   },
+   {
+    "t_in": 7.7,
+    "t_out": 12.31,
+    "ar": "لكن قبلها بعام، كان أمامه\nخيار: أن يخضع، فينجو.",
+    "en": "",
+    "keywords": []
+   },
+   {
+    "t_in": 12.35,
+    "t_out": 17.97,
+    "ar": "الحِلّة والكوفة والبصرة\nخضعت… فنجت. فماذا لو قبل؟",
+    "en": "",
+    "keywords": []
+   },
+   {
+    "t_in": 18.2,
+    "t_out": 20.97,
+    "ar": "هذا خيالٌ تاريخي، مبنيٌّ على\nالمصادر.",
+    "en": "",
+    "keywords": [
+     "خيال"
+    ]
+   },
+   {
+    "t_in": 21.02,
+    "t_out": 24.05,
+    "ar": "تنجو بغداد، وأهلها،\nومكتباتها.",
+    "en": "",
+    "keywords": [
+     "بغداد"
+    ]
+   },
+   {
+    "t_in": 24.34,
+    "t_out": 28.7,
+    "ar": "لكن الخليفة يصبح تابعًا\nللمغول: يمنح الشرعية…",
+    "en": "",
+    "keywords": [
+     "الخليفة",
+     "الشرعية"
+    ]
+   },
+   {
+    "t_in": 28.74,
+    "t_out": 29.7,
+    "ar": "بلا قرار.",
+    "en": "",
+    "keywords": []
+   },
+   {
+    "t_in": 29.74,
+    "t_out": 32.661,
+    "ar": "ثم تأتي المفاجأة: في ألفٍ\nومئتين وتسعٍ",
+    "en": "",
+    "keywords": []
+   },
+   {
+    "t_in": 32.701,
+    "t_out": 35.071,
+    "ar": "وخمسين يموت الخان الأعظم\nمُونْكُو،",
+    "en": "",
+    "keywords": []
+   },
+   {
+    "t_in": 35.111,
+    "t_out": 38.5,
+    "ar": "ويسحب هولاكو جيشه من الشام\nفي كل الأحوال.",
+    "en": "",
+    "keywords": [
+     "هولاكو"
+    ]
+   },
+   {
+    "t_in": 38.71,
+    "t_out": 42.59,
+    "ar": "وفي عين جالوت ينتصر\nالمماليك… في العالمين.",
+    "en": "",
+    "keywords": [
+     "عين جالوت"
+    ]
+   },
+   {
+    "t_in": 43.01,
+    "t_out": 44.21,
+    "ar": "الفرق الحقيقي؟",
+    "en": "",
+    "keywords": []
+   },
+   {
+    "t_in": 44.25,
+    "t_out": 47.2,
+    "ar": "لا يجد بيبرس خليفةً لاجئًا\nينصّبه في القاهرة.",
+    "en": "",
+    "keywords": []
+   },
+   {
+    "t_in": 47.26,
+    "t_out": 50.06,
+    "ar": "فهل كانت بغداد ستنجو… أم\nالفكرة؟",
+    "en": "",
+    "keywords": [
+     "بغداد"
+    ]
+   },
+   {
+    "t_in": 50.4,
+    "t_out": 52.205,
+    "ar": "القصة كاملة على رِواق.",
+    "en": "",
+    "keywords": []
+   }
+  ]
+ },
+ "visuals": [
+  {
+   "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/pd02_bagdad1258_crop43.jpg",
+   "t_in": 0,
+   "t_out": 7.6,
+   "kind": "archival",
+   "fit": "contain_blur",
+   "credit": "جامع التواريخ · نحو 1430 · ملكية عامة",
+   "kb": {
+    "from": 1.0,
+    "to": 1.08,
+    "fx0": 0.5,
+    "fy0": 0.5
+   }
+  },
+  {
+   "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/img07_sealed_letter.jpg",
+   "t_in": 7.6,
+   "t_out": 12.315,
+   "kind": "ai",
+   "fit": "contain_blur"
+  },
+  {
+   "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/img02_baghdad_dusk.jpg",
+   "t_in": 12.315,
+   "t_out": 16.505,
+   "kind": "ai",
+   "fit": "contain_blur",
+   "tint": "dark"
+  },
+  {
+   "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/img03_library_candle.jpg",
+   "t_in": 20.91,
+   "t_out": 24.11,
+   "kind": "ai",
+   "fit": "contain_blur"
+  },
+  {
+   "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/img06_throne_empty.jpg",
+   "t_in": 24.11,
+   "t_out": 29.655,
+   "kind": "ai",
+   "fit": "contain_blur",
+   "tint": "burgundy"
+  },
+  {
+   "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/img04_mongol_cavalry.jpg",
+   "t_in": 29.655,
+   "t_out": 42.72,
+   "kind": "ai",
+   "fit": "contain_blur"
+  },
+  {
+   "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/img02_baghdad_dusk.jpg",
+   "t_in": 47.145,
+   "t_out": 53.555,
+   "kind": "ai",
+   "fit": "contain_blur"
+  }
+ ],
+ "overlays": [
+  {
+   "type": "keyword",
+   "t_in": 0.2,
+   "t_out": 4.07,
+   "items": [
+    {
+     "text": "10 فبراير 1258",
+     "tone": "gold"
+    }
+   ],
+   "position": "top",
+   "size": 64
+  },
+  {
+   "type": "keyword",
+   "t_in": 11.807,
+   "t_out": 12.315,
+   "items": [
+    {
+     "text": "أن يخضع… فينجو",
+     "tone": "gold"
+    }
+   ],
+   "position": "top",
+   "size": 60
+  },
+  {
+   "type": "keyword",
+   "t_in": 12.415,
+   "t_out": 16.505,
+   "layout": "stack",
+   "position": "top",
+   "size": 56,
+   "items": [
+    {
+     "text": "الحِلّة",
+     "at": 0.015,
+     "tone": "parchment"
+    },
+    {
+     "text": "الكوفة",
+     "at": 0.65,
+     "tone": "parchment"
+    },
+    {
+     "text": "البصرة",
+     "at": 1.538,
+     "tone": "parchment"
+    },
+    {
+     "text": "خضعت… فنجت",
+     "at": 3.415,
+     "tone": "gold"
+    }
+   ]
+  },
+  {
+   "type": "scene_title",
+   "t_in": 16.505,
+   "t_out": 20.91,
+   "title": "فماذا لو قَبِل؟",
+   "size": 110,
+   "kicker": "خيال تاريخي مبنيّ على المصادر",
+   "tone": "burgundy"
+  },
+  {
+   "type": "keyword",
+   "t_in": 20.91,
+   "t_out": 24.11,
+   "layout": "stack",
+   "position": "top",
+   "size": 56,
+   "items": [
+    {
+     "text": "تنجو بغداد",
+     "at": 0.19,
+     "tone": "parchment"
+    },
+    {
+     "text": "وأهلها",
+     "at": 1.203,
+     "tone": "parchment"
+    },
+    {
+     "text": "ومكتباتها",
+     "at": 1.878,
+     "tone": "gold"
+    }
+   ]
+  },
+  {
+   "type": "keyword",
+   "t_in": 27.29,
+   "t_out": 29.655,
+   "items": [
+    {
+     "text": "شرعية بلا قرار",
+     "tone": "gold"
+    }
+   ],
+   "position": "top",
+   "size": 66
+  },
+  {
+   "type": "keyword",
+   "t_in": 34.127,
+   "t_out": 38.52,
+   "items": [
+    {
+     "text": "1259 · موت مُونْكُو",
+     "tone": "gold",
+     "sub": "حقيقة في العالمين"
+    }
+   ],
+   "position": "top",
+   "size": 58
+  },
+  {
+   "type": "keyword",
+   "t_in": 38.52,
+   "t_out": 42.72,
+   "items": [
+    {
+     "text": "عين جالوت 1260",
+     "tone": "gold",
+     "sub": "في العالمين"
+    }
+   ],
+   "position": "top",
+   "size": 58
+  },
+  {
+   "type": "split",
+   "t_in": 42.72,
+   "t_out": 47.145,
+   "right": {
+    "title": "خليفة القاهرة",
+    "tag": "الواقع",
+    "world": "real",
+    "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/img08_council_shadows.jpg"
+   },
+   "left": {
+    "title": "لا خليفة لاجئًا",
+    "sub": "بيبرس بلا شرعية جاهزة",
+    "tag": "الخيال",
+    "world": "fiction",
+    "src": "projects/WHAT_IF_BAGHDAD_NEVER_FELL/img/img06_throne_empty.jpg",
+    "at": 1.9950000000000045
+   }
+  },
+  {
+   "type": "scene_title",
+   "t_in": 47.145,
+   "t_out": 50.145,
+   "title": "بغداد… أم الفكرة؟",
+   "size": 96,
+   "scrim": true
+  },
+  {
+   "type": "keyword",
+   "t_in": 50.145,
+   "t_out": 53.555,
+   "items": [
+    {
+     "text": "القصة كاملة على رِواق",
+     "tone": "gold"
+    }
+   ],
+   "size": 60,
+   "scrim": true
+  }
+ ],
+ "fiction": [
+  {
+   "t_in": 18.0,
+   "t_out": 47.145
+  }
+ ],
+ "transitions": [],
+ "progress": null
+}

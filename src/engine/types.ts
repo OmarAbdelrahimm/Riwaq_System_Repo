@@ -134,6 +134,7 @@ export interface EpisodeMeta {
     languages: string[];
     sync_source: string;
     data: CaptionLine[];
+    burn_in?: boolean;
   } | null;
   edit?: {
     fps: number;
@@ -147,4 +148,19 @@ export interface EpisodeMeta {
   qc_rules?: { must_pass: string[]; tolerance_lu: number };
   status?: string;
   notes?: string | null;
+  /** طبقة الصور (اختيارية) — انظر components/VisualLayer */
+  visuals?: import("../components/VisualLayer").VisualSpec[];
+  /** عناصر رسومية فوق الصور: scene_title / keyword / timeline / map / bars / split / morph / quote / stat / lower_third / source / end */
+  overlays?: Overlay[];
+  /** نطاقات الخيال التاريخي → ConceptFrame + وسم دائم */
+  fiction?: { t_in: number; t_out: number }[];
+  transitions?: { t: number; type: "fade_black_200ms" | "hard_cut" }[];
+  progress?: { chapters: { t: number }[] } | null;
+}
+
+export interface Overlay {
+  type: string;
+  t_in: number;
+  t_out: number;
+  [k: string]: any;
 }

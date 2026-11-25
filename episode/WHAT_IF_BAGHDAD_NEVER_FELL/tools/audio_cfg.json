@@ -1,0 +1,10 @@
+{
+  "tempo": 1.2,
+  "tempo_note": "ffmpeg atempo (WSOLA) preserves pitch, so this is not a pitch shift. Brings the slow TTS pace (~103 wpm) to ~124 wpm and the video into the 8–10 min range",
+  "gap_between_clips_s": 0.55,
+  "head_s": 0.35,
+  "tail_s": 4.0,
+  "groups": [["01","02","03"],["04","05","06"],["07","08","09"],["10","11","12"],["13","14","15"],["16","17","18"],["19","20","21"],["22","23","24"],["25","26","27"]],
+  "vo_chain": "highpass=f=70,equalizer=f=220:t=q:w=1.2:g=-1.5,equalizer=f=3200:t=q:w=1.0:g=1.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=160:makeup=2,loudnorm=I=-16:TP=-1.5:LRA=7",
+  "targets": {"final_mix_lufs": -14, "true_peak_db": -1.0, "vo_lufs": -16, "music_duck_db": -12, "source": "data/brand.json sound.mix_targets.youtube_vod"}
+}

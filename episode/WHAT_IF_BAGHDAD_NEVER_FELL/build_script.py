@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build script.md from script_scenes.json and compute timing from spoken words only.
 
-Usage: python3 episode/EP14_BAGHDAD/build_script.py
+Usage: python3 episode/WHAT_IF_BAGHDAD_NEVER_FELL/build_script.py
 - Counts spoken words only (the text field), per editorial standard §5.
 - Duration = words / wpm * 60 + a fixed pause per scene.
 - Timings are estimates; they are replaced by real TTS timestamps in Phase 4.

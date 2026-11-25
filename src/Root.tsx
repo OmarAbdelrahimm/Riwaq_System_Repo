@@ -1,6 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { Episode } from "./compositions/Episode";
+import { Thumbnail } from "./compositions/Thumbnail";
 import type { Brand, EpisodeMeta } from "./engine/types";
 import brandJson from "../data/brand.json";
 import goldenJson from "../data/projects/GOLDEN_001/episode_meta.json";
@@ -17,6 +18,16 @@ const lastSceneEnd = (meta: EpisodeMeta) =>
 
 export const RemotionRoot: React.FC = () => {
   return (
+    <>
+    <Composition
+      id="Thumbnail"
+      component={Thumbnail as React.ComponentType<any>}
+      durationInFrames={1}
+      fps={30}
+      width={1280}
+      height={720}
+      defaultProps={{ brand, variant: "puzzle", title: "بغداد لم تسقط؟", img_a: "projects/GOLDEN_001/none.jpg" }}
+    />
     <Composition
       id="Episode"
       component={Episode as React.ComponentType<any>}
@@ -37,5 +48,6 @@ export const RemotionRoot: React.FC = () => {
         };
       }}
     />
+    </>
   );
 };
