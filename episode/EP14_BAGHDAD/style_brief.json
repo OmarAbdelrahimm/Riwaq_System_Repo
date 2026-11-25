@@ -1,0 +1,85 @@
+{
+  "episode_id": "EP14_BAGHDAD",
+  "version": "1.0-draft",
+  "date": "2026-11-25",
+  "status": "DRAFT_FOR_GATE_1",
+  "brand_source": "data/brand.json (palette_lock=true). Every color and font below is a token from the official kit; nothing outside it is introduced.",
+  "reference_method": {
+    "requested": "10–15 Pinterest references",
+    "actual": "Pinterest page fetch blocked (HTTP 403). 10 pins were identified through web search and only their text descriptions were read; the images themselves were not opened or downloaded. They were supplemented with 3 public-domain historical manuscript references (Wikimedia Commons, to be license-verified in Phase 5). Only abstract tokens were extracted, with no copying of any design, image, logo or font.",
+    "status": "PARTIAL_ALTERNATIVE"
+  },
+  "references": [
+    {"id": "R01", "source": "pinterest", "url": "https://www.pinterest.com/pin/597852919312011168/", "subject": "Map of the Round City of Baghdad", "token": "Overhead radial geography; the city as a circle cut by the Tigris, rendered as an animated line map"},
+    {"id": "R02", "source": "pinterest", "url": "https://www.pinterest.com/pin/baghdad--616782111470256121/", "subject": "Aerial view of a walled medieval city", "token": "High establishing angle with walls and water as the composition's frame"},
+    {"id": "R03", "source": "pinterest", "url": "https://www.pinterest.com/pin/742742163577955849/", "subject": "Mongol cavalry in a Persian miniature", "token": "Flat perspective, horizontal ranks of horsemen; movement read from repeating forms, not speed"},
+    {"id": "R04", "source": "pinterest", "url": "https://www.pinterest.com/sanamandan/ilkhanate/", "subject": "Ilkhanid board (miniatures + maps)", "token": "Small-scale architectural framing inside the painting: text above the walls, figures at the gate"},
+    {"id": "R05", "source": "pinterest", "url": "https://za.pinterest.com/pin/643733340542160980/", "subject": "Map motion graphics for a historical documentary", "token": "Map revealed with route lines drawn progressively + slow camera pan"},
+    {"id": "R06", "source": "pinterest", "url": "https://www.pinterest.com/ideas/historical-motion-graphics/946334467297/", "subject": "Historical motion graphics", "token": "Pinned photos on an old map — useful for figure cards on the timeline"},
+    {"id": "R07", "source": "pinterest", "url": "https://ca.pinterest.com/ariscottiepup/art-chiaroscuro/", "subject": "Chiaroscuro / candlelight", "token": "Single warm light source, deep black shadows: suits library and court scenes"},
+    {"id": "R08", "source": "pinterest", "url": "https://www.pinterest.com/pin/215398794655694942/", "subject": "Gold geometric pattern on black", "token": "Thin gold line geometry over dark ground — used as a very faint background ornament (≤6% opacity)"},
+    {"id": "R09", "source": "pinterest", "url": "https://www.pinterest.com/pin/film-grain-dust-texture-overlay--363102788712896943/", "subject": "Film grain and dust texture", "token": "Light grain (brand: grain 0.12) instead of heavy scratches"},
+    {"id": "R10", "source": "pinterest", "url": "https://www.pinterest.com/pin/medieval-battle-scene-with-cavalry-and-infantry-silhouettes-of-figures-as-separate-objects-fight-between-warriors-on-dark-t-in-2023--1080019554370419055/", "subject": "Cavalry silhouettes in fog", "token": "Violence implied through silhouettes and dust, no blood or close-up gore"},
+    {"id": "R11", "source": "wikimedia_commons_candidate", "url": "TO_VERIFY_PHASE5", "subject": "Hülegü's army besieging Baghdad — Jamiʿ al-Tawarikh (14th century)", "token": "Real archival imagery in parchment frames; caption: manuscript title + century"},
+    {"id": "R12", "source": "wikimedia_commons_candidate", "url": "TO_VERIFY_PHASE5", "subject": "Maqamat al-Hariri illustrations (al-Wasiti, Baghdad 1237)", "token": "Pre-fall Baghdad life: library, market, mosque — the human scene before the disaster"},
+    {"id": "R13", "source": "wikimedia_commons_candidate", "url": "TO_VERIFY_PHASE5", "subject": "The caliph locked up among his treasures — Livre des merveilles (15th century)", "token": "Shows how Europe imagined the event = a narrative layer, not a document; always labeled"}
+  ],
+  "palette": [
+    {"token": "ink_deep", "hex": "#1C1B19", "role": "Main background — 70% of frame area"},
+    {"token": "parchment", "hex": "#F3EBDB", "role": "Body text and caption text"},
+    {"token": "gold", "hex": "#A98A4B", "role": "Headlines, rules, timeline, logo"},
+    {"token": "burgundy", "hex": "#5E2230", "role": "Exclusive signal of the 'historical fiction' world: frame + label + ConceptMorph"},
+    {"token": "stone", "hex": "#8A7F6B", "role": "Source cards, lower-third roles, secondary text"}
+  ],
+  "palette_support": {
+    "gold_light": "#C2A469 — highlighted keywords and numbers in captions (per captions.rules)",
+    "ink_second": "#242218 — card backgrounds",
+    "parchment2": "#EDE6D6 — paper background for manuscript scenes"
+  },
+  "typography": {
+    "headline": {"family": "Amiri", "weight": 700, "use": "SceneTitle, ChapterCard, numbers"},
+    "body": {"family": "IBM Plex Sans Arabic", "weights": [400, 500, 700], "use": "captions, LowerThird, KeywordPop, source cards"},
+    "forbidden": ["Cairo", "Inter", "any unlicensed font"],
+    "scale_16x9_1920x1080_derived": {
+      "note": "brand.json defines only the 9:16 scale; these values are derived proportionally and need approval",
+      "scene_title_px": 84, "chapter_title_px": 72, "caption_px": 50, "keyword_pop_px": 64,
+      "lower_third_name_px": 38, "lower_third_role_px": 28, "source_card_px": 28, "stat_number_px": 150, "min_legible_px": 28
+    },
+    "scale_9x16": "from brand.json theme.type_scale_1080x1920 as-is",
+    "rtl": "direction: rtl; Arabic digits shown as Western Arabic digits (1258) per channel practice; foreign names with partial tashkeel"
+  },
+  "motion_language": {
+    "ease": "cubic-bezier(.2,.8,.2,1)",
+    "text_in_ms": 380, "text_out_ms": 280, "rise_px": 12,
+    "ken_burns": {"from": 1.0, "to": 1.06},
+    "cut_rhythm_s": {"hook": [1.5, 2.5], "default": [3.5, 6.0]},
+    "transitions": ["hard_cut", "fade_black_200ms"],
+    "forbidden": ["flash", "whip", "spin", "bounce", "zoom_punch"],
+    "signature_moves": {
+      "TimelineBar": "Thin gold line along the bottom, drawn right to left (RTL) with gold dots for dates; becomes burgundy once the timeline splits into a fictional branch",
+      "ConceptMorph": "Real → hypothetical transition: gold frame dissolves into burgundy over 600ms with a crossfade, no spinning or flashing",
+      "KeywordPop": "One word rises 12px with opacity 0→1, then holds 1s",
+      "MapDraw": "Route lines drawn progressively at 1.5–2s per segment (Mongolia → Alamut → Hulwan → Baghdad)"
+    }
+  },
+  "layout_rules": {
+    "safe_zone_16x9": {"top_px": 80, "bottom_px": 120, "side_px": 90, "caption_band_y": [880, 980]},
+    "safe_zone_9x16": {"top_px": 220, "bottom_px": 480, "side_px": 64, "caption_band_y": [1210, 1360]},
+    "logo": "Official watermark at top-center, opacity 0.8, 72px, static — never regenerated",
+    "fiction_label": "From scene 14 (the turning point) to the end of the alternate scenario: a 'خيال تاريخي' label in the top-right corner (outside the logo zone) + a 2px burgundy hairline frame",
+    "negative_space": "Wide negative space; one main element per frame",
+    "captions": "2 lines max, 28 Arabic characters max per line, keywords and numbers in gold_light, never covering faces or source cards",
+    "english_text": "Not allowed on screen except the end card (brand negative_rules)"
+  },
+  "texture": {
+    "paper_texture": {"blend": "soft-light", "opacity": 0.10},
+    "grain": 0.12, "vignette": 0.18, "bloom": 0.10,
+    "ornament": "Faint geometric gold pattern (≤6%) only on chapter cards"
+  },
+  "visual_honesty": {
+    "archival": "Manuscript title + century in the source card",
+    "ai_generated": "Persistent small label 'إعادة تصوّر بصري' in the corner + logged in credits.csv",
+    "living_persons": "Forbidden",
+    "historical_figures": "Artistic representation without a realistic 'photographic face'; manuscript style or silhouette"
+  }
+}

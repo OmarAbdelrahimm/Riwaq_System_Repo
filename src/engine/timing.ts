@@ -15,7 +15,10 @@ export function textTiming(
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.2, 0.8, 0.2, 1),
   });
-  const exitT = interpolate(frame, [outFrames, 0], [0, 1], {
+  // إصلاح: النطاق السابق [outFrames, 0] غير تصاعدي ويُسقط الريندر.
+  // الخروج يبدأ عند outFrames ويكتمل بعد exitLen إطارًا (1 → 0).
+  const exitLen = 8;
+  const exitT = interpolate(frame, [outFrames, outFrames + exitLen], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.2, 0.8, 0.2, 1),
