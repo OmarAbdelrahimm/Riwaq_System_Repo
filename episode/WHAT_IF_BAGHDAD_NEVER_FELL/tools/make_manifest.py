@@ -31,6 +31,7 @@ def main():
     media = json.load(open(mp, encoding="utf-8")) if os.path.exists(mp) else {}
     groups = {
         "video": sorted(p for p in glob.glob(os.path.join(EX, "video", "*.mp4")) if not os.path.basename(p).startswith("_")),
+        "video_parts_for_drive": sorted(glob.glob(os.path.join(EX, "video", "parts", "*.mp4"))),
         "thumbnails": sorted(glob.glob(os.path.join(EX, "publish", "thumbnails", "*.png"))),
         "subtitles": sorted(glob.glob(os.path.join(EX, "publish", "subtitles", "*.srt"))),
         "publish_text": sorted(glob.glob(os.path.join(EX, "publish", "*.txt"))),
@@ -57,7 +58,9 @@ def main():
         "youtube_settings": {"altered_or_synthetic_content": "YES (AI visuals + synthetic voice + alternate history)",
                              "made_for_kids": False, "captions_burned_in": {"long": False, "short": True},
                              "upload_subtitles": ["subtitles_ar.srt (ar)", "subtitles_en.srt (en — needs human review)"]},
-        "drive_folder_id": "1iHMuisq4IhRK65jVLYQelc_guz3Ed4U8",
+        "drive": {"episode_folder_id": "1iHMuisq4IhRK65jVLYQelc_guz3Ed4U8", "video_folder_id": "1AHaq-oW8YvnI4wSmMfBZBV5twqMRpF3c",
+                  "publish_folder_id": "1XBpvcusShuDRKgDS5hjGwXil8Cdvz4lE",
+                  "note": "long masters >100 MB (connector cap) → uploaded as 4 lossless stream-copy parts each; re-join per video/JOIN_README.txt (decoded frames verified identical)"},
         "files": {k: [entry(p, media) for p in v] for k, v in groups.items()},
     }
     out = os.path.join(EX, "publish", "manifest.json")

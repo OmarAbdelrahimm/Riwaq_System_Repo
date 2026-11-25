@@ -2,9 +2,19 @@
 
 | الفحص | النتيجة | القيمة المقاسة | الهدف |
 |---|---|---|---|
-| master.mp4 موجود | FAIL | غير موجود | — |
-| master_no_voice.mp4 موجود | FAIL | غير موجود | — |
-| master_sfx_only.mp4 موجود | FAIL | غير موجود | — |
+| master.mp4 · الأبعاد | PASS | 1920x1080 | 1920x1080 |
+| master.mp4 · fps/codec | PASS | 30.0 fps · h264 · yuvj420p | 30 · h264 · yuv420p |
+| master.mp4 · الصوت | PASS | aac 48000 Hz 279 kb/s | AAC 48 kHz |
+| master.mp4 · Loudness | PASS | -14.0 LUFS | -14 ±1 LU |
+| master.mp4 · True peak | PASS | -1.0 dBFS | ≤ −1 dBTP (تسامح 0.1) |
+| master_no_voice.mp4 · الأبعاد | PASS | 1920x1080 | 1920x1080 |
+| master_no_voice.mp4 · fps/codec | PASS | 30.0 fps · h264 · yuvj420p | 30 · h264 · yuv420p |
+| master_no_voice.mp4 · الصوت | PASS | aac 48000 Hz 291 kb/s | AAC 48 kHz |
+| master_no_voice.mp4 · True peak | PASS | -1.0 dBFS | ≤ −1 dBTP (تسامح 0.1) |
+| master_sfx_only.mp4 · الأبعاد | PASS | 1920x1080 | 1920x1080 |
+| master_sfx_only.mp4 · fps/codec | PASS | 30.0 fps · h264 · yuvj420p | 30 · h264 · yuv420p |
+| master_sfx_only.mp4 · الصوت | PASS | aac 48000 Hz 11 kb/s | AAC 48 kHz |
+| master_sfx_only.mp4 · True peak | PASS | -3.0 dBFS | ≤ −1 dBTP (تسامح 0.1) |
 | short_v1.mp4 · الأبعاد | PASS | 1080x1920 | 1080x1920 |
 | short_v1.mp4 · fps/codec | PASS | 30.0 fps · h264 · yuvj420p | 30 · h264 · yuv420p |
 | short_v1.mp4 · الصوت | PASS | aac 48000 Hz 272 kb/s | AAC 48 kHz |
@@ -18,6 +28,7 @@
 | short_v1_sfx_only.mp4 · fps/codec | PASS | 30.0 fps · h264 · yuvj420p | 30 · h264 · yuv420p |
 | short_v1_sfx_only.mp4 · الصوت | PASS | aac 48000 Hz 27 kb/s | AAC 48 kHz |
 | short_v1_sfx_only.mp4 · True peak | PASS | -3.0 dBFS | ≤ −1 dBTP (تسامح 0.1) |
+| المدة · الطويل | PASS | 564.57 s (9:24.6) | 8–10 دقائق |
 | المدة · الشورت | PASS | 53.56 s | 45–55 ث |
 | subtitles_ar.srt · بنية | PASS | 184 مقطع · >حد السطر: 0 · >سطرين: 0 · تداخل: 0 | ≤2 سطر · بلا تداخل |
 | subtitles_ar.srt · مقاطع < 1.2 ث | INFO | 3 | تحذير فقط (repo make_srt) |
@@ -38,4 +49,4 @@
 | credits.csv يغطي كل الصور | PASS | 14 صورة · 20 سجل | كل أصل مسجّل |
 | FACT_CHECK | INFO | {"VERIFIED": 21, "VERIFIED_ATTRIBUTED": 1, "NEEDS_2ND_SOURCE": 1, "REVIEW": 2, "VERIFIED_SECONDARY": 2, "FICTION_LABELED": 1} | كل ادعاء ← مصدر |
 
-**FAIL: 3** — master.mp4 موجود, master_no_voice.mp4 موجود, master_sfx_only.mp4 موجود
+**FAIL: 0** 
